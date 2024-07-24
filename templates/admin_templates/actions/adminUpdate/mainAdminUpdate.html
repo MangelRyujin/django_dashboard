@@ -1,0 +1,200 @@
+{% load static %}
+{% if form %}
+              <form class="row g-3"
+                    enctype="multipart/form-data"
+                    hx-post="{% url 'admin_main_information_update' pk=admin.id%}"
+                    hx-target="#AdminMainUpdateForm"
+                    hx-swap="innerHTML"
+                    hx-trigger="submit"
+                    hx-indicator="#spinnerAdminMainUpdate">
+                    {% csrf_token %}
+                <div class="col-12">
+                  <label for="{{ form.username.id_for_label }}" class="form-label">Username</label>
+                  <input type="text" name="username" value="{{ form.username.value }}" class="form-control" id="{{ form.username.id_for_label }}" placeholder="Username">
+                  {% if form.username.errors %}
+                  <div class="alert alert-danger mt-2">
+                      {% for error in form.username.errors %}
+                          {{ error }}
+                      {% endfor %}
+                  </div>
+                  {% endif %}    
+                </div>
+                <div class="col-12">
+                  <label for="{{ form.email.id_for_label }}" class="form-label">Email</label>
+                  <input type="email" name="email" value="{{ form.email.value }}" class="form-control" id="{{ form.email.id_for_label }}" placeholder="Email">
+                  {% if form.email.errors %}
+                  <div class="alert alert-danger mt-2">
+                      {% for error in form.email.errors %}
+                          {{ error }}
+                      {% endfor %}
+                  </div>
+                  {% endif %}    
+                </div>
+                <div class="col-12">
+                  <div class="row">
+                    <div class="col-12">
+                      <label for="{{ form.groups.id_for_label }}" class="form-label">Role (one or more)</label>
+                      <div class="">
+                        <select name="groups" multiple class="form-select" id="{{ form.groups.id_for_label }}">
+                            {% for group in form.groups %}
+                            {{group}}
+                            {% endfor %}
+                        </select>
+                      </div>
+                      {% if form.groups.errors %}
+                      <div class="alert alert-danger mt-2">
+                          {% for error in form.groups.errors %}
+                              {{ error }}
+                          {% endfor %}
+                      </div>
+                      {% endif %}    
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <label for="{{ form.first_name.id_for_label }}" class="form-label">First name</label>
+                  <input type="text" name="first_name" value="{{ form.first_name.value }}" class="form-control" id="{{ form.first_name.id_for_label }}" placeholder="First name">
+                </div>
+                <div class="col-12">
+                  <label for="{{ form.last_name.id_for_label }}" class="form-label">Last name</label>
+                  <input type="text" name="last_name" value="{{ form.last_name.value }}" class="form-control" id="{{ form.last_name.id_for_label }}" placeholder="Last name">
+                </div>
+                <div class="col-12">
+                  <label for="{{form.phone_number.id_for_label}}" class="form-label">Phone number</label>
+                  <input type="text" name="phone_number" value="{% if form.phone_number.value  %}{{form.phone_number.value}}{% else %}{% endif %}" class="form-control" id="{{form.phone_number.id_for_label}}" placeholder="Phone number">
+                  {% if form.phone_number.errors %}
+                  <div class="alert alert-danger mt-2">
+                      {% for error in form.phone_number.errors %}
+                          {{ error }}
+                      {% endfor %}
+                  </div>
+                  {% endif %}      
+                </div>
+                <div class="col-12">
+                  <label for="{{form.country.id_for_label}}" class="form-label">Country</label>
+                  <input type="text" name="country" value="{% if form.country.value  %}{{form.country.value}}{% else %}{% endif %}" class="form-control" id="{{form.country.id_for_label}}" placeholder="Country">
+                  {% if form.country.errors %}
+                  <div class="alert alert-danger mt-2">
+                      {% for error in form.country.errors %}
+                          {{ error }}
+                      {% endfor %}
+                  </div>
+                  {% endif %}      
+                </div>
+                <div class="col-12">
+                  <label for="{{form.city.id_for_label}}" class="form-label">City</label>
+                  <input type="text" name="city" value="{% if form.city.value  %}{{form.city.value}}{% else %}{% endif %}" class="form-control" id="{{form.city.id_for_label}}" placeholder="City">
+                  {% if form.city.errors %}
+                  <div class="alert alert-danger mt-2">
+                      {% for error in form.city.errors %}
+                          {{ error }}
+                      {% endfor %}
+                  </div>
+                  {% endif %}      
+                </div>
+                <div class="col-12">
+                  <label for="{{form.address.id_for_label}}" class="form-label">Address</label>
+                  <input type="text" name="address" value="{% if form.address.value  %}{{form.address.value}}{% else %}{% endif %}" class="form-control" id="{{form.address.id_for_label}}" placeholder="Address">
+                  {% if form.address.errors %}
+                  <div class="alert alert-danger mt-2">
+                      {% for error in form.address.errors %}
+                          {{ error }}
+                      {% endfor %}
+                  </div>
+                  {% endif %}      
+                </div>
+                <div class="col-12">
+                    <label class="form-label" for="{{form.image.id_for_label}}">Image: <img class="rounded-circle" src=" {% if admin.image %}{{admin.image.url}} {% else %} {% static "/assets/img/avatar.jpg" %}{% endif %}" width="32" height="32" alt="{% if admin.image %}{{admin.image.url}} {% else %} {% static "/assets/img/avatar.jpg" %}{% endif %}"></label>
+                    <div class="input-group mb-3">
+                      <input type="file" name="image"  class="form-control" id="{{form.image.id_for_label}}">
+                    <label class="input-group-text" for="{{form.image.id_for_label}}">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-images" viewBox="0 0 16 16">
+                      <path d="M4.502 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/>
+                      <path d="M14.002 13a2 2 0 0 1-2 2h-10a2 2 0 0 1-2-2V5A2 2 0 0 1 2 3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8a2 2 0 0 1-1.998 2M14 2H4a1 1 0 0 0-1 1h9.002a2 2 0 0 1 2 2v7A1 1 0 0 0 15 11V3a1 1 0 0 0-1-1M2.002 4a1 1 0 0 0-1 1v8l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094l1.777 1.947V5a1 1 0 0 0-1-1z"/>
+                    </svg>
+                  </label>
+                  </div>
+                  {% if form.image.errors %}
+                            <div class="alert alert-danger mt-2">
+                                {% for error in form.image.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                            {% endif %}      
+                  
+                </div>
+                <div class="col-12">
+                  <label class="form-check-label" for="{{ form.is_active.id_for_label }}">
+                    Active
+                  </label>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="is_active" id="{{ form.is_active.id_for_label }}" value="true"
+                    {% if form.instance.is_active %}checked{% endif %} >
+                    <label class="form-check-label" for="{{ form.is_active.id_for_label }}">
+                      Is active
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="is_active" id="{{ form.is_active.id_for_label }}False" value="false"
+                    {% if not form.instance.is_active %}checked{% endif %}>
+                    <label class="form-check-label" for="{{ form.is_active.id_for_label }}False">
+                      It's not active
+                    </label>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <label class="form-check-label" for="{{ form.is_staff.id_for_label }}">
+                    Staff
+                  </label>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="is_staff" id="{{ form.is_staff.id_for_label }}" value="true"
+                    {% if form.instance.is_staff %}checked{% endif %} >
+                    <label class="form-check-label" for="{{ form.is_staff.id_for_label }}">
+                      Is staff
+                    </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="radio" name="is_staff" id="{{ form.is_staff.id_for_label }}False" value="false"
+                    {% if not form.instance.is_staff %}checked{% endif %}>
+                    <label class="form-check-label" for="{{ form.is_staff.id_for_label }}False">
+                      It's not staff
+                    </label>
+                  </div>
+                </div>  
+                <div class="col-12">
+                    {% if message %}
+                            <div class="alert alert-dismissible alert-success d-flex align-items-center mb-0  px-2 fade show" role="alert">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="me-2 bi-check-circle-fill" viewBox="0 0 16 16">
+                                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                                </svg>
+                                <div class="small">
+                                  {{message}}
+                                </div>
+                                <span type="button" class="btn-close px-2" data-bs-dismiss="alert" aria-label="Close"></span>
+                              </div>
+                              <div 
+                              hx-get="{% url 'admin_table_results' %}"
+                              hx-target="#AdminTableResults"
+                              hx-trigger="load"
+                              hx-swap="innerHTML"
+                              hx-indicator="#spinner"></div>
+                          {% endif %}
+
+                            {% if error %}
+                            <div class="alert alert-dismissible alert-danger d-flex align-items-center mb-0  px-2 fade show" role="alert">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="me-2 bi-exclamation-triangle-fill" viewBox="0 0 16 16">
+                                <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+                                </svg>
+                                <div class="small">
+                                    {{error}}
+                                </div>
+                                <span type="button" class="btn-close px-2" data-bs-dismiss="alert" aria-label="Close"></span>
+                                </div>
+                            {% endif %}
+                </div>    
+                <span class="w-100 d-flex justify-content-end ">
+                    <button type="submit" class="btn d-flex justify-content-center align-items-center btn-outline-primary shadow-sm border-2 border-primary px-5">
+                      <span id="spinnerAdminMainUpdate" class="htmx-indicator spinner-border spinner-border-sm me-2" ></span>Save</button>
+                  </span>
+              </form>
+              {% endif %}
