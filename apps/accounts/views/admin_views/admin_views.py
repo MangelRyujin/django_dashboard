@@ -129,8 +129,6 @@ def _show_admin(request):
 # Detail user admin table
 @login_required(login_url='/login/')
 def admin_detail(request,pk):
-    # import time
-    # time.sleep(2)
     admin = User.objects.filter(pk=pk).first()
     return  render(request,'admin_templates/actions/adminDetail/adminDetail.html',{"admin":admin})
      

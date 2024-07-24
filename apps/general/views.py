@@ -52,8 +52,6 @@ def change_password_view(request):
 @login_required(login_url='/login/')
 def change_password_form(request):
     if request.method == 'POST':
-        import time
-        time.sleep(2)
         form = PasswordChangeForm(request.user, request.POST)
         if form.is_valid():
             form.save()
