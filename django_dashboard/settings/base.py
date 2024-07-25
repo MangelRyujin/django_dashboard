@@ -52,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'simple_history.middleware.HistoryRequestMiddleware',
+    'apps.general.middleware.NoCacheMiddleware',
 ]
 
 ROOT_URLCONF = 'django_dashboard.urls'

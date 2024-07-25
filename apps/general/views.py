@@ -1,20 +1,24 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render
 from django.contrib.auth.decorators import login_required 
-# from apps.accounts.models import Profile
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login 
 from django.http import HttpResponse
 from django.contrib.auth.forms import PasswordChangeForm
-
+from .decorators import user_is_not_authenticated
 from apps.accounts.models import User
 
 # Dashboard view (index)
 @login_required(login_url='/login/')
 def dashboard_view(request):
     history = User.history.all()[:10]
-    return render(request,'index.html',{"history":history})
+    response= render(request,'index.html',{"history":history})
+    response['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
+    response['Pragma'] = 'no-cache'
+    response['Expires'] = '0'
+    return response
 
 
 # Log in view
+@user_is_not_authenticated
 def login_view(request):
     next_url = request.GET.get('next', '')
     if request.method == 'POST':
@@ -46,7 +50,11 @@ def login_view(request):
 @login_required(login_url='/login/')
 def change_password_view(request):
     form = PasswordChangeForm(user=request.user)
-    return render(request, 'change_password/change_password.html',{"form":form})
+    response= render(request, 'change_password/change_password.html',{"form":form})
+    response['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
+    response['Pragma'] = 'no-cache'
+    response['Expires'] = '0'
+    return response
 
 # Change password form component
 @login_required(login_url='/login/')

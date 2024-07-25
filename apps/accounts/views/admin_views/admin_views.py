@@ -13,7 +13,11 @@ logger = logging.getLogger(__name__)
 @login_required(login_url='/login/')
 def admin_view(request):
     groups = Group.objects.all()
-    return render(request,'admin_templates/admin.html',{'groups': groups})
+    response= render(request,'admin_templates/admin.html',{'groups': groups})
+    response['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
+    response['Pragma'] = 'no-cache'
+    response['Expires'] = '0'
+    return response
 
 # Charge result table
 @login_required(login_url='/login/')

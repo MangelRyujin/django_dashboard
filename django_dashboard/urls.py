@@ -20,8 +20,7 @@ from django.conf import settings
 from django.views.static import serve
 from django.conf.urls.static import static
 from apps.general.views import  dashboard_view, login_view, change_password_view,change_password_form
-from django.contrib.auth.views import LogoutView,PasswordChangeView
-from django.urls import reverse_lazy
+from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
     path('admin_django/', admin.site.urls),
@@ -33,6 +32,4 @@ urlpatterns = [
     path('admins/',include('apps.accounts.urls.admin_urls')),
     path('change_password/',change_password_view,name='change_password_view'),
     path('change_password_form/',change_password_form,name='change_password_form'),
-    # path('change_password/',PasswordChangeView.as_view(template_name="password_change.html",success_url = reverse_lazy("login_view")),name='change_password'),
-    
 ]
