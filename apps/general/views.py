@@ -3,14 +3,21 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login 
 from django.http import HttpResponse
 from django.contrib.auth.forms import PasswordChangeForm
+
+from apps.products.models import Category
 from .decorators import user_is_not_authenticated
 from apps.accounts.models import User
 
 # Dashboard view (index)
 @login_required(login_url='/login/')
 def dashboard_view(request):
-    history = User.history.all()[:10]
-    response= render(request,'index.html',{"history":history})
+    admin_history = User.history.all()[:10]
+    category_history = Category.history.all()[:10]
+    context={
+        'admin_history':admin_history,
+        'category_history':category_history,
+    }
+    response= render(request,'index.html',context)
     response['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
     response['Pragma'] = 'no-cache'
     response['Expires'] = '0'
