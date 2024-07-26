@@ -28,7 +28,7 @@ class Product(models.Model):
     stars= models.PositiveIntegerField(_("Stars"),validators=[MinValueValidator(1),MaxValueValidator(5)],default=3)
     stock = models.PositiveIntegerField(_("Stock"),default=0)
     price = models.DecimalField(_("Name"), decimal_places= 2,max_digits=12, validators=[MinValueValidator(0.01)])
-    image = models.ImageField(_("Image"),upload_to="category_images")
+    image = models.ImageField(_("Image"),upload_to="product_images")
     is_active = models.BooleanField(_("Active"),default=True)
     small_description = models.TextField(_("Small description"),max_length=255)
     long_description = models.TextField(_("Long description"),max_length=500)
@@ -42,5 +42,3 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
-
-    
