@@ -3,7 +3,8 @@
 {% if category %}
 {% comment %} <img loading="lazy" width="300" height="300" src="{% if category.image %}{{category.image.url}}{% endif %}" class="d-block w-100 rounded-2" alt="{% if category.image %}{{category.image.url}}{% endif %}"> {% endcomment %}
 <div loading="lazy" class="card card-cover h-100 overflow-hidden text-bg-dark rounded-2 shadow-sm  border-0" 
-      style="background-position: center center;background-size: cover; background-image: url('{% if category.image %}{{category.image.url}}{% endif %}');">
+      style="background-position: center center;background-size: cover; background-image: url('{% if category.image %}{{category.image.url}}{% else %}{% static '/assets/img/image_not_found.jpg' %}{% endif %}');">
+
         
           <div class="w-100 h-100 d-flex flex-column p-3 justify-content-between " style="min-height: 300px;">
             

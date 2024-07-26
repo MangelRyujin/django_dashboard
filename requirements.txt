@@ -1,5 +1,6 @@
 asgiref==3.8.1
 Django==5.0.6
+django-cleanup==8.1.0
 django-filter==24.2
 django-simple-history==3.7.0
 django-solo==2.2.0

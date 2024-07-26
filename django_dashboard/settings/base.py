@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     # THIRD_APPS
     'django_filters',
     'simple_history' , 
+    'django_cleanup.apps.CleanupConfig',
 ]
 
 MIDDLEWARE = [
