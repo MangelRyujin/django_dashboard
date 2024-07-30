@@ -65,6 +65,7 @@ def admin_main_information_update(request,pk):
             admin_form_valid=form.save(commit=False)
             admin_form_valid._change_reason = f'Modifying personal information for the {admin.username} administrator'
             admin_form_valid.save()
+            form.save_m2m()
             message="Change admin successfully"
             context['message']=message
         else:

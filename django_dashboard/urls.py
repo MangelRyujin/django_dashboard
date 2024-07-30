@@ -31,6 +31,7 @@ urlpatterns = [
     path('logout/',LogoutView.as_view(),name='logout'),
     path('admins/',include('apps.accounts.urls.admin_urls')),
     path('categories/',include('apps.products.urls.category_urls')),
+    path('products/',include('apps.products.urls.product_urls')),
     path('change_password/',change_password_view,name='change_password_view'),
     path('change_password_form/',change_password_form,name='change_password_form'),
 ]

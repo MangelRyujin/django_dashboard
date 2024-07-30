@@ -23,12 +23,15 @@ class Category(models.Model):
 
     
 class Product(models.Model):
+    code = models.CharField(_("Code"),max_length=50,unique=True)
     name = models.CharField(_("Name"),max_length=30,unique=True)
     categories = models.ManyToManyField(Category,_("Categories"),verbose_name="categories_product")
     stars= models.PositiveIntegerField(_("Stars"),validators=[MinValueValidator(1),MaxValueValidator(5)],default=3)
     stock = models.PositiveIntegerField(_("Stock"),default=0)
-    price = models.DecimalField(_("Name"), decimal_places= 2,max_digits=12, validators=[MinValueValidator(0.01)])
-    image = models.ImageField(_("Image"),upload_to="product_images")
+    price = models.DecimalField(_("Price"), decimal_places= 2,max_digits=12, validators=[MinValueValidator(0.01)])
+    image_one = models.ImageField(_("Image"),upload_to="product_images")
+    image_two = models.ImageField(_("Image"),upload_to="product_images",null=True,blank=True)
+    image_three = models.ImageField(_("Image"),upload_to="product_images",null=True,blank=True)
     is_active = models.BooleanField(_("Active"),default=True)
     small_description = models.TextField(_("Small description"),max_length=255)
     long_description = models.TextField(_("Long description"),max_length=500)
@@ -42,3 +45,6 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def rating(self):
+        return [i for i in range(int(self.stars))]

@@ -1,0 +1,21 @@
+<!-- Offcanvas Product Create -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRightProductCreate" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasRightLabel">Create product</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body" 
+      hx-get="{% url 'product_create'%}"
+      hx-swap="innerHTML"
+      hx-target="#ProductCreateForm"
+      hx-trigger="load">
+      
+      <div id="ProductCreateForm"></div>
+
+      
+      
+      
+    </div>
+  </div>
+  <!-- End Offcanvas Product Create -->
+  
