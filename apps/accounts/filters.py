@@ -16,3 +16,16 @@ class AdminFilter(django_filters.FilterSet):
         fields = ['email','groups','username','is_active','is_staff']
 
             
+class UserFilter(django_filters.FilterSet):
+    email=  django_filters.CharFilter(lookup_expr='icontains')
+    username=  django_filters.CharFilter(lookup_expr='icontains')
+    is_active = django_filters.BooleanFilter()
+    is_staff = django_filters.BooleanFilter()
+    
+
+
+    class Meta:
+        model = User
+        fields = ['email','username','is_active','is_staff']
+
+            

@@ -41,6 +41,7 @@ def login_view(request):
             response["HX-Redirect"]= next_url if next_url else '/'
             return response
         else:
+            print("Username or password incorrect")
             return HttpResponse(f"""
                                  <div class="alert alert-dismissible alert-danger d-flex align-items-center mb-0 mt-4 px-2 fade show" role="alert">
                       

@@ -30,6 +30,7 @@ urlpatterns = [
     path('login/',login_view,name='login_view'),
     path('logout/',LogoutView.as_view(),name='logout'),
     path('admins/',include('apps.accounts.urls.admin_urls')),
+    path('users/',include('apps.accounts.urls.user_urls')),
     path('categories/',include('apps.products.urls.category_urls')),
     path('products/',include('apps.products.urls.product_urls')),
     path('change_password/',change_password_view,name='change_password_view'),
