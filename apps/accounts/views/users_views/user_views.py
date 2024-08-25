@@ -4,7 +4,7 @@ from django.contrib.auth.models import Group
 from apps.accounts.models import User
 from apps.accounts.filters import UserFilter
 from apps.accounts.forms.admin_forms import  SingUpForm,ChangeAdminForm
-from django.contrib.auth.forms import AdminPasswordChangeForm
+from django.contrib.auth.forms import AdminPasswordChangeForm,SetPasswordForm
 from django.core.paginator import Paginator
 import logging
 logger = logging.getLogger(__name__)
@@ -43,74 +43,65 @@ def admin_create(request):
 
 # admin update forms
 @login_required(login_url='/login/')
-def admin_update(request,pk):
-    admin = User.objects.filter(pk=pk).first()
-    form = ChangeAdminForm(instance=admin)
-    pass_form = AdminPasswordChangeForm(user=admin)
+def user_update(request,pk):
+    user = User.objects.filter(pk=pk).first()
+    pass_form = SetPasswordForm(user=user)
     context={}
-    context['admin']=admin
-    context['form']=form
+    context['user']=user
     context['pass_form']=pass_form
-    return render(request,'admin_templates/actions/adminUpdate/adminUpdateForm.html',context) 
+    return render(request,'user_templates/actions/userUpdate/userUpdateForm.html',context) 
 
-# admin main information update form
+
+
+# user password update form
 @login_required(login_url='/login/')
-def admin_main_information_update(request,pk):
+def user_password_update(request,pk):
     context={}
     if request.method == "POST":
-        admin = User.objects.filter(pk=pk).first()
-        form = ChangeAdminForm(request.POST,request.FILES,instance=admin)
-        if form.is_valid():
-            admin_form_valid=form.save(commit=False)
-            admin_form_valid._change_reason = f'Modifying personal information for the {admin.username} administrator'
-            admin_form_valid.save()
-            form.save_m2m()
-            message="Change admin successfully"
-            context['message']=message
-        else:
-            message="Correct the errors"
-            context['error']=message
-        context['admin']=admin
-        context['form']=form
-        return render(request,'admin_templates/actions/adminUpdate/mainAdminUpdate.html',context) 
-
-
-# admin password update form
-@login_required(login_url='/login/')
-def admin_password_update(request,pk):
-    context={}
-    if request.method == "POST":
-        admin = User.objects.filter(pk=pk).first()
-        pass_form = AdminPasswordChangeForm(admin,request.POST)
+        user = User.objects.filter(pk=pk).first()
+        print(request.POST)
+        
+        pass_form = SetPasswordForm(user,request.POST)
+        print(pass_form)
         if pass_form.is_valid():
-            admin_form_valid = pass_form.save(commit=False)
-            admin_form_valid._change_reason = f"Modifying the password for the {admin.username} administrator"
-            admin_form_valid.save()
+            user_form_valid = pass_form.save(commit=False)
+            user_form_valid._change_reason = f"Modifying the password for the user {user.username} "
+            user_form_valid.save()
             message="Change password successfully"
             context['message']=message
         else:
             message="Correct the errors"
             context['error']=message
-        context['admin']=admin
+        context['user']=user
         context['pass_form']=pass_form
-        return render(request,'admin_templates/actions/adminUpdate/passAdminUpdate.html',context) 
+        return render(request,'user_templates/actions/userUpdate/passUserUpdate.html',context) 
 
 
 # Delete result table
 @login_required(login_url='/login/')
-def admin_delete(request,pk):
-    admin = User.objects.filter(pk=pk).first()
+def user_delete(request,pk):
+    user = User.objects.filter(pk=pk).first()
     context={}
     if request.method == "POST":
-        if admin:
-            admin_name=admin.username
-            admin.delete()
+        if user:
+            user_name=user.username
             context = _show_user(request)
-            context['message']=f'{admin_name} has been delete'
+            if user.is_active:
+                user.is_active=False
+                user._change_reason = f"User {user.username} has been ban"
+                user.save()
+                context['message']=f'{user_name} has been ban'
+            else:
+                user.is_active=True
+                user._change_reason = f"User {user.username} has been active"
+                user.save()
+                context['message']=f'{user_name} has been active'
+            
+            
         else:
-            context['error']=f'Sorry, admin not found'
-        return render(request,'admin_templates/admin_table_results.html',context)
-    return  render(request,'admin_templates/actions/adminDelete/adminDeleteVerify.html',{"admin":admin})
+            context['error']=f'Sorry, user not found'
+        return render(request,'user_templates/user_table_results.html',context)
+    return  render(request,'user_templates/actions/userDelete/userDeleteVerify.html',{"user":user})
      
 
 
@@ -118,7 +109,7 @@ def admin_delete(request,pk):
 def _show_user(request):
     get_copy = request.GET.copy()
     parameters = get_copy.pop('page', True) and get_copy.urlencode()
-    users = UserFilter(request.GET, queryset=User.objects.exclude(groups__isnull=True).order_by('-id'))
+    users = UserFilter(request.GET, queryset=User.objects.exclude(is_staff=True).order_by('-id'))
     paginator = Paginator(users.qs, 25)    # Show 25 contacts per page.
     page_number = request.GET.get("page",1)
     page_obj = paginator.get_page(page_number)

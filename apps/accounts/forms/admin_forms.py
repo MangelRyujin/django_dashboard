@@ -15,4 +15,4 @@ class SingUpForm(UserCreationForm):
 class ChangeAdminForm(UserChangeForm):
     class Meta:
         model = User
-        exclude = ['password','user_permissions','date_joined','last_login','is_superuser']
+        exclude = ['password','user_permissions','date_joined','last_login','is_superuser','is_staff']

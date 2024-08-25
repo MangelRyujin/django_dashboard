@@ -11,19 +11,24 @@ from apps.accounts.models import User
 # Dashboard view (index)
 @login_required(login_url='/login/')
 def dashboard_view(request):
-    admin_history = User.history.all()[:10]
+    
+    admin_history = User.history.filter(is_staff=True)[:10]
+    user_history = User.history.filter(is_staff=False)[:10]
     category_history = Category.history.all()[:10]
     product_history = Product.history.all()[:10]
+    product_history = User.history.all()[:10]
     context={
         'admin_history':admin_history,
         'category_history':category_history,
         'product_history':product_history,
+        'user_history':user_history,
     }
     response= render(request,'index.html',context)
     response['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
     response['Pragma'] = 'no-cache'
     response['Expires'] = '0'
     return response
+
 
 
 # Log in view
@@ -41,7 +46,6 @@ def login_view(request):
             response["HX-Redirect"]= next_url if next_url else '/'
             return response
         else:
-            print("Username or password incorrect")
             return HttpResponse(f"""
                                  <div class="alert alert-dismissible alert-danger d-flex align-items-center mb-0 mt-4 px-2 fade show" role="alert">
                       

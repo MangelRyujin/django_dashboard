@@ -43,7 +43,11 @@
       <label for="inputAdminUsernameFilter" class="form-label">Username</label>
       <input type="text" name="username" class="form-control" id="inputAdminUsernameFilter" placeholder="Username">
     </div>
-    <div class="col-6  col-sm-4 col-md-4 col-lg-3">
+    <div class="col-6 col-sm-4 col-md-4 col-lg-2">
+      <label for="inputAdminPhoneNumberFilter" class="form-label">Phone number</label>
+      <input type="text" name="phone_number" class="form-control" id="inputAdminPhoneNumberFilter" placeholder="Phone number">
+    </div>
+    <div class="col-12  col-sm-4 col-md-4 col-lg-3">
         <label for="inputAdminEmailFilter" class="form-label">Email</label>
         <input type="email" name="email" class="form-control" id="inputAdminEmailFilter" placeholder="Email">
     </div>
@@ -59,15 +63,8 @@
     </div>
     {% endif %}
     
-    <div class="col-6  col-sm-4 col-md-4 col-lg-2">
-      <label for="inputStaffFilter" class="form-label">Staff</label>
-      <select id="inputStaffFilter" name="is_staff" class="form-select">
-        <option value='' selected>Your Admins is staff?</option>
-        <option value="true">Yes</option>
-        <option value="false">No</option>
-      </select>
-    </div>
-    <div class="col-sm-4 col-md-4 col-lg-3">
+    
+    <div class="col-6 col-sm-4 col-md-4 col-lg-3">
       <label for="inputActiveFilter" class="form-label">Active</label>
       <select id="inputActiveFilter" name="is_active" class="form-select">
         <option value='' selected>Your Admins is active?</option>

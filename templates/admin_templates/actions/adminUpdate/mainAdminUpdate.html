@@ -142,25 +142,7 @@
                     </label>
                   </div>
                 </div>
-                <div class="col-12">
-                  <label class="form-check-label" for="{{ form.is_staff.id_for_label }}">
-                    Staff
-                  </label>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="is_staff" id="{{ form.is_staff.id_for_label }}" value="true"
-                    {% if form.instance.is_staff %}checked{% endif %} >
-                    <label class="form-check-label" for="{{ form.is_staff.id_for_label }}">
-                      Is staff
-                    </label>
-                  </div>
-                  <div class="form-check">
-                    <input class="form-check-input" type="radio" name="is_staff" id="{{ form.is_staff.id_for_label }}False" value="false"
-                    {% if not form.instance.is_staff %}checked{% endif %}>
-                    <label class="form-check-label" for="{{ form.is_staff.id_for_label }}False">
-                      It's not staff
-                    </label>
-                  </div>
-                </div>  
+                
                 <div class="col-12">
                     {% if message %}
                             <div class="alert alert-dismissible alert-success d-flex align-items-center mb-0  px-2 fade show" role="alert">

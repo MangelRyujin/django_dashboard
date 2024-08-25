@@ -35,7 +35,10 @@ def admin_create(request):
     }
     if request.method == "POST":
         if form.is_valid():
-            form.save()  
+            admin_form_valid=form.save(commit=False)
+            admin_form_valid.is_staff=True
+            admin_form_valid.save()  
+            form.save_m2m()
             context['message']='Created successfully'
         else:
             context['error']='Correct the errors'
@@ -119,7 +122,7 @@ def admin_delete(request,pk):
 def _show_admin(request):
     get_copy = request.GET.copy()
     parameters = get_copy.pop('page', True) and get_copy.urlencode()
-    admins = AdminFilter(request.GET, queryset=User.objects.exclude(groups__isnull=True).order_by('-id'))
+    admins = AdminFilter(request.GET, queryset=User.objects.exclude(is_staff=False).order_by('-id'))
     paginator = Paginator(admins.qs, 25)    # Show 25 contacts per page.
     page_number = request.GET.get("page",1)
     page_obj = paginator.get_page(page_number)

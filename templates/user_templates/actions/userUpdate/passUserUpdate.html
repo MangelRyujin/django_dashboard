@@ -2,22 +2,22 @@
 
 {% if pass_form %}
                 <form class="row g-3"
-                    hx-post="{% url 'admin_password_update' pk=admin.id%}"
-                    hx-target="#AdminPasswordUpdateForm"
+                    hx-post="{% url 'user_password_update' pk=user.id%}"
+                    hx-target="#UserPasswordUpdateForm"
                     hx-swap="innerHTML"
                     hx-trigger="submit"
-                    hx-indicator="#spinnerAdminPasswordUpdate">
+                    hx-indicator="#spinnerUserPasswordUpdate">
                 {% csrf_token %}
                 
                     <div class="col-12">
                        
-                            <label for="id_change_password1" class="form-label">New password</label>
-                            <input type="password" name="password1" class="form-control" id="id_change_password1" placeholder="New password" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                            <label for="new_password1" class="form-label">New password</label>
+                            <input type="password" name="new_password1" class="form-control" id="new_password1" placeholder="New password" aria-label="Recipient's username" aria-describedby="basic-addon2">
                             
                             
-                            {% if pass_form.password1.errors %}
+                            {% if pass_form.new_password1.errors %}
                             <div class="alert alert-danger mt-2">
-                                {% for error in pass_form.password1.errors %}
+                                {% for error in pass_form.new_password1.errors %}
                                     {{ error }}
                                 {% endfor %}
                             </div>
@@ -26,14 +26,14 @@
                     
                     <div class="col-12">
                         
-                            <label for="id_change_password2" class="form-label">New password confirm</label>
-                            <input type="password" name="password2" class="form-control" id="id_change_password2" placeholder="New password confirm" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                            <label for="new_password2" class="form-label">New password confirm</label>
+                            <input type="password" name="new_password2" class="form-control" id="new_password2" placeholder="New password confirm" aria-label="Recipient's username" aria-describedby="basic-addon2">
                             
                             
                             
-                            {% if pass_form.password2.errors %}
+                            {% if pass_form.new_password2.errors %}
                                 <div class="alert alert-danger mt-2">
-                                    {% for error in pass_form.password2.errors %}
+                                    {% for error in pass_form.new_password2.errors %}
                                         {{ error }}
                                     {% endfor %}
                                 </div>
@@ -68,7 +68,7 @@
 
                     <span class="w-100 d-flex justify-content-end mt-3">
                       <button type="submit" class="btn d-flex justify-content-center align-items-center btn-outline-primary shadow-sm border-2 border-primary px-5">
-                        <span id="spinnerAdminPasswordUpdate" class="htmx-indicator spinner-border spinner-border-sm me-2" ></span>Save</button>
+                        <span id="spinnerUserPasswordUpdate" class="htmx-indicator spinner-border spinner-border-sm me-2" ></span>Save</button>
                     </span>
                   </form>
                   
