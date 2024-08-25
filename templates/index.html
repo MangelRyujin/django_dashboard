@@ -170,7 +170,7 @@
       <span class=" small" ><strong>Sold:</strong>10000000</span> 
     </div>
     <div class="col">
-      <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-2 shadow-sm card-operations cursor-pointer border-0" 
+      <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-2 shadow-sm card-operations cursor-pointer border-0 " 
       style="background-position: center center;background-size: cover; background-image: url('{% static "/assets/img/products/product-12.jpg" %}');">
         
           <div class="w-100 h-100 d-flex flex-column p-3 justify-content-between bg-opacity-50 " style="min-height: 120px;">
@@ -510,7 +510,67 @@
     </div>
     <div class="tab-pane fade" id="CouponsActions" role="tabpanel" aria-labelledby="reviews-tab">
       <div class="">
-        <h6 class=" mt-4">There are no actions 6 </h6>
+        {% if coupon_history %}
+        {% for histo in coupon_history %}
+        {% if histo.history_type == "+"%}
+            <div class="alert alert-dismissible alert-success d-flex align-items-center justify-content-between mb-0 mt-4 px-2 shadow-sm cursor-pointer card-operations" role="alert">
+              <div class="d-flex align-items-center text-success-emphasis">
+                <img loading="lazy" src="{% if histo.history_user.image %}{{histo.history_user.image.url}}{% else %}{% static "/assets/img/avatar.jpg" %}{% endif %} " alt="{% if histo.history_user.image %}{{histo.history_user.image.url}}{% else %}{% static "/assets/img/avatar.jpg" %}{% endif %}" width="32" height="32" class="rounded-circle me-2">
+                <p class=" mb-0 small lh-sm  ">
+                  
+                  <strong class="d-block ">{{histo.history_user}}</strong>
+                  Create {{histo.code}}
+                  <span class="d-block small lh-sm ">{{ histo.history_date }}</span>
+                  </p>
+              </div>
+            
+              <svg  xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class=" text-success bi-plus-circle" viewBox="0 0 16 16">
+                <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+              </svg>
+            </div>
+        {% endif %}
+        {% if histo.history_type == "~" and histo.history_change_reason %}
+        <div class="alert alert-dismissible alert-warning d-flex align-items-center justify-content-between mb-0 mt-4 px-2 shadow-sm cursor-pointer card-operations" role="alert">
+          <div class="d-flex align-items-center text-warning-emphasis">
+            <img loading="lazy" src="{% if histo.history_user.image %}{{histo.history_user.image.url}}{% else %}{% static "/assets/img/avatar.jpg" %}{% endif %}" alt="{% if histo.history_user.image %}{{histo.history_user.image.url}}{% else %}{% static "/assets/img/avatar.jpg" %}{% endif %}" width="32" height="32" class="rounded-circle me-2">
+            <p class=" mb-0 small lh-sm  ">
+              <strong class="d-block ">{{histo.history_user}}</strong>
+                {{histo.history_change_reason}}
+                 <span class="d-block small lh-sm ">{{ histo.history_date }}</span>
+              </p>
+          </div>
+          <svg   xmlns="http://www.w3.org/2000/svg" width="20" height="16" fill="currentColor" class=" bi-pencil-fill" viewBox="0 0 16 16" >
+            <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.5.5 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11z"/>
+          </svg>
+        </div>
+    
+    {% endif %}
+
+        {% if histo.history_type == "-"%}
+        <div class="alert alert-dismissible alert-danger d-flex align-items-center justify-content-between mb-0 mt-4 px-2 shadow-sm cursor-pointer card-operations" role="alert">
+          <div class="d-flex align-items-center text-danger-emphasis">
+            <img loading="lazy" src="{% if histo.history_user.image %}{{histo.history_user.image.url}}{% else %}{% static "/assets/img/avatar.jpg" %}{% endif %}" alt="{% if histo.history_user.image %}{{histo.history_user.image.url}}{% else %}{% static "/assets/img/avatar.jpg" %}{% endif %}" width="32" height="32" class="rounded-circle me-2">
+            <p class=" mb-0 small lh-sm  ">
+              <strong class="d-block ">{{histo.history_user}}</strong>
+              Delete {{ histo.code }}
+              <span class="d-block small lh-sm ">{{ histo.history_date }}</span>
+              </p>
+          </div>
+          
+            <svg  xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="text-danger-emphasis bi-trash3-fill" viewBox="0 0 16 16" >
+              <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"/>
+            </svg>
+         
+          
+        </div>
+    {% endif %}
+
+
+        {% endfor %}
+        {% else %}
+        <h6 class=" mt-4">There are no actions</h6>
+        {% endif %}
       </div>
     </div>
   </div>

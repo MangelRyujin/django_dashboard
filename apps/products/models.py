@@ -3,6 +3,8 @@ from django.db import models
 from django.utils.translation import gettext as _
 from django.core.validators import MinValueValidator,MaxValueValidator
 from simple_history.models import HistoricalRecords
+from apps.accounts.models import User
+import uuid
 # Create your models here.
 
 
@@ -48,3 +50,25 @@ class Product(models.Model):
     
     def rating(self):
         return [i for i in range(int(self.stars))]
+    
+class Coupon(models.Model):
+    code  = models.UUIDField(
+        _("Code"),
+        primary_key=True,
+        default=uuid.uuid4,
+        editable=False
+    )
+    product = models.ForeignKey(Product,on_delete=models.CASCADE, verbose_name="product_coupon")
+    user = models.ForeignKey(User,on_delete=models.CASCADE,verbose_name="user_coupon")
+    discount = models.DecimalField(_("Discount"), decimal_places= 2,max_digits=4, validators=[MinValueValidator(0.01)])
+    is_active = models.BooleanField(_("Active"),default=True)
+    is_exhausted = models.BooleanField(_("Exhausted"),default=False)
+    history = HistoricalRecords(history_change_reason_field=models.TextField(null=True),)  
+    
+    class Meta:
+        verbose_name = _("Coupon")
+        verbose_name_plural = _("Coupons")
+
+    def __str__(self):
+        return f'{self.code}'
+  

@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
 from django.contrib.auth.forms import PasswordChangeForm
 
-from apps.products.models import Category,Product
+from apps.products.models import Category,Product,Coupon
 from .decorators import user_is_not_authenticated
 from apps.accounts.models import User
 
@@ -14,6 +14,7 @@ def dashboard_view(request):
     
     admin_history = User.history.filter(is_staff=True)[:10]
     user_history = User.history.filter(is_staff=False)[:10]
+    coupon_history = Coupon.history.all()[:10]
     category_history = Category.history.all()[:10]
     product_history = Product.history.all()[:10]
     product_history = User.history.all()[:10]
@@ -22,6 +23,7 @@ def dashboard_view(request):
         'category_history':category_history,
         'product_history':product_history,
         'user_history':user_history,
+        'coupon_history':coupon_history,
     }
     response= render(request,'index.html',context)
     response['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
