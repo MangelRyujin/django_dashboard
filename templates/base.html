@@ -25,6 +25,8 @@
     <!-- Custom styles for this template -->
     <link href="{% static '/assets/css/dashboard.css'%}" rel="stylesheet">
 
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
     
   </head>
   <body>
@@ -263,7 +265,7 @@
     </div>
 
 
-    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 ">
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 pt-2 ">
         {% block contend %}
         {% endblock contend %}
 
@@ -276,6 +278,12 @@
     </main>
   </div>
 </div>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  AOS.init({
+    once: true,
+  });
+</script>
 <script src="{% static '/assets/dist/js/popper.min.js' %}"></script>
 <script src="{% static '/assets/dist/js/bootstrap.bundle.min.js' %}"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>

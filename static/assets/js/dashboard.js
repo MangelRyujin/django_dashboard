@@ -4,10 +4,10 @@ const myChartBar = document.getElementById('myChartBar');
         new Chart(myChartBar, {
           type: 'bar',
           data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            labels: ['January', 'February', 'March', 'April', 'May', 'June','July', 'August', 'September', 'October', 'November', 'December'],
             datasets: [{
-              label: '# of Votes',
-              data: [120,100,150,130, 49, 123],
+              label: 'total sold',
+              data: [120,100,150,130, 49, 123,120,160,220,190, 229, 340],
               borderWidth: 1
             }]
           },
@@ -28,10 +28,10 @@ const myChartBar = document.getElementById('myChartBar');
           new Chart(myChartLine, {
             type: 'line',
             data: {
-              labels: ['Red', 'Blue', 'Yellow', 'Green','Purple', 'Orange'],
+              labels: ['January', 'February', 'March', 'April', 'May', 'June','July', 'August', 'September', 'October', 'November', 'December'],
               datasets: [{
-                label: '# of Votes',
-                data: [120,100,150,130, 49, 123],
+                label: 'total sold',
+                data: [120,100,150,130, 49, 123,120,160,220,190, 229, 340],
                 borderWidth: 1
               }]
             },
