@@ -1,3 +1,8 @@
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(126, 126, 130) transparent;
+}
+
 .bi {
   display: inline-block;
   width: 1rem;
@@ -137,7 +142,14 @@
 }
 
 .cursor-pointer{
-  cursor: pointer;
+  cursor: pointer !important;
+  
+  transform: scale(1) !important;
+  transition: all 0.3s !important;
+}
+
+.cursor-pointer:hover{
+  transform: scale(.98) !important;
 }
 
 .table-width-50{
@@ -273,3 +285,36 @@
 }
 
 
+.bg-indigo-subtle{
+  background-color: #ae8cf1 !important;
+}
+
+.text-indigo{
+ color: #5518d0 !important;
+}
+
+.border-indigo{
+  border-color: #5518d0  !important;
+}
+
+.dark .bg-indigo-subtle{
+  background-color: #390f8d !important;
+}
+
+::-webkit-scrollbar {
+  width: 5px !important;
+  height: 5px !important;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1 !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888 !important;
+  border-radius: 25px !important;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555 !important;
+}
