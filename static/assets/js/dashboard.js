@@ -4,7 +4,7 @@ const myChartBar = document.getElementById('myChartBar');
         new Chart(myChartBar, {
           type: 'bar',
           data: {
-            labels: ['January', 'February', 'March', 'April', 'May', 'June','July', 'August', 'September', 'October', 'November', 'December'],
+            labels: ['01', '02', '03', '04', '05', '06','07', '08', '09', '10', '11', '12'],
             datasets: [{
               label: 'total sold',
               data: [120,100,150,130, 49, 123,120,160,220,190, 229, 340],
@@ -28,7 +28,7 @@ const myChartBar = document.getElementById('myChartBar');
           new Chart(myChartLine, {
             type: 'line',
             data: {
-              labels: ['January', 'February', 'March', 'April', 'May', 'June','July', 'August', 'September', 'October', 'November', 'December'],
+              labels: ['01', '02', '03', '04', '05', '06','07', '08', '09', '10', '11', '12'],
               datasets: [{
                 label: 'total sold',
                 data: [120,100,150,130, 49, 123,120,160,220,190, 229, 340],
