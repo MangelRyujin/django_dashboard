@@ -320,8 +320,9 @@
 }
 
 .blur{
-  background: rgba(9, 9, 9, 0) !important;
-  backdrop-filter: blur(1px) !important;
+  /* background: rgba(9, 9, 9, 0) !important; */
+  background: linear-gradient(45deg, rgba(26, 112, 233, 0.67),rgba(0, 0, 0, 0.036)) !important;
+  backdrop-filter: blur(2px) !important;
 }
 
 .fs-0{
