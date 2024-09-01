@@ -332,3 +332,20 @@
 .h-fit{
   height: fit-content !important;
 }
+
+.dj-animate{
+  transform: rotate(0);
+  animation:  10s animateDJ linear infinite !important;
+}
+
+@keyframes animateDJ {
+    0%{
+      transform: rotate(30deg);
+    }
+    50%{
+      transform: rotate(-30deg);
+    }
+    100%{
+      transform: rotate(30deg);
+    }
+}
