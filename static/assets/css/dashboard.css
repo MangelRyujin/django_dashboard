@@ -318,3 +318,16 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #555 !important;
 }
+
+.blur{
+  background: rgba(9, 9, 9, 0) !important;
+  backdrop-filter: blur(1px) !important;
+}
+
+.fs-0{
+  font-size: 3.8rem !important;
+}
+
+.h-fit{
+  height: fit-content !important;
+}
