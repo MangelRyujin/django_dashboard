@@ -17,7 +17,6 @@ def dashboard_view(request):
     coupon_history = Coupon.history.all()[:10]
     category_history = Category.history.all()[:10]
     product_history = Product.history.all()[:10]
-    product_history = User.history.all()[:10]
     context={
         'admin_history':admin_history,
         'category_history':category_history,
