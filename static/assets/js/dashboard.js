@@ -36,15 +36,7 @@ const myChartBar = document.getElementById('myChartBar');
               }]
             },
             options: {
-              animations: {
-                tension: {
-                  duration: 2000,
-                  easing: 'ease',
-                  from: 1,
-                  to: 0,
-                  loop: undefined
-                }
-              },
+              
               responsive:true,
               scales: {
                 y: {
