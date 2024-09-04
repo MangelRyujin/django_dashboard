@@ -26,9 +26,6 @@
     
   </head>
   <body>
-    <div class="custom-progress-bar">
-      <div class="progress-value"></div>
-  </div>
     
     
     <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
@@ -282,28 +279,6 @@
 <script>
   AOS.init({
     once: true,
-  });
-</script>
-<script>
-  window.addEventListener('load', () => {
-      const progressBar = document.querySelector('.custom-progress-bar');
-      const progressValue = document.querySelector('.progress-value');
-
-      // Simular carga
-      let loadProgress = 0;
-      const intervalId = setInterval(() => {
-          loadProgress += 1;
-          progressValue.style.width = `${loadProgress}%`;
-          if (loadProgress >= 100) {
-              clearInterval(intervalId);
-              progressBar.style.display = 'none';
-          }
-      }, 50);
-
-      // Simular actividad del navegador
-      setTimeout(() => {
-          progressValue.style.width = '80%';
-      }, 2000);
   });
 </script>
 <script src="{% static '/assets/dist/js/popper.min.js' %}"></script>
