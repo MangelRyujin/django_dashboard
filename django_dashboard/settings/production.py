@@ -1,7 +1,9 @@
 from .base import *
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
+
+# calle 37 entre 64 y 66 6405
 
 ALLOWED_HOSTS = ['*']
 
