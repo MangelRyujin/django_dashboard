@@ -57,7 +57,7 @@
                   </td>
                   
                   <td class="table-width-80 px-1 ">
-                  <div class="d-flex justify-content-between  align-items-center p-0 m-0 pt-1">
+                  <div class="d-flex justify-content-around  align-items-center p-0 m-0 pt-1">
                       
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="cursor-pointer bi text-info bi-eye-fill"   
                           viewBox="0 0 16 16" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRightUserDetail" aria-controls="offcanvasRight"
@@ -70,7 +70,7 @@
                           <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
                           <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
                         </svg>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="cursor-pointer bi text-warning bi-key-fill" viewBox="0 0 16 16"
+                        {% comment %} <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="cursor-pointer bi text-warning bi-key-fill" viewBox="0 0 16 16"
                         data-bs-toggle="offcanvas"  data-bs-target="#offcanvasRightUserUpdatePass" aria-controls="offcanvasRight"
                           hx-get="{% url 'user_update' pk=user.id  %} "
                           hx-target="#UserUpdate"
@@ -78,7 +78,7 @@
                           hx-trigger="click"
                           hx-indicator="#spinnerUserUpdate">
                           <path d="M3.5 11.5a3.5 3.5 0 1 1 3.163-5H14L15.5 8 14 9.5l-1-1-1 1-1-1-1 1-1-1-1 1H6.663a3.5 3.5 0 0 1-3.163 2M2.5 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
-                        </svg>
+                        </svg> {% endcomment %}
                         
                         {% if user.is_active %}
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="cursor-pointer bi text-danger bi-trash3-fill"  
