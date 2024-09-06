@@ -83,3 +83,11 @@ def change_password_form(request):
             return response
         else:
             return render(request, 'change_password/change_password_form.html',{"form":form})
+        
+        
+# Sales demo
+@login_required(login_url='/login/')
+def sales_view(request):
+    return render(request, 'sales.html')
+        
+        

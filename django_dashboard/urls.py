@@ -19,7 +19,7 @@ from django.urls import path,include,re_path
 from django.conf import settings
 from django.views.static import serve
 from django.conf.urls.static import static
-from apps.general.views import  dashboard_view, login_view, change_password_view,change_password_form
+from apps.general.views import  dashboard_view, login_view, change_password_view,change_password_form, sales_view
 from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
@@ -37,4 +37,6 @@ urlpatterns = [
     path('coupons/',include('apps.products.urls.coupon_urls')),
     path('change_password/',change_password_view,name='change_password_view'),
     path('change_password_form/',change_password_form,name='change_password_form'),
+    path('sales/',sales_view,name='sales_view'),
+    
 ]

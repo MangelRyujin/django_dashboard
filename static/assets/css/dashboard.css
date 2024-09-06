@@ -365,3 +365,19 @@
   background-color: #4CAF50;
   transition: width 0.5s ease-in-out;
 }
+
+.text-ellipsis{
+  max-width: 80px; /* Ancho máximo del elemento */
+  white-space: nowrap; /* No permite saltos de línea */
+  overflow: hidden; /* Oculta el texto que excede el ancho */
+  text-overflow: ellipsis; /* Muestra puntos suspensivos */
+  line-height: 20px;
+}
+
+.text-ellipsis-120{
+  max-width: 120px !important; /* Ancho máximo del elemento */
+  white-space: nowrap; /* No permite saltos de línea */
+  overflow: hidden; /* Oculta el texto que excede el ancho */
+  text-overflow: ellipsis; /* Muestra puntos suspensivos */
+  line-height: 20px;
+}
