@@ -72,3 +72,21 @@ class Coupon(models.Model):
     def __str__(self):
         return f'{self.code}'
   
+class ProductReview(models.Model):
+    product = models.ForeignKey(Product,on_delete=models.CASCADE, verbose_name="product_review")
+    user = models.ForeignKey(User,on_delete=models.CASCADE,verbose_name="user_review")
+    message = models.TextField(_("Messagge"), max_length=120,null=None,blank=None)
+    is_active = models.BooleanField(_("Active"),default=False)
+    stars= models.PositiveIntegerField(_("Stars"),validators=[MinValueValidator(1),MaxValueValidator(5)],default=3)
+    create_date = models.DateTimeField(_("Create date"),auto_now_add=True,auto_now=False)
+    history = HistoricalRecords(history_change_reason_field=models.TextField(null=True),)  
+    
+    class Meta:
+        verbose_name = _("Product review")
+        verbose_name_plural = _("Product reviews")
+
+    def __str__(self):
+        return f'{self.id} by user {self.user.username}'
+    
+    def rating(self):
+        return [i for i in range(int(self.stars))]
