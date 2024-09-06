@@ -154,7 +154,7 @@
         {% if user.is_authenticated %}
         <a href="#" class="btn btn-link nav-link py-2 px-0 px-lg-2 dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown" aria-expanded="false">
           <img src="{% if user.image %}{{user.image.url}}{% else %}{% static '/assets/img/avatar.jpg' %}{% endif %} " alt="{% if user.image %}{{user.image.url}}{% else %}{% static '/assets/img/avatar.jpg' %}{% endif %}" width="25" height="25" class="rounded-circle me-2">
-          <strong class="text-ellipsis">{{user.username}} w wdwa</strong>
+          <strong class="text-ellipsis small">{{user.username}}</strong>
         </a>
         
         <ul class="dropdown-menu dropdown-menu-end shadow" >
