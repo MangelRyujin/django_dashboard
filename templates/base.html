@@ -72,6 +72,20 @@
 </svg>
 
 
+<div class="d-md-none dropdown bg-dark-subtle border-2 border-dark-subtle border position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle rounded-circle">
+  <ul class="navbar-nav flex-row ">
+      
+    <li class="nav-item text-nowrap">
+      <button class="nav-link ps-2 pe-2 d-flex justify-content-center align-items-center " type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class=" bi-list" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+        </svg>
+      </button>
+    </li>
+  </ul>
+</div>
+
+
 <header class="navbar sticky-top bg-dark flex-md-nowrap p-0 shadow " data-bs-theme="dark">
   <a class="d-flex justify-content-start align-items-center navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white position-relative" href="{% url "dashboard_view" %}">
     <div class=" position-absolute  dj-animate" style="z-index: 1;">
@@ -137,7 +151,7 @@
       </div>
       
     </li>
-    <li class="list-unstyled text-body-secondary " >
+    <li class="list-unstyled text-body-secondary me-2" >
       <div class="nav-item dropdown">
         <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
           <symbol id="circle-half" viewBox="0 0 16 16">
@@ -183,16 +197,7 @@
       
     </li>
     
-    <ul class="navbar-nav flex-row d-md-none">
-      
-      <li class="nav-item text-nowrap">
-        <button class="nav-link ps-2 pe-3 text-white" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
-            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
-          </svg>
-        </button>
-      </li>
-    </ul>
+    
   </div>
 </header>
 
