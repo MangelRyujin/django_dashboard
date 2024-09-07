@@ -38,5 +38,6 @@ urlpatterns = [
     path('change_password/',change_password_view,name='change_password_view'),
     path('change_password_form/',change_password_form,name='change_password_form'),
     path('sales/',sales_view,name='sales_view'),
+    re_path(r'^i18n/', include('django.conf.urls.i18n')),
     
 ]
