@@ -33,12 +33,12 @@ class CouponFilter(django_filters.FilterSet):
         fields = ['code','is_active','is_exhausted','user','product']
 
 class ProductReviewFilter(django_filters.FilterSet):
-    user = django_filters.ModelMultipleChoiceFilter(queryset=User.objects.all())
+    username = django_filters.CharFilter(field_name='user__username',lookup_expr='icontains')
     product = django_filters.ModelMultipleChoiceFilter(queryset=Product.objects.all())
     stars = django_filters.NumberFilter()
     is_active = django_filters.BooleanFilter()
 
     class Meta:
         model = ProductReview
-        fields = ['user','product','stars','is_active',]
+        fields = ['username','product','stars','is_active',]
     

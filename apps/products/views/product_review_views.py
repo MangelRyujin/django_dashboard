@@ -21,12 +21,12 @@ def product_review_view(request):
 
 @login_required(login_url='/login/')
 def product_table_reviews_results(request):
-    return  render(request,'product_templates/product_table_reviews_results.html',context=_show_product_reviews(request))
+    return  render(request,'review_templates/product_table_reviews_results.html',context=_show_product_reviews(request))
 
 def _show_product_reviews(request):
     get_copy = request.GET.copy()
     parameters = get_copy.pop('page', True) and get_copy.urlencode()
-    Products = ProductReviewFilter(request.GET, queryset=Product.objects.all().order_by('-id'))
+    Products = ProductReviewFilter(request.GET, queryset=ProductReview.objects.all().order_by('-id'))
     paginator = Paginator(Products.qs, 25)    # Show 25 contacts per page.
     page_number = request.GET.get("page",1)
     page_obj = paginator.get_page(page_number)

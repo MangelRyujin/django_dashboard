@@ -17,12 +17,12 @@
 
   <form class="row g-3 py-2"
           method="GET"
-          id="UserFilters"
-          hx-get="{% url 'user_table_results' %}"
-          hx-target="#UserTableResults"
+          id="ProductReviewFilters"
+          hx-get="{% url 'product_table_reviews_results' %}"
+          hx-target="#ProductReviewTableResults"
           hx-swap="innerHTML"
           hx-trigger="submit"
-          hx-indicator="#spinnerUserFilter,#spinner">
+          hx-indicator="#spinnerProductReviewFilter,#spinner">
     
     <div class="col-6 col-lg-3">
       <label for="inputProductReviewUserFilter" class="form-label">Username</label>
@@ -50,97 +50,42 @@
           </span>
         </div>
       </div>
-    <div class="col-6  col-lg-3 p-5">
-  <div class="form-check">
-    <input class="form-check-input" type="checkbox" id="inputActiveFilter" name="is_active" value="true">
-    <label class="form-check-label" for="inputActiveFilter">Active</label>
-  </div>
+    <div class="col-6  col-lg-3 ">
+        <label for="inputActiveProductReviewFilter" class="form-label">Active</label>
+        <select id="inputActiveProductReviewFilter" name="is_active" class="form-select" aria-label="Default select example">
+          <option selected>Your products is active?</option>
+          <option value="true">Yes</option>
+          <option value="false">No</option>
+        </select>
 </div>
     
     <div class="col-12">
       <small class=" w-100 d-flex justify-content-end mt-3">
           <button type="submit" class="btn d-flex justify-content-center align-items-center btn-outline-primary shadow-sm border-2 border-primary px-5">
-            <span id="spinnerUserFilter" class="htmx-indicator spinner-border spinner-border-sm me-2" ></span>Filter</button>
+            <span id="spinnerProductReviewFilter" class="htmx-indicator spinner-border spinner-border-sm me-2" ></span>Filter</button>
       </small>
   </div>
   </form>
   
 
+  <div 
+  hx-get="{% url 'product_table_reviews_results' %}"
+  hx-target="#ProductReviewTableResults"
+  hx-trigger="load"
+  hx-swap="innerHTML"
+  hx-indicator="#spinner"></div>
   
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-3  mt-2">
-      {% for product_review in  product_reviews %}
-      <div class="col ">
-        <div class="card h-100 bg-body-tertiary shadow">
-          
-          <div class="card-header d-flex  justify-content-between p-2 align-items-center">
-            <div class="d-flex align-items-center">
-              <img loading="lazy" src="{% if product_review.user.image %}{{product_review.user.image.url}}{% else %}{% static "/assets/img/avatar.jpg" %}{% endif %}" alt="{% if product_review.user.image %}{{product_review.user.image.url}}{% else %}{% static "/assets/img/avatar.jpg" %}{% endif %}" width="32" height="32" class="rounded-circle me-2">
-              <p class=" mb-0 small lh-sm  ">
-                <strong class="d-block mb-0">{{product_review.user}}
-                  
-                </strong>
-                {% for e in product_review.rating %}
-                        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill="currentColor" class="mb-1 text-warning  bi-star-fill" viewBox="0 0 16 16">
-                            <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-                          </svg>
-                        {% endfor %}
-                <span class="d-block small lh-sm ">{{ product_review.create_date }}</span>
-                </p>
-            </div>
-            <div class="btn-group">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="cursor-pointer bi-three-dots-vertical" viewBox="0 0 16 16" data-bs-toggle="dropdown" aria-expanded="false" data-bs-reference="parent">
-                <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>
-              </svg>
-              <!-- <button type="button" class="btn btn-secondary">Reference</button>
-              <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false" data-bs-reference="parent"> -->
-                <span class="visually-hidden">Toggle Dropdown</span>
-              </button>
-              <ul class="dropdown-menu shadow">
-                {% if product_review.is_active %}
-                <li><a class="dropdown-item d-flex align-items-center" href="#">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="text-danger me-2 bi-x-circle-fill" viewBox="0 0 16 16">
-                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293z"/>
-                  </svg>
-                  No active</a></li>
-                
-                <li>
-                
-                {% else %}
-                <li><a class="dropdown-item d-flex align-items-center" href="#">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="me-2 text-success bi-check-circle-fill" viewBox="0 0 16 16">
-                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-                  </svg>Active</a></li>
-                
-                <li>
-                {% endif %}
-                <hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item d-flex align-items-center" href="#">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="text-danger me-2 bi-trash3-fill" viewBox="0 0 16 16">
-                    <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"/>
-                  </svg>
-                  delete</a></li>
-              </ul>
-            </div>
-            
-          </div>
-          <div class="card-body p-2">
-          
-            <p class="card-text small">{{product_review.message}} </p>
-            
-          </div>
-          <div class="card-footer p-2 d-flex align-items-center">
-            <img loading="lazy" src="{% if product_review.product.image_one %}{{product_review.product.image_one.url}}{% else %}{% static "/assets/img/image_not_found.jpg" %}{% endif %}" alt="{% if product_review.product.image_one %}{{product_review.product.image_one.url}}{% else %}{% static "/assets/img/image_not_found.jpg" %}{% endif %}" width="32" height="32" class="rounded-circle me-2">
-            <p class=" mb-0 small lh-sm  ">
-              <strong class="d-block mb-0">{{product_review.product.name}}</strong>
-              </p>
-            
-          </div>
-        </div>
-      </div> 
-      {% endfor %}
-      
+  <div class="w-100 position-relative d-flex justify-content-center align-items-center">
+  <div id="spinner" class="htmx-indicator w-100 h-100  loadding-blur position-absolute z-10 d-flex justify-content-center align-items-center">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
     </div>
-
+  </div>
+  <div class="w-100" id="ProductReviewTableResults">
+    
+  </div> 
+  </div> 
+    
 
   
  
