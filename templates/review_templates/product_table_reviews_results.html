@@ -7,11 +7,11 @@
     
     {% for product_review in  pagination %}
     
-    <div class="col ">
+    <div class="col list-group">
     
-      <div class="card h-100 bg-body-tertiary shadow border-1 {% if product_review.is_active %} border-success {% else %} border-danger {% endif %}">
-        
-        <div class="card-header d-flex  justify-content-between p-2 align-items-center">
+      <div class="card h-100 shadow p-0 list-group-item list-group-item-action {% if product_review.is_active %} list-group-item-success {% else %} list-group-item-danger {% endif %} ">
+        <!--  bg-body-tertiary {% if product_review.is_active %} border-success {% else %} border-danger {% endif %} -->
+        <div class="card-header d-flex  justify-content-between p-2 align-items-center ">
           <div class="d-flex align-items-center">
             <img loading="lazy" src="{% if product_review.user.image %}{{product_review.user.image.url}}{% else %}{% static "/assets/img/avatar.jpg" %}{% endif %}" alt="{% if product_review.user.image %}{{product_review.user.image.url}}{% else %}{% static "/assets/img/avatar.jpg" %}{% endif %}" width="32" height="32" class="rounded-circle me-2">
             <p class=" mb-0 small lh-sm  ">
@@ -76,12 +76,12 @@
           </div>
           
         </div>
-        <div class="card-body p-2">
+        <div class="card-body p-2 ">
         
-          <p class="card-text small">{{product_review.message}} </p>
+          <p class="card-text small ">{{product_review.message}} </p>
           
         </div>
-        <div class="card-footer p-2 d-flex align-items-center">
+        <div class="card-footer p-2 d-flex align-items-center ">
           <img loading="lazy" src="{% if product_review.product.image_one %}{{product_review.product.image_one.url}}{% else %}{% static "/assets/img/image_not_found.jpg" %}{% endif %}" alt="{% if product_review.product.image_one %}{{product_review.product.image_one.url}}{% else %}{% static "/assets/img/image_not_found.jpg" %}{% endif %}" width="32" height="32" class="rounded-circle me-2">
           <p class=" mb-0 small lh-sm  ">
             <strong class="d-block mb-0">{{product_review.product.name}}</strong>
