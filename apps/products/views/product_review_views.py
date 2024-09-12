@@ -21,12 +21,12 @@ def product_review_view(request):
 
 @login_required(login_url='/login/')
 def product_table_reviews_results(request):
-    return  render(request,'product_templates/product_table_reviews_results.html',context=_show_product_reviews(request))
+    return  render(request,'review_templates/product_table_reviews_results.html',context=_show_product_reviews(request))
 
 def _show_product_reviews(request):
     get_copy = request.GET.copy()
     parameters = get_copy.pop('page', True) and get_copy.urlencode()
-    Products = ProductReviewFilter(request.GET, queryset=Product.objects.all().order_by('-id'))
+    Products = ProductReviewFilter(request.GET, queryset=ProductReview.objects.all().order_by('-id'))
     paginator = Paginator(Products.qs, 25)    # Show 25 contacts per page.
     page_number = request.GET.get("page",1)
     page_obj = paginator.get_page(page_number)
@@ -88,18 +88,42 @@ def product_form_update_reviews(request,pk):
         context['form']=form
         return render(request,'product_templates/actions/productUpdate/productUpdateCheckForm.html',context)
 
+# Update result table
+@login_required(login_url='/login/')
+def product_active_reviews(request,pk):
+    review = ProductReview.objects.filter(pk=pk).first()
+    context={}
+    if review:
+            if review.is_active:
+                review.is_active = False
+            else:
+                review.is_active = True
+            review.save()
+            print("paso")
+            review_name=review.user.username
+            context = _show_product_reviews(request)
+            context['message']=f'Review of user {review_name} has been modified'
+    else:
+            print("no paso")
+            context['error']=f'Sorry, review not found'
+    return render(request,'review_templates/product_table_reviews_results.html',context)
+    
+
+
 # Delete result table
 @login_required(login_url='/login/')
 def product_delete_reviews(request,pk):
-    product = Product.objects.filter(pk=pk).first()
+    review = ProductReview.objects.filter(pk=pk).first()
+    print(review)
     context={}
     if request.method == "POST":
-        if product:
-            product_name=product.name
-            product.delete()
+        if review:
+            review_name=review.user.username
+            print(review_name)
+            review.delete()
             context = _show_product_reviews(request)
-            context['message']=f'{product_name} has been delete'
+            context['message']=f'Review of user {review_name} has been delete'
         else:
-            context['error']=f'Sorry, product not found'
-        return render(request,'product_templates/product_table_results.html',context)
-    return  render(request,'product_templates/actions/productDelete/productDeleteVerify.html',{"product":product}) 
+            context['error']=f'Sorry, review not found'
+        return render(request,'review_templates/product_table_reviews_results.html',context)
+    return  render(request,'review_templates/actions/productReviewDelete/productDeleteReviewVerify.html',{"review":review}) 
