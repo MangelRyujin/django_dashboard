@@ -33,6 +33,7 @@ urlpatterns = [
     path('users/',include('apps.accounts.urls.user_urls')),
     path('categories/',include('apps.products.urls.category_urls')),
     path('products/',include('apps.products.urls.product_urls')),
+    path('category_stocks/',include('apps.inventory.urls.category_stock_urls')),
     path('reviews/',include('apps.products.urls.product_review_urls')),
     path('coupons/',include('apps.products.urls.coupon_urls')),
     path('change_password/',change_password_view,name='change_password_view'),
