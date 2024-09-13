@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from apps.inventory.filters import CategoryStockFilter
+from apps.inventory.forms.category_forms import CreateCategoryStockForm, UpdateCategoryStockForm
 from apps.inventory.models import CategoryStock
 from apps.products.forms.category_forms import *
 from django.contrib.auth.decorators import login_required 
@@ -25,50 +26,49 @@ def category_stock_table_results(request):
 @login_required(login_url='/login/')
 def category_stock_create(request):
     context={}
-    
     if request.method == "POST":
-        form = UpdateCategoryForm(request.POST,request.FILES)
+        form = CreateCategoryStockForm(request.POST)
         if form.is_valid():
             form.save()  
             context['message']='Created successfully'
         else:
             context['error']='Correct the errors'
         context['form']=form
-        return render(request,'category_stock_templates/actions/categoryCreate/categoryCreateForm.html',context) 
-    form = CreateCategoryForm()
+        return render(request,'category_stock_templates/actions/categoryStockCreate/categoryStockCreateForm.html',context) 
+    form = CreateCategoryStockForm()
     context['form']=form
-    return render(request,'category_stock_templates/actions/categoryCreate/categoryCreateForm.html',context) 
+    return render(request,'category_stock_templates/actions/categoryStockCreate/categoryStockCreateForm.html',context) 
 
 
 # category update forms
 @login_required(login_url='/login/')
 def category_stock_update(request,pk):
-    category = Category.objects.filter(pk=pk).first()
-    form = UpdateCategoryForm(instance=category)
+    category = CategoryStock.objects.filter(pk=pk).first()
+    form = UpdateCategoryStockForm(instance=category)
     context={}
     context['category']=category
     context['form']=form
-    return render(request,'category_stock_templates/actions/categoryUpdate/categoryUpdateForm.html',context) 
+    return render(request,'category_stock_templates/actions/categoryStockUpdate/categoryStockUpdateForm.html',context) 
 
 # category main information update form
 @login_required(login_url='/login/')
 def category_stock_form_update(request,pk):
     context={}
     if request.method == "POST":
-        category = Category.objects.filter(pk=pk).first()
-        form = UpdateCategoryForm(request.POST,request.FILES,instance=category)
+        category = CategoryStock.objects.filter(pk=pk).first()
+        form = UpdateCategoryStockForm(request.POST,request.FILES,instance=category)
         if form.is_valid():
             category_form_valid=form.save(commit=False)
-            category_form_valid._change_reason = f'Modifying category {category.name}'
+            category_form_valid._change_reason = f'Modifying category stock {category.name}'
             category_form_valid.save()
-            message="Change category successfully"
+            message="Change category stock successfully"
             context['message']=message
         else:
             message="Correct the errors"
             context['error']=message
         context['category']=category
         context['form']=form
-        return render(request,'category_stock_templates/actions/categoryUpdate/categoryUpdateCheckForm.html',context) 
+        return render(request,'category_stock_templates/actions/categoryStockUpdate/categoryStockUpdateCheckForm.html',context) 
 
 
 # Delete result table
@@ -84,8 +84,8 @@ def category_stock_delete(request,pk):
             context['message']=f'{category_name} has been delete'
         else:
             context['error']=f'Sorry, category not found'
-        return render(request,'category_templates/category_table_results.html',context)
-    return  render(request,'category_stock_templates/actions/categoryDelete/categoryDeleteVerify.html',{"category":category})
+        return render(request,'category_stock_templates/category_stock_table_results.html',context)
+    return  render(request,'category_stock_templates/actions/categoryStockDelete/categoryStockDeleteVerify.html',{"category":category})
      
 
 
