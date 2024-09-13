@@ -16,3 +16,12 @@ class ChangeAdminForm(UserChangeForm):
     class Meta:
         model = User
         exclude = ['password','user_permissions','date_joined','last_login','is_superuser','is_staff']
+
+class ChangeUserPersonalInformation(forms.ModelForm):
+    image = forms.ImageField(
+        label='Image',
+        widget=forms.FileInput(attrs={'class': 'form-control'}), 
+    )
+    class Meta:
+        model = User
+        fields = ['username','email','first_name','last_name','phone_number','country','city','address','image','is_active']
