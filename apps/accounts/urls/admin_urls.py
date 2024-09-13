@@ -10,7 +10,6 @@ urlpatterns = [
     path('admin_main_information_update/<int:pk>/',admin_main_information_update,name='admin_main_information_update'),
     path('admin_password_update/<int:pk>/',admin_password_update,name='admin_password_update'),
     path('admin_delete/<int:pk>/',admin_delete,name='admin_delete'),
-    
-    
+    path('change_information/', change_information, name='change_information'),
 ]
 

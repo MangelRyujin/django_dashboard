@@ -1,9 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required 
 from django.contrib.auth.models import Group
 from apps.accounts.models import User
 from apps.accounts.filters import AdminFilter
-from apps.accounts.forms.admin_forms import  SingUpForm,ChangeAdminForm
+from apps.accounts.forms.admin_forms import  SingUpForm,ChangeAdminForm,ChangeUserPersonalInformation
 from django.contrib.auth.forms import AdminPasswordChangeForm
 from django.core.paginator import Paginator
 import logging
@@ -139,4 +140,20 @@ def _show_admin(request):
 def admin_detail(request,pk):
     admin = User.objects.filter(pk=pk).first()
     return  render(request,'admin_templates/actions/adminDetail/adminDetail.html',{"admin":admin})
-     
+
+# Change Personal Information of user admins
+@login_required(login_url='/login/')
+def change_information(request):
+    user = User.objects.get(pk=request.user.pk)
+
+    if request.method == 'POST':
+        form = ChangeUserPersonalInformation(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Datos personales actualizados correctamente.")
+            return redirect('dashboard_view')  
+    else:
+        form = ChangeUserPersonalInformation(instance=user)
+
+    context = {'form': form}
+    return render(request, 'admin_templates/actions/adminInformation/adminInformation.html', context)
