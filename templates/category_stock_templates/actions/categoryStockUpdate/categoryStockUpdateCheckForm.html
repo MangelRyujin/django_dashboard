@@ -1,18 +1,18 @@
 {% load static %}
 
 {% if category %}
-<h5 class="offcanvas-title text-center" id="offcanvasRightLabel">Category: {{category.name}}</h5>
+<h5 class="offcanvas-title text-center" id="offcanvasRightLabel">Category stock: {{category.name}}</h5>
 
         {% if form %}
        
 
             <form 
             enctype="multipart/form-data"
-            hx-post="{% url 'category_form_update' pk=category.id %}"
-            hx-target="#CategoryUpdate"
+            hx-post="{% url 'category_stock_form_update' pk=category.id %}"
+            hx-target="#CategoryStockUpdate"
             hx-swap="innerHTML"
             hx-trigger="submit"
-            hx-indicator="#spinnerCategoryUpdateCheck">
+            hx-indicator="#spinnerCategoryStockUpdateCheck">
             {% csrf_token %}
               <div class="col-12 mt-4">
                 <label for="{{ form.name.id_for_label }}Update" class="form-label">Name</label>
@@ -24,49 +24,6 @@
                         {% endfor %}
                     </div>
                     {% endif %}      
-              </div>
-              <div class="col-12 mt-4">
-                <label class="form-label" for="{{ form.image.id_for_label }}Update">Image
-                  <img class="rounded-circle" src=" {% if form.instance.image %}{{form.instance.image.url}} {% else %} {% static "/assets/img/image_not_found.jpg" %}{% endif %}" width="32" height="32" alt="{% if form.instance.image %}{{form.instance.image.url}} {% else %} {% static "/assets/img/image_not_found.jpg" %}{% endif %}">
-                   
-                </label>
-                <div class="input-group mb-3">
-                  <input type="file" name="image" class="form-control" id="{{ form.image.id_for_label }}Update">
-                  <label class="input-group-text" for="{{ form.image.id_for_label }}Update">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-images" viewBox="0 0 16 16">
-                    <path d="M4.502 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/>
-                    <path d="M14.002 13a2 2 0 0 1-2 2h-10a2 2 0 0 1-2-2V5A2 2 0 0 1 2 3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8a2 2 0 0 1-1.998 2M14 2H4a1 1 0 0 0-1 1h9.002a2 2 0 0 1 2 2v7A1 1 0 0 0 15 11V3a1 1 0 0 0-1-1M2.002 4a1 1 0 0 0-1 1v8l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094l1.777 1.947V5a1 1 0 0 0-1-1z"/>
-                  </svg>
-                </label>
-                </div>
-                {% if form.image.errors %}
-                    <div class="alert alert-danger mt-2">
-                        {% for error in form.image.errors %}
-                            {{ error }}
-                        {% endfor %}
-                    </div>
-                    {% endif %}      
-          
-              </div>
-              <div class="col-12 mt-4">
-                <label class="form-check-label" for="{{ form.is_active.id_for_label }}Update">
-                  Active
-                </label>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="is_active" id="{{ form.is_active.id_for_label }}Update" value="true" 
-                  {% if form.instance.is_active  %}checked{% endif %}>
-                  <label class="form-check-label" for="{{ form.is_active.id_for_label }}Update">
-                    Ready to sell
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="is_active" id="{{ form.is_active.id_for_label }}UpdateFalse" value="false"
-                  {% if not form.instance.is_active  %}checked{% endif %}>
-                  <label class="form-check-label" for="{{ form.is_active.id_for_label }}UpdateFalse">
-                    Not ready to sell
-                  </label>
-                </div>
-                
               </div>
               <div class="col-12 mt-2">
                 {% if message %}
@@ -80,8 +37,8 @@
                             <span type="button" class="btn-close px-2" data-bs-dismiss="alert" aria-label="Close"></span>
                           </div>
                           <div 
-                          hx-get="{% url 'category_table_results' %}"
-                          hx-target="#CategoryTableResults"
+                          hx-get="{% url 'category_stock_table_results' %}"
+                          hx-target="#CategoryStockTableResults"
                           hx-trigger="load"
                           hx-swap="innerHTML"
                           hx-indicator="#spinner"></div>
@@ -102,7 +59,7 @@
               
               <small class=" w-100 d-flex justify-content-end mt-3">
                 <button type="submit" class="btn d-flex justify-content-center align-items-center btn-outline-primary shadow-sm border-2 border-primary px-5">
-                  <span id="spinnerCategoryUpdateCheck" class="htmx-indicator spinner-border spinner-border-sm me-2" ></span>Save</button>
+                  <span id="spinnerCategoryStockUpdateCheck" class="htmx-indicator spinner-border spinner-border-sm me-2" ></span>Save</button>
             </small>
             </form>
             
