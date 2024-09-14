@@ -3,11 +3,11 @@
 {% if form %}
   <form 
           enctype="multipart/form-data"
-          hx-post="{% url 'wharehouse_create' %}"
-          hx-target="#WharehouseCreateForm"
+          hx-post="{% url 'warehouse_create' %}"
+          hx-target="#WarehouseCreateForm"
           hx-swap="innerHTML"
           hx-trigger="submit"
-          hx-indicator="#spinnerWharehouseCreate">
+          hx-indicator="#spinnerWarehouseCreate">
           {% csrf_token %}
           <div class="col-12  mt-4 ">
             
@@ -45,8 +45,8 @@
               <span type="button" class="btn-close px-2" data-bs-dismiss="alert" aria-label="Close"></span>
             </div>
             <div 
-            hx-get="{% url 'wharehouse_table_results' %}"
-            hx-target="#WharehouseTableResults"
+            hx-get="{% url 'warehouse_table_results' %}"
+            hx-target="#WarehouseTableResults"
             hx-trigger="load"
             hx-swap="innerHTML"
             hx-indicator="#spinner"></div>
@@ -67,7 +67,7 @@
           {% endif %}
           <small class=" w-100 d-flex justify-content-end mt-3">
             <button type="submit" class="btn d-flex justify-content-center align-items-center btn-outline-primary shadow-sm border-2 border-primary px-5">
-              <span id="spinnerWharehouseCreate" class="htmx-indicator spinner-border spinner-border-sm me-2" ></span>Create</button>
+              <span id="spinnerWarehouseCreate" class="htmx-indicator spinner-border spinner-border-sm me-2" ></span>Create</button>
         </small>
   </form>
 {% endif %}
