@@ -7,13 +7,13 @@ from apps.products.models import Product
 # Create your models here.
 
 
-class Wharehouse(models.Model):
+class Warehouse(models.Model):
     name = models.CharField(_("Name"),max_length=40,unique=True)
     address = models.CharField(_("Address"),max_length=120)
 
     class Meta:
-        verbose_name = _("Wharehouse")
-        verbose_name_plural = _("Wharehouses")
+        verbose_name = _("Warehouse")
+        verbose_name_plural = _("Warehouses")
 
     def __str__(self):
         return self.name
@@ -30,20 +30,21 @@ class CategoryStock(models.Model):
 
 class Stock(models.Model):
     MEASURE_UNIT_CHOICES = (
-        ('m', 'mililitros'),
-        ('g', 'gramos'),
-        ('u', 'unidades'),
+        ('m', _("milliliters")),
+        ('g', _("grams")),
+        ('u', _("units")),
     )
     
     code = models.CharField(_("Code"),max_length=50,unique=True)
     name = models.CharField(_("Name"),max_length=100,unique=True)
-    address = models.CharField(_("Address"),max_length=120)
+    address = models.CharField(_("Address"),max_length=120,blank=True,null=True)
     categories = models.ManyToManyField(CategoryStock,related_name="category_stock") 
     product = models.ForeignKey(Product,on_delete=models.CASCADE,related_name="product_stock")
     is_active = models.BooleanField(_("Active"),default=False)
-    warehouse = models.ForeignKey(Wharehouse,on_delete=models.CASCADE,related_name="warehouse_stock",null=True,blank=True)
+    warehouse = models.ForeignKey(Warehouse,on_delete=models.CASCADE,related_name="warehouse_stock",null=True,blank=True)
     measure_unit = models.CharField(_("Measure unit"),max_length=1, choices=MEASURE_UNIT_CHOICES, default='u') 
     expiration_date = models.DateField(_("Expire date"))
+    create_date = models.DateTimeField(_("Create date"),auto_now_add=True)
     cant = models.DecimalField(_("Cant"), decimal_places= 2,max_digits=12, validators=[MinValueValidator(0.01)])
     unit_price = models.DecimalField(_("Inversion Cost"), max_digits=12, default=0, decimal_places=2,validators=[MinValueValidator(0.01)])
     
