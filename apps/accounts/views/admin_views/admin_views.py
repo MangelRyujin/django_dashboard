@@ -147,8 +147,11 @@ def change_information(request):
     user = User.objects.get(pk=request.user.pk)
 
     if request.method == 'POST':
-        form = ChangeUserPersonalInformation(request.POST, instance=user)
+        form = ChangeUserPersonalInformation(data=request.POST, instance=user)
         if form.is_valid():
+            form = form.save(commit=False)
+            if 'image' in request.FILES:
+                form.image = request.FILES['image']
             form.save()
             messages.success(request, "Datos personales actualizados correctamente.")
             return redirect('dashboard_view')  
