@@ -1,18 +1,18 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %}Admin{% endblock %}
+{% block title %}Personal Info{% endblock %}
 {% block contend %}
 
 
 <h3 class="text-center pt-4">Personal Info</h3>
-<form method="POST" enctype="multipart/form-data" class="form">
+<form method="POST" enctype="multipart/form-data" class="form" hx-post={% url 'change_information'%} hx-target="#updateInformation">
     {% csrf_token %}
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-md-4 col-sm-6 col-12"> 
             <div class="form-group p-2">
                 <label for="{{ form.username.id_for_label }}" class="control-label">Username</label>
-                <input type="text" class="form-control" required name="username" id="{{ form.username.id_for_label }}" placeholder="{{ form.username.value|default_if_none:'' }}">
+                <input type="text" class="form-control" required name="username" id="{{ form.username.id_for_label }}" value="{{ form.username.value|default_if_none:'' }}">
                 {% if form.username.errors %}
                     <div class="alert alert-danger mt-2">
                         {% for error in form.username.errors %}
@@ -26,7 +26,7 @@
         <div class="col-md-4 col-sm-6 col-12"> 
             <div class="form-group p-2">
                 <label for="{{ form.email.id_for_label }}" class="control-label">Email</label>
-                <input type="email" required name="email" class="form-control" id="{{ form.email.id_for_label }}" placeholder="{{ form.email.value|default_if_none:'' }}">
+                <input type="email" required name="email" class="form-control" id="{{ form.email.id_for_label }}" value="{{ form.email.value|default_if_none:'' }}">
                 {% if form.email.errors %}
                     <div class="alert alert-danger mt-2">
                         {% for error in form.email.errors %}
@@ -42,7 +42,7 @@
         <div class="col-md-4 col-sm-6 col-12"> 
             <div class="form-group p-2">
                 <label for="{{ form.first_name.id_for_label }}" class="control-label">First Name</label>
-                <input type="text" class="form-control" required name="first_name" id="{{ form.first_name.id_for_label }}" placeholder="{{ form.first_name.value|default_if_none:'' }}">
+                <input type="text" class="form-control" required name="first_name" id="{{ form.first_name.id_for_label }}" value="{{ form.first_name.value|default_if_none:'' }}">
                 {% if form.first_name.errors %}
                     <div class="alert alert-danger mt-2">
                         {% for error in form.first_name.errors %}
@@ -56,7 +56,7 @@
         <div class="col-md-4 col-sm-6 col-12">
             <div class="form-group p-2">
                 <label for="{{ form.last_name.id_for_label }}" class="control-label">Last Name</label>
-                <input type="text" class="form-control" required name="last_name" id="{{ form.last_name.id_for_label }}" placeholder="{{ form.last_name.value|default_if_none:'' }}">
+                <input type="text" class="form-control" required name="last_name" id="{{ form.last_name.id_for_label }}" value="{{ form.last_name.value|default_if_none:'' }}">
                 {% if form.last_name.errors %}
                 <div class="alert alert-danger mt-2">
                     {% for error in form.last_name.errors %}
@@ -70,7 +70,7 @@
         <div class="col-md-4 col-sm-6 col-12">
         <div class="form-group p-2">
             <label for="{{ form.phone_number.id_for_label }}" class="control-label">Phone Number</label>
-            <input type="tel" class="form-control" required name="phone_number" id="{{ form.phone_number.id_for_label }}" placeholder="{{ form.phone_number.value|default_if_none:'' }}">
+            <input type="tel" class="form-control" required name="phone_number" id="{{ form.phone_number.id_for_label }}" value="{{ form.phone_number.value|default_if_none:'' }}">
             {% if form.phone_number.errors %}
                 <div class="alert alert-danger mt-2">
                     {% for error in form.phone_number.errors %}
@@ -84,7 +84,7 @@
     <div class="col-md-4 col-sm-6 col-12">
         <div class="form-group p-2">
             <label for="{{ form.country.id_for_label }}" class="control-label">Country</label>
-            <input type="text" class="form-control" required name="country" id="{{ form.country.id_for_label }}" placeholder="{{ form.country.value|default_if_none:'' }}">
+            <input type="text" class="form-control" required name="country" id="{{ form.country.id_for_label }}" value="{{ form.country.value|default_if_none:'' }}">
             {% if form.country.errors %}
                 <div class="alert alert-danger mt-2">
                     {% for error in form.country.errors %}
@@ -97,7 +97,7 @@
     <div class="col-md-4 col-sm-6 col-12">
         <div class="form-group p-2">
             <label for="{{ form.city.id_for_label }}" class="control-label">City</label>
-            <input type="text" class="form-control" required name="city" id="{{ form.city.id_for_label }}" placeholder="{{ form.city.value|default_if_none:'' }}">
+            <input type="text" class="form-control" required name="city" id="{{ form.city.id_for_label }}" value="{{ form.city.value|default_if_none:'' }}">
             {% if form.city.errors %}
                 <div class="alert alert-danger mt-2">
                     {% for error in form.city.errors %}
@@ -111,7 +111,7 @@
     <div class="col-md-4 col-sm-6 col-12">
         <div class="form-group p-2">
             <label for="{{ form.address.id_for_label }}" class="control-label">Address</label>
-            <input type="text" class="form-control" required name="address" id="{{ form.address.id_for_label }}" placeholder="{{ form.address.value|default_if_none:'' }}">
+            <input type="text" class="form-control" required name="address" id="{{ form.address.id_for_label }}" value="{{ form.address.value|default_if_none:'' }}">
             {% if form.address.errors %}
                 <div class="alert alert-danger mt-2">
                     {% for error in form.address.errors %}
@@ -123,7 +123,7 @@
     </div>
 
         <div class="col-md-4 col-sm-6 col-12">
-        <div class="col-12">
+        <div class="col-12 p-2">
             <label class="form-label" for="{{ form.image.id_for_label }}">
                 Image: 
                 <img class="rounded-circle" src="{% if admin.image %}{{ admin.image.url }}{% else %}{% static '/assets/img/avatar.jpg' %}{% endif %}" width="32" height="32" alt="{% if admin.image %}{{ admin.image.url }}{% else %}{% static '/assets/img/avatar.jpg' %}{% endif %}">
@@ -146,20 +146,16 @@
             {% endif %}
         </div>
     </div>
+    
 </div>
-</div>
 
-
-
-
-<small class="w-100 d-flex justify-content-center mt-3">
-<button type="submit" class="btn d-flex justify-content-center align-items-center             btn-outline-primary shadow-sm border-2 border-primary px-5">
-    <span class="htmx-indicator spinner-border spinner-border-sm me-2" style="display:none;"></span>
-    Save Changes
-</button>
-</small>
-        </div>
-    </div>
+<span class="w-100 d-flex justify-content-end mt-2 ">
+    <button type="submit" class="btn d-flex justify-content-center align-items-center btn-outline-primary shadow-sm border-2 border-primary px-5" hx-indicator="#spinner" hx-disable="true">
+        <span id="spinner" class="htmx-indicator spinner-border spinner-border-sm me-2" style="display:none;"></span>
+        Save Changes
+    </button>
+    <div id="updateInformation"></div>
+</span>      
 </div>
 </form>
 
