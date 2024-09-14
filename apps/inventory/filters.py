@@ -10,7 +10,8 @@ class CategoryStockFilter(django_filters.FilterSet):
 
 class WharehouseFilter(django_filters.FilterSet):
     name=  django_filters.CharFilter(lookup_expr='icontains')
+    address=  django_filters.CharFilter(lookup_expr='icontains')
     
     class Meta:
         model = Wharehouse
-        fields = ['name']
+        fields = ['name','address']
