@@ -58,9 +58,9 @@ def wharehouse_form_update(request,pk):
         form = UpdateWharehouseForm(request.POST,request.FILES,instance=wharehouse)
         if form.is_valid():
             wharehouse_form_valid=form.save(commit=False)
-            wharehouse_form_valid._change_reason = f'Modifying wharehouse stock {wharehouse.name}'
+            wharehouse_form_valid._change_reason = f'Modifying wharehouse {wharehouse.name}'
             wharehouse_form_valid.save()
-            message="Change wharehouse stock successfully"
+            message="Change wharehouse successfully"
             context['message']=message
         else:
             message="Correct the errors"
@@ -80,7 +80,7 @@ def wharehouse_delete(request,pk):
             wharehouse_name=wharehouse.name
             wharehouse.delete()
             context = _show_wharehouse(request)
-            context['message']=f'{wharehouse_name} has been delete'
+            context['message']=f'Wharehouse {wharehouse_name} has been delete'
         else:
             context['error']=f'Sorry, wharehouse not found'
         return render(request,'wharehouse_templates/wharehouse_table_results.html',context)
