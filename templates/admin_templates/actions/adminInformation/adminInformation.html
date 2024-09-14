@@ -3,12 +3,167 @@
 {% block title %}Admin{% endblock %}
 {% block contend %}
 
-<form method="POST" enctype="multipart/form-data">
+
+<h3 class="text-center pt-4">Personal Info</h3>
+<form method="POST" enctype="multipart/form-data" class="form">
     {% csrf_token %}
-    {{ form }}
-    <button type="submit">Save Changes</button>
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-4 col-sm-6 col-12"> 
+            <div class="form-group p-2">
+                <label for="{{ form.username.id_for_label }}" class="control-label">Username</label>
+                <input type="text" class="form-control" required name="username" id="{{ form.username.id_for_label }}" placeholder="{{ form.username.value|default_if_none:'' }}">
+                {% if form.username.errors %}
+                    <div class="alert alert-danger mt-2">
+                        {% for error in form.username.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-6 col-12"> 
+            <div class="form-group p-2">
+                <label for="{{ form.email.id_for_label }}" class="control-label">Email</label>
+                <input type="email" required name="email" class="form-control" id="{{ form.email.id_for_label }}" placeholder="{{ form.email.value|default_if_none:'' }}">
+                {% if form.email.errors %}
+                    <div class="alert alert-danger mt-2">
+                        {% for error in form.email.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+ 
+
+
+        <div class="col-md-4 col-sm-6 col-12"> 
+            <div class="form-group p-2">
+                <label for="{{ form.first_name.id_for_label }}" class="control-label">First Name</label>
+                <input type="text" class="form-control" required name="first_name" id="{{ form.first_name.id_for_label }}" placeholder="{{ form.first_name.value|default_if_none:'' }}">
+                {% if form.first_name.errors %}
+                    <div class="alert alert-danger mt-2">
+                        {% for error in form.first_name.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-6 col-12">
+            <div class="form-group p-2">
+                <label for="{{ form.last_name.id_for_label }}" class="control-label">Last Name</label>
+                <input type="text" class="form-control" required name="last_name" id="{{ form.last_name.id_for_label }}" placeholder="{{ form.last_name.value|default_if_none:'' }}">
+                {% if form.last_name.errors %}
+                <div class="alert alert-danger mt-2">
+                    {% for error in form.last_name.errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+            </div>
+        </div>
+
+        <div class="col-md-4 col-sm-6 col-12">
+        <div class="form-group p-2">
+            <label for="{{ form.phone_number.id_for_label }}" class="control-label">Phone Number</label>
+            <input type="tel" class="form-control" required name="phone_number" id="{{ form.phone_number.id_for_label }}" placeholder="{{ form.phone_number.value|default_if_none:'' }}">
+            {% if form.phone_number.errors %}
+                <div class="alert alert-danger mt-2">
+                    {% for error in form.phone_number.errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="col-md-4 col-sm-6 col-12">
+        <div class="form-group p-2">
+            <label for="{{ form.country.id_for_label }}" class="control-label">Country</label>
+            <input type="text" class="form-control" required name="country" id="{{ form.country.id_for_label }}" placeholder="{{ form.country.value|default_if_none:'' }}">
+            {% if form.country.errors %}
+                <div class="alert alert-danger mt-2">
+                    {% for error in form.country.errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="col-md-4 col-sm-6 col-12">
+        <div class="form-group p-2">
+            <label for="{{ form.city.id_for_label }}" class="control-label">City</label>
+            <input type="text" class="form-control" required name="city" id="{{ form.city.id_for_label }}" placeholder="{{ form.city.value|default_if_none:'' }}">
+            {% if form.city.errors %}
+                <div class="alert alert-danger mt-2">
+                    {% for error in form.city.errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+        
+    <div class="col-md-4 col-sm-6 col-12">
+        <div class="form-group p-2">
+            <label for="{{ form.address.id_for_label }}" class="control-label">Address</label>
+            <input type="text" class="form-control" required name="address" id="{{ form.address.id_for_label }}" placeholder="{{ form.address.value|default_if_none:'' }}">
+            {% if form.address.errors %}
+                <div class="alert alert-danger mt-2">
+                    {% for error in form.address.errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+        <div class="col-md-4 col-sm-6 col-12">
+        <div class="col-12">
+            <label class="form-label" for="{{ form.image.id_for_label }}">
+                Image: 
+                <img class="rounded-circle" src="{% if admin.image %}{{ admin.image.url }}{% else %}{% static '/assets/img/avatar.jpg' %}{% endif %}" width="32" height="32" alt="{% if admin.image %}{{ admin.image.url }}{% else %}{% static '/assets/img/avatar.jpg' %}{% endif %}">
+            </label>
+            <div class="input-group mb-3">
+                <input type="file" name="image" class="form-control" id="{{ form.image.id_for_label }}">
+                <label class="input-group-text" for="{{ form.image.id_for_label }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-images" viewBox="0 0 16 16">
+                        <path d="M4.502 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/>
+                        <path d="M14.002 13a2 2 0 0 1-2 2h-10a2 2 0 0 1-2-2V5A2 2 0 0 1 2 3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8a2 2 0 0 1-1.998 2M14 2H4a1 1 0 0 0-1 1h9.002a2 2 0 0 1 2 2v7A1 1 0 0 0 15 11V3a1 1 0 0 0-1-1M2.002 4a1 1 0 0 0-1 1v8l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094l1.777 1.947V5a1 1 0 0 0-1-1z"/>
+                    </svg>
+                </label>
+            </div>
+            {% if form.image.errors %}
+                <div class="alert alert-danger mt-2">
+                    {% for error in form.image.errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+
+<small class="w-100 d-flex justify-content-center mt-3">
+<button type="submit" class="btn d-flex justify-content-center align-items-center             btn-outline-primary shadow-sm border-2 border-primary px-5">
+    <span class="htmx-indicator spinner-border spinner-border-sm me-2" style="display:none;"></span>
+    Save Changes
+</button>
+</small>
+        </div>
+    </div>
+</div>
 </form>
 
-  {% endblock contend %}
+
+{% endblock contend %}
 
  
