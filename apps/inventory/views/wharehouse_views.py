@@ -33,10 +33,10 @@ def wharehouse_create(request):
         else:
             context['error']='Correct the errors'
         context['form']=form
-        return render(request,'wharehouse_templates/actions/wharehouseCreate/WharehouseCreateForm.html',context) 
+        return render(request,'wharehouse_templates/actions/wharehouseCreate/wharehouseCreateForm.html',context) 
     form = CreateWharehouseForm()
     context['form']=form
-    return render(request,'wharehouse_templates/actions/wharehouseCreate/WharehouseCreateForm.html',context) 
+    return render(request,'wharehouse_templates/actions/wharehouseCreate/wharehouseCreateForm.html',context) 
 
 
 # category update forms
@@ -47,7 +47,7 @@ def wharehouse_update(request,pk):
     context={}
     context['wharehouse']=wharehouse
     context['form']=form
-    return render(request,'wharehouse_templates/actions/wharehouseUpdate/WharehouseUpdateForm.html',context) 
+    return render(request,'wharehouse_templates/actions/wharehouseUpdate/wharehouseUpdateForm.html',context) 
 
 # wharehouse main information update form
 @login_required(login_url='/login/')
@@ -67,7 +67,7 @@ def wharehouse_form_update(request,pk):
             context['error']=message
         context['wharehouse']=wharehouse
         context['form']=form
-        return render(request,'wharehouse_templates/actions/wharehouseUpdate/WharehouseUpdateCheckForm.html',context) 
+        return render(request,'wharehouse_templates/actions/wharehouseUpdate/wharehouseUpdateCheckForm.html',context) 
 
 
 # Delete result table
@@ -84,7 +84,7 @@ def wharehouse_delete(request,pk):
         else:
             context['error']=f'Sorry, wharehouse not found'
         return render(request,'wharehouse_templates/wharehouse_table_results.html',context)
-    return  render(request,'wharehouse_templates/actions/wharehouseDelete/WharehouseDeleteVerify.html',{"wharehouse":wharehouse})
+    return  render(request,'wharehouse_templates/actions/wharehouseDelete/wharehouseDeleteVerify.html',{"wharehouse":wharehouse})
      
 
 
