@@ -33,6 +33,7 @@
 </div>
 
 
+
 <form class="row g-3 py-4"
       method="GET"
       id="StockFilters"
@@ -42,69 +43,69 @@
       hx-trigger="submit"
       hx-indicator="#spinnerStockFilter,#spinner">
 
-<div class="col-6 col-sm-4 col-md-4 col-lg-3">
-  <label for="inputStockNameFilter" class="form-label">Name</label>
-  <input type="text" name="name" class="form-control" id="inputStockNameFilter" placeholder="Name">
-</div>
-<div class="col-6 col-sm-4 col-md-4 col-lg-3">
-  <label for="inputStockCodeFilter" class="form-label">Code</label>
-  <input type="text" name="code" class="form-control" id="inputStockCodeFilter" placeholder="Code">
-</div>
-<div class="col-6  col-sm-4 col-md-4 col-lg-3">
-  <label for="inputStockProductFilter" class="form-label">Product</label>
-  <input type="text" name="product" class="form-control" id="inputStockProductFilter" placeholder="Product name">
-</div>
-<div class="col-6  col-sm-4 col-md-4 col-lg-3">
-  <label for="inputStockWarehouseFilter" class="form-label">Warehouse</label>
-  <select id="inputStockWarehouseFilter" name="warehouse" class="form-select" aria-label="Select warehouse">
-    <option selected>Select Warehouse</option>
-    {% for warehouse in warehouses %}
-    <option value="{{warehouse.id}}">{{warehouse.name}}</option>
-    {% endfor %}
-  </select>
-</div>
+  <div class="col-6 col-sm-4 col-md-4 col-lg-3">
+    <label for="inputStockNameFilter" class="form-label">Name</label>
+    <input type="text" name="name" class="form-control" id="inputStockNameFilter" placeholder="Name">
+  </div>
+  <div class="col-6 col-sm-4 col-md-4 col-lg-3">
+    <label for="inputStockCodeFilter" class="form-label">Code</label>
+    <input type="text" name="code" class="form-control" id="inputStockCodeFilter" placeholder="Code">
+  </div>
+  <div class="col-6  col-sm-4 col-md-4 col-lg-3">
+    <label for="inputStockProductFilter" class="form-label">Product</label>
+    <input type="text" name="product" class="form-control" id="inputStockProductFilter" placeholder="Product name">
+  </div>
+  <div class="col-6  col-sm-4 col-md-4 col-lg-3">
+    <label for="inputStockWarehouseFilter" class="form-label">Warehouse</label>
+    <select id="inputStockWarehouseFilter" name="warehouse" class="form-select" aria-label="Select warehouse">
+      <option selected>Select Warehouse</option>
+      {% for warehouse in warehouses %}
+      <option value="{{warehouse.id}}">{{warehouse.name}}</option>
+      {% endfor %}
+    </select>
+  </div>
 
 
-<div class="col-6  col-sm-4 col-md-4 col-lg-3">
-  <label for="inputStockCategoryStockFilter" class="form-label">Category</label>
-  <select id="inputStockCategoryStockFilter" name="categories" class="form-select" aria-label="Select category">
-    <option selected>Select category</option>
-    {% for category in categories %}
-    <option value="{{category.id}}">{{category.name}}</option>
-    {% endfor %}
-  </select>
-</div>
+  <div class="col-6  col-sm-4 col-md-4 col-lg-3">
+    <label for="inputStockCategoryStockFilter" class="form-label">Category</label>
+    <select id="inputStockCategoryStockFilter" name="categories" class="form-select" aria-label="Select category">
+      <option selected>Select category</option>
+      {% for category in categories %}
+      <option value="{{category.id}}">{{category.name}}</option>
+      {% endfor %}
+    </select>
+  </div>
 
 
-<div class="col-sm-4 col-md-4 col-lg-3">
-  <label for="inputActiveFilter" class="form-label">Active</label>
-  <select id="inputActiveFilter" name="is_active" class="form-select">
-    <option value='' selected>Your Stock is active?</option>
-    <option value="true">Yes</option>
-    <option value="false">No</option>
-  </select>
-</div>
-<div class="col-6 col-sm-4 col-md-4 col-lg-3">
-  <label for="inputStockAddressFilter" class="form-label">Address</label>
-  <input type="text" name="address" class="form-control" id="inputStockAddressFilter" placeholder="Address">
-</div>
+  <div class="col-sm-4 col-md-4 col-lg-3">
+    <label for="inputActiveFilter" class="form-label">Active</label>
+    <select id="inputActiveFilter" name="is_active" class="form-select">
+      <option value='' selected>Your Stock is active?</option>
+      <option value="true">Yes</option>
+      <option value="false">No</option>
+    </select>
+  </div>
+  <div class="col-6 col-sm-4 col-md-4 col-lg-3">
+    <label for="inputStockAddressFilter" class="form-label">Address</label>
+    <input type="text" name="address" class="form-control" id="inputStockAddressFilter" placeholder="Address">
+  </div>
 
-<div class="col-6  col-sm-4 col-md-4 col-lg-3">
-  <label for="inputStockMeasureUnitFilter" class="form-label">Measure unit ( M.U )</label>
-  <select id="inputStockMeasureUnitFilter" name="measure_unit" class="form-select" aria-label="Select Measure Unit">
-    <option value='' selected>Select measure unit</option>
-    <option value="m">milliliters</option>
-    <option value="g">grams</option>
-    <option value="u">units</option>
-  </select>
-</div>
+  <div class="col-6  col-sm-4 col-md-4 col-lg-3">
+    <label for="inputStockMeasureUnitFilter" class="form-label">Measure unit ( M.U )</label>
+    <select id="inputStockMeasureUnitFilter" name="measure_unit" class="form-select" aria-label="Select Measure Unit">
+      <option value='' selected>Select measure unit</option>
+      <option value="m">milliliters</option>
+      <option value="g">grams</option>
+      <option value="u">units</option>
+    </select>
+  </div>
 
-<div class="col-12">
-  <small class=" w-100 d-flex justify-content-end mt-3">
-      <button type="submit" class="btn d-flex justify-content-center align-items-center btn-outline-primary shadow-sm border-2 border-primary px-5">
-        <span id="spinnerStockFilter" class="htmx-indicator spinner-border spinner-border-sm me-2" ></span>Filter</button>
-  </small>
-</div>
+  <div class="col-12">
+    <small class=" w-100 d-flex justify-content-end mt-3">
+        <button type="submit" class="btn d-flex justify-content-center align-items-center btn-outline-primary shadow-sm border-2 border-primary px-5">
+          <span id="spinnerStockFilter" class="htmx-indicator spinner-border spinner-border-sm me-2" ></span>Filter</button>
+    </small>
+  </div>
 </form>
 
 
