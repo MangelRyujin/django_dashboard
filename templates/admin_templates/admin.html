@@ -39,11 +39,11 @@
           hx-trigger="submit"
           hx-indicator="#spinnerAdminFilter,#spinner">
     
-    <div class="col-6 col-sm-4 col-md-4 col-lg-2">
+    <div class="col-6 col-sm-4 col-md-4 col-lg-3">
       <label for="inputAdminUsernameFilter" class="form-label">Username</label>
       <input type="text" name="username" class="form-control" id="inputAdminUsernameFilter" placeholder="Username">
     </div>
-    <div class="col-6 col-sm-4 col-md-4 col-lg-2">
+    <div class="col-6 col-sm-4 col-md-4 col-lg-3">
       <label for="inputAdminPhoneNumberFilter" class="form-label">Phone number</label>
       <input type="text" name="phone_number" class="form-control" id="inputAdminPhoneNumberFilter" placeholder="Phone number">
     </div>
@@ -51,8 +51,12 @@
         <label for="inputAdminEmailFilter" class="form-label">Email</label>
         <input type="email" name="email" class="form-control" id="inputAdminEmailFilter" placeholder="Email">
     </div>
+    <div class="col-12  col-sm-4 col-md-4 col-lg-3">
+      <label for="inputAdminCIFilter" class="form-label">CI</label>
+      <input type="text" name="ci" class="form-control" id="inputAdminCIFilter" placeholder="CI">
+  </div>
     {% if groups %}
-      <div class="col-6  col-sm-4 col-md-4 col-lg-2">
+      <div class="col-6  col-sm-4 col-md-4 col-lg-3">
         <label for="inputAdminRoleFilter" class="form-label">Role</label>
         <select id="inputAdminRoleFilter" name="groups" class="form-select" aria-label="Select group">
           <option value='' selected>Select role</option>

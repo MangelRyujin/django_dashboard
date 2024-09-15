@@ -7,6 +7,7 @@ from django.contrib.auth.forms import PasswordChangeForm
 from apps.products.models import Category,Product,Coupon
 from .decorators import user_is_not_authenticated
 from apps.accounts.models import User
+# from django.contrib.admin.views.decorators import staff_member_required
 
 # Dashboard view (index)
 @login_required(login_url='/login/')
