@@ -5,6 +5,7 @@ from django.core.validators import MinValueValidator,MaxValueValidator
 from simple_history.models import HistoricalRecords
 from apps.accounts.models import User
 import uuid
+from decimal import Decimal
 # Create your models here.
 
 
@@ -51,6 +52,13 @@ class Product(models.Model):
     def rating(self):
         return [i for i in range(int(self.stars))]
     
+    @property
+    def total_stock(self):
+        try:
+            return sum(stock.cant for stock in self.product_stock.all() if stock.cant > 0)
+        except ValueError:
+            return 0
+        
 class Coupon(models.Model):
     code  = models.UUIDField(
         _("Code"),

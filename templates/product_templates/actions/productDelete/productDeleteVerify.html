@@ -5,10 +5,13 @@
   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 </div>
 <div class="modal-body p-4 text-center">
-            
+  {% if product.total_stock > 0 %}
+    <h5 class="mb-0">Product: {{product.name}}</h5>
+    <p class="mb-0">You cannot delete the product, it contains assigned stocks.</p>
+      {% else %}     
     <h5 class="mb-0">Do you want to delete the product: {{product.name}}?</h5>
     <p class="mb-0">If you accept, the selected product will be removed completely.</p>
-            
+    {% endif %}        
 </div>
 <div class="modal-footer border-0 flex-nowrap p-2">
     <form class="w-100"
@@ -18,11 +21,20 @@
         hx-trigger="submit"
         hx-indicator="#spinner">
         {% csrf_token %}
+        {% if product.total_stock > 0 %}
         <button id="liveToastBtn" data-bs-dismiss="modal" type="submit" 
-            class="btn btn-outline-primary w-100 btn-lg border-0 border-2 fs-6 text-decoration-none col-6 py-3 m-0 border-0"
-              >
-            <span id="spinnerproductDelete" class="htmx-indicator spinner-border spinner-border-sm me-2" ></span><strong>Yes, delete</strong>
+          class="btn btn-outline-primary disabled w-100 btn-lg border-0 border-2 fs-6 text-decoration-none col-6 py-3 m-0 border-0"
+            >
+          <span id="spinnerproductDelete" class="htmx-indicator spinner-border spinner-border-sm me-2" ></span><strong>Yes, delete</strong>
         </button>
+        {% else %}     
+          <button id="liveToastBtn" data-bs-dismiss="modal" type="submit" 
+          class="btn btn-outline-primary w-100 btn-lg border-0 border-2 fs-6 text-decoration-none col-6 py-3 m-0 border-0"
+            >
+          <span id="spinnerproductDelete" class="htmx-indicator spinner-border spinner-border-sm me-2" ></span><strong>Yes, delete</strong>
+      </button>
+    {% endif %}   
+        
     </form>
   
   <button type="button" class="btn btn-outline-danger btn-lg  fs-6 border-0 text-decoration-none col-6 py-3 m-0 " data-bs-dismiss="modal"><strong>No thanks</strong></button>

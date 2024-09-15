@@ -31,7 +31,7 @@ def product_create(request):
     }
     
     if request.method == "POST":
-        form = UpdateProductForm(request.POST,request.FILES)
+        form = CreateProductForm(request.POST,request.FILES)
         if form.is_valid():
             form.save()  
             context['message']='Created successfully'
