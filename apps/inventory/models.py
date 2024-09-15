@@ -76,9 +76,9 @@ class Supplier(models.Model):
     
 class Facture(models.Model):
     MEASURE_UNIT_CHOICES = (
-        ('m', 'mililitros'),
-        ('g', 'gramos'),
-        ('u', 'unidades'),
+        ('m', _("milliliters")),
+        ('g', _("grams")),
+        ('u', _("units")),
     )
     
     code = models.CharField(_("Code"),max_length=50,unique=True)

@@ -6,6 +6,7 @@ from django.core.paginator import Paginator
 import logging
 
 from apps.inventory.models import Stock,CategoryStock,Warehouse
+from apps.products.models import Product
 logger = logging.getLogger(__name__)
 
 # Stock view (index)
@@ -13,7 +14,8 @@ logger = logging.getLogger(__name__)
 def stock_view(request):
     categories = CategoryStock.objects.all()
     warehouses = Warehouse.objects.all()
-    response= render(request,'stock_templates/stock.html',{'categories':categories,'warehouses':warehouses})
+    products = Product.objects.all()
+    response= render(request,'stock_templates/stock.html',{'categories':categories,'warehouses':warehouses,'products': products})
     response['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
     response['Pragma'] = 'no-cache'
     response['Expires'] = '0'
@@ -28,7 +30,9 @@ def stock_table_results(request):
 @login_required(login_url='/login/')
 def stock_create(request):
     context={
-        'categories':CategoryStock.objects.all()
+        'categories':CategoryStock.objects.all(),
+        'warehouses': Warehouse.objects.all(),
+        'products': Product.objects.all()
     }
     
     if request.method == "POST":
@@ -61,7 +65,7 @@ def stock_form_update(request,pk):
     context={}
     if request.method == "POST":
         stock = Stock.objects.filter(pk=pk).first()
-        form = UpdateStockForm(request.POST,request.FILES,instance=stock)
+        form = UpdateStockForm(request.POST,instance=stock)
         if form.is_valid():
             stock_form_valid=form.save(commit=False)
             stock_form_valid._change_reason = f'Modifying stock {stock.name}'
@@ -72,6 +76,7 @@ def stock_form_update(request,pk):
         else:
             message="Correct the errors"
             context['error']=message
+        print(form)
         context['stock']=stock
         context['form']=form
         return render(request,'stock_templates/actions/stockUpdate/stockUpdateCheckForm.html',context) 
