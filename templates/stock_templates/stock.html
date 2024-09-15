@@ -51,6 +51,10 @@
   <input type="text" name="code" class="form-control" id="inputStockCodeFilter" placeholder="Code">
 </div>
 <div class="col-6  col-sm-4 col-md-4 col-lg-3">
+  <label for="inputStockProductFilter" class="form-label">Product</label>
+  <input type="text" name="product" class="form-control" id="inputStockProductFilter" placeholder="Product name">
+</div>
+<div class="col-6  col-sm-4 col-md-4 col-lg-3">
   <label for="inputStockWarehouseFilter" class="form-label">Warehouse</label>
   <select id="inputStockWarehouseFilter" name="warehouse" class="form-select" aria-label="Select warehouse">
     <option selected>Select Warehouse</option>
@@ -86,7 +90,7 @@
 </div>
 
 <div class="col-6  col-sm-4 col-md-4 col-lg-3">
-  <label for="inputStockMeasureUnitFilter" class="form-label">Measure unit</label>
+  <label for="inputStockMeasureUnitFilter" class="form-label">Measure unit ( M.U )</label>
   <select id="inputStockMeasureUnitFilter" name="measure_unit" class="form-select" aria-label="Select Measure Unit">
     <option value='' selected>Select measure unit</option>
     <option value="m">milliliters</option>
@@ -117,7 +121,7 @@ hx-swap="innerHTML"
 hx-indicator="#spinner"></div>
 
 <div class="w-100 position-relative d-flex justify-content-center align-items-center">
-<div id="spinner" class="htmx-indicator w-100 h-100  loadding-blur position-absolute z-10 d-flex justify-content-center align-items-center">
+<div id="spinner" class="htmx-indicator w-100 h-100  loadding-blur position-absolute z-10 d-flex justify-content-center align-items-center" style="z-index: 100;">
   <div class="spinner-border" role="status">
     <span class="visually-hidden">Loading...</span>
   </div>

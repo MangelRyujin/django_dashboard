@@ -45,7 +45,7 @@ class Stock(models.Model):
     measure_unit = models.CharField(_("Measure unit"),max_length=1, choices=MEASURE_UNIT_CHOICES, default='u') 
     expiration_date = models.DateField(_("Expire date"))
     create_date = models.DateTimeField(_("Create date"),auto_now_add=True)
-    cant = models.DecimalField(_("Cant"), decimal_places= 2,max_digits=12, validators=[MinValueValidator(0.01)])
+    cant = models.DecimalField(_("Cant"), decimal_places= 2,max_digits=12, validators=[MinValueValidator(0)])
     unit_price = models.DecimalField(_("Inversion Cost"), max_digits=12, default=0, decimal_places=2,validators=[MinValueValidator(0.01)])
     
     
@@ -76,9 +76,9 @@ class Supplier(models.Model):
     
 class Facture(models.Model):
     MEASURE_UNIT_CHOICES = (
-        ('m', 'mililitros'),
-        ('g', 'gramos'),
-        ('u', 'unidades'),
+        ('m', _("milliliters")),
+        ('g', _("grams")),
+        ('u', _("units")),
     )
     
     code = models.CharField(_("Code"),max_length=50,unique=True)

@@ -7,13 +7,14 @@
        
 
             <form 
-            enctype="multipart/form-data"
+            
             hx-post="{% url 'stock_form_update' pk=stock.id %}"
             hx-target="#StockUpdate"
             hx-swap="innerHTML"
             hx-trigger="submit"
             hx-indicator="#spinnerStockUpdateCheck">
             {% csrf_token %}
+              
               <div class="col-12 mt-4">
                 <label for="{{ form.name.id_for_label }}Update" class="form-label">Name</label>
                 <input type="text" name="name" value="{{ form.name.value }}" class="form-control" id="{{ form.name.id_for_label }}Update" placeholder="Name">
@@ -23,30 +24,170 @@
                             {{ error }}
                         {% endfor %}
                     </div>
-                    {% endif %}      
+                    {% endif %}  
               </div>
-              <div class="col-12 mt-4">
-                <label class="form-label" for="{{ form.image.id_for_label }}Update">Image
-                  <img class="rounded-circle" src=" {% if form.instance.image %}{{form.instance.image.url}} {% else %} {% static "/assets/img/image_not_found.jpg" %}{% endif %}" width="32" height="32" alt="{% if form.instance.image %}{{form.instance.image.url}} {% else %} {% static "/assets/img/image_not_found.jpg" %}{% endif %}">
-                   
-                </label>
-                <div class="input-group mb-3">
-                  <input type="file" name="image" class="form-control" id="{{ form.image.id_for_label }}Update">
-                  <label class="input-group-text" for="{{ form.image.id_for_label }}Update">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-images" viewBox="0 0 16 16">
-                    <path d="M4.502 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/>
-                    <path d="M14.002 13a2 2 0 0 1-2 2h-10a2 2 0 0 1-2-2V5A2 2 0 0 1 2 3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8a2 2 0 0 1-1.998 2M14 2H4a1 1 0 0 0-1 1h9.002a2 2 0 0 1 2 2v7A1 1 0 0 0 15 11V3a1 1 0 0 0-1-1M2.002 4a1 1 0 0 0-1 1v8l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094l1.777 1.947V5a1 1 0 0 0-1-1z"/>
-                  </svg>
-                </label>
-                </div>
-                {% if form.image.errors %}
+              <div class="col-12  mt-4 ">
+                <label for="{{ form.code.id_for_label }}" class="form-label">Code</label>
+                <input type="text" class="form-control" value="{{ form.code.value }}" required name="code" id="{{ form.code.id_for_label }}" placeholder="Code">
+                {% if form.code.errors %}
                     <div class="alert alert-danger mt-2">
-                        {% for error in form.image.errors %}
+                        {% for error in form.code.errors %}
                             {{ error }}
                         {% endfor %}
                     </div>
-                    {% endif %}      
-          
+                    {% endif %}  
+              </div>
+              <div class="col-12 mt-4">
+                <div class="row">
+                  <div class="col-12">
+                    <label for="{{ form.product.id_for_label }}" class="form-label">Product</label>
+                    <div class="input-group">
+                      <select  class="form-select"  required name="product" id="{{ form.product.id_for_label }}">
+                        {% for product in form.product %}
+                        {{product}}
+                        {% endfor %}
+                      </select>
+                    </div>
+                    {% if form.product.errors %}
+                    <div class="alert alert-danger mt-2">
+                        {% for error in form.product.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                    {% endif %}  
+                    
+                
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 mt-4">
+                <div class="row">
+                  <div class="col-12">
+                    <label for="{{ form.categories.id_for_label }}Update" class="form-label">Categories (one or more)</label>
+                    <div class="input-group">
+                      <select multiple class="form-select" required name="categories" id="{{ form.categories.id_for_label }}Update">
+                        {% for category in form.categories %}
+                        {{category}}
+                        {% endfor %}
+                      </select>
+                    </div>
+                    {% if form.categories.errors %}
+                    <div class="alert alert-danger mt-2">
+                        {% for error in form.categories.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                    {% endif %}  
+                    
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 mt-4">
+                <div class="row">
+                  <div class="col-12">
+                    <label for="{{ form.warehouse.id_for_label }}" class="form-label">Warehouse</label>
+                    <div class="input-group">
+                      <select  class="form-select" required name="warehouse" id="{{ form.warehouse.id_for_label }}">
+                        {% for warehouse in form.warehouse %}
+                        {{warehouse}}
+                        {% endfor %}
+                      </select>
+                    </div>
+                    {% if form.warehouse.errors %}
+                    <div class="alert alert-danger mt-2">
+                        {% for error in form.warehouse.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                    {% endif %}  
+                    
+                  </div>
+                </div>
+              </div>
+              <div class="col-12  mt-4 ">
+                <label for="{{ form.address.id_for_label }}" class="form-label">Address</label>
+                <input type="text" class="form-control" value="{% if form.address.value %}{{ form.address.value }}{% endif %}" name="address" id="{{ form.address.id_for_label }}" placeholder="Address">
+                {% if form.address.errors %}
+                    <div class="alert alert-danger mt-2">
+                        {% for error in form.address.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                    {% endif %}  
+              </div>
+              <div class="col-12 mt-4">
+                <div class="row">
+                  <div class="col-12">
+                    <label for="inputStockMeasureUnitCreate" class="form-label">Measure unit </label>
+                    <div class="input-group">
+                      <select id="inputStockMeasureUnitCreate" name="measure_unit" class="form-select" aria-label="Select Measure Unit">
+                        <option value="u" {% if form.measure_unit.value == "u" %}selected{% endif %}>units</option>
+                        <option value="m" {% if form.measure_unit.value == "m" %}selected{% endif %}>milliliters</option>
+                        <option value="g" {% if form.measure_unit.value == "g" %}selected{% endif %}>grams</option>
+                       
+                      </select>
+                    </div>
+                    {% if form.measure_unit.errors %}
+                    <div class="alert alert-danger mt-2">
+                        {% for error in form.measure_unit.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                    {% endif %}  
+                    
+                  </div>
+                </div>
+              </div>
+              <div class="col-12  mt-4 ">
+                <label for="{{ form.cant.id_for_label }}" class="form-label">Cant</label>
+                <div class="input-group">
+                  <input type="text" class="form-control" value="{{ form.cant.value }}" required name="cant" id="{{ form.cant.id_for_label }}" placeholder="1.00">
+                
+                </div>
+                {% if form.cant.errors %}
+                    <div class="alert alert-danger mt-2">
+                        {% for error in form.cant.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                    {% endif %}  
+                
+              </div>
+              <div class="col-12  mt-4 ">
+                <label for="{{ form.unit_price.id_for_label }}" class="form-label">Unit price</label>
+                <div class="input-group">
+                  <input type="text" class="form-control" value="{{ form.unit_price.value }}" required name="unit_price" id="{{ form.unit_price.id_for_label }}" placeholder="49.99">
+                  <span class="input-group-text">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-currency-dollar" viewBox="0 0 16 16">
+                      <path d="M4 10.781c.148 1.667 1.513 2.85 3.591 3.003V15h1.043v-1.216c2.27-.179 3.678-1.438 3.678-3.3 0-1.59-.947-2.51-2.956-3.028l-.722-.187V3.467c1.122.11 1.879.714 2.07 1.616h1.47c-.166-1.6-1.54-2.748-3.54-2.875V1H7.591v1.233c-1.939.23-3.27 1.472-3.27 3.156 0 1.454.966 2.483 2.661 2.917l.61.162v4.031c-1.149-.17-1.94-.8-2.131-1.718zm3.391-3.836c-1.043-.263-1.6-.825-1.6-1.616 0-.944.704-1.641 1.8-1.828v3.495l-.2-.05zm1.591 1.872c1.287.323 1.852.859 1.852 1.769 0 1.097-.826 1.828-2.2 1.939V8.73z"/>
+                    </svg>
+                  </span>
+                </div>
+                {% if form.unit_price.errors %}
+                    <div class="alert alert-danger mt-2">
+                        {% for error in form.unit_price.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                    {% endif %}  
+               
+              </div>
+              <div class="col-12  mt-4 ">
+                <label for="{{ form.expiration_date.id_for_label }}" class="form-label">Expiration date</label>
+                <div class="input-group">
+                  
+                  
+                  <input type="date" class="form-control" value="{{form.expiration_date.value}}" required name="expiration_date" id="{{ form.expiration_date.id_for_label }}">
+                  
+                </div>
+                {% if form.expiration_date.errors %}
+                    <div class="alert alert-danger mt-2">
+                        {% for error in form.expiration_date.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                    {% endif %}  
+                
               </div>
               <div class="col-12 mt-4">
                 <label class="form-check-label" for="{{ form.is_active.id_for_label }}Update">
@@ -54,7 +195,7 @@
                 </label>
                 <div class="form-check">
                   <input class="form-check-input" type="radio" name="is_active" id="{{ form.is_active.id_for_label }}Update" value="true" 
-                  {% if form.instance.is_active  %}checked{% endif %}>
+                  {% if form.instance.is_active %}checked{% endif %}>
                   <label class="form-check-label" for="{{ form.is_active.id_for_label }}Update">
                     Ready to sell
                   </label>
@@ -66,6 +207,13 @@
                     Not ready to sell
                   </label>
                 </div>
+                {% if form.is_active.errors %}
+                    <div class="alert alert-danger mt-2">
+                        {% for error in form.is_active.errors %}
+                            {{ error }}
+                        {% endfor %}
+                    </div>
+                    {% endif %}  
                 
               </div>
               <div class="col-12 mt-2">

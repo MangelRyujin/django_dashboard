@@ -107,8 +107,8 @@
        {{product.price}}</span></td> 
       </tr>
       <tr>
-        <td><span class="d-flex  align-items-center"><strong>Stock :</strong> 
-          {% if product.stock <= 0 %}<strong class="text-danger px-1">0</strong>{% else %}{{product.stock}}{% endif %} {% if product.stock == 1 %}<p class="px-1">unit</p>{% else %}units{% endif %}
+        <td><span class="d-flex  align-items-center"><strong class="me-1">Stock: </strong> 
+          {% if product.total_stock <= 0 %}<strong class="text-danger px-1">0</strong>{% else %}{{product.total_stock}}{% endif %}
         
         </span></td> 
       </tr>

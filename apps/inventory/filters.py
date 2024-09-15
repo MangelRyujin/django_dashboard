@@ -21,6 +21,7 @@ class StockFilter(django_filters.FilterSet):
     address=  django_filters.CharFilter(lookup_expr='icontains')
     code=  django_filters.CharFilter(lookup_expr='icontains')
     address=  django_filters.CharFilter(lookup_expr='icontains')
+    product=  django_filters.CharFilter(field_name='product__name',lookup_expr='icontains')
     warehouse = django_filters.ModelMultipleChoiceFilter(queryset=Warehouse.objects.all())
     categories = django_filters.ModelMultipleChoiceFilter(queryset=CategoryStock.objects.all())
     is_active = django_filters.BooleanFilter()
@@ -28,4 +29,4 @@ class StockFilter(django_filters.FilterSet):
     
     class Meta:
         model = Stock
-        fields = ['code','name','address','warehouse','categories','is_active','measure_unit']
+        fields = ['code','name','product','address','warehouse','categories','is_active','measure_unit']
