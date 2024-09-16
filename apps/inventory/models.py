@@ -101,17 +101,23 @@ class Facture(models.Model):
 class StockMovements(models.Model):
     TYPE_CHOICES  = (
         ('1', 'exit'),
-        ('2', 'entrance'),
-        
+        ('2', 'entrance'),   
     )
-    type = models.CharField(_("Type"),max_length=7, choices=TYPE_CHOICES, default='2') 
+    MOVEMENT_TYPE_CHOICES  = (
+        ('1', 'simple'),
+        ('2', 'multiple'),  
+    )
+    type = models.CharField(_("Type"),max_length=1, choices=TYPE_CHOICES, default='2') 
+    movement_type = models.CharField(_("Type Movement"),max_length=1, choices=MOVEMENT_TYPE_CHOICES, default='1') 
     created_date = models.DateTimeField(_("Create date"),auto_now_add=True)
     motive = models.CharField(_("Motive"),max_length=255) 
     description = models.TextField(_("Description"),null=True,blank=True)
     cant = models.DecimalField(_("Cant"), max_digits=12, default=0, decimal_places=2)
     user = models.ForeignKey(User,on_delete=models.CASCADE,null=False,blank=False,related_name=_('user_stock_movement'))
-    stock=models.ForeignKey(Stock,on_delete=models.CASCADE,null=False,blank=False,related_name=_('stock_movement'))
-
+    stock_one=models.ForeignKey(Stock,on_delete=models.CASCADE,null=False,blank=False,related_name=_('stock_one_movement'))
+    stock_two=models.ForeignKey(Stock,on_delete=models.CASCADE,null=True,blank=True,related_name=_('stock_two_movement'))
+    
+    
     class Meta:
         """Meta definition for StockMovements."""
 
