@@ -33,6 +33,7 @@
             <tr class="text-center">
               <th  scope="col">Username</th>
               <th scope="col">Email</th>
+              <th scope="col">CI</th>
               <th scope="col">Phone number</th>
               <th scope="col">Role</th>
               <th scope="col">Active</th>
@@ -44,6 +45,7 @@
               <tr class="text-center">
                   <td class="border small ">{{admin.username}}</td>
                   <td class="border small table-min">{{admin.email}}</td>
+                  <td class="border small table-min">{{admin.ci}}</td>
                   <td class="border small table-min">{% if admin.phone_number %}{{admin.phone_number}}{% else %}-{% endif %}</td>
                   <td class="border small table-min">
                     {% if admin.groups.all %}

@@ -31,6 +31,17 @@
                   {% endif %}    
                 </div>
                 <div class="col-12">
+                  <label for="{{ form.ci.id_for_label }}" class="form-label">CI</label>
+                  <input type="text" name="ci" value="{{ form.ci.value }}" class="form-control" id="{{ form.ci.id_for_label }}" placeholder="CI">
+                  {% if form.ci.errors %}
+                  <div class="alert alert-danger mt-2">
+                      {% for error in form.ci.errors %}
+                          {{ error }}
+                      {% endfor %}
+                  </div>
+                  {% endif %}    
+                </div>
+                <div class="col-12">
                   <div class="row">
                     <div class="col-12">
                       <label for="{{ form.groups.id_for_label }}" class="form-label">Role (one or more)</label>

@@ -325,6 +325,22 @@
   backdrop-filter: blur(2px) !important;
 }
 
+.blur-font{
+  background: rgba(0, 0, 0, 0) !important;
+  /* background: linear-gradient(45deg, rgba(26, 112, 233, 0.67),rgba(0, 0, 0, 0.036)) !important; */
+  backdrop-filter: blur(12px) !important;
+}
+
+.trasform-top{
+  transform: translateY(-120px) translateX(-40px) !important;
+ 
+}
+
+.trasform-bottom{
+  transform: translateY(100px) translateX(40px) !important;
+ 
+}
+
 .fs-0{
   font-size: 3.8rem !important;
 }

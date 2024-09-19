@@ -36,6 +36,7 @@ urlpatterns = [
     path('category_stocks/',include('apps.inventory.urls.category_stock_urls')),
     path('warehouses/',include('apps.inventory.urls.warehouse_urls')),
     path('stocks/',include('apps.inventory.urls.stock_urls')),
+    path('stocks_movements/',include('apps.inventory.urls.stock_movements_urls')),
     path('reviews/',include('apps.products.urls.product_review_urls')),
     path('coupons/',include('apps.products.urls.coupon_urls')),
     path('change_password/',change_password_view,name='change_password_view'),

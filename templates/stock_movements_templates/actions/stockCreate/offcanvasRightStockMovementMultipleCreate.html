@@ -1,0 +1,21 @@
+<!-- Offcanvas Stock Create -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRightStockMovementMultipleCreate" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasRightLabel">Create movement multiple</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body" 
+      hx-get="{% url 'stock_movements_multiple_create'%}"
+      hx-swap="innerHTML"
+      hx-target="#StockMovementMultipleCreateForm"
+      hx-trigger="load">
+      
+      <div id="StockMovementMultipleCreateForm"></div>
+
+      
+      
+      
+    </div>
+  </div>
+  <!-- End Offcanvas Stock Create -->
+  

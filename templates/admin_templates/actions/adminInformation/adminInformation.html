@@ -38,7 +38,19 @@
                     {% endif %}
                 </div>
             </div>
-     
+            <div class="col-md-4 col-sm-6 col-12 mb-2"> 
+                <div class="form-group p-2">
+                    <label for="{{ form.ci.id_for_label }}" class="control-label">CI</label>
+                    <input type="text" required name="ci" class="form-control" id="{{ form.ci.id_for_label }}" value="{{ form.ci.value|default_if_none:'' }}">
+                    {% if form.ci.errors %}
+                        <div class="alert alert-danger mt-2">
+                            {% for error in form.ci.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
             <div class="col-md-4 col-sm-6 col-12 mb-2">
                 <div class="form-group p-2">
                     <label for="{{ form.phone_number.id_for_label }}" class="control-label">Phone Number</label>
