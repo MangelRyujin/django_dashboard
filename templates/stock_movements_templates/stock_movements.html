@@ -5,10 +5,9 @@
 
 
 
-{% include 'stock_templates/actions/stockCreate/offcanvasRightStockCreate.html' %}
-{% include 'stock_templates/actions/stockDetail/offcanvasRightStockDetail.html' %}
-{% include 'stock_templates/actions/stockUpdate/offcanvasRightStockUpdate.html' %}
-{% include 'stock_templates/actions/stockDelete/modalStockDelete.html' %}
+{% include 'stock_movements_templates/actions/stockCreate/offcanvasRightStockMovementSimpleCreate.html' %}
+{% include 'stock_movements_templates/actions/stockCreate/offcanvasRightStockMovementMultipleCreate.html' %}
+{% include 'stock_movements_templates/actions/stockDetail/offcanvasRightStockDetail.html' %}
 
 
 <div class="d-flex align-items-center p-3 my-3  rounded-2 shadow-sm bg-body-tertiary">
@@ -22,7 +21,7 @@
 <div class="w-100 d-flex justify-content-end">
   <span class="text-end me-2">
     <button type="button" class="btn btn-outline-success shadow-sm border-2 border-success px-4 align-content-center"
-    data-bs-toggle="offcanvas" data-bs-target="#offcanvasRightStockCreate" aria-controls="offcanvasRight"
+    data-bs-toggle="offcanvas" data-bs-target="#offcanvasRightStockMovementSimpleCreate" aria-controls="offcanvasRight"
     >
       <svg class="" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="me-2 bi-plus-circle" viewBox="0 0 16 16">
         <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
@@ -33,7 +32,7 @@
   </span>
   <span class="text-end">
   <button type="button" class="btn btn-outline-success shadow-sm border-2 border-success px-4 align-content-center"
-  data-bs-toggle="offcanvas" data-bs-target="#offcanvasRightStockCreate" aria-controls="offcanvasRight"
+  data-bs-toggle="offcanvas" data-bs-target="#offcanvasRightStockMovementMultipleCreate" aria-controls="offcanvasRight"
   >
     <svg class="" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="me-2 bi-plus-circle" viewBox="0 0 16 16">
       <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
@@ -56,61 +55,43 @@
       hx-indicator="#spinnerStockMovementFilter,#spinner">
 
   <div class="col-6 col-sm-4 col-md-4 col-lg-3">
-    <label for="inputStockMovementNameFilter" class="form-label">Name</label>
-    <input type="text" name="name" class="form-control" id="inputStockMovementNameFilter" placeholder="Name">
+    <label for="inputStockMovementUserFilter" class="form-label">User</label>
+    <input type="text" name="user" class="form-control" id="inputStockMovementUserFilter" placeholder="User">
   </div>
   <div class="col-6 col-sm-4 col-md-4 col-lg-3">
-    <label for="inputStockMovementCodeFilter" class="form-label">Code</label>
-    <input type="text" name="code" class="form-control" id="inputStockMovementCodeFilter" placeholder="Code">
+    <label for="inputStockMovementStockOneFilter" class="form-label">Stock One</label>
+    <input type="text" name="stock_one" class="form-control" id="inputStockMovementStockOneFilter" placeholder="Stock One">
   </div>
-  <div class="col-6  col-sm-4 col-md-4 col-lg-3">
-    <label for="inputStockMovementProductFilter" class="form-label">Product</label>
-    <input type="text" name="product" class="form-control" id="inputStockMovementProductFilter" placeholder="Product name">
+  <div class="col-6 col-sm-4 col-md-4 col-lg-3">
+    <label for="inputStockMovementStockTwoFilter" class="form-label">Stock Two</label>
+    <input type="text" name="stock_two" class="form-control" id="inputStockMovementStockTwoFilter" placeholder="Stock Two">
   </div>
+  
   <div class="col-6  col-sm-4 col-md-4 col-lg-3">
-    <label for="inputStockMovementWarehouseFilter" class="form-label">Warehouse</label>
-    <select id="inputStockMovementWarehouseFilter" name="warehouse" class="form-select" aria-label="Select warehouse">
-      <option selected>Select Warehouse</option>
-      {% for warehouse in warehouses %}
-      <option value="{{warehouse.id}}">{{warehouse.name}}</option>
-      {% endfor %}
+    <label for="inputStockMovementMovementTypeFilter" class="form-label">Movement</label>
+    <select id="inputStockMovementMovementTypeFilter" name="movement_type" class="form-select" aria-label="Select movement">
+      <option value='' selected>Select movememnt</option>
+      <option value="2">simple</option>
+      <option value="1">multiple</option>
     </select>
   </div>
-
-
   <div class="col-6  col-sm-4 col-md-4 col-lg-3">
-    <label for="inputStockMovementCategoryStockFilter" class="form-label">Category</label>
-    <select id="inputStockMovementCategoryStockFilter" name="categories" class="form-select" aria-label="Select category">
-      <option selected>Select category</option>
-      {% for category in categories %}
-      <option value="{{category.id}}">{{category.name}}</option>
-      {% endfor %}
-    </select>
-  </div>
-
-
-  <div class="col-sm-4 col-md-4 col-lg-3">
-    <label for="inputActiveFilter" class="form-label">Active</label>
-    <select id="inputActiveFilter" name="is_active" class="form-select">
-      <option value='' selected>Your Stock is active?</option>
-      <option value="true">Yes</option>
-      <option value="false">No</option>
+    <label for="inputStockMovementTypeFilter" class="form-label">Type</label>
+    <select id="inputStockMovementTypeFilter" name="type" class="form-select" aria-label="Select type">
+      <option value='' selected>Select type</option>
+      <option value="2">entrance</option>
+      <option value="1">exit</option>
     </select>
   </div>
   <div class="col-6 col-sm-4 col-md-4 col-lg-3">
-    <label for="inputStockMovementAddressFilter" class="form-label">Address</label>
-    <input type="text" name="address" class="form-control" id="inputStockMovementAddressFilter" placeholder="Address">
+    <label for="inputStockMovementCreateDate1Filter" class="form-label">Create date start</label>
+    <input type="date" name="created_date_after" class="form-control" id="inputStockMovementCreateDate1Filter" placeholder="Create date 1">
   </div>
-
-  <div class="col-6  col-sm-4 col-md-4 col-lg-3">
-    <label for="inputStockMovementMeasureUnitFilter" class="form-label">Measure unit ( M.U )</label>
-    <select id="inputStockMovementMeasureUnitFilter" name="measure_unit" class="form-select" aria-label="Select Measure Unit">
-      <option value='' selected>Select measure unit</option>
-      <option value="m">milliliters</option>
-      <option value="g">grams</option>
-      <option value="u">units</option>
-    </select>
+  <div class="col-6 col-sm-4 col-md-4 col-lg-3">
+    <label for="inputStockMovementCreateDate2Filter" class="form-label">Create date end</label>
+    <input type="date" name="created_date_before" class="form-control" id="inputStockMovementCreateDate2Filter" placeholder="Create date 2">
   </div>
+  
 
   <div class="col-12">
     <small class=" w-100 d-flex justify-content-end mt-3">

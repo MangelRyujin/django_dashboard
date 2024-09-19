@@ -126,4 +126,4 @@ class StockMovements(models.Model):
 
 
     def __str__(self):
-        return self.pk
+        return f'{self.pk}'

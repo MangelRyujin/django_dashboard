@@ -23,7 +23,7 @@ from apps.general.views import  dashboard_view, login_view, change_password_view
 from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
-    # path('admin_django/', admin.site.urls),
+    path('admin_django/', admin.site.urls),
     re_path(r'^media/(?P<path>.*)$',serve,{'document_root':settings.MEDIA_ROOT}),
     re_path(r'^static/(?P<path>.*)$',serve,{'document_root':settings.STATIC_ROOT}),
     path('',dashboard_view,name='dashboard_view'),
