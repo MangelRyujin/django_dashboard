@@ -37,9 +37,7 @@
         <tbody>
         {% for category in pagination %}
             <tr class="text-center">
-                
-                    {% comment %} <img src="{% if category.image %}{{category.image.url}}{% else %}{% static '/assets/img/avatar.jpg' %}{% endif %} " alt="{% if category.image %}{{category.image.url}}{% else %}{% static '/assets/img/avatar.jpg' %}{% endif %}" width="32" height="32" class="rounded-circle me-2"> {% endcomment %}
-                </td>
+             
                 <td class="border small pt-2">{{category.name}}</td>         
                 <td class="table-width-80 px-1 ">
                 <div class="d-flex justify-content-around  align-items-center p-0 m-0 pt-1">
@@ -85,12 +83,12 @@
           hx-target="#CategoryStockTableResults"
           hx-indicator="#spinner"
         >
-          Inicio
+          Start
         </a>
       </li>
       {% else %}
       <li class="page-item disabled">
-        <a class="page-link cursor-pointer">Inicio</a>
+        <a class="page-link cursor-pointer">Start</a>
       </li>
 
       {% endif %} {% for page_number in pagination.paginator.page_range %} 
@@ -130,12 +128,12 @@
           hx-target="#CategoryStockTableResults"
           hx-indicator="#spinner"
         >
-          Fin
+          End
         </a>
       </li>
       {% else %}
       <li class="page-item disabled">
-        <a class="page-link cursor-pointer">Fin</a>
+        <a class="page-link cursor-pointer">End</a>
       </li>
 
       {% endif %}
