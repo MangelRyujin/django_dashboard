@@ -17,7 +17,7 @@
                   <select  class="form-select" required name="stock_one" id="{{ form.stock_one.id_for_label }}">
                     <option value='' selected>Select stock</option>
                     {% for stock_one in stocks %}
-                    <option value="{{stock_one.id}}">{{stock_one.name}}</option>
+                    <option value="{{stock_one.id}}" {% if form.stock_one.value|default:'' == stock_one.id|stringformat:'s' %}selected{% endif %}>{{stock_one.name}}</option>
                     {% endfor %}
                   </select>
                 </div>
@@ -35,8 +35,8 @@
             <label for="inputStockMovementSimpleTypeCreate" class="form-label">Type</label>
             <select id="inputStockMovementSimpleTypeCreate" name="type" class="form-select" aria-label="Select type">
               <option value='' selected>Select type</option>
-              <option value="2">entrance</option>
-              <option value="1">exit</option>
+              <option value="2" {% if form.type.value == "2" %}selected{% endif %}>entrance</option>
+              <option value="1" {% if form.type.value == "1" %}selected{% endif %}>exit</option>
             </select>
             {% if form.type.errors %}
             <div class="alert alert-danger mt-2">
@@ -49,7 +49,7 @@
           <div class="col-12  mt-4 ">
             <label for="{{ form.cant.id_for_label }}" class="form-label">Cant</label>
             <div class="input-group">
-              <input type="text" class="form-control" required name="cant" id="{{ form.cant.id_for_label }}" placeholder="1.00">
+              <input type="text" class="form-control" value={% if form.cant.value %}{{form.cant.value}}{% else %}1{% endif %} required name="cant" id="{{ form.cant.id_for_label }}" placeholder="1.00">
             
             </div>
             {% if form.cant.errors %}
@@ -62,7 +62,7 @@
           </div>
           <div class="col-12  mt-4 ">
             <label for="{{ form.motive.id_for_label }}" class="form-label">Motive</label>
-            <input type="text" class="form-control" required name="motive" id="{{ form.motive.id_for_label }}" placeholder="Motive">
+            <input type="text" class="form-control" value={% if form.motive.value %}{{form.motive.value}}{% endif %} required name="motive" id="{{ form.motive.id_for_label }}" placeholder="Motive">
             {% if form.motive.errors %}
             <div class="alert alert-danger mt-2">
                 {% for error in form.motive.errors %}
@@ -73,7 +73,7 @@
           </div>
           <div class="col-12  mt-4 ">
             <label for="{{ form.description.id_for_label }}" class="form-label">Description</label>
-            <textarea type="text" class="form-control" required name="description" id="{{ form.description.id_for_label }}" placeholder="description"></textarea>
+            <textarea type="text" class="form-control" required name="description" id="{{ form.description.id_for_label }}" placeholder="description">{% if form.description.value %}{{form.description.value}}{% endif %}</textarea>
           
             
               {% if form.description.errors %}
