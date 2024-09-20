@@ -1,6 +1,6 @@
 import django_filters
 from apps.accounts.models import User
-from apps.inventory.models import CategoryStock, Stock, StockMovements,Warehouse
+from apps.inventory.models import CategoryStock, Stock, StockMovements, Supplier,Warehouse
 from django.utils import timezone
 
 
@@ -47,3 +47,14 @@ class StockMovementFilter(django_filters.FilterSet):
     class Meta:
         model = StockMovements
         fields = ['type','movement_type','stock_one','stock_two','user','motive','created_date']
+        
+class SupplierFilter(django_filters.FilterSet):
+    ci =  django_filters.CharFilter(lookup_expr='icontains')
+    first_name =  django_filters.CharFilter(lookup_expr='icontains')
+    last_name =  django_filters.CharFilter(lookup_expr='icontains')
+    email =  django_filters.CharFilter(lookup_expr='icontains')
+    phone_number =  django_filters.CharFilter(lookup_expr='icontains')
+    
+    class Meta:
+        model = Supplier
+        fields = ['ci','first_name','last_name','email','phone_number']

@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils.translation import gettext as _
 from django.core.validators import MinValueValidator,MaxValueValidator
-
+from django.core.validators import MinLengthValidator
 from apps.accounts.models import User
 from apps.products.models import Product
 # Create your models here.
@@ -59,8 +59,9 @@ class Stock(models.Model):
     
     
 class Supplier(models.Model):
-    
-    name = models.CharField(_("Name"),max_length=100,unique=True)
+    ci = models.CharField(_("CI"),max_length=11,validators=[MinLengthValidator(11)],unique=True)
+    first_name = models.CharField(_("First name"),max_length=100)
+    last_name = models.CharField(_("Last name"),max_length=100)
     address = models.CharField(_("Address"),max_length=255)
     email = models.EmailField(_("Email address"), blank=False,null=False,unique=True)
     image = models.ImageField(_("Image"),upload_to="suppliers_images",null=True,blank=True)
@@ -72,7 +73,7 @@ class Supplier(models.Model):
         verbose_name_plural = _("Suppliers")
 
     def __str__(self):
-        return self.name
+        return self.email
     
 class Facture(models.Model):
     MEASURE_UNIT_CHOICES = (
@@ -91,8 +92,8 @@ class Facture(models.Model):
     measure_unit = models.CharField(_("Measure unit"),max_length=1, choices=MEASURE_UNIT_CHOICES, default='u') 
     
     class Meta:
-        verbose_name = _("Supplier")
-        verbose_name_plural = _("Suppliers")
+        verbose_name = _("Facture")
+        verbose_name_plural = _("Factures")
 
     def __str__(self):
         return self.code

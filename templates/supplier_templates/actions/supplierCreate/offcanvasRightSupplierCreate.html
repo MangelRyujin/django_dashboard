@@ -1,0 +1,21 @@
+<!-- Offcanvas Supplier Create -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRightSupplierCreate" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasRightLabel">Create supplier</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body" 
+      hx-get="{% url 'supplier_create'%}"
+      hx-swap="innerHTML"
+      hx-target="#SupplierCreateForm"
+      hx-trigger="load">
+      
+      <div id="SupplierCreateForm"></div>
+
+      
+      
+      
+    </div>
+  </div>
+  <!-- End Offcanvas Supplier Create -->
+  
