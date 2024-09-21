@@ -72,8 +72,20 @@
 </svg>
 
 
-<div class="d-md-none dropdown bg-dark border-2 border-dark-subtle border position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle rounded-circle shadow">
-  <ul class="navbar-nav flex-row ">
+<div class=" dropdown  position-fixed bottom-0 end-0 mb-3 me-3 " style="z-index:1000;">
+  <ul class="navbar-nav flex-row bg-dark border-2 border-dark-subtle border  bd-mode-toggle rounded-circle shadow">
+      
+    <li class="nav-item text-nowrap">
+      <a  href="#" class="nav-link ps-2 pe-2 d-flex justify-content-center align-items-center " >
+        
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="text-white bi-arrow-up" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"/>
+        </svg>
+      </a>
+    </li>
+    
+  </ul>
+  <ul class="d-md-none navbar-nav flex-row bg-dark border-2 border-dark-subtle border  bd-mode-toggle rounded-circle shadow">
       
     <li class="nav-item text-nowrap">
       <button class="nav-link ps-2 pe-2 d-flex justify-content-center align-items-center " type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
@@ -82,8 +94,12 @@
         </svg>
       </button>
     </li>
+    
   </ul>
+  
+  
 </div>
+
 
 
 <header class="navbar sticky-top bg-dark flex-md-nowrap p-0 shadow " data-bs-theme="dark">
