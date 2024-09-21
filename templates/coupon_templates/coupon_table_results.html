@@ -42,7 +42,7 @@
         <tbody>
         {% for coupon in pagination %}
             <tr class="text-center">
-                </td>
+              
                 <td class="border small pt-2 table-min-code">{{coupon.code}}</td>
                 <td class="border small pt-2 table-min">{{coupon.user.username}}</td>
                 <td class="border small pt-2 table-min">{{coupon.product.name}}</td>
@@ -113,12 +113,12 @@
           hx-target="#CouponTableResults"
           hx-indicator="#spinner"
         >
-          Inicio
+          Start
         </a>
       </li>
       {% else %}
       <li class="page-item disabled">
-        <a class="page-link cursor-pointer">Inicio</a>
+        <a class="page-link cursor-pointer">Start</a>
       </li>
 
       {% endif %} {% for page_number in pagination.paginator.page_range %} 
@@ -158,12 +158,12 @@
           hx-target="#CouponTableResults"
           hx-indicator="#spinner"
         >
-          Fin
+          End
         </a>
       </li>
       {% else %}
       <li class="page-item disabled">
-        <a class="page-link cursor-pointer">Fin</a>
+        <a class="page-link cursor-pointer">End</a>
       </li>
 
       {% endif %}

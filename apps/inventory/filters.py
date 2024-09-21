@@ -1,6 +1,6 @@
 import django_filters
 from apps.accounts.models import User
-from apps.inventory.models import CategoryStock, Stock, StockMovements, Supplier,Warehouse
+from apps.inventory.models import CategoryStock, Facture, Stock, StockMovements, Supplier,Warehouse
 from django.utils import timezone
 
 
@@ -58,3 +58,16 @@ class SupplierFilter(django_filters.FilterSet):
     class Meta:
         model = Supplier
         fields = ['ci','first_name','last_name','email','phone_number']
+        
+
+class FactureFilter(django_filters.FilterSet):
+    product=  django_filters.CharFilter(field_name='product__name',lookup_expr='icontains')
+    measure_unit=  django_filters.CharFilter(lookup_expr='exact')
+    supplier = django_filters.ModelMultipleChoiceFilter(queryset=Supplier.objects.all())
+    code=  django_filters.CharFilter(lookup_expr='icontains')
+    created_date =django_filters.DateFromToRangeFilter()
+
+    
+    class Meta:
+        model = Facture
+        fields = ['product','measure_unit','supplier','code','created_date']

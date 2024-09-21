@@ -89,12 +89,12 @@
           hx-target="#StockMovementTableResults"
           hx-indicator="#spinner"
         >
-          Inicio
+          Start
         </a>
       </li>
       {% else %}
       <li class="page-item disabled">
-        <a class="page-link cursor-pointer">Inicio</a>
+        <a class="page-link cursor-pointer">Start</a>
       </li>
 
       {% endif %} {% for page_number in pagination.paginator.page_range %} 
@@ -134,12 +134,12 @@
           hx-target="#StockMovementTableResults"
           hx-indicator="#spinner"
         >
-          Fin
+          End
         </a>
       </li>
       {% else %}
       <li class="page-item disabled">
-        <a class="page-link cursor-pointer">Fin</a>
+        <a class="page-link cursor-pointer">End</a>
       </li>
 
       {% endif %}

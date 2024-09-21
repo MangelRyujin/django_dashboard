@@ -1,3 +1,4 @@
+from decimal import Decimal
 from django.db import models
 from django.utils.translation import gettext as _
 from django.core.validators import MinValueValidator,MaxValueValidator
@@ -84,8 +85,8 @@ class Facture(models.Model):
     
     code = models.CharField(_("Code"),max_length=50,unique=True)
     description = models.TextField(_("Description"))
-    create_date = models.DateTimeField(_("Create date"),auto_now_add=True,editable=False)
-    amount = models.DecimalField(_("Amount"), max_digits=12, default=0, decimal_places=2,validators=[MinValueValidator(0.01)])
+    created_date = models.DateTimeField(_("Created date"),auto_now_add=True,editable=False)
+    unit_price = models.DecimalField(_("Inversion cost"), max_digits=12, default=0, decimal_places=2,validators=[MinValueValidator(0.01)])
     supplier = models.ForeignKey(Supplier,on_delete=models.CASCADE,related_name="supplier_facture")
     product = models.ForeignKey(Product,on_delete=models.CASCADE,related_name="product_facture")
     cant = models.DecimalField(_("Cant"), decimal_places= 2,max_digits=12, validators=[MinValueValidator(0.01)])
@@ -97,6 +98,10 @@ class Facture(models.Model):
 
     def __str__(self):
         return self.code
+    
+    @property
+    def total_amount(self):
+        return round(self.unit_price * self.cant,2)
     
 
 class StockMovements(models.Model):
