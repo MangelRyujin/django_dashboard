@@ -7,10 +7,11 @@ from django.contrib.auth.forms import PasswordChangeForm
 from apps.products.models import Category,Product,Coupon
 from .decorators import user_is_not_authenticated
 from apps.accounts.models import User
-# from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.admin.views.decorators import staff_member_required
 
 # Dashboard view (index)
-@login_required(login_url='/login/')
+# @login_required(login_url='/login/')
+@staff_member_required(login_url='/shop')
 def dashboard_view(request):
     
     admin_history = User.history.filter(is_staff=True)[:10]
