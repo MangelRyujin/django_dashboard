@@ -35,6 +35,7 @@ urlpatterns = [
     path('products/',include('apps.products.urls.product_urls')),
     path('category_stocks/',include('apps.inventory.urls.category_stock_urls')),
     path('warehouses/',include('apps.inventory.urls.warehouse_urls')),
+    path('factures/',include('apps.inventory.urls.facture_urls')),
     path('stocks/',include('apps.inventory.urls.stock_urls')),
     path('suppliers/',include('apps.inventory.urls.supplier_urls')),
     path('stocks_movements/',include('apps.inventory.urls.stock_movements_urls')),
