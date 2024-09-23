@@ -4,13 +4,13 @@ from apps.inventory.forms.stock_forms import *
 from django.contrib.auth.decorators import login_required 
 from django.core.paginator import Paginator
 import logging
-
+from django.contrib.admin.views.decorators import staff_member_required
 from apps.inventory.models import Stock,CategoryStock,Warehouse
 from apps.products.models import Product
 logger = logging.getLogger(__name__)
 
 # Stock view (index)
-@login_required(login_url='/login/')
+@staff_member_required(login_url='/shop')
 def stock_view(request):
     categories = CategoryStock.objects.all()
     warehouses = Warehouse.objects.all()
@@ -22,12 +22,12 @@ def stock_view(request):
     return response
 
 # Charge result table
-@login_required(login_url='/login/')
+@staff_member_required(login_url='/shop')
 def stock_table_results(request):
     return  render(request,'stock_templates/stock_table_results.html',context=_show_stock(request))
        
 # Stock create form
-@login_required(login_url='/login/')
+@staff_member_required(login_url='/shop')
 def stock_create(request):
     context={
         'categories':CategoryStock.objects.all(),
@@ -50,7 +50,7 @@ def stock_create(request):
 
 
 # Stock update forms
-@login_required(login_url='/login/')
+@staff_member_required(login_url='/shop')
 def stock_update(request,pk):
     stock = Stock.objects.filter(pk=pk).first()
     form = UpdateStockForm(instance=stock)
@@ -60,7 +60,7 @@ def stock_update(request,pk):
     return render(request,'stock_templates/actions/stockUpdate/stockUpdateForm.html',context) 
 
 # Stock main information update form
-@login_required(login_url='/login/')
+@staff_member_required(login_url='/shop')
 def stock_form_update(request,pk):
     context={}
     if request.method == "POST":
@@ -83,7 +83,7 @@ def stock_form_update(request,pk):
 
 
 # Delete result table
-@login_required(login_url='/login/')
+@staff_member_required(login_url='/shop')
 def stock_delete(request,pk):
     stock = Stock.objects.filter(pk=pk).first()
     context={}
@@ -117,7 +117,7 @@ def _show_stock(request):
 
 
 # Detail stock table
-@login_required(login_url='/login/')
+@staff_member_required(login_url='/shop')
 def stock_detail(request,pk):
     stock = Stock.objects.filter(pk=pk).first()
     return  render(request,'stock_templates/actions/stockDetail/stockDetail.html',{"stock":stock})

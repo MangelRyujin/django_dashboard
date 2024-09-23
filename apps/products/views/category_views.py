@@ -5,9 +5,10 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 import logging
 logger = logging.getLogger(__name__)
+from django.contrib.admin.views.decorators import staff_member_required
 
 # category view (index)
-@login_required(login_url='/login/')
+@staff_member_required(login_url='/shop')
 def category_view(request):
     response= render(request,'category_templates/category.html')
     response['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
@@ -16,12 +17,12 @@ def category_view(request):
     return response
 
 # Charge result table
-@login_required(login_url='/login/')
+@staff_member_required(login_url='/shop')
 def category_table_results(request):
     return  render(request,'category_templates/category_table_results.html',context=_show_category(request))
        
 # category create form
-@login_required(login_url='/login/')
+@staff_member_required(login_url='/shop')
 def category_create(request):
     context={}
     
@@ -40,7 +41,7 @@ def category_create(request):
 
 
 # category update forms
-@login_required(login_url='/login/')
+@staff_member_required(login_url='/shop')
 def category_update(request,pk):
     category = Category.objects.filter(pk=pk).first()
     form = UpdateCategoryForm(instance=category)
@@ -50,7 +51,7 @@ def category_update(request,pk):
     return render(request,'category_templates/actions/categoryUpdate/categoryUpdateForm.html',context) 
 
 # category main information update form
-@login_required(login_url='/login/')
+@staff_member_required(login_url='/shop')
 def category_form_update(request,pk):
     context={}
     if request.method == "POST":
@@ -71,7 +72,7 @@ def category_form_update(request,pk):
 
 
 # Delete result table
-@login_required(login_url='/login/')
+@staff_member_required(login_url='/shop')
 def category_delete(request,pk):
     category = Category.objects.filter(pk=pk).first()
     context={}
@@ -105,7 +106,7 @@ def _show_category(request):
 
 
 # Detail user category table
-@login_required(login_url='/login/')
+@staff_member_required(login_url='/shop')
 def category_detail(request,pk):
     category = Category.objects.filter(pk=pk).first()
     return  render(request,'category_templates/actions/categoryDetail/categoryDetail.html',{"category":category})

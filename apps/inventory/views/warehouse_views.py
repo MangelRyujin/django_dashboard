@@ -6,9 +6,10 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 import logging
 logger = logging.getLogger(__name__)
+from django.contrib.admin.views.decorators import staff_member_required
 
 # category view (index)
-@login_required(login_url='/login/')
+@staff_member_required(login_url='/shop')
 def warehouse_view(request):
     response= render(request,'warehouse_templates/warehouse.html')
     response['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
@@ -17,12 +18,12 @@ def warehouse_view(request):
     return response
 
 # Charge result table
-@login_required(login_url='/login/')
+@staff_member_required(login_url='/shop')
 def warehouse_table_results(request):
     return  render(request,'warehouse_templates/warehouse_table_results.html',context=_show_warehouse(request))
        
 # category create form
-@login_required(login_url='/login/')
+@staff_member_required(login_url='/shop')
 def warehouse_create(request):
     context={}
     if request.method == "POST":
@@ -40,7 +41,7 @@ def warehouse_create(request):
 
 
 # category update forms
-@login_required(login_url='/login/')
+@staff_member_required(login_url='/shop')
 def warehouse_update(request,pk):
     warehouse = Warehouse.objects.filter(pk=pk).first()
     form = UpdateWarehouseForm(instance=warehouse)
@@ -50,7 +51,7 @@ def warehouse_update(request,pk):
     return render(request,'warehouse_templates/actions/warehouseUpdate/warehouseUpdateForm.html',context) 
 
 # warehouse main information update form
-@login_required(login_url='/login/')
+@staff_member_required(login_url='/shop')
 def warehouse_form_update(request,pk):
     context={}
     if request.method == "POST":
@@ -71,7 +72,7 @@ def warehouse_form_update(request,pk):
 
 
 # Delete result table
-@login_required(login_url='/login/')
+@staff_member_required(login_url='/shop')
 def warehouse_delete(request,pk):
     warehouse = Warehouse.objects.filter(pk=pk).first()
     context={}

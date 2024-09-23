@@ -4,14 +4,14 @@ from apps.inventory.forms.stock_forms import *
 from django.contrib.auth.decorators import login_required 
 from django.core.paginator import Paginator
 import logging
-
+from django.contrib.admin.views.decorators import staff_member_required
 from apps.inventory.forms.stock_movement_forms import CreateStockMovementMultipleForm, CreateStockMovementSimpleForm
 from apps.inventory.models import Stock,CategoryStock, StockMovements,Warehouse
 from apps.products.models import Product
 logger = logging.getLogger(__name__)
 
 # Stock view (index)
-@login_required(login_url='/login/')
+@staff_member_required(login_url='/shop')
 def stock_movements_view(request):
     response= render(request,'stock_movements_templates/stock_movements.html')
     response['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
@@ -20,12 +20,12 @@ def stock_movements_view(request):
     return response
 
 # Charge result table
-@login_required(login_url='/login/')
+@staff_member_required(login_url='/shop')
 def stock_movements_table_results(request):
     return  render(request,'stock_movements_templates/stock_movements_table_results.html',context=_show_stock_movements(request))
        
 # Stock create form
-@login_required(login_url='/login/')
+@staff_member_required(login_url='/shop')
 def stock_movements_simple_create(request):
     context={
          'stocks':Stock.objects.all(),
@@ -54,7 +54,7 @@ def stock_movements_simple_create(request):
     return render(request,'stock_movements_templates/actions/stockCreate/stockMovementSimpleCreateForm.html',context) 
 
 # Stock create form
-@login_required(login_url='/login/')
+@staff_member_required(login_url='/shop')
 def stock_movements_multiple_create(request):
     context={
         'stocks':Stock.objects.all(),
@@ -102,7 +102,7 @@ def _show_stock_movements(request):
 
 
 # Detail stock table
-@login_required(login_url='/login/')
+@staff_member_required(login_url='/shop')
 def stock_movements_detail(request,pk):
     stock_movement = StockMovements.objects.filter(pk=pk).first()
     return  render(request,'stock_movements_templates/actions/stockDetail/stockDetail.html',{"stock_movement":stock_movement})

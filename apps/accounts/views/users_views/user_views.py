@@ -8,9 +8,10 @@ from django.contrib.auth.forms import AdminPasswordChangeForm,SetPasswordForm
 from django.core.paginator import Paginator
 import logging
 logger = logging.getLogger(__name__)
+from django.contrib.admin.views.decorators import staff_member_required
 
 # user view (index)
-@login_required(login_url='/login/')
+@staff_member_required(login_url='/shop')
 def user_view(request):
     response= render(request,'user_templates/user.html')
     response['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
@@ -19,12 +20,12 @@ def user_view(request):
     return response
 
 # Charge result table
-@login_required(login_url='/login/')
+@staff_member_required(login_url='/shop')
 def user_table_results(request):
     return  render(request,'user_templates/user_table_results.html',context=_show_user(request))
        
 # admin create form
-@login_required(login_url='/login/')
+@staff_member_required(login_url='/shop')
 def admin_create(request):
     form = SingUpForm(request.POST or None)
     groups = Group.objects.all()
@@ -42,7 +43,7 @@ def admin_create(request):
 
 
 # admin update forms
-@login_required(login_url='/login/')
+@staff_member_required(login_url='/shop')
 def user_update(request,pk):
     user = User.objects.filter(pk=pk).first()
     pass_form = SetPasswordForm(user=user)
@@ -54,7 +55,7 @@ def user_update(request,pk):
 
 
 # user password update form
-@login_required(login_url='/login/')
+@staff_member_required(login_url='/shop')
 def user_password_update(request,pk):
     context={}
     if request.method == "POST":
@@ -78,7 +79,7 @@ def user_password_update(request,pk):
 
 
 # Delete result table
-@login_required(login_url='/login/')
+@staff_member_required(login_url='/shop')
 def user_delete(request,pk):
     user = User.objects.filter(pk=pk).first()
     context={}
@@ -122,7 +123,7 @@ def _show_user(request):
 
 
 # Detail user table
-@login_required(login_url='/login/')
+@staff_member_required(login_url='/shop')
 def user_detail(request,pk):
     user = User.objects.filter(pk=pk).first()
     return  render(request,'user_templates/actions/userDetail/userDetail.html',{"user":user})
