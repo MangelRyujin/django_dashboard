@@ -10,6 +10,19 @@
         <td><span><strong>Type :</strong> {{order.get_type_display}}</span></td> 
       </tr>
       <tr>
+        <td><span><strong>Payment :</strong> {{order.get_payment_type_display}}</span></td> 
+      </tr>
+      {% if order.payment_type == 'c' or order.payment_type == 'b' %}
+      <tr>
+        <td><span><strong>Cash :</strong> {{order.cash}}</span></td> 
+      </tr>
+      {% endif %}
+      {% if order.payment_type == 't' or order.payment_type == 'b' %}
+          <tr>
+            <td><span><strong>Transfer :</strong> {{order.transfer}}</span></td> 
+          </tr>
+      {% endif %}
+      <tr>
         <td><span><strong>Date :</strong> {{order.created_date}}</span></td> 
       </tr>
       <tr>

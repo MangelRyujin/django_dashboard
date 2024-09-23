@@ -35,6 +35,7 @@
             <th  scope="col">CI</th>
             <th scope="col">Phone number</th>
             <th scope="col">Type</th>
+            <th scope="col">Payment</th>
             <th scope="col">Price</th>
             <th scope="col">Date</th>
             <th scope="col">Actions</th>
@@ -47,7 +48,8 @@
                 <td class="border small table-min">{{order.user_full_name}}</td>  
                 <td class="border small">{{order.user_ci}}</td>   
                 <td class="border small table-min">{{order.user_phone}}</td>  
-                <td class="border small">{{order.get_type_display}}</td>          
+                <td class="border small">{{order.get_type_display}}</td>  
+                <td class="border small">{{order.get_payment_type_display}}</td>          
                 <td class="border small">{{order.total_price}}</td>
                 <td class="border small table-min">{{order.created_date}}</td>
                 <td class="table-width-80 px-1 ">

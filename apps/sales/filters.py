@@ -14,10 +14,12 @@ class OrderFilter(django_filters.FilterSet):
     created_date =django_filters.DateFromToRangeFilter()
     id = django_filters.CharFilter(lookup_expr='icontains')
     type =  django_filters.CharFilter(lookup_expr='exact')
+    payment_type =  django_filters.CharFilter(lookup_expr='exact')
+
 
     class Meta:
         model = Order
-        fields = ['id','user_full_name','product','user_phone','user_ci','created_date','type']
+        fields = ['id','user_full_name','product','user_phone','payment_type','user_ci','created_date','type']
     
     def filter_by_product(self, qs, name, value):
         return qs.filter(orderitem__product_id=value)
