@@ -17,6 +17,8 @@ urlpatterns = [
     path('reviews/',include('apps.products.urls.product_review_urls')),
     path('coupons/',include('apps.products.urls.coupon_urls')),
     path('orders/',include('apps.sales.urls.order_urls')),
+    path('orders_settings/',include('apps.sales.urls.order_settings_urls')),
+    
     
     path('sales/',sales_view,name='sales_view'),
 ]

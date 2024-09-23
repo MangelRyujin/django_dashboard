@@ -73,9 +73,9 @@
 
 
 <div class=" dropdown  position-fixed bottom-0 end-0 mb-3 me-3 " style="z-index:1000;">
-  <ul class="navbar-nav flex-row bg-dark border-2 border-dark-subtle border  bd-mode-toggle rounded-circle shadow mb-2">
+  <ul class="navbar-nav flex-row bg-dark border-2 border-dark-subtle border  bd-mode-toggle rounded-circle shadow mb-2 hidden-on-top" id="hidden-on-top">
       
-    <li class="nav-item text-nowrap">
+    <li class="nav-item text-nowrap " >
       <a  href="#" class="nav-link ps-2 pe-2 d-flex justify-content-center align-items-center " >
         
         <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="text-white bi-arrow-up" viewBox="0 0 16 16">
@@ -432,11 +432,11 @@
                     </a>
                   </li>
                   <li class="mt-1"></li>
-                    <a href="#" class="nav-link text-white btn btn-outline-primary text-start {% if request.path == '/sales_options/'%} active {% endif %}">
+                    <a href="{% url "order_settings_view" %}" class="nav-link text-white btn btn-outline-primary text-start {% if request.path == '/order_settings/'%} active {% endif %}">
                       <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="me-2 bi-gear-fill" viewBox="0 0 16 16">
                         <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>
                       </svg>
-                      Sales options
+                      Sales settings
                     </a>
                   </li>
                   
@@ -539,6 +539,25 @@
     once: true,
   });
 </script>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const element = document.getElementById('hidden-on-top');
+    let lastScrollTop = 0;
+  
+    window.addEventListener('scroll', () => {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      
+      if (scrollTop > 300 && scrollTop > lastScrollTop) {
+        element.classList.add('show-on-scroll');
+      } else if (scrollTop <= 300) {
+        element.classList.remove('show-on-scroll');
+      }
+      
+      lastScrollTop = scrollTop;
+    });
+  });
+  </script>
 <script src="{% static '/assets/dist/js/popper.min.js' %}"></script>
 <script src="{% static '/assets/dist/js/bootstrap.bundle.min.js' %}"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
