@@ -397,3 +397,11 @@
   text-overflow: ellipsis; /* Muestra puntos suspensivos */
   line-height: 20px;
 }
+
+.hidden-on-top {
+  display: none;
+}
+
+.show-on-scroll {
+  display: block !important;
+}
