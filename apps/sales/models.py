@@ -10,6 +10,12 @@ class Order(models.Model):
         ('l', _("local")),
         
     )
+    PAYMENT_TYPE_CHOICES = (
+        ('c', _("cash")),
+        ('t', _("transfer")),
+        ('b', _("both")),
+        
+    )
     
     user_id=models.CharField(_("User id"),max_length=255)
     user_ci=models.CharField(_("User ci"),max_length=255)
@@ -17,8 +23,10 @@ class Order(models.Model):
     user_phone=models.CharField(_("User phone"),max_length=255)
     address=models.CharField(_("Address"),max_length=255)
     type = models.CharField(_("Type"),max_length=1, choices=TYPE_CHOICES, default='l') 
+    payment_type = models.CharField(_("Payment type"),max_length=1, choices=PAYMENT_TYPE_CHOICES, default='c') 
     created_date = models.DateTimeField(_("Created date"),auto_now_add=True,auto_now=False)
-    total_price = models.DecimalField(_("Price"), decimal_places= 2,max_digits=12)
+    cash = models.DecimalField(_("Cash"), decimal_places= 2,max_digits=12)
+    transfer = models.DecimalField(_("Transfer"), decimal_places= 2,max_digits=12)
     
 
     class Meta:
@@ -27,6 +35,15 @@ class Order(models.Model):
 
     def __str__(self):
         return f'{self.pk}'
+    
+    @property
+    def total_price(self):
+        if self.payment_type == "c":
+            return self.cash
+        elif self.payment_type == "t":
+            return self.transfer
+        else:
+            return self.transfer + self.cash
     
     @property
     def total_items(self):
