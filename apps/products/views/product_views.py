@@ -4,12 +4,12 @@ from apps.products.forms.product_forms import *
 from django.contrib.auth.decorators import login_required 
 from django.core.paginator import Paginator
 import logging
-
+from django.contrib.admin.views.decorators import staff_member_required
 from apps.products.models import Category
 logger = logging.getLogger(__name__)
 
 # Product view (index)
-@login_required(login_url='/login/')
+@staff_member_required(login_url='/shop')
 def product_view(request):
     categories = Category.objects.all()
     response= render(request,'product_templates/product.html',{'categories':categories})
@@ -19,12 +19,12 @@ def product_view(request):
     return response
 
 # Charge result table
-@login_required(login_url='/login/')
+@staff_member_required(login_url='/shop')
 def product_table_results(request):
     return  render(request,'product_templates/product_table_results.html',context=_show_product(request))
        
 # Product create form
-@login_required(login_url='/login/')
+@staff_member_required(login_url='/shop')
 def product_create(request):
     context={
         'categories':Category.objects.all()
@@ -45,7 +45,7 @@ def product_create(request):
 
 
 # Product update forms
-@login_required(login_url='/login/')
+@staff_member_required(login_url='/shop')
 def product_update(request,pk):
     product = Product.objects.filter(pk=pk).first()
     form = UpdateProductForm(instance=product)
@@ -55,7 +55,7 @@ def product_update(request,pk):
     return render(request,'product_templates/actions/productUpdate/productUpdateForm.html',context) 
 
 # Product main information update form
-@login_required(login_url='/login/')
+@staff_member_required(login_url='/shop')
 def product_form_update(request,pk):
     context={}
     if request.method == "POST":
@@ -77,7 +77,7 @@ def product_form_update(request,pk):
 
 
 # Delete result table
-@login_required(login_url='/login/')
+@staff_member_required(login_url='/shop')
 def product_delete(request,pk):
     product = Product.objects.filter(pk=pk).first()
     context={}
@@ -111,7 +111,7 @@ def _show_product(request):
 
 
 # Detail user Product table
-@login_required(login_url='/login/')
+@staff_member_required(login_url='/shop')
 def product_detail(request,pk):
     product = Product.objects.filter(pk=pk).first()
     return  render(request,'product_templates/actions/productDetail/productDetail.html',{"product":product})

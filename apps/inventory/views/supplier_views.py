@@ -7,12 +7,12 @@ from apps.inventory.filters import SupplierFilter
 from apps.inventory.forms.supplier_forms import CreateSupplierForm,UpdateSupplierForm
 from django.core.paginator import Paginator
 import logging
-
+from django.contrib.admin.views.decorators import staff_member_required
 from apps.inventory.models import Supplier
 logger = logging.getLogger(__name__)
 
 # supplier view (index)
-@login_required(login_url='/login/')
+@staff_member_required(login_url='/shop')
 def supplier_view(request):
     response= render(request,'supplier_templates/supplier.html')
     response['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
@@ -21,12 +21,12 @@ def supplier_view(request):
     return response
 
 # Charge result table
-@login_required(login_url='/login/')
+@staff_member_required(login_url='/shop')
 def supplier_table_results(request):
     return  render(request,'supplier_templates/supplier_table_results.html',context=_show_supplier(request))
        
 # supplier create form
-@login_required(login_url='/login/')
+@staff_member_required(login_url='/shop')
 def supplier_create(request):
     form = CreateSupplierForm()
     context={}
@@ -43,7 +43,7 @@ def supplier_create(request):
 
 
 # supplier update forms
-@login_required(login_url='/login/')
+@staff_member_required(login_url='/shop')
 def supplier_update(request,pk):
     supplier = Supplier.objects.filter(pk=pk).first()
     form = UpdateSupplierForm(instance=supplier)
@@ -54,7 +54,7 @@ def supplier_update(request,pk):
     return render(request,'supplier_templates/actions/supplierUpdate/supplierUpdateForm.html',context) 
 
 # supplier main information update form
-@login_required(login_url='/login/')
+@staff_member_required(login_url='/shop')
 def supplier_form_update(request,pk):
     context={}
     if request.method == "POST":
@@ -73,7 +73,7 @@ def supplier_form_update(request,pk):
 
 
 # Delete result table
-@login_required(login_url='/login/')
+@staff_member_required(login_url='/shop')
 def supplier_delete(request,pk):
     supplier = Supplier.objects.filter(pk=pk).first()
     context={}
@@ -107,7 +107,7 @@ def _show_supplier(request):
 
 
 # Detail user supplier table
-@login_required(login_url='/login/')
+@staff_member_required(login_url='/shop')
 def supplier_detail(request,pk):
     supplier = Supplier.objects.filter(pk=pk).first()
     return  render(request,'supplier_templates/actions/supplierDetail/supplierDetail.html',{"supplier":supplier})
