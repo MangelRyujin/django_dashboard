@@ -107,6 +107,11 @@
        {{product.price}}</span></td> 
       </tr>
       <tr>
+        <td><span><strong>Discount :</strong> 
+          
+       {{product.discount}}</span></td> 
+      </tr>
+      <tr>
         <td><span class="d-flex  align-items-center"><strong class="me-1">Stock: </strong> 
           {% if product.total_stock <= 0 %}<strong class="text-danger px-1">0</strong>{% else %}{{product.total_stock}}{% endif %}
         
