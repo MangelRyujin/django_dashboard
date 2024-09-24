@@ -6,11 +6,11 @@ class CreateProductForm(forms.ModelForm):
     
     class Meta:
         model = Product
-        exclude =['stock']
+        exclude =['total_sales']
         
         
 class UpdateProductForm(forms.ModelForm):
     
     class Meta:
         model = Product
-        exclude =['stock']
+        exclude =['total_sales']
