@@ -25,7 +25,7 @@ def settings_view(request):
         'social_form': UpdateSocialMediaForm(),
         'wapp_form': UpdateWhatsAppContactForm(),
     }
-    response= render(request,'sales/settings_templates/settings.html',context)
+    response= render(request,'settings_templates/settings.html',context)
     response['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
     response['Pragma'] = 'no-cache'
     response['Expires'] = '0'
@@ -41,11 +41,11 @@ def save_header_settings_view(request):
             header_form.save()
             context['message']='Change successfully'
             context['header_form']=header_form
-            return render(request,'sales/settings_templates/forms/header_form.html',context) 
+            return render(request,'settings_templates/forms/header_form.html',context) 
         else:
             context['error']='Correct the errors'
             context['header_form']=header_form
-            return render(request,'sales/settings_templates/forms/header_form.html',context) 
+            return render(request,'settings_templates/forms/header_form.html',context) 
     
 
 @staff_member_required(login_url='/shop')
@@ -62,7 +62,7 @@ def save_local_settings_view(request):
             
     local.save()
     context['local_change']=local
-    return render(request,'sales/settings_templates/forms/local_form.html',context) 
+    return render(request,'settings_templates/forms/local_form.html',context) 
     
     
 
@@ -79,7 +79,7 @@ def save_shop_settings_view(request):
         
     shop.save()
     context['shop_change']=shop
-    return render(request,'sales/settings_templates/forms/shop_form.html',context) 
+    return render(request,'settings_templates/forms/shop_form.html',context) 
     
     
 @staff_member_required(login_url='/shop')
@@ -100,7 +100,7 @@ def save_social_settings_view(request):
             context['error']='Correct the errors'
             context['social_form']=social_form
     context['social']=SocialMedia.objects.first()
-    return render(request,'sales/settings_templates/forms/social_form.html',context) 
+    return render(request,'settings_templates/forms/social_form.html',context) 
    
     
     
@@ -118,5 +118,5 @@ def save_wapp_settings_view(request):
             context['error']='Correct the errors'
             context['wapp_form']=wapp_form
     context['wapp']=WhatsAppContact.objects.first()
-    return render(request,'sales/settings_templates/forms/wapp_form.html',context) 
+    return render(request,'settings_templates/forms/wapp_form.html',context) 
     
