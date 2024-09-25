@@ -20,7 +20,7 @@ from django.conf import settings
 from django.views.static import serve
 from django.conf.urls.static import static
 from apps.general.shop.shop_views import shop_view
-from apps.general.views import   login_view, change_password_view,change_password_form
+from apps.general.views.general_views import   login_view, change_password_view,change_password_form
 from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
