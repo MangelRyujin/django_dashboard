@@ -53,7 +53,7 @@ def login_view(request):
                                  <div class="alert alert-dismissible alert-danger d-flex align-items-center mb-0 mt-4 px-2 fade show" role="alert">
                       
                         <div class="small px-1 me-2 text-danger-emphasis">
-                          Username or password incorrect
+                          Credenciales incorrectas
                         </div>
                         <span type="button" class="btn-close px-2" data-bs-dismiss="alert" aria-label="Close"></span>
                       </div>
