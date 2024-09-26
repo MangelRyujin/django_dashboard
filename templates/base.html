@@ -177,14 +177,18 @@
         </a>
         
         <ul class="dropdown-menu dropdown-menu-end shadow" >
-          
-            <li class="px-1 my-1 "><a class="dropdown-item rounded-2" href="{% url "change_information" %}">
+          <li class="px-1 my-1 "><a class="dropdown-item rounded-2 align-items-center d-flex" href="{% url "shop_view" %}">
+            <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor" class="me-2 bi-shop" viewBox="0 0 16 16">
+              <path d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.37 2.37 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0M1.5 8.5A.5.5 0 0 1 2 9v6h1v-5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v5h6V9a.5.5 0 0 1 1 0v6h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1V9a.5.5 0 0 1 .5-.5M4 15h3v-5H4zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1zm3 0h-2v3h2z"/>
+            </svg>Shop</a></li>
+          <li><hr class="dropdown-divider"></li>
+            <li class="px-1 my-1 "><a class="dropdown-item rounded-2 align-items-center d-flex" href="{% url "change_information" %}">
               <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor"  class="me-2 bi-key-fill" viewBox="0 0 16 16">
                 <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
               </svg>Change Information</a></li>
             <li><hr class="dropdown-divider"></li>
             
-            <li class="px-1 my-1 "><a class="dropdown-item rounded-2" href="{% url "change_password_view" %}">
+            <li class="px-1 my-1 "><a class="dropdown-item rounded-2 align-items-center d-flex" href="{% url "change_password_view" %}">
               <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor" class="me-2 bi-key-fill" viewBox="0 0 16 16">
                 <path d="M3.5 11.5a3.5 3.5 0 1 1 3.163-5H14L15.5 8 14 9.5l-1-1-1 1-1-1-1 1-1-1-1 1H6.663a3.5 3.5 0 0 1-3.163 2M2.5 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
               </svg>Change password</a></li>
@@ -193,7 +197,7 @@
             {% if user.is_authenticated %}
              <li class="px-1 my-1 "><form action="{% url "logout" %}" method="post">
                   {% csrf_token %}
-                  <button type="submit" class="dropdown-item rounded-2">
+                  <button type="submit" class="dropdown-item rounded-2 align-items-center d-flex">
                     <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor" class="text-danger me-2 bi-box-arrow-right" viewBox="0 0 16 16">
                       <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"/>
                       <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
@@ -268,15 +272,16 @@
           <ul class="nav nav-pills flex-column w-100 mb-auto  ">
             
             <li class="mt-1">
-              <a href="{% url 'dashboard_view' %}" class="nav-link text-white btn btn-outline-primary text-start {% if request.path == '/'%} active {% endif %}" >
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class=" me-2 bi-grid-fill" viewBox="0 0 16 16">
-                    <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5zm8 0A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5zm-8 8A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5zm8 0A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5z"/>
-                  </svg>
+              <a href="{% url 'dashboard_view' %}" class="nav-link text-white btn btn-outline-primary text-start {% if request.path == '/admin_panel/'%} active {% endif %}" >
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="me-2 bi-speedometer2" viewBox="0 0 16 16">
+                  <path d="M8 4a.5.5 0 0 1 .5.5V6a.5.5 0 0 1-1 0V4.5A.5.5 0 0 1 8 4M3.732 5.732a.5.5 0 0 1 .707 0l.915.914a.5.5 0 1 1-.708.708l-.914-.915a.5.5 0 0 1 0-.707M2 10a.5.5 0 0 1 .5-.5h1.586a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 10m9.5 0a.5.5 0 0 1 .5-.5h1.5a.5.5 0 0 1 0 1H12a.5.5 0 0 1-.5-.5m.754-4.246a.39.39 0 0 0-.527-.02L7.547 9.31a.91.91 0 1 0 1.302 1.258l3.434-4.297a.39.39 0 0 0-.029-.518z"/>
+                  <path fill-rule="evenodd" d="M0 10a8 8 0 1 1 15.547 2.661c-.442 1.253-1.845 1.602-2.932 1.25C11.309 13.488 9.475 13 8 13c-1.474 0-3.31.488-4.615.911-1.087.352-2.49.003-2.932-1.25A8 8 0 0 1 0 10m8-7a7 7 0 0 0-6.603 9.329c.203.575.923.876 1.68.63C4.397 12.533 6.358 12 8 12s3.604.532 4.923.96c.757.245 1.477-.056 1.68-.631A7 7 0 0 0 8 3"/>
+                </svg>
                 Dashboard
               </a>
             </li>
             <li class="mt-1">
-              <a href="{% url 'shop_view' %}" class="nav-link text-white btn btn-outline-primary text-start {% if request.path == 'shop'%} active {% endif %}" >
+              <a href="{% url 'shop_view' %}" class="nav-link text-white btn btn-outline-primary text-start {% if request.path == ''%} active {% endif %}" >
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="me-2 bi-shop" viewBox="0 0 16 16">
                   <path d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.37 2.37 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0M1.5 8.5A.5.5 0 0 1 2 9v6h1v-5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v5h6V9a.5.5 0 0 1 1 0v6h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1V9a.5.5 0 0 1 .5-.5M4 15h3v-5H4zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1zm3 0h-2v3h2z"/>
                 </svg>
@@ -297,7 +302,7 @@
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small ps-3">
                   
                   <li class="mt-1">
-                    <a href="{% url "category_stock_view" %}" class="nav-link text-white btn btn-outline-primary text-start {% if request.path == '/category_stock/'%} active {% endif %}">
+                    <a href="{% url "category_stock_view" %}" class="nav-link text-white btn btn-outline-primary text-start {% if request.path == '/admin_panel/category_stock/'%} active {% endif %}">
                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="me-2 bi-bounding-box" viewBox="0 0 16 16">
                         <path d="M5 2V0H0v5h2v6H0v5h5v-2h6v2h5v-5h-2V5h2V0h-5v2zm6 1v2h2v6h-2v2H5v-2H3V5h2V3zm1-2h3v3h-3zm3 11v3h-3v-3zM4 15H1v-3h3zM1 4V1h3v3z"/>
                       </svg>
@@ -305,7 +310,7 @@
                     </a>
                   </li>
                   <li class="mt-1">
-                    <a href="{% url "stock_view" %}" class="nav-link text-white btn btn-outline-primary text-start {% if request.path == '/stocks/'%} active {% endif %}">
+                    <a href="{% url "stock_view" %}" class="nav-link text-white btn btn-outline-primary text-start {% if request.path == '/admin_panel/stocks/'%} active {% endif %}">
                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="me-2 bi-boxes" viewBox="0 0 16 16">
                         <path d="M7.752.066a.5.5 0 0 1 .496 0l3.75 2.143a.5.5 0 0 1 .252.434v3.995l3.498 2A.5.5 0 0 1 16 9.07v4.286a.5.5 0 0 1-.252.434l-3.75 2.143a.5.5 0 0 1-.496 0l-3.502-2-3.502 2.001a.5.5 0 0 1-.496 0l-3.75-2.143A.5.5 0 0 1 0 13.357V9.071a.5.5 0 0 1 .252-.434L3.75 6.638V2.643a.5.5 0 0 1 .252-.434zM4.25 7.504 1.508 9.071l2.742 1.567 2.742-1.567zM7.5 9.933l-2.75 1.571v3.134l2.75-1.571zm1 3.134 2.75 1.571v-3.134L8.5 9.933zm.508-3.996 2.742 1.567 2.742-1.567-2.742-1.567zm2.242-2.433V3.504L8.5 5.076V8.21zM7.5 8.21V5.076L4.75 3.504v3.134zM5.258 2.643 8 4.21l2.742-1.567L8 1.076zM15 9.933l-2.75 1.571v3.134L15 13.067zM3.75 14.638v-3.134L1 9.933v3.134z"/>
                       </svg>
@@ -313,7 +318,7 @@
                     </a>
                   </li>
                   <li class="mt-1">
-                    <a href="{% url "warehouse_view" %}" class="nav-link text-white btn btn-outline-primary text-start {% if request.path == '/warehouses/'%} active {% endif %}">
+                    <a href="{% url "warehouse_view" %}" class="nav-link text-white btn btn-outline-primary text-start {% if request.path == '/admin_panel/warehouses/'%} active {% endif %}">
                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="me-2 bi-house-down-fill" viewBox="0 0 16 16">
                         <path d="M12.5 9a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7m.354 5.854 1.5-1.5a.5.5 0 0 0-.708-.707l-.646.646V10.5a.5.5 0 0 0-1 0v2.793l-.646-.646a.5.5 0 0 0-.708.707l1.5 1.5a.5.5 0 0 0 .708 0"/>
                         <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293z"/>
@@ -323,7 +328,7 @@
                     </a>
                   </li>
                   <li class="mt-1">
-                    <a href="{% url "supplier_view" %}" class="nav-link text-white btn btn-outline-primary text-start {% if request.path == '/suppliers/'%} active {% endif %}">
+                    <a href="{% url "supplier_view" %}" class="nav-link text-white btn btn-outline-primary text-start {% if request.path == '/admin_panel/suppliers/'%} active {% endif %}">
                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="me-2 bi-people-fill" viewBox="0 0 16 16">
                         <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"/>
                       </svg>
@@ -331,7 +336,7 @@
                     </a>
                   </li>
                   <li class="mt-1">
-                    <a href="{% url "facture_view" %}" class="nav-link text-white btn btn-outline-primary text-start {% if request.path == '/factures/'%} active {% endif %}">
+                    <a href="{% url "facture_view" %}" class="nav-link text-white btn btn-outline-primary text-start {% if request.path == '/admin_panel/factures/'%} active {% endif %}">
                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="me-2 bi-file-text-fill" viewBox="0 0 16 16">
                         <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2M5 4h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1m-.5 2.5A.5.5 0 0 1 5 6h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5M5 8h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1m0 2h3a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1"/>
                       </svg>
@@ -339,7 +344,7 @@
                     </a>
                   </li>
                   <li class="mt-1">
-                    <a href="{% url "stock_movements_view" %}" class="nav-link text-white btn btn-outline-primary text-start {% if request.path == '/stocks_movements/'%} active {% endif %}">
+                    <a href="{% url "stock_movements_view" %}" class="nav-link text-white btn btn-outline-primary text-start {% if request.path == '/admin_panel/stocks_movements/'%} active {% endif %}">
                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="me-2 bi-inbox-fill" viewBox="0 0 16 16">
                         <path d="M4.98 4a.5.5 0 0 0-.39.188L1.54 8H6a.5.5 0 0 1 .5.5 1.5 1.5 0 1 0 3 0A.5.5 0 0 1 10 8h4.46l-3.05-3.812A.5.5 0 0 0 11.02 4zm-1.17-.437A1.5 1.5 0 0 1 4.98 3h6.04a1.5 1.5 0 0 1 1.17.563l3.7 4.625a.5.5 0 0 1 .106.374l-.39 3.124A1.5 1.5 0 0 1 14.117 13H1.883a1.5 1.5 0 0 1-1.489-1.314l-.39-3.124a.5.5 0 0 1 .106-.374z"/>
                       </svg>
@@ -366,7 +371,7 @@
               <div class="collapse mt-1" id="dashboard-collapse-products" style="">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small ps-3">
                   <li class="mt-1">
-                    <a href="{% url "category_view" %}" class="nav-link text-white btn btn-outline-primary text-start {% if request.path == '/categories/'%} active {% endif %}">
+                    <a href="{% url "category_view" %}" class="nav-link text-white btn btn-outline-primary text-start {% if request.path == '/admin_panel/categories/'%} active {% endif %}">
                       <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class=" bi-bookmark-fill" viewBox="0 0 16 16">
                         <path d="M2 2v13.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2"/>
                       </svg>
@@ -374,7 +379,7 @@
                     </a>
                   </li>
                   <li class="mt-1">
-                    <a href="{% url "product_view" %}" class="nav-link text-white btn btn-outline-primary text-start {% if request.path == '/products/'%} active {% endif %}">
+                    <a href="{% url "product_view" %}" class="nav-link text-white btn btn-outline-primary text-start {% if request.path == '/admin_panel/products/'%} active {% endif %}">
                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class=" me-2 bi-table" viewBox="0 0 16 16">
                           <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm15 2h-4v3h4zm0 4h-4v3h4zm0 4h-4v3h3a1 1 0 0 0 1-1zm-5 3v-3H6v3zm-5 0v-3H1v2a1 1 0 0 0 1 1zm-4-4h4V8H1zm0-4h4V4H1zm5-3v3h4V4zm4 4H6v3h4z"/>
                         </svg>
@@ -382,7 +387,7 @@
                     </a>
                   </li>
                   <li class="mt-1">
-                    <a href="{% url "coupon_view" %}" class="nav-link text-white btn btn-outline-primary text-start {% if request.path == '/coupons/'%} active {% endif %}">
+                    <a href="{% url "coupon_view" %}" class="nav-link text-white btn btn-outline-primary text-start {% if request.path == '/admin_panel/coupons/'%} active {% endif %}">
                       <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class=" bi-gift-fill" viewBox="0 0 16 16">
                         <path d="M3 2.5a2.5 2.5 0 0 1 5 0 2.5 2.5 0 0 1 5 0v.006c0 .07 0 .27-.038.494H15a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h2.038A3 3 0 0 1 3 2.506zm1.068.5H7v-.5a1.5 1.5 0 1 0-3 0c0 .085.002.274.045.43zM9 3h2.932l.023-.07c.043-.156.045-.345.045-.43a1.5 1.5 0 0 0-3 0zm6 4v7.5a1.5 1.5 0 0 1-1.5 1.5H9V7zM2.5 16A1.5 1.5 0 0 1 1 14.5V7h6v9z"/>
                       </svg>
@@ -390,7 +395,7 @@
                     </a>
                   </li>
                   <li class="mt-1">
-                    <a href="{% url "product_review_view" %}" class="nav-link text-white btn btn-outline-primary text-start {% if request.path == '/reviews/'%} active {% endif %}">
+                    <a href="{% url "product_review_view" %}" class="nav-link text-white btn btn-outline-primary text-start {% if request.path == '/admin_panel/reviews/'%} active {% endif %}">
                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="me-2  bi-chat-left-dots-fill" viewBox="0 0 16 16">
                         <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793zm5 4a1 1 0 1 0-2 0 1 1 0 0 0 2 0m4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0m3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
                       </svg>
@@ -415,7 +420,7 @@
               <div class="collapse mt-1" id="dashboard-collapse-order-sales" style="">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small ps-3">
                   <li class="mt-1">
-                    <a href="{% url "order_view" %}" class="nav-link text-white btn btn-outline-primary text-start {% if request.path == '/orders/'%} active {% endif %}">
+                    <a href="{% url "order_view" %}" class="nav-link text-white btn btn-outline-primary text-start {% if request.path == '/admin_panel/orders/'%} active {% endif %}">
                       <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class=" me-2 bi-cart-check-fill" viewBox="0 0 16 16">
                           <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0m-1.646-7.646-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L8 8.293l2.646-2.647a.5.5 0 0 1 .708.708"/>
                         </svg>
@@ -424,7 +429,7 @@
                     </a>
                   </li>
                   <li class="mt-1">
-                    <a href="{% url "sales_view" %}" class="nav-link text-white btn btn-outline-primary text-start {% if request.path == '/sales/'%} active {% endif %}">
+                    <a href="{% url "sales_view" %}" class="nav-link text-white btn btn-outline-primary text-start {% if request.path == '/admin_panel/sales/'%} active {% endif %}">
                       <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="me-2 bi-cart-plus-fill" viewBox="0 0 16 16">
                         <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0M9 5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 1 0"/>
                       </svg>
@@ -449,7 +454,7 @@
               <div class="collapse mt-1" id="dashboard-collapse" style="">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small ps-3">
                   <li>
-                    <a href="{% url "admin_view" %}" class="nav-link text-white btn btn-outline-primary  text-start  {% if request.path == '/admins/'%} active {% endif %}"
+                    <a href="{% url "admin_view" %}" class="nav-link text-white btn btn-outline-primary  text-start  {% if request.path == '/admin_panel/admins/'%} active {% endif %}"
               >
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="me-2 bi-person-workspace" viewBox="0 0 16 16">
                 <path d="M4 16s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-5.95a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"/>
@@ -459,7 +464,7 @@
               </a>
                   </li>
                   <li class="mt-1">
-                    <a href="{% url "user_view" %}" class="nav-link text-white btn btn-outline-primary text-start {% if request.path == '/users/'%} active {% endif %}">
+                    <a href="{% url "user_view" %}" class="nav-link text-white btn btn-outline-primary text-start {% if request.path == '/admin_panel/users/'%} active {% endif %}">
                       <svg class="me-2" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class=" bi-person-fill" viewBox="0 0 16 16">
                         <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
                       </svg>
@@ -483,7 +488,7 @@
               <div class="collapse mt-1 " id="dashboard-collapse-reports" style="">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small ps-3 ">
                   <li class="mt-1">
-                    <a href="#" class="nav-link text-white btn btn-outline-primary text-start {% if request.path == '/reports_sales/'%} active {% endif %}">
+                    <a href="#" class="nav-link text-white btn btn-outline-primary text-start {% if request.path == '/admin_panel/reports_sales/'%} active {% endif %}">
                       
                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="me-2 bi-bar-chart-line-fill" viewBox="0 0 16 16">
                         <path d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1z"/>
@@ -492,7 +497,7 @@
                     </a>
                   </li>
                   <li class="mt-1">
-                    <a href="#" class="nav-link text-white btn btn-outline-primary text-start {% if request.path == '/revenue/'%} active {% endif %}">
+                    <a href="#" class="nav-link text-white btn btn-outline-primary text-start {% if request.path == '/admin_panel/revenue/'%} active {% endif %}">
                       
                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="me-2 bi-graph-up-arrow" viewBox="0 0 16 16">
                         <path fill-rule="evenodd" d="M0 0h1v15h15v1H0zm10 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-1 0V4.9l-3.613 4.417a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61L13.445 4H10.5a.5.5 0 0 1-.5-.5"/>
@@ -506,7 +511,7 @@
               </div>
             </li>
             <li class="mt-1"></li>
-                    <a href="{% url "settings_view" %}" class="nav-link text-white btn btn-outline-primary text-start {% if request.path == '/settings/'%} active {% endif %}">
+                    <a href="{% url "settings_view" %}" class="nav-link text-white btn btn-outline-primary text-start {% if request.path == '/admin_panel/settings/'%} active {% endif %}">
                       <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="me-2 bi-gear-fill" viewBox="0 0 16 16">
                         <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>
                       </svg>

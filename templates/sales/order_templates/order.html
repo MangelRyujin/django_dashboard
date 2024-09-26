@@ -16,21 +16,9 @@
   </div>
 </div>
 
-<div class="w-100 d-flex">
-  <span class="w-100 text-end">
-  <button type="button" class="btn btn-outline-success shadow-sm border-2 border-success px-4"
-  data-bs-toggle="offcanvas" data-bs-target="#offcanvasRightOrderCreate" aria-controls="offcanvasRight"
-  >
-    <svg class="" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-plus-circle" viewBox="0 0 16 16">
-      <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
-      <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
-    </svg>
-    </button>
-</span>
-</div>
 
 
-<form class="row g-3 py-4"
+<form class="row g-3 pt-2 pb-4"
       method="GET"
       id="OrderFilters"
       hx-get="{% url 'order_table_results' %}"
@@ -39,13 +27,13 @@
       hx-trigger="submit"
       hx-indicator="#spinnerOrderFilter,#spinner">
 
-      <div class="col-6 col-sm-4 col-md-4 col-lg-3">
+      <div class="col-6 col-sm-4 col-md-4 col-lg-2">
         <label for="inputOrderCodeFilter" class="form-label">Code</label>
         <input type="text" name="id" class="form-control" id="inputOrderCodeFilter" placeholder="Order code">
       </div>
       
       
-        <div class="col-6  col-sm-4 col-md-4 col-lg-3">
+        <div class="col-6  col-sm-4 col-md-4 col-lg-2">
           <label for="inputOrderCIFilter" class="form-label">User CI</label>
           <input type="text" name="user_ci" class="form-control" id="inputOrderCIFilter" placeholder="User ci">
         </div>
@@ -66,8 +54,19 @@
             <option value="s">shop</option>
           </select>
         </div>
+        {% if created_users %}
+      <div class="col-6  col-sm-4 col-md-4 col-lg-2">
+        <label for="inputOrderCreatedUserFilter" class="form-label">Created by user</label>
+        <select id="inputOrderCreatedUserFilter" name="user_create" class="form-select" aria-label="Default select example">
+          <option value="" selected>Select user</option>
+          {% for user in created_users %}
+          <option value="{{user.id}}">{{user.username}}</option>
+          {% endfor %}
+        </select>
+      </div>
+      {% endif %}
         {% if products %}
-      <div class="col-12  col-sm-4 col-md-4 col-lg-2">
+      <div class="col-6  col-sm-4 col-md-4 col-lg-2">
         <label for="inputOrderProductFilter" class="form-label">Product</label>
         <select id="inputOrderProductFilter" name="product" class="form-select" aria-label="Default select example">
           <option value="" selected>Select product</option>

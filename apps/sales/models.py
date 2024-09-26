@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.translation import gettext as _
 
+from apps.accounts.models import User
 from apps.products.models import Product
 
 # Create your models here.
@@ -14,9 +15,8 @@ class Order(models.Model):
         ('c', _("cash")),
         ('t', _("transfer")),
         ('b', _("both")),
-        
     )
-    
+    user_create=models.ForeignKey(User,on_delete=models.CASCADE,verbose_name="user_created_order")
     user_id=models.CharField(_("User id"),max_length=255)
     user_ci=models.CharField(_("User ci"),max_length=255)
     user_full_name=models.CharField(_("User full name"),max_length=255)
@@ -72,3 +72,29 @@ class OrderItem(models.Model):
             return product.image_one
         else:
             return False
+        
+        
+class LocalOrder(models.Model):
+    user_create=models.ForeignKey(User,on_delete=models.CASCADE,verbose_name="user_created_order")
+    
+
+    class Meta:
+        verbose_name = _("Local order")
+        verbose_name_plural = _("Local orders")
+
+    def __str__(self):
+        return self.pk
+
+class LocalOrderItem(models.Model):
+    order = models.ForeignKey(Order,on_delete=models.CASCADE,verbose_name="local_order_item")
+    product = models.ForeignKey(Product,on_delete=models.CASCADE,verbose_name="local_product_item")
+    cant= models.PositiveIntegerField(_("Cant"))
+    total_cost = models.DecimalField(_("Cost"), decimal_places= 2,max_digits=12)
+    total_price = models.DecimalField(_("Price"), decimal_places= 2,max_digits=12)
+
+    class Meta:
+        verbose_name = _("Local order")
+        verbose_name_plural = _("Local orders")
+
+    def __str__(self):
+        return self.pk
