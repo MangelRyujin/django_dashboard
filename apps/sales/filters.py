@@ -1,9 +1,11 @@
 import django_filters
+from apps.accounts.models import User
 from apps.products.models import Product
 from apps.sales.models import Order
 
 
 class OrderFilter(django_filters.FilterSet):
+    user_create=django_filters.ModelMultipleChoiceFilter(queryset=User.objects.filter(is_staff=True))
     user_full_name = django_filters.CharFilter(lookup_expr='icontains')
     user_phone = django_filters.CharFilter(lookup_expr='icontains')
     product = django_filters.CharFilter(
@@ -19,7 +21,7 @@ class OrderFilter(django_filters.FilterSet):
 
     class Meta:
         model = Order
-        fields = ['id','user_full_name','product','user_phone','payment_type','user_ci','created_date','type']
+        fields = ['id','user_create','user_full_name','product','user_phone','payment_type','user_ci','created_date','type']
     
     def filter_by_product(self, qs, name, value):
         return qs.filter(orderitem__product_id=value)

@@ -19,7 +19,7 @@ from django.urls import path,include,re_path
 from django.conf import settings
 from django.views.static import serve
 from django.conf.urls.static import static
-from apps.general.shop.shop_views import shop_view
+from apps.shop.views.shop_views import shop_view
 from apps.general.views.general_views import   login_view, change_password_view,change_password_form
 from django.contrib.auth.views import LogoutView
 
@@ -27,12 +27,12 @@ urlpatterns = [
     path('admin_django/', admin.site.urls),
     re_path(r'^media/(?P<path>.*)$',serve,{'document_root':settings.MEDIA_ROOT}),
     re_path(r'^static/(?P<path>.*)$',serve,{'document_root':settings.STATIC_ROOT}),
-    path('shop',shop_view,name='shop_view'),
+    path('',shop_view,name='shop_view'),
     path('login/',login_view,name='login_view'),
     path('logout/',LogoutView.as_view(),name='logout'),
     path('change_password/',change_password_view,name='change_password_view'),
     path('change_password_form/',change_password_form,name='change_password_form'),
-    path('',include('apps.general.dashboard_urls')),
+    path('admin_panel/',include('apps.general.dashboard_urls')),
     re_path(r'^i18n/', include('django.conf.urls.i18n')),
     
 ]
