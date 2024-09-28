@@ -34,8 +34,13 @@
 }
 
 .image-shadow{
-  filter: drop-shadow(5px 12px 5px rgba(0, 0, 0, 0.318));
+  filter: drop-shadow(0px 4px 5px rgba(0, 0, 0, 0.318));
 }
+
+.image-logo-shadow{
+  filter: drop-shadow(0px 42px 186px rgba(34, 98, 194, 0.888));
+}
+
 
 .bi{
   vertical-align: -.125em !important;
@@ -62,4 +67,29 @@
 
 .cursor-pointer{
   cursor: pointer !important;
+}
+
+
+
+.filter-white{
+  backdrop-filter: blur(3px) !important;
+  background: #000000 !important;
+}
+
+.nav-scroller {
+  position: relative;
+  z-index: 2;
+  height: 2.75rem;
+  overflow-y: hidden;
+}
+
+.nav-scroller .nav {
+  display: flex;
+  flex-wrap: nowrap;
+  padding-bottom: 1rem;
+  margin-top: -1px;
+  overflow-x: auto;
+  text-align: center;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
 }

@@ -3,16 +3,20 @@
 
 {% block contend %}
 
-<div class="container  py-3 py-sm-5">
+<div class="container  pt-3 py-sm-5">
     <div class="row flex-md-row-reverse align-items-center justify-content-center g-2 py-5">
-        <div class=" col-12 col-sm-8  col-lg-6">
-            <img src="{% static "/img/bootstrap-themes.png" %}" class="d-block mx-lg-auto img-fluid image-shadow" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
-          </div>
-      <div class="col-lg-6">
-        <h1 class="display-5 fw-bold lh-1 mb-3 text-center text-sm-start">Los productos más baratos</h1>
-        <p class="lead text-center text-sm-start">Somos Remiux una empresa que se de dica a la venta de productos de todo tipo. Los mejores y más baratos productos a su disposición.</p>
+        <div class=" col-12 col-sm-8  col-lg-6 d-flex justify-content-center position-relative mb-2">
+          <img src="{% static "/assets/img/logo-presentation.png" %}" class="d-block mx-lg-auto img-fluid image-logo-shadow" style="" alt="Bootstrap Themes" width="220" height="190" loading="lazy">
+          <img src="{% static "/assets/img/logo-4-presentation.png" %}" class="position-absolute d-block mx-lg-auto img-fluid image-logo-shadow" style="transform: translateY(100px) translateX(50px)" alt="Bootstrap Themes" width="210" height="190" loading="lazy">
+          
+          <img src="{% static "/assets/img/logo-2-presentation.png" %}" class="position-absolute d-block mx-lg-auto img-fluid " style="transform: translateY(100px) translateX(-100px)"  alt="Bootstrap Themes" width="90" height="90" loading="lazy">
+           
+        </div>
+      <div class="col-lg-6 mt-2 pt-4">
+        <h1 class="display-6 fw-bold lh-1 mb-3 text-uppercase text-center text-sm-start">Las mejores cámaras de Cienfuegos</h1>
+        <p class="lead text-center text-sm-start">Somos Remiux una empresa que se de dica a la venta de cámaras de todo tipo. Las cámaras con mejor calidad y potencia a su disposición.</p>
         <div class=" d-flex justify-content-center justify-content-md-start">
-          <button type="button" class="btn btn-outline-primary shadow-sm border-2 fw-semibold px-4 me-md-2">Ver productos</button>
+          <a href="{% url "products_store_view" %}" class="btn btn-outline-primary shadow-sm border-2 fw-semibold px-4 me-md-2">Ver productos</a>
         </div>
       </div>
       
@@ -28,15 +32,15 @@
         <div class="col text-center" data-aos="fade-up">
           
           <div class="card card-cover  overflow-hidden rounded-2 shadow-sm   " 
-          style="background-position: center center;background-size: cover; background-image: url('{% static "/assets/img/products/cat-img-2.jpg" %}');">
+          style="background-position: center center;background-size: cover; background-image: url('{% static "/assets/img/products/product-2.jpg" %}');">
             
               <div class="w-100  h-100 d-flex flex-column p-1 justify-content-between " style="min-height: 140px;">
-                <span class="text-end "><p class="badge rounded-pill bg-primary-subtle text-primary border border-2 border-primary">Category</p></span>
+                <span class="text-end "><p class="badge rounded-pill bg-primary-subtle text-primary border border-2 border-primary">Categoría</p></span>
               </div>
               
             
           </div>
-          <strong class="d-block small mb-2">Maxer full shoe</strong>
+          <strong class="d-block small mb-2">Nombre del producto</strong>
           <strong class="small position-relative">
            $ 1000.00
             <span class="position-absolute  top-0 start-100 translate-middle text-decoration-line-through pb-1 text-body-secondary">
@@ -63,12 +67,12 @@
     
         <div class="col text-center" data-aos="fade-up">
           <div class="card card-cover  overflow-hidden rounded-2 shadow-sm " 
-          style="background-position: center center;background-size: cover; background-image: url('{% static "/assets/img/products/cat-img-3.jpg" %}');">
+          style="background-position: center center;background-size: cover; background-image: url('{% static "/assets/img/products/product-3.jpg" %}');">
           <div class="w-100  h-100 d-flex flex-column p-1 justify-content-between " style="min-height: 140px;">
-            <span class="text-end "><p class="badge rounded-pill bg-primary-subtle text-primary border border-2 border-primary">Category</p></span>
+            <span class="text-end "><p class="badge rounded-pill bg-primary-subtle text-primary border border-2 border-primary">Categoría</p></span>
           </div>
           </div>
-          <strong class="d-block small mb-2">Maxer full shoe</strong>
+          <strong class="d-block small mb-2">Nombre del producto</strong>
           <strong class="small position-relative">
            $ 1000.00
             <span class="position-absolute  top-0 start-100 translate-middle text-decoration-line-through pb-1 text-body-secondary">
@@ -92,14 +96,14 @@
         </div>
         <div class="col text-center" data-aos="fade-up">
           <div class="card card-cover overflow-hidden rounded-2 shadow-sm  " 
-          style="background-position: center center;background-size: cover; background-image: url('{% static "/assets/img/products/product-12.jpg" %}');">
+          style="background-position: center center;background-size: cover; background-image: url('{% static "/assets/img/products/product-2.jpg" %}');">
             
           <div class="w-100  h-100 d-flex flex-column p-1 justify-content-between " style="min-height: 140px;">
-            <span class="text-end "><p class="badge rounded-pill bg-primary-subtle text-primary border border-2 border-primary">Category</p></span>
+            <span class="text-end "><p class="badge rounded-pill bg-primary-subtle text-primary border border-2 border-primary">Categoría</p></span>
           </div>
               
           </div>
-          <strong class="d-block small mb-2">Maxer full shoe</strong>
+          <strong class="d-block small mb-2">Nombre del producto</strong>
           <strong class="small position-relative">
            $ 1000.00
             <span class="position-absolute  top-0 start-100 translate-middle text-decoration-line-through pb-1 text-body-secondary">
@@ -124,15 +128,15 @@
     
         <div class="col text-center" data-aos="fade-up">
           <div class="card card-cover overflow-hidden rounded-2 shadow-sm " 
-          style="background-position: center center;background-size: cover; background-image: url('{% static "/assets/img/products/cat-img-4.jpg" %}');">
+          style="background-position: center center;background-size: cover; background-image: url('{% static "/assets/img/products/product-4.jpg" %}');">
             
           <div class="w-100  h-100 d-flex flex-column p-1 justify-content-between " style="min-height: 140px;">
-            <span class="text-end "><p class="badge rounded-pill bg-primary-subtle text-primary border border-2 border-primary">Category</p></span>
+            <span class="text-end "><p class="badge rounded-pill bg-primary-subtle text-primary border border-2 border-primary">Categoría</p></span>
           </div>
               
             
           </div>
-          <strong class="d-block small mb-2">Maxer full shoe</strong>
+          <strong class="d-block small mb-2">Nombre del producto</strong>
           <strong class="small position-relative">
            $ 1000.00
             <span class="position-absolute  top-0 start-100 translate-middle text-decoration-line-through pb-1 text-body-secondary">
@@ -156,15 +160,15 @@
         </div>
         <div class="col text-center" data-aos="fade-up">
           <div class="card card-cover  overflow-hidden rounded-2 shadow-sm " 
-          style="background-position: center center;background-size: cover; background-image: url('{% static "/assets/img/products/product-11.jpg" %}');">
+          style="background-position: center center;background-size: cover; background-image: url('{% static "/assets/img/products/product-1.jpg" %}');">
             
           <div class="w-100  h-100 d-flex flex-column p-1 justify-content-between " style="min-height: 140px;">
-            <span class="text-end "><p class="badge rounded-pill bg-primary-subtle text-primary border border-2 border-primary">Category</p></span>
+            <span class="text-end "><p class="badge rounded-pill bg-primary-subtle text-primary border border-2 border-primary">Categoría</p></span>
           </div>
               
             
           </div>
-          <strong class="d-block small mb-2">Maxer full shoe</strong>
+          <strong class="d-block small mb-2">Nombre del producto</strong>
           <strong class="small position-relative">
            $ 1000.00
             <span class="position-absolute  top-0 start-100 translate-middle text-decoration-line-through pb-1 text-body-secondary">
@@ -188,14 +192,14 @@
         </div>
         <div class="col text-center" data-aos="fade-up">
           <div class="card card-cover  overflow-hidden rounded-2 shadow-sm " 
-          style="background-position: center center;background-size: cover; background-image: url('{% static "/assets/img/products/product-9.jpg" %}');">
+          style="background-position: center center;background-size: cover; background-image: url('{% static "/assets/img/products/product-7.jpg" %}');">
             
           <div class="w-100  h-100 d-flex flex-column p-1 justify-content-between " style="min-height: 140px;">
-            <span class="text-end "><p class="badge rounded-pill bg-primary-subtle text-primary border border-2 border-primary">Category</p></span>
+            <span class="text-end "><p class="badge rounded-pill bg-primary-subtle text-primary border border-2 border-primary">Categoría</p></span>
           </div>
             
           </div>
-          <strong class="d-block small mb-2">Maxer full shoe</strong>
+          <strong class="d-block small mb-2">Nombre del producto</strong>
           <strong class="small position-relative">
            $ 1000.00
             <span class="position-absolute  top-0 start-100 translate-middle text-decoration-line-through pb-1 text-body-secondary">
@@ -228,12 +232,12 @@
         <div class="carousel-item">
             <div class="container">
                 <div class="row p-5">
-                  <div class="mx-auto col-md-6 col-lg-6 order-md-last d-flex justify-content-center">
-                    <img loading="lazy" width="700" height="500" class="img-fluid image-shadow" src="{% static "/img/bootstrap-themes.png" %}" alt="{% static "/img/bootstrap-themes.png" %}">
+                  <div class="mx-auto col-md-6 col-lg-6 order-md-last  d-flex justify-content-center">
+                    <img loading="lazy" width="700" height="500" class="img-fluid rounded shadow-sm border border-1" src="{% static "/assets/img/offerts/offert-1.jpg" %}" alt="{% static "/img/bootstrap-themes.png" %}">
                   </div>
                     <div class="col-md-6 mb-0 d-flex align-items-center justify-content-center">
                         <div class="text-align-left align-self-center">
-                          <h2 class="h2 text-center ">Producto 1</h2>
+                          <h2 class="h2 text-center ">Oferta 1</h2>
                             <p class="lead text-center ">Sorteo del mes ¡participe!.</p>
                             
                         </div>
@@ -245,11 +249,11 @@
             <div class="container">
                 <div class="row p-5 ">
                     <div class="mx-auto col-md-6 col-lg-6 order-md-last d-flex justify-content-center">
-                      <img loading="lazy" width="700" height="500" class="img-fluid image-shadow" src="{% static "/img/bootstrap-themes.png" %}" alt="{% static "/img/bootstrap-themes.png" %}">
+                      <img loading="lazy" width="700" height="500" class="img-fluid rounded shadow-sm border border-1" src="{% static "/assets/img/offerts/offert-1.jpg" %}" alt="{% static "/assets/img/offerts/offert-1.jpg" %}">
                   </div>
-                    <div class="col-md-6 mb-0 d-flex justify-content-center align-items-center">
+                    <div class="col-md-6 mb-0 mt-2 d-flex justify-content-center align-items-center">
                         <div class="text-align-left ">
-                            <h2 class="h2 text-center">Producto 2</h2>
+                            <h2 class="h2 text-center">Oferta 2</h2>
                             <p class="lead text-center ">¡Compre ahora! Producto en rebaja</p>
                            
                         </div>
@@ -261,11 +265,11 @@
           <div class="container">
               <div class="row p-5 ">
                   <div class="mx-auto col-md-6 col-lg-6 order-md-last d-flex justify-content-center">
-                    <img loading="lazy" width="700" height="500" class="img-fluid image-shadow" src="{% static "/img/bootstrap-themes.png" %}" alt="{% static "/img/bootstrap-themes.png" %}">
+                    <img loading="lazy" width="700" height="500" class="img-fluid  shadow-sm border border-1" src="{% static "/assets/img/offerts/offert-1.jpg" %}" alt="{% static "/assets/img/offerts/offert-1.jpg" %}">
                   </div>
                   <div class="col-md-6 mb-0 d-flex justify-content-center align-items-center">
                       <div class="text-align-left ">
-                          <h2 class="h2 text-center">Producto 3</h2>
+                          <h2 class="h2 text-center">Oferta 3</h2>
                           <p class="lead text-center ">¡Nuevo producto disponible!</p>
                          
                       </div>
@@ -298,15 +302,15 @@
       <div class="col text-center" data-aos="fade-up">
         
         <div class="card card-cover  overflow-hidden rounded-2 shadow-sm   " 
-        style="background-position: center center;background-size: cover; background-image: url('{% static "/assets/img/products/cat-img-2.jpg" %}');">
+        style="background-position: center center;background-size: cover; background-image: url('{% static "/assets/img/products/product-2.jpg" %}');">
           
             <div class="w-100  h-100 d-flex flex-column p-1 justify-content-between " style="min-height: 140px;">
-              <span class="text-end "><p class="badge rounded-pill bg-primary-subtle text-primary border border-2 border-primary">Category</p></span>
+              <span class="text-end "><p class="badge rounded-pill bg-primary-subtle text-primary border border-2 border-primary">Categoría</p></span>
             </div>
             
           
         </div>
-        <strong class="d-block small mb-2">Maxer full shoe</strong>
+        <strong class="d-block small mb-2">Nombre del producto</strong>
         <strong class="small position-relative">
          $ 1000.00
           <span class="position-absolute  top-0 start-100 translate-middle text-decoration-line-through pb-1 text-body-secondary">
@@ -331,12 +335,12 @@
   
       <div class="col text-center" data-aos="fade-up">
         <div class="card card-cover  overflow-hidden rounded-2 shadow-sm " 
-        style="background-position: center center;background-size: cover; background-image: url('{% static "/assets/img/products/cat-img-3.jpg" %}');">
+        style="background-position: center center;background-size: cover; background-image: url('{% static "/assets/img/products/product-3.jpg" %}');">
         <div class="w-100  h-100 d-flex flex-column p-1 justify-content-between " style="min-height: 140px;">
-          <span class="text-end "><p class="badge rounded-pill bg-primary-subtle text-primary border border-2 border-primary">Category</p></span>
+          <span class="text-end "><p class="badge rounded-pill bg-primary-subtle text-primary border border-2 border-primary">Categoría</p></span>
         </div>
         </div>
-        <strong class="d-block small mb-2">Maxer full shoe</strong>
+        <strong class="d-block small mb-2">Nombre del producto</strong>
         <strong class="small position-relative">
          $ 1000.00
           <span class="position-absolute  top-0 start-100 translate-middle text-decoration-line-through pb-1 text-body-secondary">
@@ -363,11 +367,11 @@
         style="background-position: center center;background-size: cover; background-image: url('{% static "/assets/img/products/product-6.jpg" %}');">
           
         <div class="w-100  h-100 d-flex flex-column p-1 justify-content-between " style="min-height: 140px;">
-          <span class="text-end "><p class="badge rounded-pill bg-primary-subtle text-primary border border-2 border-primary">Category</p></span>
+          <span class="text-end "><p class="badge rounded-pill bg-primary-subtle text-primary border border-2 border-primary">Categoría</p></span>
         </div>
             
         </div>
-        <strong class="d-block small mb-2">Maxer full shoe</strong>
+        <strong class="d-block small mb-2">Nombre del producto</strong>
         <strong class="small position-relative">
          $ 1000.00
           <span class="position-absolute  top-0 start-100 translate-middle text-decoration-line-through pb-1 text-body-secondary">
@@ -392,15 +396,15 @@
   
       <div class="col text-center" data-aos="fade-up">
         <div class="card card-cover overflow-hidden rounded-2 shadow-sm " 
-        style="background-position: center center;background-size: cover; background-image: url('{% static "/assets/img/products/cat-img-4.jpg" %}');">
+        style="background-position: center center;background-size: cover; background-image: url('{% static "/assets/img/products/product-4.jpg" %}');">
           
         <div class="w-100  h-100 d-flex flex-column p-1 justify-content-between " style="min-height: 140px;">
-          <span class="text-end "><p class="badge rounded-pill bg-primary-subtle text-primary border border-2 border-primary">Category</p></span>
+          <span class="text-end "><p class="badge rounded-pill bg-primary-subtle text-primary border border-2 border-primary">Categoría</p></span>
         </div>
             
           
         </div>
-        <strong class="d-block small mb-2">Maxer full shoe</strong>
+        <strong class="d-block small mb-2">Nombre del producto</strong>
         <strong class="small position-relative">
          $ 1000.00
           <span class="position-absolute  top-0 start-100 translate-middle text-decoration-line-through pb-1 text-body-secondary">
@@ -427,12 +431,12 @@
         style="background-position: center center;background-size: cover; background-image: url('{% static "/assets/img/products/product-2.jpg" %}');">
           
         <div class="w-100  h-100 d-flex flex-column p-1 justify-content-between " style="min-height: 140px;">
-          <span class="text-end "><p class="badge rounded-pill bg-primary-subtle text-primary border border-2 border-primary">Category</p></span>
+          <span class="text-end "><p class="badge rounded-pill bg-primary-subtle text-primary border border-2 border-primary">Categoría</p></span>
         </div>
             
           
         </div>
-        <strong class="d-block small mb-2">Maxer full shoe</strong>
+        <strong class="d-block small mb-2">Nombre del producto</strong>
         <strong class="small position-relative">
          $ 1000.00
           <span class="position-absolute  top-0 start-100 translate-middle text-decoration-line-through pb-1 text-body-secondary">
@@ -456,14 +460,14 @@
       </div>
       <div class="col text-center" data-aos="fade-up">
         <div class="card card-cover  overflow-hidden rounded-2 shadow-sm " 
-        style="background-position: center center;background-size: cover; background-image: url('{% static "/assets/img/products/product-9.jpg" %}');">
+        style="background-position: center center;background-size: cover; background-image: url('{% static "/assets/img/products/product-7.jpg" %}');">
           
         <div class="w-100  h-100 d-flex flex-column p-1 justify-content-between " style="min-height: 140px;">
-          <span class="text-end "><p class="badge rounded-pill bg-primary-subtle text-primary border border-2 border-primary">Category</p></span>
+          <span class="text-end "><p class="badge rounded-pill bg-primary-subtle text-primary border border-2 border-primary">Categoría</p></span>
         </div>
           
         </div>
-        <strong class="d-block small mb-2">Maxer full shoe</strong>
+        <strong class="d-block small mb-2">Nombre del producto</strong>
         <strong class="small position-relative">
          $ 1000.00
           <span class="position-absolute  top-0 start-100 translate-middle text-decoration-line-through pb-1 text-body-secondary">
@@ -491,12 +495,12 @@
         style="background-position: center center;background-size: cover; background-image: url('{% static "/assets/img/products/product-1.jpg" %}');">
           
             <div class="w-100  h-100 d-flex flex-column p-1 justify-content-between " style="min-height: 140px;">
-              <span class="text-end "><p class="badge rounded-pill bg-primary-subtle text-primary border border-2 border-primary">Category</p></span>
+              <span class="text-end "><p class="badge rounded-pill bg-primary-subtle text-primary border border-2 border-primary">Categoría</p></span>
             </div>
             
           
         </div>
-        <strong class="d-block small mb-2">Maxer full shoe</strong>
+        <strong class="d-block small mb-2">Nombre del producto</strong>
         <strong class="small position-relative">
          $ 1000.00
           <span class="position-absolute  top-0 start-100 translate-middle text-decoration-line-through pb-1 text-body-secondary">
@@ -523,10 +527,10 @@
         <div class="card card-cover  overflow-hidden rounded-2 shadow-sm " 
         style="background-position: center center;background-size: cover; background-image: url('{% static "/assets/img/products/product-8.jpg" %}');">
         <div class="w-100  h-100 d-flex flex-column p-1 justify-content-between " style="min-height: 140px;">
-          <span class="text-end "><p class="badge rounded-pill bg-primary-subtle text-primary border border-2 border-primary">Category</p></span>
+          <span class="text-end "><p class="badge rounded-pill bg-primary-subtle text-primary border border-2 border-primary">Categoría</p></span>
         </div>
         </div>
-        <strong class="d-block small mb-2">Maxer full shoe</strong>
+        <strong class="d-block small mb-2">Nombre del producto</strong>
         <strong class="small position-relative">
          $ 1000.00
           <span class="position-absolute  top-0 start-100 translate-middle text-decoration-line-through pb-1 text-body-secondary">
@@ -553,11 +557,11 @@
         style="background-position: center center;background-size: cover; background-image: url('{% static "/assets/img/products/product-4.jpg" %}');">
           
         <div class="w-100  h-100 d-flex flex-column p-1 justify-content-between " style="min-height: 140px;">
-          <span class="text-end "><p class="badge rounded-pill bg-primary-subtle text-primary border border-2 border-primary">Category</p></span>
+          <span class="text-end "><p class="badge rounded-pill bg-primary-subtle text-primary border border-2 border-primary">Categoría</p></span>
         </div>
             
         </div>
-        <strong class="d-block small mb-2">Maxer full shoe</strong>
+        <strong class="d-block small mb-2">Nombre del producto</strong>
         <strong class="small position-relative">
          $ 1000.00
           <span class="position-absolute  top-0 start-100 translate-middle text-decoration-line-through pb-1 text-body-secondary">
@@ -585,12 +589,12 @@
         style="background-position: center center;background-size: cover; background-image: url('{% static "/assets/img/products/product-3.jpg" %}');">
           
         <div class="w-100  h-100 d-flex flex-column p-1 justify-content-between " style="min-height: 140px;">
-          <span class="text-end "><p class="badge rounded-pill bg-primary-subtle text-primary border border-2 border-primary">Category</p></span>
+          <span class="text-end "><p class="badge rounded-pill bg-primary-subtle text-primary border border-2 border-primary">Categoría</p></span>
         </div>
             
           
         </div>
-        <strong class="d-block small mb-2">Maxer full shoe</strong>
+        <strong class="d-block small mb-2">Nombre del producto</strong>
         <strong class="small position-relative">
          $ 1000.00
           <span class="position-absolute  top-0 start-100 translate-middle text-decoration-line-through pb-1 text-body-secondary">
@@ -614,15 +618,15 @@
       </div>
       <div class="col text-center" data-aos="fade-up">
         <div class="card card-cover  overflow-hidden rounded-2 shadow-sm " 
-        style="background-position: center center;background-size: cover; background-image: url('{% static "/assets/img/products/product-11.jpg" %}');">
+        style="background-position: center center;background-size: cover; background-image: url('{% static "/assets/img/products/product-1.jpg" %}');">
           
         <div class="w-100  h-100 d-flex flex-column p-1 justify-content-between " style="min-height: 140px;">
-          <span class="text-end "><p class="badge rounded-pill bg-primary-subtle text-primary border border-2 border-primary">Category</p></span>
+          <span class="text-end "><p class="badge rounded-pill bg-primary-subtle text-primary border border-2 border-primary">Categoría</p></span>
         </div>
             
           
         </div>
-        <strong class="d-block small mb-2">Maxer full shoe</strong>
+        <strong class="d-block small mb-2">Nombre del producto</strong>
         <strong class="small position-relative">
          $ 1000.00
           <span class="position-absolute  top-0 start-100 translate-middle text-decoration-line-through pb-1 text-body-secondary">
@@ -646,14 +650,14 @@
       </div>
       <div class="col text-center" data-aos="fade-up">
         <div class="card card-cover  overflow-hidden rounded-2 shadow-sm " 
-        style="background-position: center center;background-size: cover; background-image: url('{% static "/assets/img/products/product-9.jpg" %}');">
+        style="background-position: center center;background-size: cover; background-image: url('{% static "/assets/img/products/product-7.jpg" %}');">
           
         <div class="w-100  h-100 d-flex flex-column p-1 justify-content-between " style="min-height: 140px;">
-          <span class="text-end "><p class="badge rounded-pill bg-primary-subtle text-primary border border-2 border-primary">Category</p></span>
+          <span class="text-end "><p class="badge rounded-pill bg-primary-subtle text-primary border border-2 border-primary">Categoría</p></span>
         </div>
           
         </div>
-        <strong class="d-block small mb-2">Maxer full shoe</strong>
+        <strong class="d-block small mb-2">Nombre del producto</strong>
         <strong class="small position-relative">
          $ 1000.00
           <span class="position-absolute  top-0 start-100 translate-middle text-decoration-line-through pb-1 text-body-secondary">
@@ -707,7 +711,7 @@
     <div class="d-flex flex-wrap justify-content-between align-items-center pt-3 mb-4 mb-sm-0 border-top px-3">
         <div class="col-12 col-md-4 d-flex  justify-content-center align-items-center">
           
-          <span class=" text-body-emphasis">© 2024 Company, Inc</span>
+          <span class=" text-body-emphasis">© 2024 Compañía, Remiux</span>
         </div>
         <div class="col-12 col-md-4 d-flex  justify-content-center align-items-center">
           
