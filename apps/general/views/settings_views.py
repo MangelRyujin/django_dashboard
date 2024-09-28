@@ -35,17 +35,23 @@ def settings_view(request):
 @staff_member_required(login_url='/shop')
 def save_header_settings_view(request):
     context={}
+    header=PrincipalHeader.objects.first()
     if request.method == "POST":
-        header_form=UpdatePrincipalHeaderForm(request.POST)
+        if header:
+            header_form=UpdatePrincipalHeaderForm(request.POST,request.FILES,instance=header)
+        else: 
+            header_form=UpdatePrincipalHeaderForm(request.POST,request.FILES)
+        
         if header_form.is_valid():
             header_form.save()
             context['message']='Change successfully'
             context['header_form']=header_form
-            return render(request,'settings_templates/forms/header_form.html',context) 
+            
         else:
             context['error']='Correct the errors'
             context['header_form']=header_form
-            return render(request,'settings_templates/forms/header_form.html',context) 
+    context['header']=header
+    return render(request,'settings_templates/forms/header_form.html',context) 
     
 
 @staff_member_required(login_url='/shop')
@@ -99,7 +105,7 @@ def save_social_settings_view(request):
         else:
             context['error']='Correct the errors'
             context['social_form']=social_form
-    context['social']=SocialMedia.objects.first()
+    context['social']=social
     return render(request,'settings_templates/forms/social_form.html',context) 
    
     
