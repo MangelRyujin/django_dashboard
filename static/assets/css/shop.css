@@ -56,6 +56,22 @@
   line-height: 20px;
 }
 
+.text-ellipsis-180{
+  max-width: 250px !important; /* Ancho máximo del elemento */
+  white-space: nowrap !important; /* No permite saltos de línea */
+  overflow: hidden !important; /* Oculta el texto que excede el ancho */
+  text-overflow: ellipsis !important; /* Muestra puntos suspensivos */
+  line-height: 20px !important;
+}
+
+
+@media (max-width: 400px) {
+  .text-ellipsis-180{
+    max-width: 160px !important; /* Ancho máximo del elemento */
+  }
+  
+}
+
 .hidden-on-top {
   display: none !important;
 }
