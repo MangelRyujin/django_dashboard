@@ -3,8 +3,8 @@
 
 {% block contend %}
 
-<div class="container  pt-3 py-sm-5">
-    <div class="row flex-md-row-reverse align-items-center justify-content-center g-2 py-5">
+<div class="container pt-3 py-sm-5">
+    <div class="row flex-md-row-reverse mt-4 align-items-center justify-content-center g-2 py-5">
         <div class=" col-12 col-sm-8  col-lg-6 d-flex justify-content-center position-relative mb-2">
           <img src="{% static "/assets/img/logo-presentation.png" %}" class="d-block mx-lg-auto img-fluid image-logo-shadow" style="" alt="Bootstrap Themes" width="220" height="190" loading="lazy">
           <img src="{% static "/assets/img/logo-4-presentation.png" %}" class="position-absolute d-block mx-lg-auto img-fluid image-logo-shadow" style="transform: translateY(100px) translateX(50px)" alt="Bootstrap Themes" width="210" height="190" loading="lazy">
@@ -14,7 +14,7 @@
         </div>
       <div class="col-lg-6 mt-2 pt-4">
         <h1 class="display-6 fw-bold lh-1 mb-3 text-uppercase text-center text-sm-start">Las mejores cámaras de Cienfuegos</h1>
-        <p class="lead text-center text-sm-start">Somos Remiux una empresa que se de dica a la venta de cámaras de todo tipo. Las cámaras con mejor calidad y potencia a su disposición.</p>
+        <p class="lead text-center text-sm-start ">Somos Remiux una empresa que se de dica a la venta de cámaras de todo tipo. Las cámaras con mejor calidad y potencia a su disposición.</p>
         <div class=" d-flex justify-content-center justify-content-md-start">
           <a href="{% url "products_store_view" %}" class="btn btn-outline-primary shadow-sm border-2 fw-semibold px-4 me-md-2">Ver productos</a>
         </div>
@@ -22,6 +22,7 @@
       
     </div>
   </div>
+  
 
   <div class="container">
     <div class="py-3 text-center">
@@ -56,7 +57,7 @@
                 </svg>
               </a>
               <a  class="text-body-emphasis cursor-pointer d-flex justify-content-center align-items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class=" bi-cart-plus-fill" viewBox="0 0 16 16">
+                <svg xmlns="http://www.w3.org/2000/svg"  width="20" height="20" fill="currentColor" class=" bi-cart-plus-fill" viewBox="0 0 16 16">
                   <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0M9 5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 1 0"/>
                 </svg>
               </a>
@@ -87,7 +88,7 @@
                 </svg>
               </a>
               <a  class="text-body-emphasis cursor-pointer d-flex justify-content-center align-items-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class=" bi-cart-plus-fill" viewBox="0 0 16 16">
+                <svg xmlns="http://www.w3.org/2000/svg"  width="20" height="20" fill="currentColor" class=" bi-cart-plus-fill" viewBox="0 0 16 16">
                   <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0M9 5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 1 0"/>
                 </svg>
               </a>
@@ -228,33 +229,18 @@
   
   <div id="carouselExampleAutoplaying" class="carousel slide  my-5" data-bs-ride="carousel">
     
-    <div class="carousel-inner">
-        <div class="carousel-item">
-            <div class="container">
-                <div class="row p-5">
-                  <div class="mx-auto col-md-6 col-lg-6 order-md-last  d-flex justify-content-center">
-                    <img loading="lazy" width="700" height="500" class="img-fluid rounded shadow-sm border border-1" src="{% static "/assets/img/offerts/offert-1.jpg" %}" alt="{% static "/img/bootstrap-themes.png" %}">
-                  </div>
-                    <div class="col-md-6 mb-0 d-flex align-items-center justify-content-center">
-                        <div class="text-align-left align-self-center">
-                          <h2 class="h2 text-center ">Oferta 1</h2>
-                            <p class="lead text-center ">Sorteo del mes ¡participe!.</p>
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="carousel-inner ">
+        
         <div class="carousel-item active">
             <div class="container">
                 <div class="row p-5 ">
                     <div class="mx-auto col-md-6 col-lg-6 order-md-last d-flex justify-content-center">
-                      <img loading="lazy" width="700" height="500" class="img-fluid rounded shadow-sm border border-1" src="{% static "/assets/img/offerts/offert-1.jpg" %}" alt="{% static "/assets/img/offerts/offert-1.jpg" %}">
+                      <img loading="lazy" width="300" height="300" class="img-fluid rounded image-shadow" src="{% static "/assets/img/offerts/offert-4.png" %}" alt="{% static "/assets/img/offerts/offert-4.png" %}">
                   </div>
-                    <div class="col-md-6 mb-0 mt-2 d-flex justify-content-center align-items-center">
+                    <div class="col-md-6 mb-0  d-flex justify-content-center align-items-center">
                         <div class="text-align-left ">
-                            <h2 class="h2 text-center">Oferta 2</h2>
-                            <p class="lead text-center ">¡Compre ahora! Producto en rebaja</p>
+                            <h2 class="h2 text-center">Nombre de la oferta</h2>
+                            <p class="lead text-center ">Producto en rebaja</p>
                            
                         </div>
                     </div>
@@ -265,11 +251,11 @@
           <div class="container">
               <div class="row p-5 ">
                   <div class="mx-auto col-md-6 col-lg-6 order-md-last d-flex justify-content-center">
-                    <img loading="lazy" width="700" height="500" class="img-fluid  shadow-sm border border-1" src="{% static "/assets/img/offerts/offert-1.jpg" %}" alt="{% static "/assets/img/offerts/offert-1.jpg" %}">
+                    <img loading="lazy" width="300" height="300" class="img-fluid  image-shadow" src="{% static "/assets/img/offerts/offert-5.png" %}" alt="{% static "/assets/img/offerts/offert-5.png" %}">
                   </div>
                   <div class="col-md-6 mb-0 d-flex justify-content-center align-items-center">
                       <div class="text-align-left ">
-                          <h2 class="h2 text-center">Oferta 3</h2>
+                          <h2 class="h2 text-center">Nombre de la oferta</h2>
                           <p class="lead text-center ">¡Nuevo producto disponible!</p>
                          
                       </div>
