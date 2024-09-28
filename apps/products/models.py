@@ -9,6 +9,23 @@ from decimal import Decimal
 # Create your models here.
 
 
+class Offert(models.Model):
+    name = models.CharField(_("Name"),max_length=50)
+    description = models.CharField(_("Description"),max_length=255)
+    init_date = models.DateTimeField(_("Init date"),auto_now=False,auto_now_add=False)
+    end_date = models.DateTimeField(_("End date"),auto_now=False,auto_now_add=False)
+    image = models.ImageField(_("Image"),upload_to="offert_images")
+    is_active = models.BooleanField(_("Active"),default=True)
+
+    class Meta:
+        verbose_name = _("Offert")
+        verbose_name_plural = _("Offerts")
+
+    def __str__(self):
+        return self.name
+    
+
+
 class Category(models.Model):
     name = models.CharField(_("Name"),max_length=30,unique=True)
     image = models.ImageField(_("Image"),upload_to="category_images")

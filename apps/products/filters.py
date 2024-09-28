@@ -1,7 +1,7 @@
 import django_filters
 
 from apps.accounts.models import User
-from apps.products.models import Category, Product,Coupon,ProductReview
+from apps.products.models import Category, Offert, Product,Coupon,ProductReview
 
 class CategoryFilter(django_filters.FilterSet):
     name=  django_filters.CharFilter(lookup_expr='icontains')
@@ -9,6 +9,15 @@ class CategoryFilter(django_filters.FilterSet):
     class Meta:
         model = Category
         fields = ['name','is_active']
+        
+class OffertFilter(django_filters.FilterSet):
+    name=  django_filters.CharFilter(lookup_expr='icontains')
+    is_active = django_filters.BooleanFilter()
+    init_date =django_filters.DateTimeFilter(lookup_expr='gte')
+    end_date =django_filters.DateFromToRangeFilter(lookup_expr='lte')
+    class Meta:
+        model = Offert
+        fields = ['name','is_active','init_date','end_date']
         
 
 class ProductFilter(django_filters.FilterSet):
