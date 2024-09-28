@@ -27,7 +27,7 @@ urlpatterns = [
     path('admin_django/', admin.site.urls),
     re_path(r'^media/(?P<path>.*)$',serve,{'document_root':settings.MEDIA_ROOT}),
     re_path(r'^static/(?P<path>.*)$',serve,{'document_root':settings.STATIC_ROOT}),
-    path('',shop_view,name='shop_view'),
+    path('',include('apps.shop.urls.urls')),
     path('login/',login_view,name='login_view'),
     path('logout/',LogoutView.as_view(),name='logout'),
     path('change_password/',change_password_view,name='change_password_view'),
