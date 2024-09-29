@@ -109,3 +109,8 @@
   white-space: nowrap;
   -webkit-overflow-scrolling: touch;
 }
+
+.category-nav-scroller {
+  height: 150px !important;
+
+}
