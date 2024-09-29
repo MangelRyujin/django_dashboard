@@ -13,7 +13,7 @@
            
         </div>
       <div class="col-lg-6 mt-2 pt-4">
-        <h1 class="display-6 fw-bold lh-1 mb-3 text-uppercase text-center text-sm-start">Las mejores cámaras de Cienfuegos</h1>
+        <h1 class="display-6 fw-bold lh-2 mb-3 text-uppercase text-center text-sm-start">Las mejores cámaras de Cienfuegos</h1>
         <p class="lead text-center text-sm-start ">Somos Remiux una empresa que se de dica a la venta de cámaras de todo tipo. Las cámaras con mejor calidad y potencia a su disposición.</p>
         <div class=" d-flex justify-content-center justify-content-md-start">
           <a href="{% url "products_store_view" %}" class="btn btn-outline-primary shadow-sm border-2 fw-semibold px-4 me-md-2">Ver productos</a>
@@ -22,6 +22,96 @@
       
     </div>
   </div>
+  
+  
+    <div class="py-3 text-center">
+        <h2>Categorías</h2>
+        <p class="lead">Principales categorías a vender.</p>
+      </div>
+      <div id="carouselExample" class="carousel slide carousel-fade mb-5" data-bs-ride="carousel">
+    
+        <div class="carousel-inner ">
+            
+            <div class="carousel-item active">
+                <div class="container">
+                  <div class="row row-cols-2  g-3  row-cols-md-4 ">
+                    <div class="col pb-3 d-flex justify-content-center align-items-center  position-relative">
+                      <img loading="lazy"  width="300" src="{% static "/assets/img/products/product-6.jpg" %}" class="img-fluid img-thumbnail" alt="{% static "/assets/img/products/product-5.jpg" %}">
+                      <strong class="small position-absolute p-1 p-sm-2 border-2 bg-body-tertiary border rounded bottom-0 " style="font-size: 12px;">
+                        Categoría
+                      </strong>
+                    </div>
+                    <div class="col pb-3 d-flex justify-content-center align-items-center  position-relative">
+                      <img loading="lazy" width="300" src="{% static "/assets/img/products/product-5.jpg" %}" class="img-fluid img-thumbnail" alt="{% static "/assets/img/products/product-5.jpg" %}">
+                    <strong class="small position-absolute p-1 p-sm-2 border-2 bg-body-tertiary border rounded bottom-0 " style="font-size: 12px;">
+                        Categoría
+                      </strong>
+                    </div>
+                    <div class="col pb-3 d-flex justify-content-center align-items-center  position-relative">
+                      <img loading="lazy"  width="300" src="{% static "/assets/img/products/product-6.jpg" %}" class="img-fluid img-thumbnail" alt="{% static "/assets/img/products/product-5.jpg" %}">
+                    <strong class="small position-absolute p-1 p-sm-2 border-2 bg-body-tertiary border rounded bottom-0 " style="font-size: 12px;">
+                        Categoría
+                      </strong>
+                    </div>
+                    <div class="col pb-3 d-flex justify-content-center align-items-center  position-relative">
+                      <img loading="lazy" width="300" src="{% static "/assets/img/products/product-5.jpg" %}" class="img-fluid img-thumbnail" alt="{% static "/assets/img/products/product-5.jpg" %}">
+                    <strong class="small position-absolute p-1 p-sm-2 border-2 bg-body-tertiary border rounded bottom-0 " style="font-size: 12px;">
+                        Categoría
+                      </strong>
+                    </div> 
+                  </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+              <div class="container">
+                <div class="row row-cols-2  g-3  row-cols-md-4 ">
+        
+                  <div class="col pb-3 d-flex justify-content-center align-items-center  position-relative">
+                    <img loading="lazy" width="300" src="{% static "/assets/img/products/product-5.jpg" %}" class="img-fluid img-thumbnail" alt="{% static "/assets/img/products/product-5.jpg" %}">
+                  <strong class="small position-absolute p-1 p-sm-2 border-2 bg-body-tertiary border rounded bottom-0 " style="font-size: 12px;">
+                        Categoría
+                      </strong>
+                  </div>
+                  
+                  <div class="col pb-3 d-flex justify-content-center align-items-center  position-relative">
+                    <img loading="lazy"  width="300" src="{% static "/assets/img/products/product-6.jpg" %}" class="img-fluid img-thumbnail" alt="{% static "/assets/img/products/product-5.jpg" %}">
+                  <strong class="small position-absolute p-1 p-sm-2 border-2 bg-body-tertiary border rounded bottom-0 " style="font-size: 12px;">
+                        Categoría
+                      </strong>
+                  </div>
+                  
+                  <div class="col pb-3 d-flex justify-content-center align-items-center  position-relative">
+                    <img loading="lazy" width="300" src="{% static "/assets/img/products/product-5.jpg" %}" class="img-fluid img-thumbnail" alt="{% static "/assets/img/products/product-5.jpg" %}">
+                  <strong class="small position-absolute p-1 p-sm-2 border-2 bg-body-tertiary border rounded bottom-0 " style="font-size: 12px;">
+                        Categoría
+                      </strong>
+                  </div>
+                  
+                  <div class="col pb-3 d-flex justify-content-center align-items-center  position-relative">
+                    <img loading="lazy"  width="300" src="{% static "/assets/img/products/product-6.jpg" %}" class="img-fluid img-thumbnail" alt="{% static "/assets/img/products/product-5.jpg" %}">
+                  <strong class="small position-absolute p-1 p-sm-2 border-2 bg-body-tertiary border rounded bottom-0 " style="font-size: 12px;">
+                        Categoría
+                      </strong>
+                  </div>
+                  
+                </div>
+              </div>
+          </div>
+            
+        </div>
+        <button class="carousel-control-prev " type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="40" height="40" fill="currentColor" class="text-body-emphasis bi-arrow-left-circle" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"/>
+          </svg>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next " type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+          <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true"  width="40" height="40" fill="currentColor" class="text-body-emphasis bi-arrow-right-circle" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z"/>
+          </svg>
+          <span class="visually-hidden">Next</span>
+        </button>
+    </div>
   
 
   <div class="container">
@@ -282,7 +372,7 @@
 <div class="container">
   <div class="py-3 text-center">
       <h2>Productos más económicos</h2>
-      <p class="lead">Los productos mas baratos a su alcance.</p>
+      <p class="lead">Los productos más baratos a su alcance.</p>
     </div>
     <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6  g-3  ">
       <div class="col text-center" data-aos="fade-up">

@@ -59,7 +59,7 @@
 
     <nav class="navbar bg-body-tertiary fixed-top py-0 shadow-sm  border-bottom border-1">
       <div class="container-fluid">
-        <a class="navbar-brand d-flex justify-content-center align-items-center" href="{% url "shop_view" %}">
+        <a class="navbar-brand d-flex justify-content-center align-items-center my-0 py-0" href="{% url "shop_view" %}">
           <img class="img-fluid" width="50" height="50" src="{% static "/assets/img/remiux-logo.png" %}" alt="logo">
           <span class=" fw-bold ms-1 text-body-emphasis">Remiux</span>
           
@@ -94,29 +94,29 @@
               data-bs-toggle="dropdown"
               aria-label="Toggle theme (auto)"
               style="width: 40xp; height: 40px;">
-              <svg class="bi my-1 theme-icon-active" width="1em" height="1em"><use href="#circle-half"></use></svg>
+              <svg class="bi my-1 theme-icon-active" width="20" height="20"><use href="#circle-half"></use></svg>
               <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
             </button>
             <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
               <li class="my-1 px-1">
                 <button type="button" class="dropdown-item d-flex align-items-center rounded-2" data-bs-theme-value="light" aria-pressed="false">
-                  <svg class="bi me-2 opacity-50" width="1em" height="1em"><use href="#sun-fill"></use></svg>
+                  <svg class="bi me-2 opacity-50" width="20" height="20"><use href="#sun-fill"></use></svg>
                   Light
-                  <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
+                  <svg class="bi ms-auto d-none" width="20" height="20"><use href="#check2"></use></svg>
                 </button>
               </li>
               <li class="my-1 px-1">
                 <button type="button" class="dropdown-item d-flex align-items-center rounded-2" data-bs-theme-value="dark" aria-pressed="false">
-                  <svg class="bi me-2 opacity-50" width="1em" height="1em"><use href="#moon-stars-fill"></use></svg>
+                  <svg class="bi me-2 opacity-50" width="20" height="20"><use href="#moon-stars-fill"></use></svg>
                   Dark
-                  <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
+                  <svg class="bi ms-auto d-none" width="20" height="20"><use href="#check2"></use></svg>
                 </button>
               </li>
               <li class="my-1 px-1">
                 <button type="button" class="dropdown-item d-flex align-items-center active rounded-2" data-bs-theme-value="auto" aria-pressed="true">
-                  <svg class="bi me-2 opacity-50" width="1em" height="1em"><use href="#circle-half"></use></svg>
+                  <svg class="bi me-2 opacity-50" width="20" height="20"><use href="#circle-half"></use></svg>
                   Auto
-                  <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
+                  <svg class="bi ms-auto d-none" width="20" height="20"><use href="#check2"></use></svg>
                 </button>
               </li>
             </ul>
@@ -151,7 +151,7 @@
             
             {% if user.is_authenticated %}
             <a href="#" class="btn btn-link nav-link py-2 px-0 px-lg-2 dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown" aria-expanded="false">
-              <img src="{% if user.image %}{{user.image.url}}{% else %}{% static '/assets/img/avatar.jpg' %}{% endif %} " alt="{% if user.image %}{{user.image.url}}{% else %}{% static '/assets/img/avatar.jpg' %}{% endif %}" width="25" height="25" class="rounded-circle me-2">
+              <img src="{% if user.image %}{{user.image.url}}{% else %}{% static '/assets/img/avatar.jpg' %}{% endif %} " alt="{% if user.image %}{{user.image.url}}{% else %}{% static '/assets/img/avatar.jpg' %}{% endif %}" width="30" height="30" class="rounded-circle me-2">
               <strong class="text-ellipsis small">{{user.username}} </strong>
             </a>
             
