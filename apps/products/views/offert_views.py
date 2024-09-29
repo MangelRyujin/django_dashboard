@@ -43,7 +43,7 @@ def offert_create(request):
 # offert update forms
 @staff_member_required(login_url='/shop')
 def offert_update(request,pk):
-    offert = offert.objects.filter(pk=pk).first()
+    offert = Offert.objects.filter(pk=pk).first()
     form = UpdateOffertForm(instance=offert)
     context={}
     context['offert']=offert
@@ -55,7 +55,7 @@ def offert_update(request,pk):
 def offert_form_update(request,pk):
     context={}
     if request.method == "POST":
-        offert = offert.objects.filter(pk=pk).first()
+        offert = Offert.objects.filter(pk=pk).first()
         form = UpdateOffertForm(request.POST,request.FILES,instance=offert)
         if form.is_valid():
             form.save()
@@ -72,7 +72,7 @@ def offert_form_update(request,pk):
 # Delete result table
 @staff_member_required(login_url='/shop')
 def offert_delete(request,pk):
-    offert = offert.objects.filter(pk=pk).first()
+    offert = Offert.objects.filter(pk=pk).first()
     context={}
     if request.method == "POST":
         if offert:
