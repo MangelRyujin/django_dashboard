@@ -8,7 +8,7 @@ logger = logging.getLogger(__name__)
 from django.contrib.admin.views.decorators import staff_member_required
 
 # offert view (index)
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def offert_view(request):
     response= render(request,'offert_templates/offert.html')
     response['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
@@ -17,12 +17,12 @@ def offert_view(request):
     return response
 
 # Charge result table
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def offert_table_results(request):
     return  render(request,'offert_templates/offert_table_results.html',context=_show_offert(request))
        
 # offert create form
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def offert_create(request):
     context={}
     
@@ -41,7 +41,7 @@ def offert_create(request):
 
 
 # offert update forms
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def offert_update(request,pk):
     offert = Offert.objects.filter(pk=pk).first()
     form = UpdateOffertForm(instance=offert)
@@ -51,7 +51,7 @@ def offert_update(request,pk):
     return render(request,'offert_templates/actions/offertUpdate/offertUpdateForm.html',context) 
 
 # offert main information update form
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def offert_form_update(request,pk):
     context={}
     if request.method == "POST":
@@ -70,7 +70,7 @@ def offert_form_update(request,pk):
 
 
 # Delete result table
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def offert_delete(request,pk):
     offert = Offert.objects.filter(pk=pk).first()
     context={}
@@ -88,6 +88,7 @@ def offert_delete(request,pk):
 
 
 # Show offert table
+@staff_member_required(login_url='/')
 def _show_offert(request):
     get_copy = request.GET.copy()
     parameters = get_copy.pop('page', True) and get_copy.urlencode()
@@ -104,7 +105,7 @@ def _show_offert(request):
 
 
 # Detail user offert table
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def offert_detail(request,pk):
     offert = Offert.objects.filter(pk=pk).first()
     return  render(request,'offert_templates/actions/offertDetail/offertDetail.html',{"offert":offert})

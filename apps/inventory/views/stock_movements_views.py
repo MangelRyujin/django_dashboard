@@ -11,7 +11,7 @@ from apps.products.models import Product
 logger = logging.getLogger(__name__)
 
 # Stock view (index)
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def stock_movements_view(request):
     response= render(request,'stock_movements_templates/stock_movements.html')
     response['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
@@ -20,12 +20,12 @@ def stock_movements_view(request):
     return response
 
 # Charge result table
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def stock_movements_table_results(request):
     return  render(request,'stock_movements_templates/stock_movements_table_results.html',context=_show_stock_movements(request))
        
 # Stock create form
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def stock_movements_simple_create(request):
     context={
          'stocks':Stock.objects.all(),
@@ -54,7 +54,7 @@ def stock_movements_simple_create(request):
     return render(request,'stock_movements_templates/actions/stockCreate/stockMovementSimpleCreateForm.html',context) 
 
 # Stock create form
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def stock_movements_multiple_create(request):
     context={
         'stocks':Stock.objects.all(),
@@ -86,6 +86,7 @@ def stock_movements_multiple_create(request):
 
 
 # Show stock table
+@staff_member_required(login_url='/')
 def _show_stock_movements(request):
     get_copy = request.GET.copy()
     parameters = get_copy.pop('page', True) and get_copy.urlencode()
@@ -102,7 +103,7 @@ def _show_stock_movements(request):
 
 
 # Detail stock table
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def stock_movements_detail(request,pk):
     stock_movement = StockMovements.objects.filter(pk=pk).first()
     return  render(request,'stock_movements_templates/actions/stockDetail/stockDetail.html',{"stock_movement":stock_movement})

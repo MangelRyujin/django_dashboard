@@ -1,0 +1,139 @@
+{% extends "shop_templates/base.html" %}
+{% load static %}
+{% block title %}Register{% endblock %}
+{% block contend %}
+
+<section class="container  mb-4 pb-4" >
+    <div class="d-flex flex-column justify-content-center align-items-center w-100 h-100 ">
+      <a href="{% url "shop_view" %}" class="d-flex justify-content-center">
+        <img class="img-fluid rounded" width="250" height="250" src="{% static "/assets/img/remiux-logo.png" %} " alt="icons-hero.png">
+
+      </a>
+        <h1 class="text-center h3 mb-3  text-body-secondary">Registro</h1>
+      <div class="col-12 col-sm-10 col-md-7 col-lg-4" >
+        {% if form %}
+
+        <form class="w-auto justify-center"
+          hx-post="{% url 'register_form_view' %}"
+          hx-target="#RegisterForm"
+          hx-swap="innerHTML"
+          hx-trigger="submit"
+          hx-indicator="#spinnerRegisterForm"
+          >
+            
+            {% csrf_token %}
+            
+            
+              
+              <div class=" input-group ">
+                  
+                  <input type="text" class="form-control" id="floatingInputUsername" name='username' required placeholder="Username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                  
+                  <label for="floatingInputUsername" class="input-group-text" id="basic-addon2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="20 bi-person-circle" viewBox="0 0 16 16">
+                      <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                      <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+                    </svg>
+                  </label>
+                  
+                </div>
+                {% if form.username.errors %}
+                  <div class="alert alert-danger mt-2">
+                      {% for error in form.username.errors %}
+                          {{ error }}
+                      {% endfor %}
+                    </div>
+                  {% endif %}
+                <div class=" input-group mt-4">
+                  
+                  <input type="text" class="form-control" id="floatingInputEmail" name='email' required placeholder="Correo electrónico" aria-label="Recipient's email" aria-describedby="basic-addon2">
+                  
+                  <label for="floatingInputEmail" class="input-group-text" id="basic-addon2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class=" bi-google" viewBox="0 0 16 16">
+                      <path d="M15.545 6.558a9.4 9.4 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.7 7.7 0 0 1 5.352 2.082l-2.284 2.284A4.35 4.35 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.8 4.8 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.7 3.7 0 0 0 1.599-2.431H8v-3.08z"/>
+                    </svg>
+                  </label>
+                  
+                </div>
+                {% if form.email.errors %}
+            <div class="alert alert-danger mt-2">
+                {% for error in form.email.errors %}
+                    {{ error }}
+                {% endfor %}
+              </div>
+            {% endif %}
+                <div class=" input-group mt-4">
+                  
+                  <input type="password" class="form-control" id="floatingInputPassword1" name='password1' required placeholder="Password" aria-label="Recipient's password" aria-describedby="basic-addon2">
+                  
+                  <span class="input-group-text" id="basic-addon2">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class=" bi-eye-slash-fill cursor-pointer" viewBox="0 0 16 16" id="eyeSlashIcon1">
+                          <path d="m10.79 12.912-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7 7 0 0 0 2.79-.588M5.21 3.088A7 7 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474z"/>
+                      <path d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829zm4.95.708-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829zm3.171 6-12-12 .708-.708 12 12z"/>
+                      </svg>
+                      <svg  xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class=" bi-eye-fill cursor-pointer d-none" viewBox="0 0 16 16" id="eyeIcon1">
+                          <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
+                          <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
+                      </svg>
+                      
+                  </span>
+                  
+                </div>
+                {% if form.password1.errors %}
+            <div class="alert alert-danger mt-2">
+                {% for error in form.password1.errors %}
+                    {{ error }}
+                {% endfor %}
+            </div>
+        {% endif %}
+                 <div class=" input-group mt-4">
+                  
+                  <input type="password" class="form-control" id="floatingInputPassword2" name='password2' required placeholder="Password Confirm" aria-label="Recipient's password confirm" aria-describedby="basic-addon2">
+                  
+                  <span class="input-group-text" id="basic-addon2">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class=" bi-eye-slash-fill cursor-pointer" viewBox="0 0 16 16" id="eyeSlashIcon2">
+                          <path d="m10.79 12.912-1.614-1.615a3.5 3.5 0 0 1-4.474-4.474l-2.06-2.06C.938 6.278 0 8 0 8s3 5.5 8 5.5a7 7 0 0 0 2.79-.588M5.21 3.088A7 7 0 0 1 8 2.5c5 0 8 5.5 8 5.5s-.939 1.721-2.641 3.238l-2.062-2.062a3.5 3.5 0 0 0-4.474-4.474z"/>
+                      <path d="M5.525 7.646a2.5 2.5 0 0 0 2.829 2.829zm4.95.708-2.829-2.83a2.5 2.5 0 0 1 2.829 2.829zm3.171 6-12-12 .708-.708 12 12z"/>
+                      </svg>
+                      <svg  xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class=" bi-eye-fill cursor-pointer d-none" viewBox="0 0 16 16" id="eyeIcon2">
+                          <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
+                          <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"/>
+                      </svg>
+                      
+                  </span>
+                  
+                </div> 
+                {% if form.password2.errors %}
+                <div class="alert alert-danger mt-2">
+                    {% for error in form.password2.errors %}
+                        {{ error }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <div id="RegisterForm">
+              
+            </div>
+              <button class="btn d-flex justify-content-center align-items-center btn-outline-primary shadow-sm border-2 border-primary w-100 py-2 my-4" 
+              type="submit">
+                <span id="spinnerRegisterForm" class="htmx-indicator spinner-border spinner-border-sm me-2" ></span> Registrarse</button>
+            </form>
+        {% endif %}
+          
+           
+            
+                <a href="{% url "login_view" %}" class="text-decoration-none small d-flex text-body justify-content-end">
+                  <b class=" d-flex text-end ">¿Tengo cuenta? <p class="text-danger ms-1">Iniciar sesión</p></b>
+                 
+                </a>
+                
+                
+            
+      </div>
+          
+      
+    </div>
+  </section>
+
+  <script src="{% static '/assets/js/registerpass.js' %}"></script>
+  
+{% endblock contend %}

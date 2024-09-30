@@ -6,7 +6,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 logger = logging.getLogger(__name__)
 
 # order view (index)
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def settings_view(request):
     header=PrincipalHeader.objects.first()
     local=LocalSales.objects.first()
@@ -32,7 +32,7 @@ def settings_view(request):
     return response
 
 
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def save_header_settings_view(request):
     context={}
     header=PrincipalHeader.objects.first()
@@ -54,7 +54,7 @@ def save_header_settings_view(request):
     return render(request,'settings_templates/forms/header_form.html',context) 
     
 
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def save_local_settings_view(request):
     context={}
     local = LocalSales.objects.first()
@@ -72,7 +72,7 @@ def save_local_settings_view(request):
     
     
 
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def save_shop_settings_view(request):
     context={}
     shop=ShopSales.objects.first()
@@ -88,7 +88,7 @@ def save_shop_settings_view(request):
     return render(request,'settings_templates/forms/shop_form.html',context) 
     
     
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def save_social_settings_view(request):
     context={}
     social=SocialMedia.objects.first()
@@ -111,7 +111,7 @@ def save_social_settings_view(request):
     
     
 
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def save_wapp_settings_view(request):
     context={}
     if request.method == "POST":

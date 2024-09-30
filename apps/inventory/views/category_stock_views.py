@@ -10,7 +10,7 @@ logger = logging.getLogger(__name__)
 from django.contrib.admin.views.decorators import staff_member_required
 
 # category view (index)
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def category_stock_view(request):
     response= render(request,'category_stock_templates/category_stock.html')
     response['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
@@ -19,12 +19,12 @@ def category_stock_view(request):
     return response
 
 # Charge result table
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def category_stock_table_results(request):
     return  render(request,'category_stock_templates/category_stock_table_results.html',context=_show_category_stock(request))
        
 # category create form
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def category_stock_create(request):
     context={}
     if request.method == "POST":
@@ -42,7 +42,7 @@ def category_stock_create(request):
 
 
 # category update forms
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def category_stock_update(request,pk):
     category = CategoryStock.objects.filter(pk=pk).first()
     form = UpdateCategoryStockForm(instance=category)
@@ -52,7 +52,7 @@ def category_stock_update(request,pk):
     return render(request,'category_stock_templates/actions/categoryStockUpdate/categoryStockUpdateForm.html',context) 
 
 # category main information update form
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def category_stock_form_update(request,pk):
     context={}
     if request.method == "POST":
@@ -73,7 +73,7 @@ def category_stock_form_update(request,pk):
 
 
 # Delete result table
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def category_stock_delete(request,pk):
     category = CategoryStock.objects.filter(pk=pk).first()
     context={}
@@ -91,6 +91,7 @@ def category_stock_delete(request,pk):
 
 
 # Show category table
+@staff_member_required(login_url='/')
 def _show_category_stock(request):
     get_copy = request.GET.copy()
     parameters = get_copy.pop('page', True) and get_copy.urlencode()
@@ -107,7 +108,7 @@ def _show_category_stock(request):
 
 
 # Detail user category table
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def category_stock_detail(request,pk):
     category = Category.objects.filter(pk=pk).first()
     return  render(request,'category_templates/actions/categoryDetail/categoryDetail.html',{"category":category})

@@ -148,7 +148,7 @@
             
           <li class="list-unstyled text-body-secondary me-2" >
           <div class="nav-item dropdown">
-            
+            {% if not request.path == '/login/'%}
             {% if user.is_authenticated %}
             <a href="#" class="btn btn-link nav-link py-2 px-0 px-lg-2 dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown" aria-expanded="false">
               <img src="{% if user.image %}{{user.image.url}}{% else %}{% static '/assets/img/avatar.jpg' %}{% endif %} " alt="{% if user.image %}{{user.image.url}}{% else %}{% static '/assets/img/avatar.jpg' %}{% endif %}" width="30" height="30" class="rounded-circle me-2">
@@ -196,14 +196,17 @@
             {% else %}
             
             <div class="">
-              <a href="{% url "login_view" %}" type="button" class="btn  btn-primary m1-0 mx-sm-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+              <a href="{% url "login_view" %}" type="button" class="btn  btn-primary m1-0 mx-sm-2 align-items-center d-flex justify-content-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="me-1 bi-person-circle" viewBox="0 0 16 16">
                   <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
                   <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
                 </svg>
                 Iniciar</a>
             </div>
-            {% endif %}
+            {% endif %} 
+             
+              {% endif %}
+            
           </div>
           
           </li>
