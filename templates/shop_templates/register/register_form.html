@@ -1,0 +1,54 @@
+{% load static %}
+
+
+{% if form %}
+{% if form.errors %}
+
+
+<div class="alert alert-danger mt-2 py-1">
+  {% if form.username.errors %}
+                <div class=" mt-1">
+                  <strong>
+                    Nombre de usuario:
+                  </strong>
+                  {% for error in form.username.errors %}
+                      {{ error }}
+                  {% endfor %}
+                </div>
+            {% endif %}
+            {% if form.email.errors %}
+                <div class=" mt-1">
+                  <strong>
+                    Email:
+                  </strong>
+                  {% for error in form.email.errors %}
+                      {{ error }}
+                  {% endfor %}
+                </div>
+            {% endif %}
+            
+            {% if form.password1.errors %}
+            
+                          <div class=" mt-1">
+                            <strong>
+                              Contraseña:
+                            </strong>
+                            {% for error in form.password1.errors %}
+                                {{ error }}
+                            {% endfor %}
+                          </div>
+                      {% endif %}
+            {% if form.password2.errors %}
+            
+                <div class=" mt-1">
+                  <strong>
+                    Contraseña:
+                  </strong>
+                  {% for error in form.password2.errors %}
+                      {{ error }}
+                  {% endfor %}
+                </div>
+            {% endif %}
+          </div>
+          {% endif %}
+{% endif %}

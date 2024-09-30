@@ -20,7 +20,7 @@ from django.conf import settings
 from django.views.static import serve
 from django.conf.urls.static import static
 from apps.shop.views.shop_views import shop_view
-from apps.general.views.general_views import   login_view, change_password_view,change_password_form
+from apps.general.views.general_views import   login_view, change_password_view,change_password_form, register_form_view,register_view
 from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
@@ -29,6 +29,9 @@ urlpatterns = [
     re_path(r'^static/(?P<path>.*)$',serve,{'document_root':settings.STATIC_ROOT}),
     path('',include('apps.shop.urls.urls')),
     path('login/',login_view,name='login_view'),
+    path('register/',register_view,name='register_view'),
+    path('register_form_view/',register_form_view,name='register_form_view'),
+    
     path('logout/',LogoutView.as_view(),name='logout'),
     path('change_password/',change_password_view,name='change_password_view'),
     path('change_password_form/',change_password_form,name='change_password_form'),

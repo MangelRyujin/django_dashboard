@@ -12,7 +12,7 @@ from apps.inventory.models import Supplier
 logger = logging.getLogger(__name__)
 
 # supplier view (index)
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def supplier_view(request):
     response= render(request,'supplier_templates/supplier.html')
     response['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
@@ -21,12 +21,12 @@ def supplier_view(request):
     return response
 
 # Charge result table
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def supplier_table_results(request):
     return  render(request,'supplier_templates/supplier_table_results.html',context=_show_supplier(request))
        
 # supplier create form
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def supplier_create(request):
     form = CreateSupplierForm()
     context={}
@@ -43,7 +43,7 @@ def supplier_create(request):
 
 
 # supplier update forms
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def supplier_update(request,pk):
     supplier = Supplier.objects.filter(pk=pk).first()
     form = UpdateSupplierForm(instance=supplier)
@@ -54,7 +54,7 @@ def supplier_update(request,pk):
     return render(request,'supplier_templates/actions/supplierUpdate/supplierUpdateForm.html',context) 
 
 # supplier main information update form
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def supplier_form_update(request,pk):
     context={}
     if request.method == "POST":
@@ -73,7 +73,7 @@ def supplier_form_update(request,pk):
 
 
 # Delete result table
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def supplier_delete(request,pk):
     supplier = Supplier.objects.filter(pk=pk).first()
     context={}
@@ -91,6 +91,7 @@ def supplier_delete(request,pk):
 
 
 # Show supplier table
+@staff_member_required(login_url='/')
 def _show_supplier(request):
     get_copy = request.GET.copy()
     parameters = get_copy.pop('page', True) and get_copy.urlencode()
@@ -107,7 +108,7 @@ def _show_supplier(request):
 
 
 # Detail user supplier table
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def supplier_detail(request,pk):
     supplier = Supplier.objects.filter(pk=pk).first()
     return  render(request,'supplier_templates/actions/supplierDetail/supplierDetail.html',{"supplier":supplier})

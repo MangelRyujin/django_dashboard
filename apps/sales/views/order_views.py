@@ -9,7 +9,7 @@ from apps.sales.models import Order,OrderItem
 logger = logging.getLogger(__name__)
 
 # order view (index)
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def order_view(request):
     products=Product.objects.all()
     created_users = User.objects.filter(is_staff=True)
@@ -20,12 +20,13 @@ def order_view(request):
     return response
 
 # Charge result table
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def order_table_results(request):
     return  render(request,'sales/order_templates/order_table_results.html',context=_show_order(request))
 
 
 # Show order table
+@staff_member_required(login_url='/')
 def _show_order(request):
     get_copy = request.GET.copy()
     parameters = get_copy.pop('page', True) and get_copy.urlencode()
@@ -42,7 +43,7 @@ def _show_order(request):
 
 
 # Detail user order table
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def order_detail(request,pk):
     order = Order.objects.filter(pk=pk).first()
     items = order.orderitem_set.all()

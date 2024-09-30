@@ -9,7 +9,7 @@ from apps.products.models import Product
 logger = logging.getLogger(__name__)
 
 # facture view (index)
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def facture_view(request):
     suppliers = Supplier.objects.all()
     response= render(request,'facture_templates/facture.html',{'suppliers':suppliers})
@@ -19,12 +19,12 @@ def facture_view(request):
     return response
 
 # Charge result table
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def facture_table_results(request):
     return  render(request,'facture_templates/facture_table_results.html',context=_show_facture(request))
        
 # facture create form
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def facture_create(request):
     context={
         'suppliers':Supplier.objects.all(),
@@ -46,7 +46,7 @@ def facture_create(request):
 
 
 # facture update forms
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def facture_update(request,pk):
     facture = Facture.objects.filter(pk=pk).first()
     form = UpdateFactureForm(instance=facture)
@@ -56,7 +56,7 @@ def facture_update(request,pk):
     return render(request,'facture_templates/actions/factureUpdate/factureUpdateForm.html',context) 
 
 # facture main information update form
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def facture_form_update(request,pk):
     context={}
     if request.method == "POST":
@@ -75,7 +75,7 @@ def facture_form_update(request,pk):
 
 
 # Delete result table
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def facture_delete(request,pk):
     facture = Facture.objects.filter(pk=pk).first()
     context={}
@@ -93,6 +93,7 @@ def facture_delete(request,pk):
 
 
 # Show facture table
+@staff_member_required(login_url='/')
 def _show_facture(request):
     get_copy = request.GET.copy()
     parameters = get_copy.pop('page', True) and get_copy.urlencode()
@@ -109,7 +110,7 @@ def _show_facture(request):
 
 
 # Detail user facture table
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def facture_detail(request,pk):
     facture = Facture.objects.filter(pk=pk).first()
     return  render(request,'facture_templates/actions/factureDetail/factureDetail.html',{"facture":facture})

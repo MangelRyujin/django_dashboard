@@ -10,7 +10,7 @@ from apps.products.models import Product
 logger = logging.getLogger(__name__)
 
 # Stock view (index)
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def stock_view(request):
     categories = CategoryStock.objects.all()
     warehouses = Warehouse.objects.all()
@@ -22,12 +22,12 @@ def stock_view(request):
     return response
 
 # Charge result table
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def stock_table_results(request):
     return  render(request,'stock_templates/stock_table_results.html',context=_show_stock(request))
        
 # Stock create form
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def stock_create(request):
     context={
         'categories':CategoryStock.objects.all(),
@@ -50,7 +50,7 @@ def stock_create(request):
 
 
 # Stock update forms
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def stock_update(request,pk):
     stock = Stock.objects.filter(pk=pk).first()
     form = UpdateStockForm(instance=stock)
@@ -60,7 +60,7 @@ def stock_update(request,pk):
     return render(request,'stock_templates/actions/stockUpdate/stockUpdateForm.html',context) 
 
 # Stock main information update form
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def stock_form_update(request,pk):
     context={}
     if request.method == "POST":
@@ -83,7 +83,7 @@ def stock_form_update(request,pk):
 
 
 # Delete result table
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def stock_delete(request,pk):
     stock = Stock.objects.filter(pk=pk).first()
     context={}
@@ -101,6 +101,7 @@ def stock_delete(request,pk):
 
 
 # Show stock table
+@staff_member_required(login_url='/')
 def _show_stock(request):
     get_copy = request.GET.copy()
     parameters = get_copy.pop('page', True) and get_copy.urlencode()
@@ -117,7 +118,7 @@ def _show_stock(request):
 
 
 # Detail stock table
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def stock_detail(request,pk):
     stock = Stock.objects.filter(pk=pk).first()
     return  render(request,'stock_templates/actions/stockDetail/stockDetail.html',{"stock":stock})

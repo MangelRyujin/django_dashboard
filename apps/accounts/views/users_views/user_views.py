@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 from django.contrib.admin.views.decorators import staff_member_required
 
 # user view (index)
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def user_view(request):
     response= render(request,'user_templates/user.html')
     response['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
@@ -20,12 +20,12 @@ def user_view(request):
     return response
 
 # Charge result table
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def user_table_results(request):
     return  render(request,'user_templates/user_table_results.html',context=_show_user(request))
        
 # admin create form
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def admin_create(request):
     form = SingUpForm(request.POST or None)
     groups = Group.objects.all()
@@ -43,7 +43,7 @@ def admin_create(request):
 
 
 # admin update forms
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def user_update(request,pk):
     user = User.objects.filter(pk=pk).first()
     pass_form = SetPasswordForm(user=user)
@@ -55,7 +55,7 @@ def user_update(request,pk):
 
 
 # user password update form
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def user_password_update(request,pk):
     context={}
     if request.method == "POST":
@@ -79,7 +79,7 @@ def user_password_update(request,pk):
 
 
 # Delete result table
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def user_delete(request,pk):
     user = User.objects.filter(pk=pk).first()
     context={}
@@ -123,7 +123,7 @@ def _show_user(request):
 
 
 # Detail user table
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def user_detail(request,pk):
     user = User.objects.filter(pk=pk).first()
     return  render(request,'user_templates/actions/userDetail/userDetail.html',{"user":user})

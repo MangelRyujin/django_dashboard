@@ -9,7 +9,7 @@ from apps.products.models import ProductReview,Product,Category
 logger = logging.getLogger(__name__)
 
 # Product view (index)
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def product_review_view(request):
     products = Product.objects.all()
     product_reviews = ProductReview.objects.all()
@@ -19,10 +19,11 @@ def product_review_view(request):
     response['Expires'] = '0'
     return response
 
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def product_table_reviews_results(request):
     return  render(request,'review_templates/product_table_reviews_results.html',context=_show_product_reviews(request))
 
+@staff_member_required(login_url='/')
 def _show_product_reviews(request):
     get_copy = request.GET.copy()
     parameters = get_copy.pop('page', True) and get_copy.urlencode()
@@ -38,7 +39,7 @@ def _show_product_reviews(request):
     return context
 
 # Product create form
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def product_create_reviews(request):
     context={
         'categories':Category.objects.all()
@@ -58,7 +59,7 @@ def product_create_reviews(request):
     return render(request,'product_templates/actions/productCreate/productCreateReviewForm.html',context) 
 
 # Product update forms
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def product_update_reviews(request,pk):
     product = Product.objects.filter(pk=pk).first()
     form = UpdateProductReviewForm(instance=product)
@@ -68,7 +69,7 @@ def product_update_reviews(request,pk):
     return render(request,'product_templates/actions/productUpdate/productUpdateForm.html',context) 
 
 # Product main information update form
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def product_form_update_reviews(request,pk):
     context={}
     if request.method == "POST":
@@ -89,7 +90,7 @@ def product_form_update_reviews(request,pk):
         return render(request,'product_templates/actions/productUpdate/productUpdateCheckForm.html',context)
 
 # Update result table
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def product_active_reviews(request,pk):
     review = ProductReview.objects.filter(pk=pk).first()
     context={}
@@ -111,7 +112,7 @@ def product_active_reviews(request,pk):
 
 
 # Delete result table
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def product_delete_reviews(request,pk):
     review = ProductReview.objects.filter(pk=pk).first()
     print(review)

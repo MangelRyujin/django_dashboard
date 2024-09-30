@@ -12,7 +12,7 @@ logger = logging.getLogger(__name__)
 from django.contrib.admin.views.decorators import staff_member_required
 
 # admin view (index)
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def admin_view(request):
     groups = Group.objects.all()
     response= render(request,'admin_templates/admin.html',{'groups': groups})
@@ -22,12 +22,12 @@ def admin_view(request):
     return response
 
 # Charge result table
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def admin_table_results(request):
     return  render(request,'admin_templates/admin_table_results.html',context=_show_admin(request))
        
 # admin create form
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def admin_create(request):
     form = SingUpForm(request.POST or None)
     groups = Group.objects.all()
@@ -48,7 +48,7 @@ def admin_create(request):
 
 
 # admin update forms
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def admin_update(request,pk):
     admin = User.objects.filter(pk=pk).first()
     form = ChangeAdminForm(instance=admin)
@@ -60,7 +60,7 @@ def admin_update(request,pk):
     return render(request,'admin_templates/actions/adminUpdate/adminUpdateForm.html',context) 
 
 # admin main information update form
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def admin_main_information_update(request,pk):
     context={}
     if request.method == "POST":
@@ -82,7 +82,7 @@ def admin_main_information_update(request,pk):
 
 
 # admin password update form
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def admin_password_update(request,pk):
     context={}
     if request.method == "POST":
@@ -103,7 +103,7 @@ def admin_password_update(request,pk):
 
 
 # Delete result table
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def admin_delete(request,pk):
     admin = User.objects.filter(pk=pk).first()
     context={}
@@ -121,6 +121,7 @@ def admin_delete(request,pk):
 
 
 # Show admin table
+@staff_member_required(login_url='/')
 def _show_admin(request):
     get_copy = request.GET.copy()
     parameters = get_copy.pop('page', True) and get_copy.urlencode()
@@ -137,13 +138,13 @@ def _show_admin(request):
 
 
 # Detail user admin table
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def admin_detail(request,pk):
     admin = User.objects.filter(pk=pk).first()
     return  render(request,'admin_templates/actions/adminDetail/adminDetail.html',{"admin":admin})
 
 # Change Personal Information of user admins
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def change_information(request):
     user = User.objects.get(pk=request.user.pk)
 

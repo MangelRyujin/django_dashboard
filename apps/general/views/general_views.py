@@ -1,17 +1,17 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required 
 from django.contrib.auth import authenticate, login 
 from django.http import HttpResponse
 from django.contrib.auth.forms import PasswordChangeForm
-
 from apps.products.models import Category,Product,Coupon
 from ..decorators import user_is_not_authenticated
 from apps.accounts.models import User
 from django.contrib.admin.views.decorators import staff_member_required
+from apps.general.forms.register_form import RegisterForm
 
 # Dashboard view (index)
 # @login_required(login_url='/login/')
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def dashboard_view(request):
     
     admin_history = User.history.filter(is_staff=True)[:10]
@@ -62,6 +62,27 @@ def login_view(request):
 
     return render(request, 'login.html',{"next_url":next_url})
 
+# Register in view
+@user_is_not_authenticated
+def register_view(request):
+    return render(request, 'register.html',{"form":RegisterForm(request.POST or None)})
+
+# Register in view
+@user_is_not_authenticated
+def register_form_view(request):
+    if request.method == "POST":
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            response = render(request, 'login.html')
+            response["HX-Redirect"]= '/login/'
+            return response
+        else:
+            print(form.errors)
+    else:
+        form = RegisterForm()
+    return render(request, 'shop_templates/register/register_form.html',{"form":form})
+
 
 # Change password view
 @login_required(login_url='/login/')
@@ -88,7 +109,7 @@ def change_password_form(request):
         
         
 # Sales demo
-@login_required(login_url='/login/')
+@staff_member_required(login_url='/')
 def sales_view(request):
     return render(request, 'sales.html')
         

@@ -11,7 +11,7 @@ from apps.products.models import Coupon, Product
 logger = logging.getLogger(__name__)
 
 # coupon view (index)
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def coupon_view(request):
     context = {
         'users':User.objects.filter(is_staff=False,is_active=True),
@@ -24,12 +24,12 @@ def coupon_view(request):
     return response
 
 # Charge result table
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def coupon_table_results(request):
     return  render(request,'coupon_templates/coupon_table_results.html',context=_show_coupon(request))
        
 # coupon create form
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def coupon_create(request):
     context={}
     context['users']=User.objects.filter(is_active=True,is_staff=False)
@@ -50,7 +50,7 @@ def coupon_create(request):
 
 
 # coupon update forms
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def coupon_update(request,pk):
     coupon = Coupon.objects.filter(pk=pk).first()
     form = UpdateCouponForm(instance=coupon)
@@ -62,7 +62,7 @@ def coupon_update(request,pk):
     return render(request,'coupon_templates/actions/couponUpdate/couponUpdateForm.html',context) 
 
 # coupon main information update form
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def coupon_form_update(request,pk):
     context={}
     context['users']=User.objects.filter(is_active=True,is_staff=False)
@@ -85,7 +85,7 @@ def coupon_form_update(request,pk):
 
 
 # Delete result table
-@staff_member_required(login_url='/shop')
+@staff_member_required(login_url='/')
 def coupon_delete(request,pk):
     coupon = Coupon.objects.filter(pk=pk).first()
     context={}
@@ -103,6 +103,7 @@ def coupon_delete(request,pk):
 
 
 # Show category table
+@staff_member_required(login_url='/')
 def _show_coupon(request):
     get_copy = request.GET.copy()
     parameters = get_copy.pop('page', True) and get_copy.urlencode()
