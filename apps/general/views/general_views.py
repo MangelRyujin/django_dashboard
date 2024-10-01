@@ -107,10 +107,3 @@ def change_password_form(request):
         else:
             return render(request, 'change_password/change_password_form.html',{"form":form})
         
-        
-# Sales demo
-@staff_member_required(login_url='/')
-def sales_view(request):
-    return render(request, 'sales.html')
-        
-        

@@ -1,5 +1,5 @@
 from django.urls import path,include
-from apps.general.views.general_views import dashboard_view, sales_view
+from apps.general.views.general_views import dashboard_view
 from apps.products.views.category_views import *
 
 urlpatterns = [
@@ -18,9 +18,7 @@ urlpatterns = [
     path('reviews/',include('apps.products.urls.product_review_urls')),
     path('coupons/',include('apps.products.urls.coupon_urls')),
     path('orders/',include('apps.sales.urls.order_urls')),
+    path('local_sales/',include('apps.sales.urls.local_order_urls')),
     path('settings/',include('apps.general.urls.settings_urls')),
-    
-    
-    path('sales/',sales_view,name='sales_view'),
 ]
 
