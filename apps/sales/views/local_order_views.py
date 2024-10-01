@@ -3,8 +3,10 @@ from django.contrib.admin.views.decorators import staff_member_required
 import logging
 from django.core.paginator import Paginator
 from apps.sales.filters import LocalOrderFilter
+from apps.sales.forms.local_order_forms import CreateLocalOrderForm
 from apps.sales.models import LocalOrder
 logger = logging.getLogger(__name__)
+from django.db.models import Q
   
 # Sales demo
 @staff_member_required(login_url='/')
@@ -23,24 +25,23 @@ def local_order_results_view(request):
     return  render(request,'sales/local_order_templates/local_order_result.html',context=_show_product(request))
        
 # # Product create form
-# @staff_member_required(login_url='/')
-# def product_create(request):
-#     context={
-#         'categories':Category.objects.all()
-#     }
-    
-#     if request.method == "POST":
-#         form = CreateProductForm(request.POST,request.FILES)
-#         if form.is_valid():
-#             form.save()  
-#             context['message']='Created successfully'
-#         else:
-#             context['error']='Correct the errors'
-#         context['form']=form
-#         return render(request,'product_templates/actions/productCreate/productCreateForm.html',context) 
-#     form = CreateProductForm()
-#     context['form']=form
-#     return render(request,'product_templates/actions/productCreate/productCreateForm.html',context) 
+@staff_member_required(login_url='/')
+def local_order_create(request):
+    context={}
+    if request.method == "POST":
+        form = CreateLocalOrderForm(request.POST)
+        if form.is_valid():
+            order = form.save(commit=False)
+            order.user_create = request.user
+            order.save()
+            context['message']='Created successfully'
+        else:
+            context['error']='Correct the errors'
+        context['form']=form
+        return render(request,'sales/local_order_templates/actions/localOrderCreate/localOrderCreateForm.html',context) 
+    form = CreateLocalOrderForm()
+    context['form']=form
+    return render(request,'sales/local_order_templates/actions/localOrderCreate/localOrderCreateForm.html',context) 
 
 
 # # Product update forms
@@ -96,16 +97,21 @@ def local_order_results_view(request):
 # Show Product table
 @staff_member_required(login_url='/')
 def _show_product(request):
-    get_copy = request.GET.copy()
-    parameters = get_copy.pop('page', True) and get_copy.urlencode()
-    local_orders = LocalOrderFilter(request.GET, queryset=LocalOrder.objects.all().order_by('-id'))
-    paginator = Paginator(local_orders.qs, 25)    # Show 25 contacts per page.
+    
+    keyword = request.POST.get("keyword",'')
+
+    local_orders = LocalOrder.objects.filter(
+        Q(pk__icontains=keyword) | Q(user_ci__icontains=keyword)
+        | Q(user_last_name__icontains=keyword)| Q(user_phone__icontains=keyword)
+        | Q(address__icontains=keyword)| Q(user_first_name__icontains=keyword)
+        | Q(localorderitem__product__name__icontains=keyword) | Q(localorderitem__product__code__icontains=keyword)
+        ).order_by('-id')
+    paginator = Paginator(local_orders, 25)    # Show 25 contacts per page.
     page_number = request.GET.get("page",1)
     page_obj = paginator.get_page(page_number)
     context={
         
         'pagination':page_obj,
-        'parameters': parameters,
     }
     return context
 
