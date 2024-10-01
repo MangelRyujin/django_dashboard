@@ -46,7 +46,7 @@
                 </div>
                 <div class="col-12">
                   <label for="{{ form.ci.id_for_label }}" class="form-label">CI</label>
-                  <input type="text" name="ci" value="{{ form.ci.value }}" class="form-control" id="{{ form.ci.id_for_label }}" placeholder="CI">
+                  <input type="text" name="ci" value="{% if  form.ci.value %}{{ form.ci.value }}{% endif %}" class="form-control" id="{{ form.ci.id_for_label }}" placeholder="CI">
                 </div>
                 <div class="col-12">
                   <div class="row">
