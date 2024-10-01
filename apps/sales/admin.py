@@ -5,3 +5,6 @@ from .models import *
 
 admin.site.register(Order)
 admin.site.register(OrderItem)
+admin.site.register(LocalOrder)
+admin.site.register(LocalOrderItem)
+admin.site.register(LocalOrderItemStock)
