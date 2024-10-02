@@ -1,0 +1,162 @@
+{% load static %}
+
+{% if local_order %}
+
+<div class="col position-relative" id="LocalOrderCard{{local_order.pk}}">
+  <div id="LocalOrderCardSpinner{{local_order.pk}}" class="htmx-indicator w-100 h-100  loadding-blur position-absolute z-10 d-flex justify-content-center align-items-center"
+  style="min-height: 200px;z-index: 100;">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+<div class=" card h-100 list-group-item {% if local_order.state == 'p' %}list-group-item-warning border-warning-subtle{% else %}list-group-item-success border-success-subtle{% endif %} border-1 rounded  border shadow">
+        
+    <div class="card-header d-flex {% if local_order.state == 'p' %}border-warning-subtle{% else %}border-success-subtle{% endif %} justify-content-between p-2 align-items-center mb-1">
+      <div class="d-flex flex-column justify-content-center gap-1 align-items-start w-100">
+        <div class="d-flex justify-content-between w-100">
+          <span>#{{local_order.pk}}</span>
+          <div class="btn-group">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="cursor-pointer bi-three-dots-vertical" viewBox="0 0 16 16" data-bs-toggle="dropdown" aria-expanded="false" data-bs-reference="parent">
+              <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>
+            </svg>
+              <span class="visually-hidden">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu shadow">
+              {% if local_order.state == 'c' %}
+              
+                    <li class=" p-1"><a class="dropdown-item rounded d-flex align-items-center " href="#"
+                      >
+                      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="text-primary me-2 bi-cart-check-fill" viewBox="0 0 16 16">
+                        <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0m-1.646-7.646-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L8 8.293l2.646-2.647a.5.5 0 0 1 .708.708"/>
+                      </svg>
+                      Sold</a></li>
+                    
+                    <li>
+                      <li class=" p-1"><a class="dropdown-item rounded d-flex align-items-center " href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="me-2 text-warning bi-cart-x-fill" viewBox="0 0 16 16">
+                          <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0M7.354 5.646 8.5 6.793l1.146-1.147a.5.5 0 0 1 .708.708L9.207 7.5l1.147 1.146a.5.5 0 0 1-.708.708L8.5 8.207 7.354 9.354a.5.5 0 1 1-.708-.708L7.793 7.5 6.646 6.354a.5.5 0 1 1 .708-.708"/>
+                        </svg>
+                        Revert</a></li>
+                      
+                      <li>
+                    {% else %}
+                    <li class=" p-1"><a class="dropdown-item rounded d-flex align-items-center " href="#"
+                      hx-get="{% url 'local_order_check' pk=local_order.pk  %} "
+                      hx-target="#LocalOrderCard{{local_order.pk}}"
+                      hx-swap="outerHTML"
+                      hx-trigger="click"
+                      hx-indicator="#LocalOrderCardSpinner{{local_order.pk}}">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="me-2 text-success bi-check2-all" viewBox="0 0 16 16">
+                        <path d="M12.354 4.354a.5.5 0 0 0-.708-.708L5 10.293 1.854 7.146a.5.5 0 1 0-.708.708l3.5 3.5a.5.5 0 0 0 .708 0zm-4.208 7-.896-.897.707-.707.543.543 6.646-6.647a.5.5 0 0 1 .708.708l-7 7a.5.5 0 0 1-.708 0"/>
+                        <path d="m5.354 7.146.896.897-.707.707-.897-.896a.5.5 0 1 1 .708-.708"/>
+                      </svg>
+                      Check</a></li>
+                    
+                    <li>
+                    <li class=" p-1"><a class="dropdown-item rounded d-flex align-items-center " href="#">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class=" me-2 text-warning bi-pencil-fill" viewBox="0 0 16 16">
+                          <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.5.5 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11z"/>
+                        </svg>
+                        Edit</a></li>
+                      
+                    <li>
+                    {% endif %}
+              
+          
+              <hr class="dropdown-divider"></li>
+              <li class=" p-1"><a class="dropdown-item rounded d-flex align-items-center " href="#"
+                data-bs-toggle="modal" data-bs-target="#modalLocalOrderDelete" 
+                      hx-get="{% url 'local_order_delete' pk=local_order.id  %} "
+                      hx-target="#LocalOrderDelete"
+                      hx-swap="innerHTML"
+                      hx-trigger="click">
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="text-danger me-2 bi-trash3-fill" viewBox="0 0 16 16">
+                  <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"/>
+                </svg>
+                Delete</a></li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="d-flex">
+          <img src="{% if user.image %}{{user.image.url}}{% else %}{% static '/assets/img/avatar.jpg' %}{% endif %} " alt="{% if user.image %}{{user.image.url}}{% else %}{% static '/assets/img/avatar.jpg' %}{% endif %}" width="25" height="25" class="rounded-circle me-2">
+          <span class="text-ellipsis small">{{user.username}}</span>
+        </div>
+        <span class="d-block small lh-sm ">{{local_order.created_date}}</span>
+      </div>
+      
+    </div>
+    <div class="card-body p-2 overflow-x-hidden" style="max-height: 250px; min-height: 250px;">
+      {% if local_order.localorderitem_set %}
+        {% for local_order_item in local_order.localorderitem_set.all %}
+          <div class="d-flex justify-content-between align-items-center py-1 ">
+            <div class="d-flex align-items-center">
+              <img loading="lazy" src="{% if local_order_item.product.image_one %}{{local_order_item.product.image_one.url}}{% else %}{% static "/assets/img/icon-image-not-found-free-vector" %}{% endif %}" alt="" width="50" height="50" class="rounded-circle me-2">
+              <p class=" mb-0 small lh-sm  ">
+                <span class="d-block mb-0 small text-ellipsis-150">{{local_order_item.product.name}}
+                  
+                </span>
+                <span class="small">{{local_order_item.cant}}x - $ {{local_order_item.total_price}}</span>
+              </p>
+            </div>
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="cursor-pointer text-warning bi-pencil-fill" viewBox="0 0 16 16">
+              <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.5.5 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11z"/>
+            </svg>
+          </div>
+          {% if local_order_item.localorderitemstock_set %}
+          <div class="container px-0">
+            <div class="row row-cols-3 align-items-center py-1 g-1 ">
+              {% for local_order_item_stock in local_order_item.localorderitemstock_set.all %}
+                <div class="col ">
+                  <div class=" border {% if local_order.state == 'p' %}list-group-item-warning border-warning{% else %}list-group-item-success border-success-subtle{% endif %} shadow-sm border-1 list-group-item-action justify-content-between p-1 d-flex align-items-center py-1 rounded-pill">
+                    <span class="small text-ellipsis">{{local_order_item_stock.cant}}x-<span >{{local_order_item_stock.stock.code}}</span> </span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="cursor-pointer text-danger bi-x-octagon-fill" viewBox="0 0 16 16">
+                      <path d="M11.46.146A.5.5 0 0 0 11.107 0H4.893a.5.5 0 0 0-.353.146L.146 4.54A.5.5 0 0 0 0 4.893v6.214a.5.5 0 0 0 .146.353l4.394 4.394a.5.5 0 0 0 .353.146h6.214a.5.5 0 0 0 .353-.146l4.394-4.394a.5.5 0 0 0 .146-.353V4.893a.5.5 0 0 0-.146-.353zm-6.106 4.5L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708"/>
+                    </svg>
+                  </div>
+                  
+                </div>
+                
+              {% endfor %}
+              
+              
+            </div>
+          </div>
+          {% endif %}
+          
+        {% endfor %}
+      {% endif %}
+      
+      
+    
+    
+      
+    </div>
+    <div class="card-footer {% if local_order.state == 'p' %}border-warning-subtle{% else %}border-success-subtle{% endif %} p-2  ">
+      <div class="d-flex align-items-center justify-content-between">
+        <p class=" mb-0 small lh-sm     ">
+          <span class="d-block mb-0">{{local_order.total_items}} items</span>
+          </p>
+          <p class=" mb-0 small lh-sm     ">
+            <span class="d-block mb-0">$ {{local_order.total_price}}</span>
+            </p>
+      </div>
+      {% if message %}
+      <div class="alert alert-dismissible alert-danger d-flex align-items-center mt-2 mb-0 px-2 fade show " role="alert">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="me-2 bi-exclamation-triangle-fill" viewBox="0 0 16 16">
+          <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+        </svg>
+          <div class="small">
+            {{message}}
+          </div>
+          <span type="button" class="btn-close px-2" data-bs-dismiss="alert" aria-label="Close"></span>
+        </div>
+      {% endif %}
+      
+    </div>
+  </div>
+</div>
+{% else %}
+No existe
+
+{% endif %}
