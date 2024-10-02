@@ -100,12 +100,10 @@ def product_active_reviews(request,pk):
             else:
                 review.is_active = True
             review.save()
-            print("paso")
             review_name=review.user.username
             context = _show_product_reviews(request)
             context['message']=f'Review of user {review_name} has been modified'
     else:
-            print("no paso")
             context['error']=f'Sorry, review not found'
     return render(request,'review_templates/product_table_reviews_results.html',context)
     
