@@ -5,9 +5,11 @@
        
 
 {% include 'sales/local_order_templates/actions/localOrderCreate/offcanvasRightLocalOrderCreate.html' %}
-{% comment %} {% include 'product_templates/actions/productDetail/offcanvasRightProductDetail.html' %}
-{% include 'product_templates/actions/productUpdate/offcanvasRightProductUpdate.html' %} {% endcomment %}
+{% include 'sales/local_order_templates/actions/localOrderItemCreate/offcanvasRightLocalOrderItemCreate.html' %}
+{% include 'sales/local_order_templates/actions/localOrderItemStockCreate/offcanvasRightLocalOrderItemStockCreate.html' %}
+{% include 'sales/local_order_templates/actions/localOrderUpdate/offcanvasRightLocalOrderUpdate.html' %}
 {% include 'sales/local_order_templates/actions/localOrderDelete/modalLocalOrderDelete.html' %}
+{% include 'sales/local_order_templates/actions/localOrderSold/modalLocalOrderSold.html' %}
 
   <!-- row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6  g-5  pb-5 -->
   <div class="w-100 d-flex justify-content-between align-items-center my-2" >
@@ -15,7 +17,6 @@
       
       <input type="search" 
             class="form-control"
-            
             name="keyword" placeholder="Search movies..." 
             hx-post="{% url 'local_order_results_view' %}" 
             hx-trigger="load, input changed delay:500ms, keyword" 
@@ -52,16 +53,16 @@
     hx-swap="innerHTML"
     hx-indicator="#spinner"></div>
 
-    <div class="w-100 position-relative d-flex justify-content-center align-items-center" >
+    <div class="w-100 position-relative d-flex justify-content-center align-items-center" style="min-height: 200px !important;" >
     <div id="spinner" class="htmx-indicator w-100 h-100  loadding-blur position-absolute z-10 d-flex justify-content-center align-items-center"
-    style="min-height: 200px;z-index: 1000;">
+    style="min-height: 200px !important;z-index: 100;">
       <div class="spinner-border" role="status">
         <span class="visually-hidden">Loading...</span>
       </div>
     </div>
     <div class="w-100" id="LocalOrderResults">
       
-    </div> 
+    </div>  
     </div>
     
 

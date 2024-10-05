@@ -18,7 +18,7 @@ class Order(models.Model):
         ('b', _("both")),
     )
     user_create=models.ForeignKey(User,on_delete=models.CASCADE,verbose_name="user_created_order")
-    user_id=models.CharField(_("User id"),max_length=255)
+    user_id=models.CharField(_("User id"),max_length=255, null=True,blank=True)
     user_ci=models.CharField(_("User ci"),max_length=255)
     user_full_name=models.CharField(_("User full name"),max_length=255)
     user_phone=models.CharField(_("User phone"),max_length=255)
@@ -105,7 +105,30 @@ class LocalOrder(models.Model):
     @property
     def total_price(self):
         return sum(item.total_price for item in self.localorderitem_set.all()) or 0
-
+    
+    # Verify existence in order items
+    
+    def items_exists(self):
+        local_order_items=self.localorderitem_set.all()
+        if local_order_items.exists():
+            for item in local_order_items:
+                if item.local_order_items_stocks_exist == False:
+                    return False
+            return True
+        return False
+    
+    
+    # Verify not in order items empty
+    @property
+    def items_empty_exists(self):
+        local_order_items=self.localorderitem_set.all()
+        if local_order_items.exists():
+            for item in local_order_items:
+                if item.local_order_items_stocks_empty_exist == False:
+                    return False
+            return True
+        return False
+    
 class LocalOrderItem(models.Model):
     order = models.ForeignKey(LocalOrder,on_delete=models.CASCADE,verbose_name="local_order_item")
     product = models.ForeignKey(Product,on_delete=models.CASCADE,verbose_name="local_product_item")
@@ -125,6 +148,25 @@ class LocalOrderItem(models.Model):
     def total_price(self):
         return sum(item.price for item in self.localorderitemstock_set.all()) or 0
 
+    # Verify existence in stocks for porducts
+    @property
+    def local_order_items_stocks_exist(self):
+        local_order_item_stocks=self.localorderitemstock_set.all()
+        if local_order_item_stocks.exists():
+            for stock in local_order_item_stocks:
+                if stock.stock_cant_exists == False:
+                    return False
+            return True
+        return False
+    
+    # Verify existence not stock empty
+    @property
+    def local_order_items_stocks_empty_exist(self):
+        local_order_item_stocks=self.localorderitemstock_set.all()
+        if local_order_item_stocks.exists():
+            return True
+        return False
+
 class LocalOrderItemStock(models.Model):
     item = models.ForeignKey(LocalOrderItem,on_delete=models.CASCADE,verbose_name="local_order_item_stock")
     stock = models.ForeignKey(Stock,on_delete=models.CASCADE,verbose_name="local_stock_item")
@@ -140,3 +182,9 @@ class LocalOrderItemStock(models.Model):
     @property
     def price(self):
         return self.cant * self.stock.unit_price
+    
+    @property
+    def stock_cant_exists(self):
+        if self.stock.cant >= self.cant:
+            return True
+        return False
