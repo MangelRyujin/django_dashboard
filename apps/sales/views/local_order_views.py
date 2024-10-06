@@ -1,3 +1,4 @@
+from decimal import Decimal
 from django.shortcuts import render
 from django.contrib.admin.views.decorators import staff_member_required
 import logging
@@ -8,9 +9,10 @@ from apps.sales.filters import LocalOrderFilter
 from apps.sales.forms.local_order_forms import CreateLocalOrderForm, CreateLocalOrderItemForm, CreateLocalOrderItemStockForm, UpdateLocalOrderForm
 from apps.sales.forms.order_forms import CreateOrderSoldForm
 from apps.sales.models import LocalOrder, LocalOrderItem, LocalOrderItemStock, Order
-from apps.sales.utils.local_order import items_discount_or_revert, order_paid_cash, order_paid_method, order_paid_transfer
+from apps.sales.utils.local_order import items_discount_or_revert, order_paid_cash, order_paid_method, order_paid_proccess_data, order_paid_transfer
 logger = logging.getLogger(__name__)
 from django.db.models import Q
+from django.utils.translation import gettext as _
   
 # Sales demo
 @staff_member_required(login_url='/')
@@ -230,15 +232,19 @@ def local_order_detail(request,pk):
 @staff_member_required(login_url='/')
 def local_order_sold(request,pk):
     local_order = LocalOrder.objects.filter(pk=pk).first()
+    
     context={
-        "local_order":local_order,
+        "local_order":local_order
     }
-    print()
     if request.method == "POST":
-        order_paid_method(local_order,request.POST["payment_method"],request.POST["cash"],request.POST["transfer"])
-        context["message"]="Payment successfully"
-        pass
-    return  render(request,'sales/local_order_templates/actions/localOrderSold/localOrderSoldVerify.html',context)
+        data = order_paid_proccess_data(request.POST,local_order.total_price)
+        form = CreateOrderSoldForm(data)
+        if form.is_valid():
+            order_paid_method(local_order,data["payment_type"],data['cash'],data['transfer'])
+            context["message"]=_("Payment successfully")
+        else:
+            context["form"]=form
+    return render(request,'sales/local_order_templates/actions/localOrderSold/localOrderSoldVerify.html',context)
       
 # Delete local order
 @staff_member_required(login_url='/')

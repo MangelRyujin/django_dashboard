@@ -17,7 +17,7 @@ class Order(models.Model):
         ('t', _("transfer")),
         ('b', _("both")),
     )
-    user_create=models.ForeignKey(User,on_delete=models.CASCADE,verbose_name="user_created_order")
+    user_create=models.ForeignKey(User,on_delete=models.CASCADE,verbose_name="user_created_order",null=True,blank=True)
     user_id=models.CharField(_("User id"),max_length=255, null=True,blank=True)
     user_ci=models.CharField(_("User ci"),max_length=255, null=True,blank=True)
     user_full_name=models.CharField(_("User full name"),max_length=255, null=True,blank=True)
@@ -146,6 +146,10 @@ class LocalOrderItem(models.Model):
     
     @property
     def total_price(self):
+        return (self.product.price * sum(item.cant for item in self.localorderitemstock_set.all())) or 0
+    
+    @property
+    def total_cost(self):
         return sum(item.price for item in self.localorderitemstock_set.all()) or 0
 
     # Verify existence in stocks for porducts

@@ -36,7 +36,9 @@
                   hx-indicator="#spinnerLocalOrderSold">
                 {% csrf_token %}
                 <div class="col-6 py-2 px-3 " >
-                  <input class="btn-check" role="switch" type="radio" name="payment_method" id="payment_method" checked value="c">
+                  <input class="btn-check" role="switch" type="radio" name="payment_method" id="payment_method" 
+                  {% if form.payment_type.value == 'c' %}checked{% endif %}
+                  value="c">
                   <label for="payment_method" class=" btn btn-outline-success  g-2 border-0 d-flex justify-content-center align-items-center flex-column" style="min-height: 150px;">
                     
                     <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class=" bi-currency-dollar" viewBox="0 0 16 16">
@@ -50,7 +52,9 @@
                   
                 </div>
                 <div class="col-6 py-2 px-3 ">
-                  <input class="btn-check" role="switch" type="radio" name="payment_method" id="payment_method2"  value="t">   
+                  <input class="btn-check" 
+                  {% if form.payment_type.value == 't' %}checked{% endif %}
+                  role="switch" type="radio" name="payment_method" id="payment_method2"  value="t">   
                   <label for="payment_method2" class="btn btn-outline-info g-2  border-0 d-flex justify-content-center align-items-center flex-column" style="min-height: 150px;">
                     
                     <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class=" bi-credit-card-2-back" viewBox="0 0 16 16">
@@ -66,7 +70,9 @@
                  
                 </div>
                 <div class="col-12 py-2 px-3 ">
-                  <input class="btn-check" role="switch" type="radio" name="payment_method" id="payment_method3"  value="b">
+                  <input class="btn-check" role="switch" 
+                  {% if form.payment_type.value == 'b' %}checked{% endif %}
+                  type="radio" name="payment_method" id="payment_method3"  value="b">
                   <label for="payment_method3" 
                   class="btn btn-outline-secondary  g-2 border-0 d-flex justify-content-center align-items-center flex-column" 
                   
@@ -86,12 +92,12 @@
                     
                         <div class="input-group mb-3">
                           <span class="input-group-text">$</span>
-                          <input name="cash"  type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                          <input name="cash" value="{% if form.cash.value %}{{form.cash.value}}{% else %}0{% endif %}" type="number" placeholder="0" step="0.01" min=0 max="9999999.99" class="form-control" aria-label="Amount (to the nearest dollar)">
                           <span class="input-group-text px-4">cash</span>
                         </div>
                         <div class="input-group mb-3">
                           <span class="input-group-text">$</span>
-                          <input name="transfer"  type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+                          <input name="transfer" value="{% if form.transfer.value %}{{form.transfer.value}}{% else %}0{% endif %}" type="number" placeholder="0" step="0.01" min=0 max="9999999.99" class="form-control" aria-label="Amount (to the nearest dollar)">
                           <span class="input-group-text">transfer</span>
                         </div>
                      
@@ -103,17 +109,23 @@
                 
                     
                       
-                      {% if error %}
-                      <div class="alert alert-dismissible alert-danger d-flex align-items-center mb-0 mt-2 px-2 fade show" role="alert">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="me-2 bi-exclamation-triangle-fill" viewBox="0 0 16 16">
-                          <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
-                        </svg>
-                          <div class="small">
-                            {{error}}
-                          </div>
-                          <span type="button" class="btn-close px-2" data-bs-dismiss="alert" aria-label="Close"></span>
-                        </div>
-                      {% endif %}
+                {% if form.errors %}
+                <div class="col-12 px-4 mb-0 pb-0">
+                  <div class="alert text-start alert-danger mb-0 mt-2">
+
+                        {% for field, errors in form.errors.items %}
+                                
+                                    {% for error in errors %}
+                                    <div class="small">
+                                          {{ error }}
+                                    </div> 
+                                        {% endfor %}
+                                  
+                        {% endfor %}
+                 
+                </div>
+                </div>
+            {% endif %}
             
                 <div class="modal-footer border-0 pb-1 flex-nowrap px-2">
                   <div class="w-100">
