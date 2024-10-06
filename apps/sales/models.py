@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext as _
-
+from django.core.validators import MinValueValidator
 from apps.accounts.models import User
 from apps.inventory.models import Stock
 from apps.products.models import Product
@@ -19,15 +19,15 @@ class Order(models.Model):
     )
     user_create=models.ForeignKey(User,on_delete=models.CASCADE,verbose_name="user_created_order")
     user_id=models.CharField(_("User id"),max_length=255, null=True,blank=True)
-    user_ci=models.CharField(_("User ci"),max_length=255)
-    user_full_name=models.CharField(_("User full name"),max_length=255)
-    user_phone=models.CharField(_("User phone"),max_length=255)
-    address=models.CharField(_("Address"),max_length=255)
+    user_ci=models.CharField(_("User ci"),max_length=255, null=True,blank=True)
+    user_full_name=models.CharField(_("User full name"),max_length=255, null=True,blank=True)
+    user_phone=models.CharField(_("User phone"),max_length=255, null=True,blank=True)
+    address=models.CharField(_("Address"),max_length=255, null=True,blank=True)
     type = models.CharField(_("Type"),max_length=1, choices=TYPE_CHOICES, default='l') 
     payment_type = models.CharField(_("Payment type"),max_length=1, choices=PAYMENT_TYPE_CHOICES, default='c') 
     created_date = models.DateTimeField(_("Created date"),auto_now_add=True,auto_now=False)
-    cash = models.DecimalField(_("Cash"), decimal_places= 2,max_digits=12)
-    transfer = models.DecimalField(_("Transfer"), decimal_places= 2,max_digits=12)
+    cash = models.DecimalField(_("Cash"), decimal_places= 2,max_digits=12,default=0,validators=[MinValueValidator(0)] )
+    transfer = models.DecimalField(_("Transfer"), decimal_places= 2,max_digits=12,default=0,validators=[MinValueValidator(0)] )
     
 
     class Meta:

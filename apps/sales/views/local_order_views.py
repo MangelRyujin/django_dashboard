@@ -6,8 +6,9 @@ from apps.inventory.models import Stock
 from apps.products.models import Product
 from apps.sales.filters import LocalOrderFilter
 from apps.sales.forms.local_order_forms import CreateLocalOrderForm, CreateLocalOrderItemForm, CreateLocalOrderItemStockForm, UpdateLocalOrderForm
+from apps.sales.forms.order_forms import CreateOrderSoldForm
 from apps.sales.models import LocalOrder, LocalOrderItem, LocalOrderItemStock, Order
-from apps.sales.utils.local_order import items_discount_or_revert
+from apps.sales.utils.local_order import items_discount_or_revert, order_paid_cash, order_paid_method, order_paid_transfer
 logger = logging.getLogger(__name__)
 from django.db.models import Q
   
@@ -146,7 +147,7 @@ def local_order_delete(request,pk):
             context['error']=f'Sorry, product not found'
         return render(request,'sales/local_order_templates/local_order_result.html',context)
     return  render(request,'sales/local_order_templates/actions/localOrderDelete/localOrderDeleteVerify.html',{"local_order":local_order})
-     
+
 # Delete local order item
 @staff_member_required(login_url='/')
 def local_order_item_delete(request,pk):
@@ -229,21 +230,27 @@ def local_order_detail(request,pk):
 @staff_member_required(login_url='/')
 def local_order_sold(request,pk):
     local_order = LocalOrder.objects.filter(pk=pk).first()
-    if  request.method == "POST":
-      if local_order:
-          pass
-        # order = Order.objects.create(
-        #   user_create = local_order.user_create,
-        #   user_ci = local_order.user_ci,
-        #   user_full_name= f'{local_order.user_first_name} {local_order.user_last_name}',
-        #   user_phone =  local_order.user_phone,
-        #   address= local_order.address,
-        #   type = 'l',
-        #   payment_type= local_order.user_create,
-        #   cash = 0,
-        #   transfer= 0,
-        # )
-        # order.save()
+    context={
+        "local_order":local_order,
+    }
+    print()
+    if request.method == "POST":
+        order_paid_method(local_order,request.POST["payment_method"],request.POST["cash"],request.POST["transfer"])
+        context["message"]="Payment successfully"
+        pass
+    return  render(request,'sales/local_order_templates/actions/localOrderSold/localOrderSoldVerify.html',context)
       
-    return  render(request,'sales/local_order_templates/local_order_result.html',context=_show_local_order(request))
-     
+# Delete local order
+@staff_member_required(login_url='/')
+def local_order_delete_sold(request,pk):
+    local_order = LocalOrder.objects.filter(pk=pk).first()
+    context={}
+    if request.method == "POST":
+        if local_order:
+            local_order_id=local_order.id
+            local_order.delete()
+            context = _show_local_order(request)
+            context['message']=f'Order {local_order_id} has been delete'
+        else:
+            context['error']=f'Sorry, product not found'
+        return render(request,'sales/local_order_templates/local_order_result.html',context)

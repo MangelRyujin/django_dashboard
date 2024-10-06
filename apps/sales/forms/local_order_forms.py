@@ -38,3 +38,4 @@ class CreateLocalOrderItemStockForm(forms.ModelForm):
         if cant > stock.cant:
                 raise forms.ValidationError(_(f"La cantidad debe de ser menor o igual a {stock.cant}"))
         return cant
+    
