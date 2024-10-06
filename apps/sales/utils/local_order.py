@@ -35,6 +35,7 @@ def order_paid_cash(order_unpaid):
           transfer= 0,
         )
     order.save()
+    order_paid_created_items(order,order_unpaid)
     
 # Payment method transfer
 def order_paid_transfer(order_unpaid):
@@ -50,6 +51,7 @@ def order_paid_transfer(order_unpaid):
           transfer= order_unpaid.total_price,
         )
     order.save()
+    order_paid_created_items(order,order_unpaid)
 
 # Payment method both
 def order_paid_both(order_unpaid,cash,transfer):
