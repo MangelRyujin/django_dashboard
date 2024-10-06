@@ -1,12 +1,18 @@
+from decimal import Decimal
 from django.shortcuts import render
 from django.contrib.admin.views.decorators import staff_member_required
 import logging
 from django.core.paginator import Paginator
+from apps.inventory.models import Stock
+from apps.products.models import Product
 from apps.sales.filters import LocalOrderFilter
-from apps.sales.forms.local_order_forms import CreateLocalOrderForm
-from apps.sales.models import LocalOrder
+from apps.sales.forms.local_order_forms import CreateLocalOrderForm, CreateLocalOrderItemForm, CreateLocalOrderItemStockForm, UpdateLocalOrderForm
+from apps.sales.forms.order_forms import CreateOrderSoldForm
+from apps.sales.models import LocalOrder, LocalOrderItem, LocalOrderItemStock, Order
+from apps.sales.utils.local_order import items_discount_or_revert, order_paid_cash, order_paid_method, order_paid_proccess_data, order_paid_transfer
 logger = logging.getLogger(__name__)
 from django.db.models import Q
+from django.utils.translation import gettext as _
   
 # Sales demo
 @staff_member_required(login_url='/')
@@ -19,12 +25,12 @@ def local_order_view(request):
 
 
 
-# Charge result table
+# Charge result local orders
 @staff_member_required(login_url='/')
 def local_order_results_view(request):
     return  render(request,'sales/local_order_templates/local_order_result.html',context=_show_local_order(request))
        
-# # Product create form
+# Local order create form
 @staff_member_required(login_url='/')
 def local_order_create(request):
     context={}
@@ -43,42 +49,206 @@ def local_order_create(request):
     context['form']=form
     return render(request,'sales/local_order_templates/actions/localOrderCreate/localOrderCreateForm.html',context) 
 
+# Local order item create form
+@staff_member_required(login_url='/')
+def local_order_item_create(request,pk):
+    local_order=LocalOrder.objects.filter(pk=pk).first()
+    context={
+       'local_order':local_order,
+    }
+    context['products'] = [product for product in Product.objects.filter(is_active=True) if product.total_stock > 0 and not local_order.localorderitem_set.filter(product=product) ] 
+    if local_order:
+        if request.method == "POST":
+            form = CreateLocalOrderItemForm(request.POST)
+            if form.is_valid():
+                order_item = form.save(commit=False)
+                order_item.order = local_order
+                order_item.save()
+                context['products'].remove(order_item.product)
+                context['message']='Created successfully'
+            else:
+                context['error']='Correct the errors'
+            
+            context['form']=form
+            return render(request,'sales/local_order_templates/actions/localOrderItemCreate/localOrderItemCreateForm.html',context) 
+    form = CreateLocalOrderItemForm()
+    context['form']=form
+    return render(request,'sales/local_order_templates/actions/localOrderItemCreate/localOrderItemCreateForm.html',context) 
 
-# # Product update forms
-# @staff_member_required(login_url='/')
-# def product_update(request,pk):
-#     product = Product.objects.filter(pk=pk).first()
-#     form = UpdateProductForm(instance=product)
-#     context={}
-#     context['product']=product
-#     context['form']=form
-#     return render(request,'product_templates/actions/productUpdate/productUpdateForm.html',context) 
+# Local order item stock create form
+@staff_member_required(login_url='/')
+def local_order_item_stock_create(request,pk):
+    local_order_item = LocalOrderItem.objects.filter(pk=pk).first()
+    context={
+       'local_order_item':local_order_item,
+    }
+    context['stocks'] = [stock for stock in Stock.objects.filter(is_active=True,cant__gt=0,product=local_order_item.product) if not local_order_item.localorderitemstock_set.filter(stock=stock) ] 
+   
+    if local_order_item:
+        if request.method == "POST":
+            form = CreateLocalOrderItemStockForm(request.POST)
+            if form.is_valid():
+                local_order_item_stock = form.save(commit=False)
+                local_order_item_stock.item = local_order_item
+                local_order_item_stock.save()
+                context['stocks'].remove(local_order_item_stock.stock)
+                context['message']='Created successfully'
+            else:
+                context['error']='Correct the errors'
+            
+            context['form']=form
+            return render(request,'sales/local_order_templates/actions/localOrderItemStockCreate/localOrderItemStockCreateForm.html',context) 
+    form = CreateLocalOrderItemStockForm()
+    context['form']=form
+    return render(request,'sales/local_order_templates/actions/localOrderItemStockCreate/localOrderItemStockCreateForm.html',context) 
+
+
+# # Local order update forms
+@staff_member_required(login_url='/')
+def local_order_update(request,pk):
+    local_order = LocalOrder.objects.filter(pk=pk).first()
+    form = UpdateLocalOrderForm(instance=local_order)
+    context={}
+    context['local_order']=local_order
+    context['form']=form
+    return render(request,'sales/local_order_templates/actions/localOrderUpdate/localOrderUpdateForm.html',context) 
 
 # # Product main information update form
-# @staff_member_required(login_url='/')
-# def product_form_update(request,pk):
-#     context={}
-#     if request.method == "POST":
-#         product = Product.objects.filter(pk=pk).first()
-#         form = UpdateProductForm(request.POST,request.FILES,instance=product)
-#         if form.is_valid():
-#             product_form_valid=form.save(commit=False)
-#             product_form_valid._change_reason = f'Modifying product {product.name}'
-#             product_form_valid.save()
-#             form.save_m2m()
-#             message="Change product successfully"
-#             context['message']=message
-#         else:
-#             message="Correct the errors"
-#             context['error']=message
-#         context['product']=product
-#         context['form']=form
-#         return render(request,'product_templates/actions/productUpdate/productUpdateCheckForm.html',context) 
+@staff_member_required(login_url='/')
+def local_order_form_update(request,pk):
+    context={}
+    if request.method == "POST":
+        local_order = LocalOrder.objects.filter(pk=pk).first()
+        form = UpdateLocalOrderForm(request.POST,instance=local_order)
+        if form.is_valid():
+            form.save()
+            message="Change order successfully"
+            context['message']=message
+        else:
+            message="Correct the errors"
+            context['error']=message
+        context['local_order']=local_order
+        context['form']=form
+        return render(request,'sales/local_order_templates/actions/localOrderUpdate/localOrderUpdateCheckForm.html',context) 
 
 
-# Delete result table
+# Delete local order
 @staff_member_required(login_url='/')
 def local_order_delete(request,pk):
+    local_order = LocalOrder.objects.filter(pk=pk).first()
+    context={}
+    if request.method == "POST":
+        if local_order:
+            if local_order.state == 'c':
+                items_discount_or_revert(local_order,'revert')
+            local_order_id=local_order.id
+            local_order.delete()
+            context = _show_local_order(request)
+            context['message']=f'Order {local_order_id} has been delete'
+        else:
+            context['error']=f'Sorry, product not found'
+        return render(request,'sales/local_order_templates/local_order_result.html',context)
+    return  render(request,'sales/local_order_templates/actions/localOrderDelete/localOrderDeleteVerify.html',{"local_order":local_order})
+
+# Delete local order item
+@staff_member_required(login_url='/')
+def local_order_item_delete(request,pk):
+    local_order_item = LocalOrderItem.objects.filter(pk=pk).first()
+    context={}
+    if request.method == "POST":
+        if local_order_item:
+            local_order = LocalOrder.objects.filter(pk=local_order_item.order.pk).first()
+            context['local_order']=local_order
+            local_order_item.delete()
+    return render(request,'sales/local_order_templates/actions/localOrderCardDetail/localOrderCardDetail.html',context)
+
+
+# Delete local order item stock
+@staff_member_required(login_url='/')
+def local_order_item_stock_delete(request,pk):
+    local_order_item_stock = LocalOrderItemStock.objects.filter(pk=pk).first()
+    context={}
+    if request.method == "POST":
+        if local_order_item_stock:
+            local_order = LocalOrder.objects.filter(pk=local_order_item_stock.item.order.pk).first()
+            context['local_order']=local_order
+            local_order_item_stock.delete()
+    return render(request,'sales/local_order_templates/actions/localOrderCardDetail/localOrderCardDetail.html',context)
+
+# Show local orders list
+@staff_member_required(login_url='/')
+def _show_local_order(request):
+    keyword = request.session.get('keyword', '')
+    
+    if request.method == 'POST':
+        keyword = request.POST.get("keyword",'')
+        request.session['keyword'] = keyword
+        
+    local_orders = LocalOrder.objects.filter(
+        Q(pk__icontains=keyword) | Q(user_ci__icontains=keyword)
+        | Q(user_last_name__icontains=keyword)| Q(user_phone__icontains=keyword)
+        | Q(address__icontains=keyword)| Q(user_first_name__icontains=keyword)
+        | Q(localorderitem__product__name__icontains=keyword) | Q(localorderitem__product__code__icontains=keyword)
+        ).distinct().order_by('-id')
+    paginator = Paginator(local_orders, 25)    # Show 25 contacts per page.
+    page_number = request.GET.get("page",1)
+    page_obj = paginator.get_page(page_number)
+    context={
+        'keyword':keyword,
+        'pagination':page_obj,
+    }
+    return context
+
+
+# Local order checked
+@staff_member_required(login_url='/')
+def local_order_check_revert(request,pk):
+    local_order = LocalOrder.objects.filter(pk=pk).first()
+    context={"local_order":local_order}
+    if local_order:
+        if local_order.state == 'p':
+            if local_order.items_exists():
+                items_discount_or_revert(local_order,'discount')
+                local_order.state = "c"
+                local_order.save()  
+            else:
+                context['message']=f'There is no sufficient existence'
+        else:
+            items_discount_or_revert(local_order,'revert')
+            local_order.state = "p"
+            local_order.save() 
+    else:
+        context['error']=f'Sorry, review not found'
+    return render(request,'sales/local_order_templates/actions/localOrderCardDetail/localOrderCardDetail.html',context)
+
+# # Detail local order
+@staff_member_required(login_url='/')
+def local_order_detail(request,pk):
+    local_order = LocalOrder.objects.filter(pk=pk).first()
+    return  render(request,'sales/local_order_templates/actions/localOrderCardDetail/localOrderCardDetail.html',{"local_order":local_order})
+     
+     
+# # Detail local order
+@staff_member_required(login_url='/')
+def local_order_sold(request,pk):
+    local_order = LocalOrder.objects.filter(pk=pk).first()
+    
+    context={
+        "local_order":local_order
+    }
+    if request.method == "POST":
+        data = order_paid_proccess_data(request.POST,local_order.total_price)
+        form = CreateOrderSoldForm(data)
+        if form.is_valid():
+            order_paid_method(local_order,data["payment_type"],data['cash'],data['transfer'])
+            context["message"]=_("Payment successfully")
+        else:
+            context["form"]=form
+    return render(request,'sales/local_order_templates/actions/localOrderSold/localOrderSoldVerify.html',context)
+      
+# Delete local order
+@staff_member_required(login_url='/')
+def local_order_delete_sold(request,pk):
     local_order = LocalOrder.objects.filter(pk=pk).first()
     context={}
     if request.method == "POST":
@@ -90,52 +260,3 @@ def local_order_delete(request,pk):
         else:
             context['error']=f'Sorry, product not found'
         return render(request,'sales/local_order_templates/local_order_result.html',context)
-    return  render(request,'sales/local_order_templates/actions/localOrderDelete/localOrderDeleteVerify.html',{"local_order":local_order})
-     
-
-
-# Show Product table
-@staff_member_required(login_url='/')
-def _show_local_order(request):
-    keyword = request.session.get('keyword', '')
-    
-    if request.method == 'POST':
-        print("llego post")
-        keyword = request.POST.get("keyword",'')
-        request.session['keyword'] = keyword
-        
-    local_orders = LocalOrder.objects.filter(
-        Q(pk__icontains=keyword) | Q(user_ci__icontains=keyword)
-        | Q(user_last_name__icontains=keyword)| Q(user_phone__icontains=keyword)
-        | Q(address__icontains=keyword)| Q(user_first_name__icontains=keyword)
-        | Q(localorderitem__product__name__icontains=keyword) | Q(localorderitem__product__code__icontains=keyword)
-        ).order_by('-id')
-    paginator = Paginator(local_orders, 25)    # Show 25 contacts per page.
-    page_number = request.GET.get("page",1)
-    page_obj = paginator.get_page(page_number)
-    context={
-        'keyword':keyword,
-        'pagination':page_obj,
-    }
-    return context
-
-
-# Update result table
-@staff_member_required(login_url='/')
-def local_order_check(request,pk):
-    local_order = LocalOrder.objects.filter(pk=pk).first()
-    context={"local_order":local_order}
-    if local_order:
-            local_order.state = "c"
-            local_order.save()
-            # context['message']=f'There is no sufficient existence'
-    else:
-            context['error']=f'Sorry, review not found'
-    return render(request,'sales/local_order_templates/actions/localOrderCardDetail/localOrderCardDetail.html',context)
-
-# # Detail user Product table
-# @staff_member_required(login_url='/')
-# def product_detail(request,pk):
-#     product = Product.objects.filter(pk=pk).first()
-#     return  render(request,'product_templates/actions/productDetail/productDetail.html',{"product":product})
-     

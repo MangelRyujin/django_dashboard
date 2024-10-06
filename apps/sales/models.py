@@ -1,6 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext as _
-
+from django.core.validators import MinValueValidator
 from apps.accounts.models import User
 from apps.inventory.models import Stock
 from apps.products.models import Product
@@ -17,17 +17,17 @@ class Order(models.Model):
         ('t', _("transfer")),
         ('b', _("both")),
     )
-    user_create=models.ForeignKey(User,on_delete=models.CASCADE,verbose_name="user_created_order")
-    user_id=models.CharField(_("User id"),max_length=255)
-    user_ci=models.CharField(_("User ci"),max_length=255)
-    user_full_name=models.CharField(_("User full name"),max_length=255)
-    user_phone=models.CharField(_("User phone"),max_length=255)
-    address=models.CharField(_("Address"),max_length=255)
+    user_create=models.ForeignKey(User,on_delete=models.CASCADE,verbose_name="user_created_order",null=True,blank=True)
+    user_id=models.CharField(_("User id"),max_length=255, null=True,blank=True)
+    user_ci=models.CharField(_("User ci"),max_length=255, null=True,blank=True)
+    user_full_name=models.CharField(_("User full name"),max_length=255, null=True,blank=True)
+    user_phone=models.CharField(_("User phone"),max_length=255, null=True,blank=True)
+    address=models.CharField(_("Address"),max_length=255, null=True,blank=True)
     type = models.CharField(_("Type"),max_length=1, choices=TYPE_CHOICES, default='l') 
     payment_type = models.CharField(_("Payment type"),max_length=1, choices=PAYMENT_TYPE_CHOICES, default='c') 
     created_date = models.DateTimeField(_("Created date"),auto_now_add=True,auto_now=False)
-    cash = models.DecimalField(_("Cash"), decimal_places= 2,max_digits=12)
-    transfer = models.DecimalField(_("Transfer"), decimal_places= 2,max_digits=12)
+    cash = models.DecimalField(_("Cash"), decimal_places= 2,max_digits=12,default=0,validators=[MinValueValidator(0)] )
+    transfer = models.DecimalField(_("Transfer"), decimal_places= 2,max_digits=12,default=0,validators=[MinValueValidator(0)] )
     
 
     class Meta:
@@ -105,7 +105,30 @@ class LocalOrder(models.Model):
     @property
     def total_price(self):
         return sum(item.total_price for item in self.localorderitem_set.all()) or 0
-
+    
+    # Verify existence in order items
+    
+    def items_exists(self):
+        local_order_items=self.localorderitem_set.all()
+        if local_order_items.exists():
+            for item in local_order_items:
+                if item.local_order_items_stocks_exist == False:
+                    return False
+            return True
+        return False
+    
+    
+    # Verify not in order items empty
+    @property
+    def items_empty_exists(self):
+        local_order_items=self.localorderitem_set.all()
+        if local_order_items.exists():
+            for item in local_order_items:
+                if item.local_order_items_stocks_empty_exist == False:
+                    return False
+            return True
+        return False
+    
 class LocalOrderItem(models.Model):
     order = models.ForeignKey(LocalOrder,on_delete=models.CASCADE,verbose_name="local_order_item")
     product = models.ForeignKey(Product,on_delete=models.CASCADE,verbose_name="local_product_item")
@@ -123,7 +146,30 @@ class LocalOrderItem(models.Model):
     
     @property
     def total_price(self):
+        return (self.product.price * sum(item.cant for item in self.localorderitemstock_set.all())) or 0
+    
+    @property
+    def total_cost(self):
         return sum(item.price for item in self.localorderitemstock_set.all()) or 0
+
+    # Verify existence in stocks for porducts
+    @property
+    def local_order_items_stocks_exist(self):
+        local_order_item_stocks=self.localorderitemstock_set.all()
+        if local_order_item_stocks.exists():
+            for stock in local_order_item_stocks:
+                if stock.stock_cant_exists == False:
+                    return False
+            return True
+        return False
+    
+    # Verify existence not stock empty
+    @property
+    def local_order_items_stocks_empty_exist(self):
+        local_order_item_stocks=self.localorderitemstock_set.all()
+        if local_order_item_stocks.exists():
+            return True
+        return False
 
 class LocalOrderItemStock(models.Model):
     item = models.ForeignKey(LocalOrderItem,on_delete=models.CASCADE,verbose_name="local_order_item_stock")
@@ -140,3 +186,9 @@ class LocalOrderItemStock(models.Model):
     @property
     def price(self):
         return self.cant * self.stock.unit_price
+    
+    @property
+    def stock_cant_exists(self):
+        if self.stock.cant >= self.cant:
+            return True
+        return False

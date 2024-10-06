@@ -3,6 +3,18 @@
 {% if order %}
   <table class="table">
     <tbody>
+      {% if order.type == 'l' %}
+        {% if order.user_create %}
+          <tr>
+            <td><span class="d-flex align-items-center "><strong class="me-2">Created by :</strong>
+              
+                <img src="{% if order.user_create.image %}{{order.user_create.image.url}}{% else %}{% static '/assets/img/avatar.jpg' %}{% endif %} " alt="{% if order.user_create.image %}{{order.user_create.image.url}}{% else %}{% static '/assets/img/avatar.jpg' %}{% endif %}" width="35" height="35" class="rounded-circle me-2">
+                <strong class=" small">{{order.user_create.username}}</strong>
+          
+            </span></td> 
+          </tr>
+        {% endif %}
+      {% endif %}
       <tr>
         <td><span><strong>Code :</strong> {{order.id}}</span></td> 
       </tr>

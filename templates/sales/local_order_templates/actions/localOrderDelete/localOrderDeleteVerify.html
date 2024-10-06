@@ -5,13 +5,8 @@
   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 </div>
 <div class="modal-body p-4 text-center">
-  {% if local_order.total_stock > 0 %}
-    <h5 class="mb-0">LocalOrder: {{local_order.id}}</h5>
-    <p class="mb-0">You cannot delete the LocalOrder, it contains assigned stocks.</p>
-      {% else %}     
     <h5 class="mb-0">Do you want to delete the order: {{local_order.id}}?</h5>
-    <p class="mb-0">If you accept, the selected order will be removed completely.</p>
-    {% endif %}        
+    <p class="mb-0">If you accept, the selected order will be removed completely.</p>      
 </div>
 <div class="modal-footer border-0 flex-nowrap p-2">
     <form class="w-100"
