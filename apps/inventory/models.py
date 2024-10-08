@@ -116,9 +116,9 @@ class StockMovements(models.Model):
     type = models.CharField(_("Type"),max_length=1, choices=TYPE_CHOICES, default='2') 
     movement_type = models.CharField(_("Type Movement"),max_length=1, choices=MOVEMENT_TYPE_CHOICES, default='1') 
     created_date = models.DateTimeField(_("Create date"),auto_now_add=True)
-    motive = models.CharField(_("Motive"),max_length=255) 
+    motive = models.CharField(_("Motive"),max_length=80) 
     description = models.TextField(_("Description"),null=True,blank=True)
-    cant = models.DecimalField(_("Cant"), max_digits=12, default=0, decimal_places=2)
+    cant = models.DecimalField(_("Cant"), max_digits=12, default=0, decimal_places=2,validators=[MinValueValidator(0.01)])
     user = models.ForeignKey(User,on_delete=models.CASCADE,null=False,blank=False,related_name=_('user_stock_movement'))
     stock_one=models.ForeignKey(Stock,on_delete=models.CASCADE,null=False,blank=False,related_name=_('stock_one_movement'))
     stock_two=models.ForeignKey(Stock,on_delete=models.CASCADE,null=True,blank=True,related_name=_('stock_two_movement'))
@@ -133,3 +133,31 @@ class StockMovements(models.Model):
 
     def __str__(self):
         return f'{self.pk}'
+    
+class Income(models.Model):
+    created_user=models.ForeignKey(User,on_delete=models.CASCADE,verbose_name="created_user")
+    created_date = models.DateTimeField(_("Created date"),auto_now_add=True,editable=False)
+    motive = models.CharField(_("Motive"),max_length=80) 
+    description = models.TextField(_("Description"),null=True,blank=True)
+    amount = models.DecimalField(_("Amount"), max_digits=12, default=0, decimal_places=2,validators=[MinValueValidator(0.01)])
+    
+    class Meta:
+        verbose_name = _("Income")
+        verbose_name_plural = _("Incomes")
+
+    def __str__(self):
+        return f"{self.pk}"
+
+class Spent(models.Model):
+    created_user=models.ForeignKey(User,on_delete=models.CASCADE,verbose_name="created_user")
+    created_date = models.DateTimeField(_("Created date"),auto_now_add=True,editable=False)
+    motive = models.CharField(_("Motive"),max_length=80) 
+    description = models.TextField(_("Description"),null=True,blank=True)
+    amount = models.DecimalField(_("Amount"), max_digits=12, default=0, decimal_places=2,validators=[MinValueValidator(0.01)])
+    
+    class Meta:
+        verbose_name = _("Spent")
+        verbose_name_plural = _("Spents")
+
+    def __str__(self):
+        return f"{self.pk}"

@@ -1,6 +1,6 @@
 import django_filters
 from apps.accounts.models import User
-from apps.inventory.models import CategoryStock, Facture, Stock, StockMovements, Supplier,Warehouse
+from apps.inventory.models import CategoryStock, Facture, Income, Spent, Stock, StockMovements, Supplier,Warehouse
 from django.utils import timezone
 
 
@@ -71,3 +71,21 @@ class FactureFilter(django_filters.FilterSet):
     class Meta:
         model = Facture
         fields = ['product','measure_unit','supplier','code','created_date']
+        
+class IncomeFilter(django_filters.FilterSet):
+    created_user = django_filters.CharFilter(field_name='created_user__username',lookup_expr='icontains')
+    created_date =django_filters.DateFromToRangeFilter()
+    motive=  django_filters.CharFilter(lookup_expr='icontains')
+    
+    class Meta:
+        model = Income
+        fields = ['created_user','motive','created_date']
+        
+class SpentFilter(django_filters.FilterSet):
+    created_user = django_filters.CharFilter(field_name='created_user__username',lookup_expr='icontains')
+    created_date =django_filters.DateFromToRangeFilter()
+    motive=  django_filters.CharFilter(lookup_expr='icontains')
+    
+    class Meta:
+        model = Spent
+        fields = ['created_user','motive','created_date']

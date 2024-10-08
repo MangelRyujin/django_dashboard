@@ -1,0 +1,21 @@
+<!-- Offcanvas Income Create -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRightIncomeCreate" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasRightLabel">Create Income</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body" 
+      hx-get="{% url 'income_create'%}"
+      hx-swap="innerHTML"
+      hx-target="#IncomeCreateForm"
+      hx-trigger="load">
+      
+      <div id="IncomeCreateForm"></div>
+
+      
+      
+      
+    </div>
+  </div>
+  <!-- End Offcanvas Income Create -->
+  

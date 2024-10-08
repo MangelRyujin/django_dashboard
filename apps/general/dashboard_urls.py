@@ -20,5 +20,7 @@ urlpatterns = [
     path('orders/',include('apps.sales.urls.order_urls')),
     path('local_sales/',include('apps.sales.urls.local_order_urls')),
     path('settings/',include('apps.general.urls.settings_urls')),
+    path('incomes/',include('apps.inventory.urls.income_urls')),
+    path('spents/',include('apps.inventory.urls.spent_urls')),
 ]
 
