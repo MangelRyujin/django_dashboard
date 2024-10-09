@@ -67,25 +67,10 @@
                 </div>
               </div>
             </div>
-            <div class="col-12 mt-2">
-              <div class="row">
-                <div class="col-12">
-                  <label for="inputFactureMeasureUnitUpdate" class="form-label">Measure unit </label>
-                  <div class="input-group">
-                    <select id="inputFactureMeasureUnitUpdate" name="measure_unit" class="form-select" aria-label="Select Measure Unit">
-                      <option value="u" {% if form.measure_unit.value == "u" %}selected{% endif %}>units</option>
-                      <option value="m" {% if form.measure_unit.value == "m" %}selected{% endif %}>milliliters</option>
-                      <option value="g" {% if form.measure_unit.value == "g" %}selected{% endif %}>grams</option>
-                     
-                    </select>
-                  </div>
-                  
-                </div>
-              </div>
-            </div>
+            
             <div class="col-12  mt-2 ">
               <label for="{{ form.cant.id_for_label }}Update" class="form-label">Cant</label>
-              <input type="text" class="form-control" value="{{form.instance.cant}}" required name="cant" id="{{ form.cant.id_for_label }}Update" placeholder="cant">
+              <input type="number" min=0 class="form-control" value="{{form.instance.cant}}" required name="cant" id="{{ form.cant.id_for_label }}Update" placeholder="1">
               {% if form.cant.errors %}
               <div class="alert alert-danger mt-2">
                   {% for error in form.cant.errors %}

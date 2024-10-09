@@ -4,10 +4,13 @@ from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
 from django.contrib.auth.forms import PasswordChangeForm
 from apps.products.models import Category,Product,Coupon
+from utils.funtions.sales.sale import total_new_orders, total_sales
 from ..decorators import user_is_not_authenticated
 from apps.accounts.models import User
 from django.contrib.admin.views.decorators import staff_member_required
 from apps.general.forms.register_form import RegisterForm
+from utils.funtions.products.product import total_available_products, total_products,total_reviews, total_sold_out_products
+
 
 # Dashboard view (index)
 # @login_required(login_url='/login/')
@@ -20,6 +23,12 @@ def dashboard_view(request):
     category_history = Category.history.all()[:10]
     product_history = Product.history.all()[:10]
     context={
+        'total_sold_out_products':total_sold_out_products(),
+        'total_new_orders':total_new_orders(),
+        'total_products':total_products(),
+        'total_sales':total_sales(),
+        'total_reviews':total_reviews(),
+        'total_available_products':total_available_products(),
         'admin_history':admin_history,
         'category_history':category_history,
         'product_history':product_history,

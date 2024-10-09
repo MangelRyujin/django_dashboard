@@ -30,12 +30,6 @@ class CategoryStock(models.Model):
         return self.name
 
 class Stock(models.Model):
-    MEASURE_UNIT_CHOICES = (
-        ('m', _("milliliters")),
-        ('g', _("grams")),
-        ('u', _("units")),
-    )
-    
     code = models.CharField(_("Code"),max_length=50,unique=True)
     name = models.CharField(_("Name"),max_length=100,unique=True)
     address = models.CharField(_("Address"),max_length=120,blank=True,null=True)
@@ -43,10 +37,9 @@ class Stock(models.Model):
     product = models.ForeignKey(Product,on_delete=models.CASCADE,related_name="product_stock")
     is_active = models.BooleanField(_("Active"),default=False)
     warehouse = models.ForeignKey(Warehouse,on_delete=models.CASCADE,related_name="warehouse_stock",null=True,blank=True)
-    measure_unit = models.CharField(_("Measure unit"),max_length=1, choices=MEASURE_UNIT_CHOICES, default='u') 
     expiration_date = models.DateField(_("Expire date"))
     create_date = models.DateTimeField(_("Create date"),auto_now_add=True)
-    cant = models.DecimalField(_("Cant"), decimal_places= 2,max_digits=12, validators=[MinValueValidator(0)])
+    cant = models.PositiveIntegerField(_("Cant"),validators=[MinValueValidator(0)])
     unit_price = models.DecimalField(_("Inversion Cost"), max_digits=12, default=0, decimal_places=2,validators=[MinValueValidator(0.01)])
     
     
@@ -89,8 +82,7 @@ class Facture(models.Model):
     unit_price = models.DecimalField(_("Inversion cost"), max_digits=12, default=0, decimal_places=2,validators=[MinValueValidator(0.01)])
     supplier = models.ForeignKey(Supplier,on_delete=models.CASCADE,related_name="supplier_facture")
     product = models.ForeignKey(Product,on_delete=models.CASCADE,related_name="product_facture")
-    cant = models.DecimalField(_("Cant"), decimal_places= 2,max_digits=12, validators=[MinValueValidator(0.01)])
-    measure_unit = models.CharField(_("Measure unit"),max_length=1, choices=MEASURE_UNIT_CHOICES, default='u') 
+    cant = models.PositiveIntegerField(_("Cant"),validators=[MinValueValidator(0)])
     
     class Meta:
         verbose_name = _("Facture")
@@ -118,7 +110,7 @@ class StockMovements(models.Model):
     created_date = models.DateTimeField(_("Create date"),auto_now_add=True)
     motive = models.CharField(_("Motive"),max_length=80) 
     description = models.TextField(_("Description"),null=True,blank=True)
-    cant = models.DecimalField(_("Cant"), max_digits=12, default=0, decimal_places=2,validators=[MinValueValidator(0.01)])
+    cant = models.PositiveIntegerField(_("Cant"),validators=[MinValueValidator(1)])
     user = models.ForeignKey(User,on_delete=models.CASCADE,null=False,blank=False,related_name=_('user_stock_movement'))
     stock_one=models.ForeignKey(Stock,on_delete=models.CASCADE,null=False,blank=False,related_name=_('stock_one_movement'))
     stock_two=models.ForeignKey(Stock,on_delete=models.CASCADE,null=True,blank=True,related_name=_('stock_two_movement'))

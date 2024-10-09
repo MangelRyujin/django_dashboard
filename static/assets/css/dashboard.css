@@ -53,6 +53,9 @@
   min-width: 150px !important;
 }
 
+.table-min-date{
+  min-width: 250px !important;
+}
 
 /*
  * Sidebar

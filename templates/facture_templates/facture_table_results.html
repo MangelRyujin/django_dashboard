@@ -33,7 +33,6 @@
             <th  scope="col">Code</th>
             <th  scope="col">Product</th>
             <th  scope="col">Supplier</th>
-            <th scope="col">M.U</th>
             <th scope="col">Cant</th>
             <th scope="col">Amount</th>
             <th scope="col">Date</th>
@@ -47,11 +46,10 @@
                 <td class="border small table-min">{{facture.product.name}}</td>
                  
                 <td class="border small table-min">{{facture.supplier.first_name}} {{facture.supplier.last_name}}</td>            
-                <td class="border small">{{facture.get_measure_unit_display}}</td>
                 <td class="border small">{{facture.cant}}</td>
                  
                 <td class="border small">{{facture.total_amount}}</td>            
-                <td class="border small table-min">{{facture.created_date}}</td>
+                <td class="border small table-min-date">{{facture.created_date}}</td>
                 <td class="table-width-80 px-1 ">
                 <div class="d-flex justify-content-between  align-items-center p-0 m-0 pt-1">
                     

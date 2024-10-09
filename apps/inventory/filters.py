@@ -28,11 +28,10 @@ class StockFilter(django_filters.FilterSet):
     warehouse = django_filters.ModelMultipleChoiceFilter(queryset=Warehouse.objects.all())
     categories = django_filters.ModelMultipleChoiceFilter(queryset=CategoryStock.objects.all())
     is_active = django_filters.BooleanFilter()
-    measure_unit=  django_filters.CharFilter(lookup_expr='exact')
     
     class Meta:
         model = Stock
-        fields = ['code','name','product','address','warehouse','categories','is_active','measure_unit']
+        fields = ['code','name','product','address','warehouse','categories','is_active']
     
 class StockMovementFilter(django_filters.FilterSet):
     type =  django_filters.CharFilter(lookup_expr='exact')
