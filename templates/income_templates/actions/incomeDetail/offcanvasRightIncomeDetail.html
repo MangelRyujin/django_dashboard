@@ -1,0 +1,26 @@
+{% load static %}
+<!-- Offcanvas Income Detail -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRightIncomeDetail" aria-labelledby="offcanvasRightLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasRightLabel">Income detail</h5>
+      
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body w-100  d-flex justify-content-start align-items-start">
+      
+      <div id="spinnerIncomeDetail"
+       class="htmx-indicator position-absolute h-100  w-100 d-flex justify-content-center align-items-center"
+       >
+        <div class="spinner-border" role="status" style="width: 3rem; height: 3rem;">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+      
+      <div id="IncomeDetail" class="w-100">
+        
+      </div> 
+      
+      
+    </div>
+  </div>
+  <!-- End Offcanvas Income Detail -->

@@ -1,0 +1,381 @@
+{% extends "shop_templates/base.html" %}
+{% load static %}
+
+{% block contend %}
+<div class="container py-5 my-4">
+    <div class="row mb-5">
+      <div class="col-lg-5">
+        <!-- PRODUCT SLIDER-->
+         
+        <div class="row m-sm-0">
+        <div id="carouselExampleFade" class="carousel slide carousel-fade">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="0" class="bg-black active" aria-label="Slide 1" aria-current="true"></button>
+            <button type="button" data-bs-target="#carouselExampleFade" data-bs-slide-to="1" class="bg-black" aria-label="Slide 2"></button>
+            </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <a class="glightbox product-view" href="{% static "/assets/img/products/product-5.jpg" %}" data-gallery="gallery2" data-glightbox="Product item 1"><img class="id-block w-100 img-fluid rounded border border-1" src="{% static "/assets/img/products/product-5.jpg" %}" alt="..."></a>
+              <!-- <img src="img/product-detail-1.jpg" class="" alt="img/product-detail-3.jpg"> -->
+            </div>
+            <div class="carousel-item">
+              <a class="glightbox product-view" href="{% static "/assets/img/products/product-6.jpg" %}" data-gallery="gallery2" data-glightbox="Product item 2"><img class="id-block w-100 img-fluid rounded border border-1" src="{% static "/assets/img/products/product-6.jpg" %}" alt="..."></a>
+              
+            </div>
+            
+          </div>
+          
+        </div>
+      </div>
+      </div>
+      <!-- PRODUCT DETAILS-->
+      <div class="col-lg-7">
+        
+        <h1>Nombre del producto</h1>
+        
+        
+        <ul class="list-unstyled small d-inline-block mb-2">
+          <li class="py-1  d-flex justify-content-start"><strong class=" fs-5">Estrellas:</strong>
+            <div class="d-flex justify-content-center align-items-center ms-2">
+                
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="me-2 text-warning  bi-star-fill" viewBox="0 0 16 16">
+                      <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                    </svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="me-2 text-warning  bi-star-fill" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                      </svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="me-2 text-warning  bi-star-fill" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                      </svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="me-2 text-warning  bi-star-fill" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                      </svg>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="me-2 text-warning  bi-star-fill" viewBox="0 0 16 16">
+                        <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                      </svg>
+                      
+                 
+                </div>
+         </li>
+          <li class="py-1   "><strong class=" fs-5">Categoría:</strong><strong class="text-muted fs-6"> Nombre de la Categoría </strong></li>
+          <li class="py-1  "><strong class=" fs-5 ">Precio:</strong> <strong class="text-muted fs-6 position-relative">
+              $ 1000.00
+             <span class="small position-absolute  top-0 start-100 translate-middle text-decoration-line-through pb-1 text-body-secondary">
+               1200
+               
+             </span>
+           </strong> </li>
+        </ul>
+        <div class=" ">
+            <h2 class="fs-bold fs-5">Descripción</h2>
+            <p class="text-muted text-sm mb-2">
+              Una cámara digital es un dispositivo electrónico diseñado para capturar y almacenar imágenes electrónicamente, en lugar de utilizar películas fotográficas como las cámaras tradicionales.
+              Captura imágenes utilizando sensores electrónicos en lugar de película química. Almacena las fotos como archivos digitales en una memoria interna o tarjeta externa.
+              Permite visualizar y eliminar instantáneamente las fotos capturadas en la pantalla LCD.
+              Ofrece funciones adicionales como grabación de video y registro de sonido.
+              
+          </p>
+          <p class="text-muted text-sm mb-0">
+              Tiene un objetivo intercambiable y control sobre parámetros como exposición, apertura y velocidad de obturación.
+              Puede almacenar imágenes en diferentes formatos como JPEG o RAW.
+              Permite transferir fácilmente fotos a dispositivos móviles o computadoras.
+              Posibilidad de ver instantáneamente el resultado de cada foto capturada.
+              Facilidad para eliminar errores y repetir tomas sin costos adicionales.
+              Posibilidad de enviar fotos por correo electrónico o redes sociales inmediatamente después de tomarlas.
+              Almacenamiento ilimitado de fotos sin necesidad de cambiar película.
+              Dependencia total de la electricidad (necesitan batería).
+              Credibilidad del documento puede verse afectada por facilidad de manipulación digital 
+          </p>
+          </div>
+        
+      </div>
+    </div>
+    <!-- Reviews TABS-->
+    <h2 class="fs-bold fs-3">Reseñas de usuarios</h2>
+    <div class="px-2 pb-4 pt-2 ">
+        
+        <div class="row g-3">
+          <div class="col-12 bg-body-tertiary py-2 rounded border">
+            <div class="d-block  ">
+              <div class="d-flex justify-content-start align-items-center flex-shrink-0">
+                  <img class="rounded-circle me-3" src="{% static "/img/avatar.jpg" %}" alt="" width="50">
+                  <div>
+                      <h6 class="mb-0 ">Jason Doe</h6>
+                  <p class="small text-muted mb-0 ">8 de octubre de 2024 a las 22:28</p>
+                  </div>
+              </div>
+              <div class="mt-2 flex-shrink-1">
+                
+                <ul class="list-inline mb-1 text-xs">
+                  <li class="list-inline-item m-0">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="me-2 text-warning  bi-star-fill" viewBox="0 0 16 16">
+                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                  </svg>
+                  </i></li>
+                  <li class="list-inline-item m-0">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="me-2 text-warning  bi-star-fill" viewBox="0 0 16 16">
+                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                  </svg>
+                  </i></li>
+                  <li class="list-inline-item m-0">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="me-2 text-warning  bi-star-fill" viewBox="0 0 16 16">
+                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                  </svg>
+                  </i></li>
+                  <li class="list-inline-item m-0">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="me-2 text-warning  bi-star-fill" viewBox="0 0 16 16">
+                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                  </svg>
+                  </i></li>
+                  <li class="list-inline-item m-0">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="me-2 text-warning  bi-star-fill" viewBox="0 0 16 16">
+                          <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                        </svg>
+                  </li>
+                </ul>
+                <p class="text-sm mb-0 text-muted">Me encanta mi nueva cámara digital! Es increíblemente fácil de usar, incluso para alguien como yo que no es muy técnico. La calidad de las fotos es impresionante, especialmente en condiciones de luz tenue. El zoom óptico de 3x es perfecto para capturar momentos especiales sin tener que acercarse demasiado. Además, la pantalla táctil es muy intuitiva y permite ajustar todos los parámetros que necesito. Lo mejor de todo es que es muy ligera y cómoda de llevar en mis viajes. Sin duda, es una excelente inversión para mi hobby de fotografía.</p>
+              </div>
+            </div>
+            
+          </div>
+          <div class="col-12 bg-body-tertiary py-2 rounded border">
+            <div class="d-block ">
+              <div class="d-flex justify-content-start align-items-center flex-shrink-0">
+                  <img class="rounded-circle me-3" src="{% static "/img/avatar.jpg" %}" alt="" width="50">
+                  <div>
+                      <h6 class="mb-0 ">Jason Doe</h6>
+                  <p class="small text-muted mb-0 ">8 de octubre de 2024 a las 22:28</p>
+                  </div>
+              </div>
+              <div class="mt-2 flex-shrink-1">
+                
+                <ul class="list-inline mb-1 text-xs">
+                  <li class="list-inline-item m-0">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="me-2 text-warning  bi-star-fill" viewBox="0 0 16 16">
+                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                  </svg>
+                  </i></li>
+                  <li class="list-inline-item m-0">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="me-2 text-warning  bi-star-fill" viewBox="0 0 16 16">
+                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                  </svg>
+                  </i></li>
+                  <li class="list-inline-item m-0">
+                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="me-2 text-warning  bi-star-fill" viewBox="0 0 16 16">
+                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                  </svg>
+                  </i></li>
+                  
+                  <li class="list-inline-item m-0">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="me-2 text-warning  bi-star-fill" viewBox="0 0 16 16">
+                          <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                        </svg>
+                  </li>
+                </ul>
+                <p class="text-sm mb-0 text-muted">Hay que decir que esta cámara superó todas mis expectativas. La resolución de 16MP es suficiente para obtener fotos de alta calidad, y el procesador rápido garantiza que las fotos se guarden rápidamente. Me gusta mucho la función de seguimiento de objetos, que es genial para capturar momentos dinámicos. También destaco el rendimiento en condiciones de baja luz, donde otras cámaras fallan. Y lo mejor de todo es que es muy resistente, he llevado a la montaña y sigue funcionando perfectamente. En resumen, es una cámara versátil y robusta que recomiendo sin dudar.</p>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    <!-- RELATED PRODUCTS-->
+    <h2 class="fs-3  mb-4">Productos parecidos</h2>
+    <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6  g-3  ">
+        <div class="col text-center" data-aos="fade-up">
+          
+          <div class="card card-cover  overflow-hidden rounded-2 shadow-sm   " 
+          style="background-position: center center;background-size: cover; background-image: url('{% static "/assets/img/products/product-2.jpg" %}');">
+            
+              <div class="w-100  h-100 d-flex flex-column p-1 justify-content-between " style="min-height: 140px;">
+                <span class="text-end "><p class="badge rounded-pill bg-primary-subtle text-primary border border-2 border-primary">Categoría</p></span>
+              </div>
+              
+            
+          </div>
+          <a href="{% url "shop_product_detail_view" %}" class="text-body text-decoration-none fw-bold d-block small mb-2">Nombre del producto</a>
+          <strong class="small position-relative">
+           $ 1000.00
+            <span class="position-absolute  top-0 start-100 translate-middle text-decoration-line-through pb-1 text-body-secondary">
+              1200
+              
+            </span>
+          </strong> 
+          
+            <div class="d-flex justify-content-between gap-2 mb-3 px-2">
+              <a  class="text-body-emphasis cursor-pointer d-flex justify-content-center align-items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-share-fill" viewBox="0 0 16 16">
+                  <path d="M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.5 2.5 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5"/>
+                </svg>
+              </a>
+              <a  class="text-body-emphasis cursor-pointer d-flex justify-content-center align-items-center">
+                <svg xmlns="http://www.w3.org/2000/svg"  width="20" height="20" fill="currentColor" class=" bi-cart-plus-fill" viewBox="0 0 16 16">
+                  <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0M9 5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 1 0"/>
+                </svg>
+              </a>
+              
+            </div>
+           
+        </div>
+    
+        <div class="col text-center" data-aos="fade-up">
+          <div class="card card-cover  overflow-hidden rounded-2 shadow-sm " 
+          style="background-position: center center;background-size: cover; background-image: url('{% static "/assets/img/products/product-3.jpg" %}');">
+          <div class="w-100  h-100 d-flex flex-column p-1 justify-content-between " style="min-height: 140px;">
+            <span class="text-end "><p class="badge rounded-pill bg-primary-subtle text-primary border border-2 border-primary">Categoría</p></span>
+          </div>
+          </div>
+          <a href="{% url "shop_product_detail_view" %}" class="text-body text-decoration-none fw-bold d-block small mb-2">Nombre del producto</a>
+          <strong class="small position-relative">
+           $ 1000.00
+            <span class="position-absolute  top-0 start-100 translate-middle text-decoration-line-through pb-1 text-body-secondary">
+              1200
+              
+            </span>
+          </strong> 
+          <div class="d-flex justify-content-between gap-2 mb-3 px-2">
+              <a  class="text-body-emphasis cursor-pointer d-flex justify-content-center align-items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-share-fill" viewBox="0 0 16 16">
+                  <path d="M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.5 2.5 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5"/>
+                </svg>
+              </a>
+              <a  class="text-body-emphasis cursor-pointer d-flex justify-content-center align-items-center">
+                <svg xmlns="http://www.w3.org/2000/svg"  width="20" height="20" fill="currentColor" class=" bi-cart-plus-fill" viewBox="0 0 16 16">
+                  <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0M9 5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 1 0"/>
+                </svg>
+              </a>
+              
+            </div>
+        </div>
+        <div class="col text-center" data-aos="fade-up">
+          <div class="card card-cover overflow-hidden rounded-2 shadow-sm  " 
+          style="background-position: center center;background-size: cover; background-image: url('{% static "/assets/img/products/product-2.jpg" %}');">
+            
+          <div class="w-100  h-100 d-flex flex-column p-1 justify-content-between " style="min-height: 140px;">
+            <span class="text-end "><p class="badge rounded-pill bg-primary-subtle text-primary border border-2 border-primary">Categoría</p></span>
+          </div>
+              
+          </div>
+          <a href="{% url "shop_product_detail_view" %}" class="text-body text-decoration-none fw-bold d-block small mb-2">Nombre del producto</a>
+          <strong class="small position-relative">
+           $ 1000.00
+            <span class="position-absolute  top-0 start-100 translate-middle text-decoration-line-through pb-1 text-body-secondary">
+              1200
+              
+            </span>
+          </strong> 
+          <div class="d-flex justify-content-between gap-2 mb-3 px-2">
+              <a  class="text-body-emphasis cursor-pointer d-flex justify-content-center align-items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-share-fill" viewBox="0 0 16 16">
+                  <path d="M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.5 2.5 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5"/>
+                </svg>
+              </a>
+              <a  class="text-body-emphasis cursor-pointer d-flex justify-content-center align-items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class=" bi-cart-plus-fill" viewBox="0 0 16 16">
+                  <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0M9 5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 1 0"/>
+                </svg>
+              </a>
+              
+            </div>
+        </div>
+    
+        <div class="col text-center" data-aos="fade-up">
+          <div class="card card-cover overflow-hidden rounded-2 shadow-sm " 
+          style="background-position: center center;background-size: cover; background-image: url('{% static "/assets/img/products/product-4.jpg" %}');">
+            
+          <div class="w-100  h-100 d-flex flex-column p-1 justify-content-between " style="min-height: 140px;">
+            <span class="text-end "><p class="badge rounded-pill bg-primary-subtle text-primary border border-2 border-primary">Categoría</p></span>
+          </div>
+              
+            
+          </div>
+          <a href="{% url "shop_product_detail_view" %}" class="text-body text-decoration-none fw-bold d-block small mb-2">Nombre del producto</a>
+          <strong class="small position-relative">
+           $ 1000.00
+            <span class="position-absolute  top-0 start-100 translate-middle text-decoration-line-through pb-1 text-body-secondary">
+              1200
+              
+            </span>
+          </strong> 
+          <div class="d-flex justify-content-between gap-2 mb-3 px-2">
+              <a  class="text-body-emphasis cursor-pointer d-flex justify-content-center align-items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-share-fill" viewBox="0 0 16 16">
+                  <path d="M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.5 2.5 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5"/>
+                </svg>
+              </a>
+              <a  class="text-body-emphasis cursor-pointer d-flex justify-content-center align-items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class=" bi-cart-plus-fill" viewBox="0 0 16 16">
+                  <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0M9 5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 1 0"/>
+                </svg>
+              </a>
+              
+            </div>
+        </div>
+        <div class="col text-center" data-aos="fade-up">
+          <div class="card card-cover  overflow-hidden rounded-2 shadow-sm " 
+          style="background-position: center center;background-size: cover; background-image: url('{% static "/assets/img/products/product-1.jpg" %}');">
+            
+          <div class="w-100  h-100 d-flex flex-column p-1 justify-content-between " style="min-height: 140px;">
+            <span class="text-end "><p class="badge rounded-pill bg-primary-subtle text-primary border border-2 border-primary">Categoría</p></span>
+          </div>
+              
+            
+          </div>
+          <a href="{% url "shop_product_detail_view" %}" class="text-body text-decoration-none fw-bold d-block small mb-2">Nombre del producto</a>
+          <strong class="small position-relative">
+           $ 1000.00
+            <span class="position-absolute  top-0 start-100 translate-middle text-decoration-line-through pb-1 text-body-secondary">
+              1200
+              
+            </span>
+          </strong> 
+          <div class="d-flex justify-content-between gap-2 mb-3 px-2">
+              <a  class="text-body-emphasis cursor-pointer d-flex justify-content-center align-items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-share-fill" viewBox="0 0 16 16">
+                  <path d="M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.5 2.5 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5"/>
+                </svg>
+              </a>
+              <a  class="text-body-emphasis cursor-pointer d-flex justify-content-center align-items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class=" bi-cart-plus-fill" viewBox="0 0 16 16">
+                  <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0M9 5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 1 0"/>
+                </svg>
+              </a>
+              
+            </div>
+        </div>
+        <div class="col text-center" data-aos="fade-up">
+          <div class="card card-cover  overflow-hidden rounded-2 shadow-sm " 
+          style="background-position: center center;background-size: cover; background-image: url('{% static "/assets/img/products/product-7.jpg" %}');">
+            
+          <div class="w-100  h-100 d-flex flex-column p-1 justify-content-between " style="min-height: 140px;">
+            <span class="text-end "><p class="badge rounded-pill bg-primary-subtle text-primary border border-2 border-primary">Categoría</p></span>
+          </div>
+            
+          </div>
+          <a href="{% url "shop_product_detail_view" %}" class="text-body text-decoration-none fw-bold d-block small mb-2">Nombre del producto</a>
+          <strong class="small position-relative">
+           $ 1000.00
+            <span class="position-absolute  top-0 start-100 translate-middle text-decoration-line-through pb-1 text-body-secondary">
+              1200
+              
+            </span>
+          </strong> 
+          <div class="d-flex justify-content-between gap-2 mb-3 px-2">
+              <a  class="text-body-emphasis cursor-pointer d-flex justify-content-center align-items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-share-fill" viewBox="0 0 16 16">
+                  <path d="M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.5 2.5 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5"/>
+                </svg>
+              </a>
+              <a  class="text-body-emphasis cursor-pointer d-flex justify-content-center align-items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class=" bi-cart-plus-fill" viewBox="0 0 16 16">
+                  <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0M9 5.5V7h1.5a.5.5 0 0 1 0 1H9v1.5a.5.5 0 0 1-1 0V8H6.5a.5.5 0 0 1 0-1H8V5.5a.5.5 0 0 1 1 0"/>
+                </svg>
+              </a>
+              
+            </div>
+        </div>
+    
+      </div>
+  </div>
+{% endblock contend %}
+

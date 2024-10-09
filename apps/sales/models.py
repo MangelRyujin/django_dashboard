@@ -146,7 +146,7 @@ class LocalOrderItem(models.Model):
     
     @property
     def total_price(self):
-        return (self.product.price * sum(item.cant for item in self.localorderitemstock_set.all())) or 0
+        return (self.product.total_price * sum(item.cant for item in self.localorderitemstock_set.all())) or 0
     
     @property
     def total_cost(self):

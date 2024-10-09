@@ -89,6 +89,8 @@ def order_paid_created_items(order,order_unpaid):
             total_cost = item.total_cost,
             total_price = item.total_price
         )
+        item.product.total_sales+=item.cant
+        item.product.save()
         order_item.save()
      
 

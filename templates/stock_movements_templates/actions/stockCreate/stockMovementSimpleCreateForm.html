@@ -49,7 +49,7 @@
           <div class="col-12  mt-4 ">
             <label for="{{ form.cant.id_for_label }}" class="form-label">Cant</label>
             <div class="input-group">
-              <input type="text" class="form-control" value={% if form.cant.value %}{{form.cant.value}}{% else %}1{% endif %} required name="cant" id="{{ form.cant.id_for_label }}" placeholder="1.00">
+              <input type="number" min=1 class="form-control" value={% if form.cant.value %}{{form.cant.value}}{% else %}1{% endif %} required name="cant" id="{{ form.cant.id_for_label }}" placeholder="1">
             
             </div>
             {% if form.cant.errors %}

@@ -73,9 +73,16 @@ class Product(models.Model):
     @property
     def total_stock(self):
         try:
-            return sum(stock.cant for stock in self.product_stock.all() if stock.cant > 0)
+            return sum(stock.cant for stock in self.product_stock.all() if stock.cant > 0) or 0
         except ValueError:
             return 0
+        
+    @property
+    def total_price(self):
+        if self.discount > 0:
+            return round(self.price - (round((self.price * self.discount),2) / 100),2)
+        else:
+            return self.price
         
 class Coupon(models.Model):
     code  = models.UUIDField(

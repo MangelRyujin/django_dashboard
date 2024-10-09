@@ -5,11 +5,10 @@ import logging
 from django.core.paginator import Paginator
 from apps.inventory.models import Stock
 from apps.products.models import Product
-from apps.sales.filters import LocalOrderFilter
 from apps.sales.forms.local_order_forms import CreateLocalOrderForm, CreateLocalOrderItemForm, CreateLocalOrderItemStockForm, UpdateLocalOrderForm
 from apps.sales.forms.order_forms import CreateOrderSoldForm
-from apps.sales.models import LocalOrder, LocalOrderItem, LocalOrderItemStock, Order
-from apps.sales.utils.local_order import items_discount_or_revert, order_paid_cash, order_paid_method, order_paid_proccess_data, order_paid_transfer
+from apps.sales.models import LocalOrder, LocalOrderItem, LocalOrderItemStock
+from apps.sales.utils.local_order import items_discount_or_revert, order_paid_method, order_paid_proccess_data
 logger = logging.getLogger(__name__)
 from django.db.models import Q
 from django.utils.translation import gettext as _
@@ -68,7 +67,6 @@ def local_order_item_create(request,pk):
                 context['message']='Created successfully'
             else:
                 context['error']='Correct the errors'
-            
             context['form']=form
             return render(request,'sales/local_order_templates/actions/localOrderItemCreate/localOrderItemCreateForm.html',context) 
     form = CreateLocalOrderItemForm()
@@ -232,7 +230,6 @@ def local_order_detail(request,pk):
 @staff_member_required(login_url='/')
 def local_order_sold(request,pk):
     local_order = LocalOrder.objects.filter(pk=pk).first()
-    
     context={
         "local_order":local_order
     }

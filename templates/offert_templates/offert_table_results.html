@@ -41,8 +41,8 @@
         {% for offert in pagination %}
             <tr class="text-center">
                 <td class="border small pt-2 table-min">{{offert.name}}</td>
-                <td class="border small pt-2 table-min">{{offert.init_date}}</td>
-                <td class="border small pt-2 table-min">{{offert.end_date}}</td>
+                <td class="border small pt-2 table-min-date">{{offert.init_date}}</td>
+                <td class="border small pt-2 table-min-date">{{offert.end_date}}</td>
                 <td class="border small table-width-50">
                     {% if offert.is_active %}
                         <svg class="color-create" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">

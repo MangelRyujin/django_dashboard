@@ -105,32 +105,10 @@
               </div>
             {% endif %}
           </div>
-          <div class="col-12 mt-4">
-            <div class="row">
-              <div class="col-12">
-                <label for="inputStockMeasureUnitCreate" class="form-label">Measure unit</label>
-                <div class="input-group">
-                  <select id="inputStockMeasureUnitCreate" name="measure_unit" class="form-select" aria-label="Select Measure Unit">
-                    <option value="u">units</option>
-                    <option value="m">milliliters</option>
-                    <option value="g">grams</option>
-                   
-                  </select>
-                </div>
-                {% if form.measure_unit.errors %}
-                <div class="alert alert-danger mt-2">
-                {% for error in form.measure_unit.errors %}
-                    {{ error }}
-                {% endfor %}
-              </div>
-            {% endif %}
-              </div>
-            </div>
-          </div>
           <div class="col-12  mt-4 ">
             <label for="{{ form.cant.id_for_label }}" class="form-label">Cant</label>
             <div class="input-group">
-              <input type="text" class="form-control" required name="cant" id="{{ form.cant.id_for_label }}" placeholder="1.00">
+              <input type="number" min=0 class="form-control" required name="cant" id="{{ form.cant.id_for_label }}" placeholder="1">
             
             </div>
             {% if form.cant.errors %}
