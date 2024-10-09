@@ -135,10 +135,10 @@
 
 .product-device::before {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 2%;
+  right: 3%;
   bottom: 8%;
-  left: 10px;
+  left: 3%;
   content: "";
   background: url("../img/movile.PNG");
   background-position: center center;
@@ -151,7 +151,7 @@
   .product-device {
     bottom: -25%;
     width: 250px;
-    height: 440px;
+    height: 470px;
     transform: rotate(30deg);
     
   }
@@ -163,7 +163,7 @@
     right: 20%;
     bottom: -25%;
     width: 250px;
-    height: 440px;
+    height: 470px;
     transform: rotate(0);
     
   }
@@ -177,7 +177,7 @@
   
   .product-device {
     right: 20%;
-    bottom: -15%;
+    bottom: -14%;
     width: 200px;
     height: 390px;
     transform: rotate(0);
