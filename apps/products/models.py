@@ -5,6 +5,7 @@ from django.core.validators import MinValueValidator,MaxValueValidator
 from simple_history.models import HistoricalRecords
 from apps.accounts.models import User
 import uuid
+import math
 from decimal import Decimal
 # Create your models here.
 
@@ -45,7 +46,9 @@ class Category(models.Model):
 class Product(models.Model):
     code = models.CharField(_("Code"),max_length=50,unique=True)
     name = models.CharField(_("Name"),max_length=30,unique=True)
+    views = models.PositiveIntegerField(_("Views"),default=0)
     categories = models.ManyToManyField(Category,_("Categories"),verbose_name="categories_product")
+    likes = models.ManyToManyField(User,verbose_name="likes_product",blank=True)
     stars= models.PositiveIntegerField(_("Stars"),validators=[MinValueValidator(1),MaxValueValidator(5)],default=3)
     total_sales = models.PositiveIntegerField(_("Total sales"),default=0)
     discount = models.DecimalField(_("Discount"), decimal_places= 2,max_digits=12,default=0, validators=[MinValueValidator(0)])
@@ -69,6 +72,20 @@ class Product(models.Model):
     
     def rating(self):
         return [i for i in range(int(self.stars))]
+    
+    def user_has_like(self,user):
+        if self.likes.filter(id=user).exists():
+            return True
+        return False
+    
+    @property
+    def format_views(self):
+        if self.views >= 1000000 :
+            return f"{math.floor(self.views / 1000000)} M"
+        elif self.views >= 1000 and self.views < 1000000:
+            return f"{math.floor(self.views / 1000)} Mil"
+        else:
+            return str(self.views)
     
     @property
     def total_stock(self):

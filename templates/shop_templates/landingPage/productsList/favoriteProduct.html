@@ -1,0 +1,18 @@
+{% load static %}
+
+{% if favorite_products %}
+
+<div class="py-3 text-center">
+    <h2>Productos más vendidos</h2>
+    <p class="lead">Productos favoritos por los clientes listos para usted.</p>
+  </div>
+  <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6  g-3  ">
+    {% for product in favorite_products %}
+      <div id="productCard{{product.product.pk}}">
+        {% include "shop_templates/landingPage/productsList/productCard.html" %}
+      </div>
+    {% endfor %}
+
+  </div>
+
+  {% endif %}

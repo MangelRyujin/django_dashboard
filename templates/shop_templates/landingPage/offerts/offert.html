@@ -1,0 +1,54 @@
+{% load static %}
+{% if offerts %}
+<div id="carouselExampleAutoplaying" class="carousel slide  my-5" data-bs-ride="carousel">
+    
+    <div class="carousel-inner ">
+        
+        <div class="carousel-item active">
+            <div class="container">
+                <div class="row p-5 ">
+                    <div class="mx-auto col-md-6 col-lg-6 order-md-last d-flex justify-content-center">
+                      <img loading="lazy" width="300" height="300" class="img-fluid rounded image-shadow" src="{% static "/assets/img/offerts/offert-7.png" %}" alt="{% static "/assets/img/offerts/offert-7.png" %}">
+                  </div>
+                    <div class="col-md-6 mb-0  d-flex justify-content-center align-items-center">
+                        <div class="text-align-left ">
+                            <h2 class="h2 text-center">Nombre de la oferta</h2>
+                            <p class="lead text-center ">Descuento de un 10%. ¡Compre ahora!</p>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item">
+          <div class="container">
+              <div class="row p-5 ">
+                  <div class="mx-auto col-md-6 col-lg-6 order-md-last d-flex justify-content-center">
+                    <img loading="lazy" width="300" height="300" class="img-fluid  image-shadow" src="{% static "/assets/img/offerts/offert-7.png" %}" alt="{% static "/assets/img/offerts/offert-7.png" %}">
+                  </div>
+                  <div class="col-md-6 mb-0 d-flex justify-content-center align-items-center">
+                      <div class="text-align-left ">
+                          <h2 class="h2 text-center">Nombre de la oferta</h2>
+                          <p class="lead text-center ">¡Nuevo producto disponible para usted!</p>
+                         
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+        
+    </div>
+    <button class="carousel-control-prev " type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+      <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="40" height="40" fill="currentColor" class="text-body-emphasis bi-arrow-left-circle" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"/>
+      </svg>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next " type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+      <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true"  width="40" height="40" fill="currentColor" class="text-body-emphasis bi-arrow-right-circle" viewBox="0 0 16 16">
+        <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z"/>
+      </svg>
+      <span class="visually-hidden">Next</span>
+    </button>
+</div>
+{% endif %}

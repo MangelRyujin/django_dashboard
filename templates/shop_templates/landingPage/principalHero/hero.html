@@ -1,0 +1,17 @@
+{% load static %}
+{% if hero %}
+<div class="row flex-md-row-reverse mt-4 align-items-center justify-content-center g-2 py-5">
+    <div class=" col-12 col-sm-8  col-lg-6 d-flex justify-content-center position-relative mb-2">
+      <img width="220" height="220"  src="{% if hero.image %}{{hero.image.url}}{% else %}{% static "/assets/img/image_not_found.jpg" %}{% endif %}" class="d-block mx-lg-auto img-fluid image-logo-shadow" style="" alt="{% static "/assets/img/image_not_found.jpg" %}" loading="lazy">
+      
+    </div>
+  <div class="col-lg-6 mt-2 pt-4">
+    <h1 class="display-6 fw-bold lh-2 mb-3 text-uppercase text-center text-sm-start">{{hero.principal_title}}</h1>
+    <p class="lead text-center text-sm-start ">{{hero.secundary_title}}</p>
+    <div class=" d-flex justify-content-center justify-content-md-start">
+      <a href="{% url "products_store_view" %}" class="btn btn-outline-primary shadow-sm border-2 fw-semibold px-4 me-md-2">Ver productos</a>
+    </div>
+  </div>
+  
+</div>
+{% endif %}

@@ -1,0 +1,15 @@
+{% load static %}
+
+{% if cheap_products %}
+<div class="py-3 text-center">
+    <h2>Productos más económicos</h2>
+    <p class="lead">Los productos más baratos a su alcance.</p>
+  </div>
+  <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6  g-3  ">
+    {% for product in cheap_products %}
+      <div id="productCard{{product.product.pk}}Cheap">
+        {% include "shop_templates/landingPage/productsList/productCardCheap.html" %}
+      </div>
+    {% endfor %}
+  </div>
+  {% endif %}
