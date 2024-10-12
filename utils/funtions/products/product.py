@@ -1,5 +1,5 @@
-from apps.products.models import Product,ProductReview
-
+from apps.products.models import Category, Offert, Product,ProductReview
+from datetime import date
 
 # Calculate total products sold cant
 def products_sold():
@@ -56,3 +56,27 @@ def favorite_products(user):
             }
         )
     return favorite_products
+
+# Filter all categories
+def categories_list_slider():
+    categories = []
+    category_query = Category.objects.filter(is_active=True)
+    total_categories = category_query.count()
+    
+    full_groups = total_categories // 4
+
+    for i in range(full_groups):
+        group = list(category_query[i*4:(i+1)*4])
+        categories.append(group)
+
+    remaining = total_categories % 4
+    if remaining > 0:
+        categories.append(list(category_query[full_groups*4:]))
+
+    return categories
+
+# Filter offerts in date range
+def offerts_actives():
+    offerts= Offert.objects.filter(is_active=True).exclude(init_date__gt=date.today()).exclude(end_date__lt=date.today())
+    print(offerts)
+    return offerts

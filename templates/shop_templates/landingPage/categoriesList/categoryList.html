@@ -9,85 +9,40 @@
     
     <div class="carousel-inner ">
         
-        <div class="carousel-item active">
+    
+        {% for list in categories %}
+        
+        <div class="carousel-item {% if not forloop.counter > 1 %}active{% endif %}">
             <div class="container">
               <div class="row row-cols-2  g-3  row-cols-md-4 ">
-                <div class="col pb-3 d-flex justify-content-center align-items-center  position-relative">
-                  <img loading="lazy"  width="300" src="{% static "/assets/img/products/product-6.jpg" %}" class="img-fluid img-thumbnail" alt="{% static "/assets/img/products/product-5.jpg" %}">
-                  <strong class="small position-absolute p-1 p-sm-2 border-2 bg-body-tertiary border rounded bottom-0 " style="font-size: 12px;">
-                    Categoría
-                  </strong>
-                </div>
-                <div class="col pb-3 d-flex justify-content-center align-items-center  position-relative">
-                  <img loading="lazy" width="300" src="{% static "/assets/img/products/product-5.jpg" %}" class="img-fluid img-thumbnail" alt="{% static "/assets/img/products/product-5.jpg" %}">
-                <strong class="small position-absolute p-1 p-sm-2 border-2 bg-body-tertiary border rounded bottom-0 " style="font-size: 12px;">
-                    Categoría
-                  </strong>
-                </div>
-                <div class="col pb-3 d-flex justify-content-center align-items-center  position-relative">
-                  <img loading="lazy"  width="300" src="{% static "/assets/img/products/product-6.jpg" %}" class="img-fluid img-thumbnail" alt="{% static "/assets/img/products/product-5.jpg" %}">
-                <strong class="small position-absolute p-1 p-sm-2 border-2 bg-body-tertiary border rounded bottom-0 " style="font-size: 12px;">
-                    Categoría
-                  </strong>
-                </div>
-                <div class="col pb-3 d-flex justify-content-center align-items-center  position-relative">
-                  <img loading="lazy" width="300" src="{% static "/assets/img/products/product-5.jpg" %}" class="img-fluid img-thumbnail" alt="{% static "/assets/img/products/product-5.jpg" %}">
-                <strong class="small position-absolute p-1 p-sm-2 border-2 bg-body-tertiary border rounded bottom-0 " style="font-size: 12px;">
-                    Categoría
-                  </strong>
-                </div> 
+                {% for category in list %}
+                
+                    <div class="col pb-3 d-flex justify-content-center align-items-center  position-relative">
+                        <img loading="lazy"  width="300" src="{% if category.image %}{{category.image.url}}{% else %}{% static "/assets/img/products/product-6.jpg" %}{% endif %}" class="img-fluid img-thumbnail" alt="{% static "/assets/img/products/product-5.jpg" %}">
+                        <strong class="small position-absolute p-1 p-sm-2 border-2 bg-body-tertiary border rounded bottom-0 " style="font-size: 12px;">
+                            {{category.name}}
+                        </strong>
+                    </div>
+                {% endfor %}
               </div>
             </div>
         </div>
-        <div class="carousel-item">
-          <div class="container">
-            <div class="row row-cols-2  g-3  row-cols-md-4 ">
-    
-              <div class="col pb-3 d-flex justify-content-center align-items-center  position-relative">
-                <img loading="lazy" width="300" src="{% static "/assets/img/products/product-5.jpg" %}" class="img-fluid img-thumbnail" alt="{% static "/assets/img/products/product-5.jpg" %}">
-              <strong class="small position-absolute p-1 p-sm-2 border-2 bg-body-tertiary border rounded bottom-0 " style="font-size: 12px;">
-                    Categoría
-                  </strong>
-              </div>
-              
-              <div class="col pb-3 d-flex justify-content-center align-items-center  position-relative">
-                <img loading="lazy"  width="300" src="{% static "/assets/img/products/product-6.jpg" %}" class="img-fluid img-thumbnail" alt="{% static "/assets/img/products/product-5.jpg" %}">
-              <strong class="small position-absolute p-1 p-sm-2 border-2 bg-body-tertiary border rounded bottom-0 " style="font-size: 12px;">
-                    Categoría
-                  </strong>
-              </div>
-              
-              <div class="col pb-3 d-flex justify-content-center align-items-center  position-relative">
-                <img loading="lazy" width="300" src="{% static "/assets/img/products/product-5.jpg" %}" class="img-fluid img-thumbnail" alt="{% static "/assets/img/products/product-5.jpg" %}">
-              <strong class="small position-absolute p-1 p-sm-2 border-2 bg-body-tertiary border rounded bottom-0 " style="font-size: 12px;">
-                    Categoría
-                  </strong>
-              </div>
-              
-              <div class="col pb-3 d-flex justify-content-center align-items-center  position-relative">
-                <img loading="lazy"  width="300" src="{% static "/assets/img/products/product-6.jpg" %}" class="img-fluid img-thumbnail" alt="{% static "/assets/img/products/product-5.jpg" %}">
-              <strong class="small position-absolute p-1 p-sm-2 border-2 bg-body-tertiary border rounded bottom-0 " style="font-size: 12px;">
-                    Categoría
-                  </strong>
-              </div>
-              
-            </div>
-          </div>
-      </div>
+        
+        {% endfor %}
         
     </div>
     <button class="carousel-control-prev " type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-      <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="40" height="40" fill="currentColor" class="text-body-emphasis bi-arrow-left-circle" viewBox="0 0 16 16">
-        <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"/>
-      </svg>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next " type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-      <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true"  width="40" height="40" fill="currentColor" class="text-body-emphasis bi-arrow-right-circle" viewBox="0 0 16 16">
-        <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z"/>
-      </svg>
-      <span class="visually-hidden">Next</span>
-    </button>
+        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="40" height="40" fill="currentColor" class="text-body-emphasis bi-arrow-left-circle" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"/>
+        </svg>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next " type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+        <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true"  width="40" height="40" fill="currentColor" class="text-body-emphasis bi-arrow-right-circle" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z"/>
+        </svg>
+        <span class="visually-hidden">Next</span>
+      </button>
 </div>
 
 {% endif %}
