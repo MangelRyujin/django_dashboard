@@ -1,5 +1,6 @@
 from apps.products.models import Category, Offert, Product,ProductReview
 from datetime import date
+from django.db.models import Q
 
 # Calculate total products sold cant
 def products_sold():
@@ -78,5 +79,19 @@ def categories_list_slider():
 # Filter offerts in date range
 def offerts_actives():
     offerts= Offert.objects.filter(is_active=True).exclude(init_date__gt=date.today()).exclude(end_date__lt=date.today())
-    print(offerts)
     return offerts
+
+# Search all products
+def search_all_products(request):
+    if request.method == 'POST':
+        keyword = request.POST.get("keyword",'')
+        request.session['keyword'] = keyword
+    search_products = Product.objects.filter(
+        Q(name__icontains=keyword) | Q(categories__name__icontains=keyword)
+        | Q(small_description__icontains=keyword)
+        ).distinct().order_by('-id')[:20]
+    context={
+        'keyword':keyword,
+        'products':search_products,
+    }
+    return context
