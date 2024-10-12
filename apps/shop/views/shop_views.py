@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from apps.general.models import *
 from apps.products.models import Product
-from utils.funtions.products.product import categories_list_slider, cheap_products, favorite_products, offerts_actives
+from utils.funtions.products.product import search_all_products, categories_list_slider, cheap_products, favorite_products, offerts_actives
 
 
 
@@ -19,6 +19,8 @@ def shop_view(request):
     response['Expires'] = '0'
     return response
 
+def search_product(request):
+    return render(request,'shop_templates/landingPage/filters/search.html',search_all_products(request))
 
 def product_like(request,pk):
     product = Product.objects.filter(pk=pk).first()

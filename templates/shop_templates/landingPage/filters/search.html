@@ -1,0 +1,47 @@
+{% load static %}
+
+
+{% if products %}
+<div class="my-1 p-1 overflow-hidden overflow-y-auto" style="max-height: 350px;">
+    {% for product in products %}
+    <div class="d-flex  text-body-secondary pt-2 border-bottom border-1">
+        <img src="{% if product.image_one %}{{product.image_one.url}}{% else %}{% static "/assets/img/image_not_found.jpg" %}{% endif %} " alt="{% if product.image_one %}{{product.image_one.url}}{% else %}{% static "/assets/img/image_not_found.jpg" %}{% endif %}" width="90" height="90" class="rounded me-2">
+        <div class="pb-3 mb-0  lh-sm ">
+          <a href="{% url "shop_product_detail_view" %}" class="text-decoration-none fw-semibold text-ellipsis-180 mb-0 small ">{{ product.name}}</a>
+          <ul class="list-inline d-flex gap-1 mb-0">
+            {% for star in product.rating %}
+            <li class="list-unstyled">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="me-2 text-warning  bi-star-fill" viewBox="0 0 16 16">
+                <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                </svg>
+            </li>
+            {% endfor %} 
+          
+            
+          </ul>
+          <span class="d-block mb-2">{{product.categories.all.0.name}}</span>
+          {% if product.discount > 0 %}
+            <strong class="small position-relative mb-2">
+            $ {{product.total_price}}
+                <span class="position-absolute small top-0 start-100 translate-middle text-decoration-line-through pb-1 text-body-secondary">
+                {{product.price}}
+                
+                </span>
+            </strong> 
+            {% else %}
+            <strong class="small position-relative mb-2">
+            $ {{product.total_price}}
+            </strong>
+            {% endif %}
+        </div>
+      </div>
+      
+      
+    
+      
+      
+      
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
