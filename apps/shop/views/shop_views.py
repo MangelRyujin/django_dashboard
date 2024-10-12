@@ -1,13 +1,15 @@
 from django.shortcuts import render
 from apps.general.models import *
 from apps.products.models import Product
-from utils.funtions.products.product import cheap_products, favorite_products
+from utils.funtions.products.product import categories_list_slider, cheap_products, favorite_products, offerts_actives
 
 
 
 def shop_view(request):
     context = {
+        "offerts":offerts_actives(),
         "hero":PrincipalHeader.objects.first(),
+        "categories":categories_list_slider(),
         "favorite_products":favorite_products(request.user),
         "cheap_products":cheap_products(request.user),
     }

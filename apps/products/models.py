@@ -13,8 +13,8 @@ from decimal import Decimal
 class Offert(models.Model):
     name = models.CharField(_("Name"),max_length=50)
     description = models.CharField(_("Description"),max_length=255)
-    init_date = models.DateTimeField(_("Init date"),auto_now=False,auto_now_add=False)
-    end_date = models.DateTimeField(_("End date"),auto_now=False,auto_now_add=False)
+    init_date = models.DateField(_("Init date"),auto_now=False,auto_now_add=False)
+    end_date = models.DateField(_("End date"),auto_now=False,auto_now_add=False)
     image = models.ImageField(_("Image"),upload_to="offert_images")
     is_active = models.BooleanField(_("Active"),default=True)
 

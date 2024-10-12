@@ -3,39 +3,27 @@
 <div id="carouselExampleAutoplaying" class="carousel slide  my-5" data-bs-ride="carousel">
     
     <div class="carousel-inner ">
-        
-        <div class="carousel-item active">
-            <div class="container">
-                <div class="row p-5 ">
-                    <div class="mx-auto col-md-6 col-lg-6 order-md-last d-flex justify-content-center">
-                      <img loading="lazy" width="300" height="300" class="img-fluid rounded image-shadow" src="{% static "/assets/img/offerts/offert-7.png" %}" alt="{% static "/assets/img/offerts/offert-7.png" %}">
-                  </div>
-                    <div class="col-md-6 mb-0  d-flex justify-content-center align-items-center">
-                        <div class="text-align-left ">
-                            <h2 class="h2 text-center">Nombre de la oferta</h2>
-                            <p class="lead text-center ">Descuento de un 10%. ¡Compre ahora!</p>
-                           
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="carousel-item">
+        {% for offert in offerts %}
+        <div class="carousel-item {% if not forloop.counter > 1 %}active{% endif %}">
           <div class="container">
               <div class="row p-5 ">
                   <div class="mx-auto col-md-6 col-lg-6 order-md-last d-flex justify-content-center">
-                    <img loading="lazy" width="300" height="300" class="img-fluid  image-shadow" src="{% static "/assets/img/offerts/offert-7.png" %}" alt="{% static "/assets/img/offerts/offert-7.png" %}">
-                  </div>
-                  <div class="col-md-6 mb-0 d-flex justify-content-center align-items-center">
+                    <img loading="lazy" width="300" height="300" class="img-fluid rounded image-shadow" src="{% if offert.image %}{{offert.image.url}}{% else %}{% static "/assets/img/image_not_found.jpg" %}{% endif %}" alt="{% if offert.image %}{{offert.image.url}}{% else %}{% static "/assets/img/image_not_found.jpg" %}{% endif %}">
+                </div>
+                  <div class="col-md-6 mb-0  d-flex justify-content-center align-items-center">
                       <div class="text-align-left ">
-                          <h2 class="h2 text-center">Nombre de la oferta</h2>
-                          <p class="lead text-center ">¡Nuevo producto disponible para usted!</p>
+                          <h2 class="h2 text-center">{{offert.name}}</h2>
+                          <p class="lead text-center ">{{offert.description}}</p>
                          
                       </div>
                   </div>
               </div>
           </div>
       </div>
+        {% endfor %}
+        
+        
+      
         
     </div>
     <button class="carousel-control-prev " type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
