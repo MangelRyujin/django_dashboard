@@ -2,7 +2,7 @@
 
 
 {% if products %}
-<div class="my-1 p-1 overflow-hidden overflow-y-auto" style="max-height: 350px;">
+
     {% for product in products %}
     <div class="d-flex  text-body-secondary pt-2 border-bottom border-1">
         <img src="{% if product.image_one %}{{product.image_one.url}}{% else %}{% static "/assets/img/image_not_found.jpg" %}{% endif %} " alt="{% if product.image_one %}{{product.image_one.url}}{% else %}{% static "/assets/img/image_not_found.jpg" %}{% endif %}" width="90" height="90" class="rounded me-2">
@@ -43,5 +43,5 @@
       
     </div>
     {% endfor %}
-  </div>
+
   {% endif %}
