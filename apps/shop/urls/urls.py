@@ -10,6 +10,7 @@ urlpatterns = [
     path('product_like/<int:pk>/',product_like,name='product_like'),
     path('product_cheap_like/<int:pk>/',product_cheap_like,name='product_cheap_like'),
     path('search_product/',search_product,name='search_product'),
+    path('product_list_results/',product_list_results,name='product_list_results'),
     
     
 ]

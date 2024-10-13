@@ -253,7 +253,7 @@ def local_order_delete_sold(request,pk):
             local_order_id=local_order.id
             local_order.delete()
             context = _show_local_order(request)
-            context['message']=f'Order {local_order_id} has been delete'
+            context['message']=f'Order {local_order_id} has been paid'
         else:
             context['error']=f'Sorry, product not found'
         return render(request,'sales/local_order_templates/local_order_result.html',context)
