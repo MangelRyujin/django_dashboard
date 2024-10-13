@@ -3,7 +3,7 @@
 {% block title %}Login{% endblock %}
 {% block contend %}
 
-<section class="container  mb-4 pb-4" >
+<section class="container  my-4 py-4" >
     <div class="d-flex justify-content-center align-items-center w-100 h-100 ">
       
       <div class="col-12 col-sm-10 col-md-7 col-lg-4">
@@ -13,7 +13,7 @@
             
             {% csrf_token %}
             <a href="{% url "shop_view" %}" class="d-flex justify-content-center">
-              <img class="img-fluid rounded" width="250" height="250" src="{% static "/assets/img/remiux-logo.png" %} " alt="icons-hero.png">
+              <img class="img-fluid rounded" width="250" height="250" src="{% if social.image %}{{social.image.url}}{% else %}{% static "/assets/img/remiux-logo.png" %}{% endif %} " alt="Remiux">
       
             </a>
               <h1 class="text-center h3 mb-3 mt-1 text-body-secondary">Iniciar sesión</h1>

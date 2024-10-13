@@ -1,6 +1,12 @@
 from django import forms
-from apps.general.models import LocalSales, PrincipalHeader, ShopSales,SocialMedia,WhatsAppContact
+from apps.general.models import LocalSales, Goal,PrincipalHeader, ShopSales,SocialMedia,WhatsAppContact
 
+
+class UpdateGoalForm(forms.ModelForm):
+    
+    class Meta:
+        model = Goal
+        fields = "__all__"
         
 class UpdatePrincipalHeaderForm(forms.ModelForm):
     

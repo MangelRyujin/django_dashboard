@@ -8,6 +8,7 @@ from utils.funtions.products.product import search_all_products, categories_list
 def shop_view(request):
     context = {
         "whatsapp":WhatsAppContact.objects.first(),
+        "social":SocialMedia.objects.first(),
         "offerts":offerts_actives(),
         "hero":PrincipalHeader.objects.first(),
         "categories":categories_list_slider(),
