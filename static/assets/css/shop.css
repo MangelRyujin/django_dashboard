@@ -81,6 +81,12 @@
 }
 
 
+.loadding-blur{
+  z-index: 100 !important;
+  background: var(--bs-body-bg.2) !important;
+  backdrop-filter: blur(2px) !important;
+}
+
 
 .filter-white{
   backdrop-filter: blur(3px) !important;
@@ -100,7 +106,7 @@
   flex-wrap: nowrap;
   padding-bottom: 1rem;
   margin-top: -1px;
-  overflow-x: auto;
+  /* overflow-x: auto; */
   text-align: center;
   white-space: nowrap;
   -webkit-overflow-scrolling: touch;
