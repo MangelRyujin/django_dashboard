@@ -13,12 +13,15 @@ def settings_view(request):
     shop=ShopSales.objects.first()
     social=SocialMedia.objects.first()
     wapp=WhatsAppContact.objects.first()
+    goal=Goal.objects.first()
     context={
+        'goal':goal,
         'header':header,
         'local':local,
         'shop':shop,
         'social':social,
         'wapp':wapp,
+        'goal_form':UpdateGoalForm(),
         'header_form': UpdatePrincipalHeaderForm(),
         'local_form': UpdateLocalSalesForm(),
         'shop_form': UpdateShopSalesForm(),
@@ -53,6 +56,27 @@ def save_header_settings_view(request):
     context['header']=header
     return render(request,'settings_templates/forms/header_form.html',context) 
     
+
+@staff_member_required(login_url='/')
+def save_goal_settings_view(request):
+    context={}
+    goal=Goal.objects.first()
+    if request.method == "POST":
+        if goal:
+            goal_form=UpdateGoalForm(request.POST,instance=goal)
+        else: 
+            goal_form=UpdateGoalForm(request.POST)
+        
+        if goal_form.is_valid():
+            goal_form.save()
+            context['message']='Change successfully'
+            context['goal_form']=goal_form
+        else:
+            context['error']='Correct the errors'
+            context['goal_form']=goal_form
+    context['goal']=goal
+    return render(request,'settings_templates/forms/goal_form.html',context) 
+
 
 @staff_member_required(login_url='/')
 def save_local_settings_view(request):

@@ -3,8 +3,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login 
 from django.http import HttpResponse
 from django.contrib.auth.forms import PasswordChangeForm
+from apps.general.models import SocialMedia, WhatsAppContact
 from apps.products.models import Category,Product,Coupon
-from utils.funtions.sales.sale import total_new_orders, total_sales
+from utils.funtions.sales.sale import sales_goal, total_new_orders, total_sales
 from ..decorators import user_is_not_authenticated
 from apps.accounts.models import User
 from django.contrib.admin.views.decorators import staff_member_required
@@ -22,7 +23,10 @@ def dashboard_view(request):
     coupon_history = Coupon.history.all()[:10]
     category_history = Category.history.all()[:10]
     product_history = Product.history.all()[:10]
+    porcent_float,porcent_int = sales_goal()
     context={
+        'porcent_float':porcent_float,
+        'porcent_int':porcent_int,
         'total_sold_out_products':total_sold_out_products(),
         'total_new_orders':total_new_orders(),
         'total_products':total_products(),
@@ -46,7 +50,8 @@ def dashboard_view(request):
 # Log in view
 @user_is_not_authenticated
 def login_view(request):
-    next_url = request.GET.get('next', '')
+    
+    
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
@@ -68,13 +73,22 @@ def login_view(request):
                       </div>
                                 
                                 """)
-
-    return render(request, 'login.html',{"next_url":next_url})
+    context = {
+        "whatsapp":WhatsAppContact.objects.first(),
+        "social":SocialMedia.objects.first(),
+        "next_url":request.GET.get('next', '')
+    }
+    return render(request, 'login.html',context)
 
 # Register in view
 @user_is_not_authenticated
 def register_view(request):
-    return render(request, 'register.html',{"form":RegisterForm(request.POST or None)})
+    context = {
+        "whatsapp":WhatsAppContact.objects.first(),
+        "social":SocialMedia.objects.first(),
+        "form":RegisterForm(request.POST or None)
+    }
+    return render(request, 'register.html',context)
 
 # Register in view
 @user_is_not_authenticated

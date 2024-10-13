@@ -1,7 +1,19 @@
 from django.db import models
 from django.utils.translation import gettext as _
 from solo.models import SingletonModel
+from django.core.validators import MinValueValidator
 # Create your models here.
+
+
+class Goal(SingletonModel):
+    goal = models.IntegerField(_("Goal"),default=100000,validators=[MinValueValidator(1)])
+
+    class Meta:
+        verbose_name = _("Goal")
+        verbose_name_plural = _("Goal")
+
+    def __str__(self):
+        return f'{self.goal}'
 
 class PrincipalHeader(SingletonModel):
     principal_title = models.CharField(_("Principal comment"),max_length=50,null=True,blank=True)

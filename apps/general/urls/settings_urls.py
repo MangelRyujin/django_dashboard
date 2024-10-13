@@ -8,5 +8,7 @@ urlpatterns = [
     path('save_shop_settings_view',save_shop_settings_view,name='save_shop_settings_view'),
     path('save_social_settings_view',save_social_settings_view,name='save_social_settings_view'),
     path('save_wapp_settings_view',save_wapp_settings_view,name='save_wapp_settings_view'),
+    path('save_goal_settings_view',save_goal_settings_view,name='save_goal_settings_view'),
+    
 ]
 
