@@ -5,12 +5,13 @@ from django.http import HttpResponse
 from django.contrib.auth.forms import PasswordChangeForm
 from apps.general.models import SocialMedia, WhatsAppContact
 from apps.products.models import Category,Product,Coupon
-from utils.funtions.sales.sale import sales_goal, total_new_orders, total_sales
+from utils.funtions.sales.sale import *
+from utils.funtions.users.user import *
 from ..decorators import user_is_not_authenticated
 from apps.accounts.models import User
 from django.contrib.admin.views.decorators import staff_member_required
 from apps.general.forms.register_form import RegisterForm
-from utils.funtions.products.product import total_available_products, total_products,total_reviews, total_sold_out_products
+from utils.funtions.products.product import *
 
 
 # Dashboard view (index)
@@ -25,6 +26,9 @@ def dashboard_view(request):
     product_history = Product.history.all()[:10]
     porcent_float,porcent_int = sales_goal()
     context={
+        'dashboard_favorite_products':dashboard_favorite_products(),
+        'total_users':total_users(),
+        'total_orders':total_orders(),
         'porcent_float':porcent_float,
         'porcent_int':porcent_int,
         'total_sold_out_products':total_sold_out_products(),
@@ -32,6 +36,8 @@ def dashboard_view(request):
         'total_products':total_products(),
         'total_sales':total_sales(),
         'total_reviews':total_reviews(),
+        'total_products_views':total_products_views(),
+        'total_positive_reviews':total_positive_reviews(),
         'total_available_products':total_available_products(),
         'admin_history':admin_history,
         'category_history':category_history,
