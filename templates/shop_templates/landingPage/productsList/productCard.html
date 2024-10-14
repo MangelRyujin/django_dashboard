@@ -14,7 +14,7 @@
       
     </div>
     
-    <a href="{% url "shop_product_detail_view" %}" class=" text-decoration-none fw-bold d-block small ">{{ product.product.name}}</a>
+    <a href="{% url "shop_product_detail_view" pk=product.product.pk %}" class=" text-decoration-none fw-bold d-block small ">{{ product.product.name}}</a>
     <div class="d-flex justify-content-start align-items-center mb-2">
         {% for star in product.product.rating %}
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="me-2 text-warning  bi-star-fill" viewBox="0 0 16 16">
@@ -82,7 +82,7 @@
         {% endif %}
         
         
-        <a href="{% url "shop_product_detail_view" %}" class="text-body-emphasis text-decoration-none cursor-pointer d-flex justify-content-center align-items-center">
+        <a href="{% url "shop_product_detail_view" pk=product.product.pk %}" class="text-body-emphasis text-decoration-none cursor-pointer d-flex justify-content-center align-items-center">
           {{product.product.format_views}}
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="ms-1 bi-eye-fill" viewBox="0 0 16 16">
             <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0"/>
