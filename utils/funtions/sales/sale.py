@@ -1,6 +1,9 @@
 from apps.general.models import Goal
 from apps.sales.models import LocalOrder, Order
 
+def total_orders():
+    return Order.objects.all().count() or 0
+
 def total_sales():
     return sum(order.total_price for order in Order.objects.all()) or 0
 

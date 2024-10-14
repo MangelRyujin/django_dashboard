@@ -27,8 +27,15 @@ def total_available_products():
     return count
 
 # Calculate total positive reviews
-def total_reviews():
+def total_positive_reviews():
     return ProductReview.objects.filter(stars__gt=3).__len__()
+
+def total_reviews():
+    return ProductReview.objects.all().count()
+
+
+def total_products_views():
+    return sum(product.views for product in Product.objects.all()) or 0
 
 # Filter 12 cheap products
 def cheap_products(user):
@@ -43,6 +50,10 @@ def cheap_products(user):
                 }
             )
     return cheap_products
+
+# Filter 6 favorite products for dashboard
+def dashboard_favorite_products():
+    return Product.objects.filter(is_active=True,total_sales__gt=0).order_by("-total_sales")[:6]
 
 # Filter 6 favorite products
 def favorite_products(user):
