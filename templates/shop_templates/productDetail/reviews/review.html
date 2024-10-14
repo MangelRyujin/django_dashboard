@@ -8,7 +8,7 @@
   <div class="col-12 col-sm-6 ">
     <div class="d-block  bg-body-tertiary p-2 rounded border">
       <div class="d-flex justify-content-start align-items-center flex-shrink-0">
-          <img class="rounded-circle me-3" src="{% static "/img/avatar.jpg" %}" alt="" width="50">
+          <img width="50" height="50" class="rounded-circle me-3" src="{% if review.user.image %}{{review.user.image.url}}{% else %}{% static "/img/avatar.jpg" %}{% endif %}" alt="{% if review.user.image %}{{review.user.image.url}}{% else %}{% static "/img/avatar.jpg" %}{% endif %}" >
           <div>
               <h6 class="mb-0 ">{{review.user.username}}</h6>
           <p class="small text-muted mb-0 ">{{review.create_date}}</p>
