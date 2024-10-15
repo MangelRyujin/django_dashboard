@@ -17,7 +17,7 @@ def get_total_items_orders(request):
     orders = Order.objects.filter(
     created_date__range=(start_date, end_date)
     ).order_by('created_date')
-    total_orders=orders.__len__() or 0
+    total_items=0
     labels = []
     dataset_data = [0,0,0,0,0,0,0]
     current_label = None
@@ -32,13 +32,14 @@ def get_total_items_orders(request):
         if label != current_label:
             current_label = label
             index=labels.index(label)
-        dataset_data[index] += 1
+        dataset_data[index] += order.total_items
+        total_items+=order.total_items
           
     return JsonResponse({
-        "total_orders":total_orders,
+        "total_orders":total_items,
         "start_month":calendar.month_name[start_date.month],
         "end_month":calendar.month_name[end_date.month],
-        "title": f"Orders",
+        "title": f"Product",
         "data": {
             "labels": labels,
             "datasets": [{
@@ -56,7 +57,6 @@ def get_total_price_orders(request):
     created_date__range=(start_date, end_date)
     ).order_by('created_date')
     total_price=sum(order.total_price  for order in orders)
-    print(total_price)
     labels = []
     dataset_data = [0,0,0,0,0,0,0]
     current_label = None
@@ -77,6 +77,50 @@ def get_total_price_orders(request):
         "total_price_orders":total_price,
         "start_month":calendar.month_name[start_date.month],
         "end_month":calendar.month_name[end_date.month],
+        "title": f"Amount",
+        "data": {
+            "labels": labels,
+            "datasets": [{
+              "data": dataset_data,
+            }]
+        },
+    })
+    
+@staff_member_required
+def get_total_items_orders_month(request,year=timezone.now().year):
+    orders = Order.objects.filter(
+    created_date__year=year
+    ).order_by('created_date')
+    total_items=sum(order.total_items  for order in orders)
+    labels = ["1","2","3","4","5","6","7","8","9","10","11","12"]
+    dataset_data = [0,0,0,0,0,0,0,0,0,0,0,0]
+    for order in orders:
+        label=order.created_date.month
+        dataset_data[label-1] += order.total_items
+    return JsonResponse({
+        "total_items":total_items,
+        "title": f"Products",
+        "data": {
+            "labels": labels,
+            "datasets": [{
+              "data": dataset_data,
+            }]
+        },
+    })
+    
+@staff_member_required
+def get_total_items_orders_price_month(request,year=timezone.now().year):
+    orders = Order.objects.filter(
+    created_date__year=year
+    ).order_by('created_date')
+    total_price=sum(order.total_price  for order in orders)
+    labels = ["1","2","3","4","5","6","7","8","9","10","11","12"]
+    dataset_data = [0,0,0,0,0,0,0,0,0,0,0,0]
+    for order in orders:
+        label=order.created_date.month
+        dataset_data[label-1] += order.total_price
+    return JsonResponse({
+        "total_price":total_price,
         "title": f"Amount",
         "data": {
             "labels": labels,

@@ -1,110 +1,110 @@
 /* globals Chart:false */
-const myChartBar = document.getElementById('myChartBar');
-      if (myChartBar) {
-        new Chart(myChartBar, {
-          type: 'bar',
-          data: {
-            labels: ['01', '02', '03', '04', '05', '06','07'],
-            datasets: [{
-              label: 'total sold',
-              data: [120,100,150,130, 49, 123,120],
-              borderWidth: 1
-            }]
-          },
-          options: {
-            responsive:true,
-            scales: {
-              y: {
-                beginAtZero: true
-              }
-            }
-          }
-        });
+// const myChartBar = document.getElementById('myChartBar');
+//       if (myChartBar) {
+//         new Chart(myChartBar, {
+//           type: 'bar',
+//           data: {
+//             labels: ['01', '02', '03', '04', '05', '06','07','08', '09', '10', '11', '12'],
+//             datasets: [{
+//               label: 'total sold',
+//               data: [120,100,150,130, 49, 123,120,100,150,130, 49, 123],
+//               borderWidth: 1
+//             }]
+//           },
+//           options: {
+//             responsive:true,
+//             scales: {
+//               y: {
+//                 beginAtZero: true
+//               }
+//             }
+//           }
+//         });
 
-      }
+//       }
         
-        const myChartLine = document.getElementById('myChartLine');
-        if (myChartLine) {
-          new Chart(myChartLine, {
-            type: 'line',
-            data: {
-              labels: ['01', '02', '03', '04', '05', '06','07'],
-              datasets: [{
-                label: 'total sold',
-                data: [120,100,150,130, 49, 123,120],
-                borderWidth: 1
-              }]
-            },
-            options: {
+        // const myChartLine = document.getElementById('myChartLine');
+        // if (myChartLine) {
+        //   new Chart(myChartLine, {
+        //     type: 'line',
+        //     data: {
+        //       labels: ['01', '02', '03', '04', '05', '06','07','08', '09', '10', '11', '12'],
+        //       datasets: [{
+        //         label: 'total sold',
+        //         data: [120,100,150,130, 49, 123,120,100,150,130, 49, 123],
+        //         borderWidth: 1
+        //       }]
+        //     },
+        //     options: {
               
-              responsive:true,
-              scales: {
-                y: {
-                  beginAtZero: true
-                }
-              }
-            }
-          });
+        //       responsive:true,
+        //       scales: {
+        //         y: {
+        //           beginAtZero: true
+        //         }
+        //       }
+        //     }
+        //   });
   
-        }    
+        // }    
 
 
-        const myChartDoughnut1 = document.getElementById('myChartDoughnut1');
-        if (myChartDoughnut1) {
-          new Chart(myChartDoughnut1, {
-            type: 'doughnut',
-            data: {
-              labels: [
-                'Sold',
-                'Stop'
-              ],
-              datasets: [{
-                label: 'Orders',
-                data: [57, 13],
-                backgroundColor: [
-                  'rgb(220, 53, 69)',
-                  'rgb(25, 135, 84)'
-                ],
-                hoverOffset: 4
-              }]
-            },
-            options: {
+        // const myChartDoughnut1 = document.getElementById('myChartDoughnut1');
+        // if (myChartDoughnut1) {
+        //   new Chart(myChartDoughnut1, {
+        //     type: 'doughnut',
+        //     data: {
+        //       labels: [
+        //         'Sold',
+        //         'Stop'
+        //       ],
+        //       datasets: [{
+        //         label: 'Orders',
+        //         data: [57, 13],
+        //         backgroundColor: [
+        //           'rgb(220, 53, 69)',
+        //           'rgb(25, 135, 84)'
+        //         ],
+        //         hoverOffset: 4
+        //       }]
+        //     },
+        //     options: {
              
-              responsive:true,
+        //       responsive:true,
             
-            }
-          });
+        //     }
+        //   });
   
-        }    
+        // }    
 
-        const myChartDoughnut2 = document.getElementById('myChartDoughnut2');
-        if (myChartDoughnut2) {
-          new Chart(myChartDoughnut2, {
-            type: 'doughnut',
-            data: {
-              labels: [
-                'Act',
-                'Out'
-              ],
-              datasets: [{
-                label: 'Products',
-                data: [12, 42],
-                backgroundColor: [
+        // const myChartDoughnut2 = document.getElementById('myChartDoughnut2');
+        // if (myChartDoughnut2) {
+        //   new Chart(myChartDoughnut2, {
+        //     type: 'doughnut',
+        //     data: {
+        //       labels: [
+        //         'Act',
+        //         'Out'
+        //       ],
+        //       datasets: [{
+        //         label: 'Products',
+        //         data: [12, 42],
+        //         backgroundColor: [
                   
-                 'rgb(220, 53, 69)',
-                  'rgb(25, 135, 84)'
-                ],
-                hoverOffset: 2
-              }]
-            },
-            options: {
+        //          'rgb(220, 53, 69)',
+        //           'rgb(25, 135, 84)'
+        //         ],
+        //         hoverOffset: 2
+        //       }]
+        //     },
+        //     options: {
              
-              responsive:true,
+        //       responsive:true,
             
-            }
-          });
+        //     }
+        //   });
   
-        }    
+        // }    
 
 
         // const myChartLineCustomers = document.getElementById('myChartLineCustomers');
