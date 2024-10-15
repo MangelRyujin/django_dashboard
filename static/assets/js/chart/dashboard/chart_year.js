@@ -75,6 +75,7 @@ function loadChartLine() {
                             datasets: [{
                                 label: data.title,
                                 data: data.data.datasets[0].data,
+                                borderWidth: 1
                                 
                             }]
                         },
