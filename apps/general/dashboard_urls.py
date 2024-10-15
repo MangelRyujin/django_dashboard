@@ -22,5 +22,6 @@ urlpatterns = [
     path('settings/',include('apps.general.urls.settings_urls')),
     path('incomes/',include('apps.inventory.urls.income_urls')),
     path('spents/',include('apps.inventory.urls.spent_urls')),
+    path('chart_dashboard/',include('apps.general.urls.charts.dashboard.chart_urls')),
 ]
 

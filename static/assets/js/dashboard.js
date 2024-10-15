@@ -107,53 +107,57 @@ const myChartBar = document.getElementById('myChartBar');
         }    
 
 
-        const myChartLineCustomers = document.getElementById('myChartLineCustomers');
-        if (myChartLineCustomers) {
-          new Chart(myChartLineCustomers, {
-            type: 'line',
-            data: {
-              labels: ['01', '02', '03', '04', '05', '06','07'],
-              datasets: [{
-                label: 'login',
-                data: [120,100,150,130, 49, 123,120],
-                borderWidth: 1
-              }]
-            },
-            options: {
+        // const myChartLineCustomers = document.getElementById('myChartLineCustomers');
+        // if (myChartLineCustomers) {
+        //   new Chart(myChartLineCustomers, {
+        //     type: 'line',
+        //     data: {
+        //       labels: ['01', '02', '03', '04', '05', '06','07'],
+        //       datasets: [{
+        //         label: 'login',
+        //         data: [120,100,150,130, 49, 123,120],
+        //         borderWidth: 1
+        //       }]
+        //     },
+        //     options: {
              
-              responsive:true,
-              scales: {
-                y: {
-                  beginAtZero: true
-                }
-              }
-            }
-          });
+        //       responsive:true,
+        //       scales: {
+        //         y: {
+        //           beginAtZero: true
+        //         }
+        //       }
+        //     }
+        //   });
   
-        }    
+        // }    
         
-        const myChartBarOrder = document.getElementById('myChartBarOrder');
-        if (myChartBarOrder) {
-          new Chart(myChartBarOrder, {
-            type: 'bar',
-            data: {
-              labels: ['01', '02', '03', '04', '05', '06','07'],
-              datasets: [{
-                label: 'orders',
-                data:  [50,102,330,80, 400,120,680],
+        // const myChartBarOrder = document.getElementById('myChartBarOrder');
+        // if (myChartBarOrder) {
+        //   new Chart(myChartBarOrder, {
+        //     type: 'bar',
+        //     data: {
+        //       labels: [
+        //         // '01', '03', '03', '04', '05', '06','07'
+        //       ],
+        //       datasets: [
+        //       //   {
+        //       //   label: 'orders',
+        //       //   data:  [50,102,330,80, 400,120,680],
 
-                borderWidth: 1
-              }]
-            },
-            options: {
-              responsive:true,
-              scales: {
-                y: {
-                  beginAtZero: true
-                }
-              }
-            }
-          });
+        //       //   borderWidth: 1
+        //       // }
+        //     ]
+        //     },
+        //     options: {
+        //       responsive:true,
+        //       scales: {
+        //         y: {
+        //           beginAtZero: true
+        //         }
+        //       }
+        //     }
+        //   });
   
-        }
+        // }
           
