@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'apps.inventory',
     'apps.sales',
     'apps.shop',
+    'apps.reports',
     # THIRD_APPS
     'django_filters',
     'simple_history' , 

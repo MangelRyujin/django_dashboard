@@ -73,6 +73,10 @@ class OrderItem(models.Model):
             return product.image_one
         else:
             return False
+    
+    @property
+    def revenue(self):
+        return self.total_price - self.total_cost
         
         
 class LocalOrder(models.Model):
