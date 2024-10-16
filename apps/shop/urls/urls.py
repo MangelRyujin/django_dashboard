@@ -1,4 +1,5 @@
 from django.urls import path
+from apps.shop.views.cart_views import shop_product_add_cart_view
 from apps.shop.views.product_detail import create_product_review, shop_product_detail_view
 from apps.shop.views.products_store_views import *
 from apps.shop.views.shop_views import *
@@ -12,6 +13,7 @@ urlpatterns = [
     path('search_product/',search_product,name='search_product'),
     path('product_list_results/',product_list_results,name='product_list_results'),
     path('create_product_review/<int:pk>/',create_product_review,name='create_product_review'),
+    path('product-shop_product_add_cart_view/<int:pk>/',shop_product_add_cart_view,name='shop_product_add_cart_view'),
     
     
 ]
