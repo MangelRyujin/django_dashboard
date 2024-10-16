@@ -12,7 +12,7 @@ from django.db.models import Count
 @staff_member_required
 def get_total_items_orders(request):
     today = timezone.now().date()
-    start_date = today - timedelta(days=7)
+    start_date = today - timedelta(days=6)
     end_date = today + timedelta(days=1)
     orders = Order.objects.filter(
     created_date__range=(start_date, end_date)
@@ -31,6 +31,7 @@ def get_total_items_orders(request):
         label = order.created_date.strftime('%d')
         if label != current_label:
             current_label = label
+            
             index=labels.index(label)
         dataset_data[index] += order.total_items
         total_items+=order.total_items
@@ -51,7 +52,7 @@ def get_total_items_orders(request):
 @staff_member_required
 def get_total_price_orders(request):
     today = timezone.now().date()
-    start_date = today - timedelta(days=7)
+    start_date = today - timedelta(days=6)
     end_date = today + timedelta(days=1)
     orders = Order.objects.filter(
     created_date__range=(start_date, end_date)
