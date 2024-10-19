@@ -1,0 +1,58 @@
+{% load static %}
+<div class="list-group w-100">
+  {{delivery.delivery.delivery}}
+    <button 
+        hx-get="{% url 'save_cart_delivery_view' delivery='n' %}"
+        hx-target="#SettingsLocalForm"
+        hx-swap="innerHTML"
+        hx-trigger="click"
+        type="button"  class=" {% if not delivery.delivery.delivery %}active{% endif %} list-group-item list-group-item-primary list-group-item-action d-flex align-items-center gap-3  py-3" aria-current="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class=" bi-person-circle" viewBox="0 0 16 16">
+          <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+          <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+        </svg>
+
+      <div class="d-flex gap-2 w-100 justify-content-between align-items-center">
+        <div>
+          <h6 class="mb-0">Sin domicilio</h6>
+          <p class="mb-0 opacity-75 small">Recoger el pedido personalmente.</p>
+        </div>
+        </div>
+    </button>
+    <button 
+        hx-get="{% url 'save_cart_delivery_view' delivery='y' %}"
+        hx-target="#SettingsLocalForm"
+        hx-swap="innerHTML"
+        hx-trigger="click"
+        type="button"  class=" {% if delivery.delivery.delivery %}active{% endif %} list-group-item list-group-item-info rounded-bottom  list-group-item-action align-items-center  d-flex gap-3 py-3" aria-current="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class=" bi-car-front-fill" viewBox="0 0 16 16">
+          <path d="M2.52 3.515A2.5 2.5 0 0 1 4.82 2h6.362c1 0 1.904.596 2.298 1.515l.792 1.848c.075.175.21.319.38.404.5.25.855.715.965 1.262l.335 1.679q.05.242.049.49v.413c0 .814-.39 1.543-1 1.997V13.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1.338c-1.292.048-2.745.088-4 .088s-2.708-.04-4-.088V13.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-1.892c-.61-.454-1-1.183-1-1.997v-.413a2.5 2.5 0 0 1 .049-.49l.335-1.68c.11-.546.465-1.012.964-1.261a.8.8 0 0 0 .381-.404l.792-1.848ZM3 10a1 1 0 1 0 0-2 1 1 0 0 0 0 2m10 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2M6 8a1 1 0 0 0 0 2h4a1 1 0 1 0 0-2zM2.906 5.189a.51.51 0 0 0 .497.731c.91-.073 3.35-.17 4.597-.17s3.688.097 4.597.17a.51.51 0 0 0 .497-.731l-.956-1.913A.5.5 0 0 0 11.691 3H4.309a.5.5 0 0 0-.447.276L2.906 5.19Z"/>
+        </svg>
+      <div class="d-flex gap-2 w-100 justify-content-between align-items-center">
+        <div>
+          <h6 class="mb-0">Domicilio</h6>
+          <p class="mb-0 opacity-75 small">Se le enviará el pedido.</p>
+        </div>
+        </div>
+    </button>
+    {% if delivery.delivery.delivery %}
+    <div class="mt-2 ">
+      <div class="input-group mb-2 ">
+        <label for="cartPhone" class="input-group-text" id="basic-addon1">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class=" bi-telephone-fill" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z"></path>
+          </svg>
+        </label>
+        <input type="number" name="phone" id="cartPhone" class="form-control" placeholder="Móvil al contactar" aria-label="Móvil al contactar" aria-describedby="basic-addon1">
+      </div>
+      <div class="input-group ">
+        <label for="cartAddress" class="input-group-text" id="basic-addon1">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class=" bi-geo-alt-fill" viewBox="0 0 16 16">
+            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"/>
+          </svg>
+        </label >
+        <input type="text" name="address" id="cartAddress" class="form-control" placeholder="Dirección a entregar" aria-label="Dirección a entregar" aria-describedby="basic-addon1">
+      </div>
+    <div>
+    {% endif %}
+  </div>

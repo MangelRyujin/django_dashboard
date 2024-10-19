@@ -1,15 +1,22 @@
 from django.shortcuts import render
 from apps.general.models import *
+from apps.shop.cart import Cart
 from apps.shop.forms.reviews_forms import CreateProductReviewForm
 from apps.products.models import Product, ProductReview
 from utils.funtions.products.product import favorite_products
 
 def shop_product_detail_view(request,pk):
     product = Product.objects.filter(pk=pk).first()
+    cart = Cart(request)
     if product:
       product.views+=1
       product.save()
     context = {
+        'get_price_product':cart.get_price_product(product),
+        'get_message_product':cart.get_message_product(product),
+        'get_cant_product':cart.get_cant_product(product),
+        "cart":cart,
+        'item_in_cart':cart.item_in_cart(product),
         "whatsapp":WhatsAppContact.objects.first(),
         "social":SocialMedia.objects.first(),
         "product":product,
