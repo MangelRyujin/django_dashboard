@@ -7,109 +7,117 @@ class Cart:
     def __init__(self,request):
         self.request = request
         self.session = request.session
-        carro=self.session.get(settings.CARRO_SESSION_ID)
-        if not carro:
-            carro = self.session[settings.CARRO_SESSION_ID]={}
-        self.carro=carro
+        cart=self.session.get(settings.CART_SESSION_ID)
+        if not cart:
+            cart = self.session[settings.CART_SESSION_ID]={}
+        self.cart=cart
         
         
-    def agregar(self,oferta, adultos,ninnos):
-        oferta_id = str(oferta.id)
-        hotel = oferta.hotel.id
-        oferta_ids = self.carro.keys()
-        offer1 = Product.objects.filter(id__in=oferta_ids)
-        habitaciones = 1
-        if offer1:
-            offer = offer1[0]
-            if offer.hotel.id != hotel:
-                messages.add_message(self.request, messages.INFO, f'La oferta {oferta.nombre.upper()} no pertenece al mismo hotel.')
-                return False
-            
-        if oferta_id not in self.carro.keys():
-            self.carro[oferta_id] = {
-                'adultos':adultos,
-                'ninnos':ninnos,
-                'cantidad_habitaciones':habitaciones,
-                'total':adultos+ninnos,
-                'precio': oferta.precio_adulto * adultos + oferta.precio_primer_ninno * ninnos
-                }
-            messages.success(self.request,f'Se ha introducido la oferta {oferta.nombre}')
-            
+    def add_cart(self,product,cant):
+        product_id = str(product.id)
+        if cant<1:
+          self.remove(product)
         else:
-            # print(self.carro[oferta_id]['adultos'])
-            self.carro[oferta_id] = {
-                'adultos':self.carro[oferta_id]['adultos']+adultos,
-                'ninnos':self.carro[oferta_id]['ninnos']+ninnos,
-                'cantidad_habitaciones':self.carro[oferta_id]['cantidad_habitaciones']+habitaciones,
-                'total':self.carro[oferta_id]['adultos']+adultos+self.carro[oferta_id]['ninnos']+ninnos,
-                'precio': oferta.precio_adulto * (self.carro[oferta_id]['adultos']+adultos) + oferta.precio_primer_ninno * (self.carro[oferta_id]['ninnos']+ninnos)
-                }
-            print(self.carro[oferta_id]['precio'])
-            messages.add_message(self.request, messages.INFO, f'Se ha añadido otra habitación de la oferta {oferta.nombre.upper()} .')
-            
-            
-        self.guardar()
+            if product_id not in self.cart.keys():
+                self.cart[product_id] = {
+                    'pk':product.pk,
+                    'cant':cant or 0,
+                    'price': float(round((product.price - (product.price*product.discount)/100) * cant,2)),
+                    'product_name': product.name,
+                    'product_image': product.image_one.url,
+                    'message':'',
+                    }
+            else:
+                self.cart[product_id]['cant'] = cant
+                self.cart[product_id]['price'] = float(round((product.price - (product.price*product.discount)/100) * cant,2))
+        self.save()
         return True
     
+    def  add_message_product(self, product,message):
+        product_id = str(product.id)
         
-        
-        
-    def remove(self, oferta):
-         oferta_id = str(oferta.id)
-         if oferta_id in self.carro:
-            del self.carro[oferta_id]
-            self.guardar()
+        if product_id not in self.cart.keys():
+            pass
+        else:
+            self.cart[product_id]['message'] = message or ''
+        self.save()
+        return True
     
-    def guardar(self) :
+    def increment(self,product):
+        product_id = str(product.id)
+        if product_id not in self.cart.keys():
+                self.cart[product_id] = {
+                    'pk':product.pk,
+                    'cant': 1,
+                    'price': float(round((product.price - (product.price*product.discount)/100),2)),
+                    'product_name': product.name,
+                    'product_image': product.image_one.url,
+                    'message':'',
+                    }
+        else:
+                self.cart[product_id]['cant'] = self.cart[product_id]['cant'] + 1
+                self.cart[product_id]['price'] = float(round((product.price - (product.price*product.discount)/100) * self.cart[product_id]['cant'],2))
+        self.save()
+        return True
+    
+    def decrement(self,product):
+        product_id = str(product.id)
+        if self.cart[product_id]['cant'] == 1:
+                self.remove(product)
+        else:  
+                self.cart[product_id]['cant'] = self.cart[product_id]['cant'] -1
+                self.cart[product_id]['price'] = float(round((product.price - (product.price*product.discount)/100) * self.cart[product_id]['cant'],2))
+        self.save()
+        return True
+    
+    def item_in_cart(self,product):
+        if str(product.id) not in self.cart.keys():
+            return True
+        return False
+        
+        
+    def remove(self, product):
+         product_id = str(product.id)
+         if product_id in self.cart:
+            del self.cart[product_id]
+            self.save()
+    
+    def save(self) :
         self.session.modified=True
         
     
             
-    def limpiar(self):
-        self.session['carro']={}
+    def clear_items(self):
+        self.session['cart']={}
         self.session.modified=True
         
-    def __iter__(self):
-             
-        ofertas_ids = self.carro.keys() 
-               
-        # get the product objects and add them to the cart        
-        ofertas = Product.objects.filter(id__in=ofertas_ids) 
-               
-        carro = self.carro.copy()        
-        for oferta in ofertas:            
-            carro[str(oferta.id)]['oferta'] = oferta  
-           
-        
-        for item in carro.values():
-               
-            item['total']= item['adultos'] + item['ninnos']
-            # item['precio']= item['adultos']*oferta.precio_adulto + item['ninnos'] * oferta.precio_primer_ninno   
-            item['precio']= item['adultos']* item['oferta'].precio_adulto + item['ninnos'] * item['oferta'].precio_primer_ninno       
+    def __iter__(self):      
+        cart = self.cart.copy()        
+        for item in cart.values():
+            item['cant']= item['cant']
+            item['price']= item['price']    
             yield item
-         
-    def __len__(self):
-       
-        return sum([item['total'] for item in self.carro.values()])
-    
-    
-    def get_min_reservar(self):
-        ofertas_ids = self.carro.keys()
-        ofertas = Product.objects.filter(id__in=ofertas_ids)
-        min = 0
-        for oferta in ofertas:
-            if min < oferta.dias_min:
-                min = oferta.dias_min
             
-        return min
-        
-        
-    def get_total_precio(self):
-        return sum(item['precio'] for item in self.carro.values())
+         
+    def  get_cant_product(self, product):
+        if str(product.id) in self.cart.keys():
+            return self.cart[str(product.id)]['cant']
+        return 0 
     
-    def get_con_transporte(self):
-        for item in self.carro.values():
-            agregar=item['transporte']
-        return self.get_total_precio+agregar
-
+    def  get_message_product(self, product):
+        if str(product.id) in self.cart.keys():
+            return self.cart[str(product.id)]['message'] or ''
+        return ''
+    
+    def get_price_product(self,product):
+        if str(product.id) in self.cart.keys():
+            return round(self.cart[str(product.id)]['price'],2)
+        return 0 
+    
+    
+    def get_total_price(self):
+        return round(sum(item['price'] for item in self.cart.values()),2)
+    
+    def get_total_items(self):
+        return sum(item['cant'] for item in self.cart.values())
     

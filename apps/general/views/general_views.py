@@ -16,7 +16,7 @@ from utils.funtions.products.product import *
 
 # Dashboard view (index)
 # @login_required(login_url='/login/')
-@staff_member_required(login_url='/')
+@staff_member_required(login_url='/login/')
 def dashboard_view(request):
     
     admin_history = User.history.filter(is_staff=True)[:10]
@@ -56,17 +56,15 @@ def dashboard_view(request):
 # Log in view
 @user_is_not_authenticated
 def login_view(request):
-    
-    
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
-        next_url =  request.POST.get('next_url','')
+        next_url =  request.POST.get('next','')
         user = authenticate(username=username, password=password)
         if user is not None:
             login(request, user)
             response = HttpResponse()
-            response["HX-Redirect"]= next_url if next_url else '/'
+            response["HX-Redirect"]= next_url
             return response
         else:
             return HttpResponse(f"""
@@ -82,7 +80,7 @@ def login_view(request):
     context = {
         "whatsapp":WhatsAppContact.objects.first(),
         "social":SocialMedia.objects.first(),
-        "next_url":request.GET.get('next', '')
+        "next":request.GET.get('next', '')
     }
     return render(request, 'login.html',context)
 

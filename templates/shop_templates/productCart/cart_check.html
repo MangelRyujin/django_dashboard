@@ -1,0 +1,103 @@
+{% extends "shop_templates/base.html" %}
+{% load static %}
+
+{% block contend %}
+<div class="container mb-4 pb-5">
+    <div class="pt-5 text-center">
+      <img class="d-block mx-auto my-2" src="{% if social.image %}{{social.image.url}}{% else %}{% static "/assets/img/image_not_found.jpg" %}{% endif %}" alt="" width="200" height="200">
+      <h2>Chequea su compra</h2>
+      <p class="lead">Resumen de su compra y acceso a otras opciones.</p>
+    </div>
+
+    <div class="row pb-4 ">
+      <div class="col-md-5 col-lg-4 order-md-last">
+        <h4 class="d-flex justify-content-between align-items-center mb-3">
+          <span class="text-body-emphasis">Mi compra</span>
+        </h4>
+        <ul class="list-group mb-3 shadow-sm">
+          {% for item in cart %}
+          <li class="list-group-item bg-body-tertiary d-flex justify-content-between lh-sm px-1 px-sm-2">
+            <div class="d-flex aling-items-center">
+              <img width="50" height="50" class=" me-1 me-sm-2 rounded" src="{% if item.product_image %}
+              {{item.product_image}}{% else %}
+              {% static "/assets/img/image_not_found.jpg" %} {% endif %}">
+              <div>
+                <h6 class="my-0">{{item.product_name}}</h6>
+              <small class="text-body-secondary">unidades {{item.cant}} - $ {{item.price}}</small>
+              </div>
+              
+            </div>
+            {% if item.message %}
+              <div tabindex="0" data-bs-placement="bottom" data-bs-toggle="popover" data-bs-trigger="hover focus" 
+              data-bs-title="Mensaje" data-bs-content="{{item.message}} tal ves algo mas largo para ver  tal ves algo mas largo para ver tal ves algo mas largo para ver ">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class=" bi-pencil-square" viewBox="0 0 16 16">
+                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+                  </svg>
+                  <div>
+                    {% endif %}
+          </li>
+          {% endfor %}
+          <li class="list-group-item text-body-emphasis list-group-item-dark d-flex justify-content-between px-1 px-sm-2">
+            <span>Unidades: {{cart.get_total_items}}</span>
+            <strong>$ {{cart.get_total_price}}</strong>
+          </li>
+        </ul>
+
+      </div>
+      <div class="col-md-7 col-lg-8">
+        <h4 class="mb-3 ">Información de entrega</h4>
+        <form class="needs-validation " novalidate="">
+          <div class="row g-3 ">
+            <div class="col-12 col-sm-6">
+              <div class="input-group">
+                <label for="phoneNumberCheckCart" class="input-group-text" id="basic-addon1">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class=" bi-phone" viewBox="0 0 16 16">
+                    <path d="M11 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zM5 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2z"/>
+                    <path d="M8 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
+                  </svg>
+                </label>
+                <input min="50000000" required id="phoneNumberCheckCart" type="number" class="form-control" placeholder="Móvil" aria-label="Móvil" aria-describedby="basic-addon1">
+              </div>
+            </div>
+            <div class="col-12 col-sm-6">
+              <div class="input-group">
+                <label for="AddressCheckCart" class="input-group-text" id="basic-addon1">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class=" bi-geo-alt-fill" viewBox="0 0 16 16">
+              <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6"></path>
+              </svg>
+                </label>
+                <input id="AddressCheckCart" required type="text" class="form-control" placeholder="Dirección" aria-label="Dirección" aria-describedby="basic-addon1">
+              </div>
+            </div>
+
+            <div class="col-12">
+              <label for="MessageCheckCart" class="form-label">Mensaje <span class="text-body-secondary">(Optional)</span></label>
+              <textarea class="form-control p-1" name="message" id="MessageCheckCart" placeholder="Escriba su mensage" rows="3"></textarea>
+              
+            </div>
+            <div class="col-12">
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="deliveryCheckCart">
+                <label class="form-check-label" for="deliveryCheckCart">En caso de que usted quiera recoger personalmente el pedido marque esta opción. En caso contrario se asume que usted requiere domicilio a los datos requeridos</label>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="alert alert-info " role="alert">
+                Después de realizar la compra lo contactaremos para una confirmación de la compra.
+              </div>
+            </div>
+
+            <div class="col-12 d-flex justify-content-end mb-3">
+              <button class="border-2 fw-medium btn btn-outline-primary shadow-sm" type="submit">Realizar compra</button>
+            </div>
+            
+
+          
+        </form>
+      </div>
+    </div>
+    
+</div>
+
+{% endblock contend %}

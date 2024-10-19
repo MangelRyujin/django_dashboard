@@ -1,6 +1,7 @@
 from django.urls import path
-from apps.shop.views.cart_views import shop_product_add_cart_view
-from apps.shop.views.product_detail import create_product_review, shop_product_detail_view
+from apps.shop.views.cart_update_views import *
+from apps.shop.views.cart_views import *
+from apps.shop.views.product_detail import *
 from apps.shop.views.products_store_views import *
 from apps.shop.views.shop_views import *
 
@@ -13,7 +14,22 @@ urlpatterns = [
     path('search_product/',search_product,name='search_product'),
     path('product_list_results/',product_list_results,name='product_list_results'),
     path('create_product_review/<int:pk>/',create_product_review,name='create_product_review'),
-    path('product-shop_product_add_cart_view/<int:pk>/',shop_product_add_cart_view,name='shop_product_add_cart_view'),
+    # product detail add cart 
+    path('product-shop_cart_add_product/<int:pk>/',cart_add_product,name='cart_add_product'),
+    path('product-shop_cart_remove_product/<int:pk>/',cart_remove_product,name='cart_remove_product'),
+    path('product-shop_cart_increment_product/<int:pk>/',cart_increment_product,name='cart_increment_product'),
+    path('product-shop_cart_decrement_product/<int:pk>/',cart_decrement_product,name='cart_decrement_product'),
+    path('product-shop_cart_message_product/<int:pk>/',cart_message_product,name='cart_message_product'),
+    # Cart view
+    path('cart_check/',cart_check_view,name='cart_check_view'),
+    path('shop_cart_view/',shop_cart_view,name='shop_cart_view'),
+    path('view-shop_cart_add_view/<int:pk>/',cart_add_view,name='cart_add_view'),
+    path('view-shop_cart_remove_view/<int:pk>/',cart_remove_view,name='cart_remove_view'),
+    path('view-shop_cart_increment_view/<int:pk>/',cart_increment_view,name='cart_increment_view'),
+    path('view-shop_cart_decrement_view/<int:pk>/',cart_decrement_view,name='cart_decrement_view'),
+    path('view-shop_cart_message_view/<int:pk>/',cart_message_view,name='cart_message_view'),
+    
+    
     
     
 ]

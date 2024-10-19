@@ -1,0 +1,109 @@
+{% load static %}
+
+{% if get_total_items %}
+        <p class="lead text-center">Lista de pedidos</p>
+        <ul class="list-group w-100 shadow-sm">
+          {% for item in cart %}
+          
+          
+          <li class="list-group-item bg-body-tertiary d-flex flex-column justify-content-between lh-sm px-1">
+            <div class="d-flex justify-content-between mb-2">
+              <div class="d-flex aling-items-center">
+                <img width="50" height="50" class=" me-1 me-sm-2 rounded" src="{% if item.product_image %}
+                {{item.product_image}}{% else %}
+                {% static "/assets/img/image_not_found.jpg" %} {% endif %}">
+                <div>
+                  <h6 class="my-0">{{item.product_name}}</h6>
+                <small class="text-body-secondary">unidades {{item.cant}} - $ {{item.price}}</small>
+                </div>
+                
+              </div>
+              
+              <div class="dropup-star dropup " >
+                <ul class="dropdown-menu dropdown-menu-end mb-3" style="min-width: 280px;">
+                  <li>
+                    <form class="mx-2 "
+                          hx-post="{% url 'cart_message_view' pk=item.pk %}"
+                          hx-target="#cartList"
+                          hx-swap="innerHTML"
+                          hx-trigger="submit"
+                          hx-indicator="#spinnerChangeMessageProductCart{{item.pk}}"
+                          hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}'>
+                          <textarea
+                          
+                       class="form-control p-1" name="message" id="ProductCartMessage " placeholder="Escriba su mensage" rows="3">{{item.message}}</textarea>
+                          <div class="d-flex  mt-2 justify-content-end">
+                            <button type="submit" class="btn {% if item.message %}btn-outline-warning{% else %}btn-outline-primary{% endif %} btn-sm mt-1">{% if item.message %}Editar {% else %}Anotar{% endif %} </button>
+                          </div>
+                       
+                        </form>
+                  </li>
+                  
+                </ul>
+                <a role="button" data-bs-toggle="dropdown" aria-expanded="false" class="d-flex position-relative justify-content-center align-items-center btn btn-warning p-2 border border-2 border-warning  rounded-circle  shadow-sm">
+                  <div id="spinnerChangeMessageProductCart{{item.pk}}"  class="htmx-indicator position-absolute loadding-blur  spinner-border " role="status">
+                    <span class="visually-hidden">Loading...</span>
+                  </div>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class=" bi-pencil-square" viewBox="0 0 16 16">
+                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <div class="w-100 d-flex justify-content-end align-items-center gap-2">
+              
+              <a 
+               hx-get="{% url 'cart_remove_view' pk=item.pk %}"
+                hx-target="#cartList"
+                hx-swap="innerHTML"
+                {% comment %} hx-indicator="#spinnerChangeCart" {% endcomment %}
+                class="d-flex justify-content-center align-items-center btn btn-outline-danger p-2 rounded-circle border border-2 border-danger  ">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="cursor-pointer  bi-trash3-fill" viewBox="0 0 16 16">
+                <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5m-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5M4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06m6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528M8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5"></path>
+              </svg>
+            </a>
+            
+            <a 
+            hx-get="{% url 'cart_decrement_view' pk=item.pk %}"
+            hx-target="#cartList"
+            hx-swap="innerHTML"
+            hx-indicator="#spinnerChangeCart" class="d-flex justify-content-center align-items-center btn btn-outline-danger p-2 border-2 rounded-circle   ">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class=" bi-dash" viewBox="0 0 16 16">
+                <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8"/>
+              </svg>
+            </a>
+            <input 
+            hx-post="{% url 'cart_add_view' pk=item.pk %}"
+            hx-target="#cartList"
+            hx-swap="innerHTML"
+            hx-trigger="input changed delay:500ms, cant"
+            hx-indicator="#spinnerChangeCart" 
+            hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}'
+            min="1" type="number" name='cant' class="form-control border-0 text-center" value="{{item.cant}}" aria-label="cant" style="max-width: 100px;">
+            <a  
+            hx-get="{% url 'cart_increment_view' pk=item.pk %}"
+            hx-target="#cartList"
+            hx-swap="innerHTML"
+            hx-indicator="#spinnerChangeCart" class="d-flex justify-content-center align-items-center btn btn-outline-success p-2 rounded-circle border-2 ">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class=" bi-plus" viewBox="0 0 16 16">
+                <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+              </svg>
+          </a >
+          </li>
+          {% endfor %}
+          <li class="list-group-item list-group-item-dark text-body-emphasis d-flex justify-content-between px-2">
+            <span>Unidades: {{cart.get_total_items}}</span>
+            <strong>$ {{cart.get_total_price}}</strong>
+          </li>
+        </ul>
+        
+        {% else %}
+        <p class="lead text-center">Lo sentimos no contiene pedidos en la lista</p>
+        {% endif %}
+        <div class="w-100 d-flex mt-3 {% if get_total_items %}justify-content-between {% else %}justify-content-center{% endif %} gap-2">
+          <a class="btn btn-outline-primary shadow-sm border-2 fw-medium" href="{% url "products_store_view" %}">Seguir comprando</a>
+          {% if get_total_items %}
+          <a class="btn btn-outline-primary shadow-sm border-2 fw-medium " href="{% if user.is_authenticated %}#{% else %}{% url "login_view" %}?next={{request.path}}{% endif %}" >Chequear</a>
+          {% endif %}
+        </div>

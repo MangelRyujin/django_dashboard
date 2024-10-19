@@ -32,10 +32,10 @@ def _show_order(request):
         revenue=Sum('total_price')-Sum('total_cost')
         
     ).order_by('product_id')
-    total_count=sum(item['count'] for item in items_grouped)
-    total_price=sum(item['price'] for item in items_grouped)
-    total_cost=sum(item['cost'] for item in items_grouped)
-    total_revenue=sum(item['revenue'] for item in items_grouped)
+    total_count=round(sum(item['count'] for item in items_grouped),2) 
+    total_price=round(sum(item['price'] for item in items_grouped),2) 
+    total_cost=round(sum(item['cost'] for item in items_grouped),2) 
+    total_revenue=round(sum(item['revenue'] for item in items_grouped),2) 
     context={
         'total_count':total_count,
         'total_price':total_price,
