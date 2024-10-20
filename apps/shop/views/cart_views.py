@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from apps.general.models import *
 from apps.shop.cart import Cart
 from apps.products.models import Product
@@ -114,13 +114,19 @@ def cart_decrement_product(request,pk):
 @login_required(login_url='/login/')
 def cart_check_view(request):
     cart = Cart(request)
-    context = {
-        "cart":cart,
-        "whatsapp":WhatsAppContact.objects.first(),
-        "social":SocialMedia.objects.first(),
-    }
-    response= render(request,'shop_templates/productCart/cart_check.html',context)
-    response['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
-    response['Pragma'] = 'no-cache'
-    response['Expires'] = '0'
-    return response
+    if cart.get_total_items(): 
+        context = {
+            "cart":cart,
+            "whatsapp":WhatsAppContact.objects.first(),
+            "social":SocialMedia.objects.first(),
+        }
+        if request.POST:
+            cart.create_shop_order(request.POST)
+            context['cart']={}
+            return render(request,'shop_templates/productCart/cart_check_confirm.html',context)
+        response= render(request,'shop_templates/productCart/cart_check.html',context)
+        response['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
+        response['Pragma'] = 'no-cache'
+        response['Expires'] = '0'
+        return response
+    return redirect('/')

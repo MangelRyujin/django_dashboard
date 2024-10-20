@@ -51,7 +51,10 @@
                 <span id="spinnerLoginForm" class="htmx-indicator spinner-border spinner-border-sm me-2" ></span> Iniciar</button>
             </form>
            
-            
+                <a href="{% url "password_reset" %}" class="text-decoration-none small d-flex text-body justify-content-end">
+                  <b class=" d-flex text-end ">¿Olvidé mi contraseña? <p class="text-primary ms-1"> Recuperar</p></b>
+                
+                </a>
                 <a href="{% url "register_view" %}" class="text-decoration-none small d-flex text-body justify-content-end">
                   <b class=" d-flex text-end ">¿No tengo cuenta? <p class="text-danger ms-1"> Registrar</p></b>
                  

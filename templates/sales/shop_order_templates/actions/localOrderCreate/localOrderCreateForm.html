@@ -1,0 +1,107 @@
+{% load static %}
+
+{% if form %}
+
+  <form 
+          enctype="multipart/form-data"
+          hx-post="{% url 'local_order_create' %}"
+          hx-target="#LocalOrderCreateForm"
+          hx-swap="innerHTML"
+          hx-trigger="submit"
+          hx-indicator="#spinnerLocalOrderCreate">
+          {% csrf_token %}
+          <div class="col-12  mt-4 ">
+            <label for="{{ form.user_ci.id_for_label }}" class="form-label">CI</label>
+            <input type="text" class="form-control" required name="user_ci" id="{{ form.user_ci.id_for_label }}" placeholder="ci">
+            {% if form.user_ci.errors %}
+            <div class="alert alert-danger mt-2">
+                {% for error in form.user_ci.errors %}
+                    {{ error }}
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+          <div class="col-12  mt-4 ">
+            <label for="{{ form.user_first_name.id_for_label }}" class="form-label">First name</label>
+            <input type="text" class="form-control" required name="user_first_name" id="{{ form.user_first_name.id_for_label }}" placeholder="First name">
+            {% if form.user_first_name.errors %}
+            <div class="alert alert-danger mt-2">
+                {% for error in form.user_first_name.errors %}
+                    {{ error }}
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+          <div class="col-12  mt-4 ">
+            <label for="{{ form.user_last_name.id_for_label }}" class="form-label">Last name</label>
+            <input type="text" class="form-control" required name="user_last_name" id="{{ form.user_last_name.id_for_label }}" placeholder="last name">
+            {% if form.user_last_name.errors %}
+            <div class="alert alert-danger mt-2">
+                {% for error in form.user_last_name.errors %}
+                    {{ error }}
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+          <div class="col-12  mt-4 ">
+            <label for="{{ form.user_phone.id_for_label }}" class="form-label">Phone number</label>
+            <input type="text" class="form-control" required name="user_phone" id="{{ form.user_phone.id_for_label }}" placeholder="Phone number">
+            {% if form.user_phone.errors %}
+            <div class="alert alert-danger mt-2">
+                {% for error in form.user_phone.errors %}
+                    {{ error }}
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+          <div class="col-12  mt-4 ">
+            <label for="{{ form.address.id_for_label }}" class="form-label">Address</label>
+            <input type="text" class="form-control" required name="address" id="{{ form.address.id_for_label }}" placeholder="Address">
+            {% if form.address.errors %}
+            <div class="alert alert-danger mt-2">
+                {% for error in form.address.errors %}
+                    {{ error }}
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+          
+            
+          {% if message %}
+          <div class="alert alert-dismissible alert-success d-flex align-items-center mb-0 mt-2  px-2 fade show" role="alert">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="me-2 bi-check-user_circle-fill" viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+              </svg>
+              <div class="small">
+                {{message}}
+              </div>
+              <span type="button" class="btn-close px-2" data-bs-dismiss="alert" aria-label="Close"></span>
+            </div>
+            <div 
+            hx-get="{% url 'local_order_results_view' %}"
+            hx-target="#LocalOrderResults"
+            hx-trigger="load"
+            hx-swap="innerHTML"
+            hx-indicator="#spinner"></div>
+        {% endif %}
+    
+        
+          
+          {% if error %}
+          <div class="alert alert-dismissible alert-danger d-flex align-items-center mb-0 mt-2 px-2 fade show" role="alert">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="me-2 bi-exclamation-triangle-fill" viewBox="0 0 16 16">
+              <path d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5m.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+            </svg>
+              <div class="small">
+                {{error}}
+              </div>
+              <span type="button" class="btn-close px-2" data-bs-dismiss="alert" aria-label="Close"></span>
+            </div>
+          {% endif %}
+          <small class=" w-100 d-flex justify-content-end mt-3">
+            <button type="submit" class="btn d-flex justify-content-center align-items-center btn-outline-primary shadow-sm border-2 border-primary px-5">
+              <span id="spinnerLocalOrderCreate" class="htmx-indicator spinner-border spinner-border-sm me-2" ></span>Create</button>
+        </small>
+  </form>
+{% endif %}
+

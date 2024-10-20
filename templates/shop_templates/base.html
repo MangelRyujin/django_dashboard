@@ -126,7 +126,8 @@
           </div>
           
           </li>
-          <li class="list-unstyled text-body-secondary me-2 d-none d-sm-flex" >
+          <li class="list-unstyled text-body-secondary me-2 d-none d-sm-flex justify-content-center align-items-center position-relative" >
+            {% if cart.get_total_items %}<p class="position-absolute bg-danger end-0 p-1 rounded-circle"></p>{% endif %}
             <a href="{% url "shop_cart_view" %}" class="nav-link pb-1  ps-2 pe-1">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class=" bi-cart-fill" viewBox="0 0 16 16">
                 <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
@@ -233,10 +234,16 @@
           <span class="small">Productos</span>
         </a>
       </li>
-      <li><a href="{% url "shop_cart_view" %}" class="nav-link small px-1 py-0 fw-semibold text-body-emphasis d-flex flex-column justify-content-center align-items-center">
-        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class=" bi-cart-fill" viewBox="0 0 16 16">
+      <li>
+        <a href="{% url "shop_cart_view" %}" class="nav-link small px-1  py-0 fw-semibold text-body-emphasis d-flex flex-column justify-content-center align-items-center">
+          <div class="d-flex justify-content-center align-items-center position-relative">
+          {% if cart.get_total_items %}
+          <p class="position-absolute end-0 bg-danger top-0 p-1 rounded-circle"></p>
+          {% endif %}
+          <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class=" bi-cart-fill" viewBox="0 0 16 16">
           <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
         </svg>
+      </div>
         <span class="small">Carrito</span>
       </a>
     </li>

@@ -2,6 +2,8 @@ from apps.products.models import Category, Offert, Product,ProductReview
 from datetime import date
 from django.db.models import Q
 
+from apps.shop.cart import Cart
+
 # Calculate total products sold cant
 def products_sold():
     return sum(product.total_sales for product in Product.objects.all() if product.total_stock > 0) or 0
@@ -38,15 +40,17 @@ def total_products_views():
     return sum(product.views for product in Product.objects.all()) or 0
 
 # Filter 12 cheap products
-def cheap_products(user):
+def cheap_products(request,user):
     cheap_products=[]
+    cart=Cart(request)
     products = Product.objects.filter(is_active=True).order_by("price")[:12]
     for product in products:
             like=product.user_has_like(user.id)
             cheap_products.append(
                 {
                     'like':like,
-                    'product':product
+                    'product':product,
+                    'product_cart':cart.get_cant_product(product)
                 }
             )
     return cheap_products
@@ -56,15 +60,17 @@ def dashboard_favorite_products():
     return Product.objects.filter(is_active=True,total_sales__gt=0).order_by("-total_sales")[:6]
 
 # Filter 6 favorite products
-def favorite_products(user):
+def favorite_products(request,user):
     favorite_products=[]
+    cart=Cart(request)
     products = Product.objects.filter(is_active=True).order_by("-total_sales")[:6]
     for product in products:
         like=product.user_has_like(user.id)
         favorite_products.append(
             {
                 'like':like,
-                'product':product
+                'product':product,
+                'product_cart':cart.get_cant_product(product)
             }
         )
     return favorite_products
