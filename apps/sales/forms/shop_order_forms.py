@@ -6,7 +6,7 @@ class UpdateShopOrderForm(forms.ModelForm):
     
     class Meta:
         model = ShopOrder
-        exclude = ['created_user','state','created_date','message']
+        exclude = ['created_user','state','created_date']
         
 
 class UpdateShopOrderItemForm(forms.ModelForm):
