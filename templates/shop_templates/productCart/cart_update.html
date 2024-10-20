@@ -6,7 +6,7 @@
           {% for item in cart %}
           
           
-          <li class="list-group-item bg-body-tertiary d-flex flex-column justify-content-between lh-sm px-1">
+          <li class="list-group-item  d-flex flex-column justify-content-between lh-sm px-1">
             <div class="d-flex justify-content-between mb-2">
               <div class="d-flex aling-items-center">
                 <img width="50" height="50" class=" me-1 me-sm-2 rounded" src="{% if item.product_image %}
@@ -104,6 +104,6 @@
         <div class="w-100 d-flex mt-3 {% if get_total_items %}justify-content-between {% else %}justify-content-center{% endif %} gap-2">
           <a class="btn btn-outline-primary shadow-sm border-2 fw-medium" href="{% url "products_store_view" %}">Seguir comprando</a>
           {% if get_total_items %}
-          <a class="btn btn-outline-primary shadow-sm border-2 fw-medium " href="{% if user.is_authenticated %}#{% else %}{% url "login_view" %}?next={{request.path}}{% endif %}" >Chequear</a>
+          <a class="btn btn-outline-primary shadow-sm border-2 fw-medium " href="{% if user.is_authenticated %}{% url "cart_check_view" %}{% else %}{% url "login_view" %}?next={{request.path}}{% endif %}" >Chequear</a>
           {% endif %}
         </div>

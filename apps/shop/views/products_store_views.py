@@ -3,8 +3,11 @@ from apps.general.models import *
 from apps.products.models import Category, Product
 from django.core.paginator import Paginator
 
+from apps.shop.cart import Cart
+
 def products_store_view(request): 
     context = {
+        "cart":Cart(request),
         "whatsapp":WhatsAppContact.objects.first(),
         "social":SocialMedia.objects.first(),
         "categories":Category.objects.filter(is_active=True),
@@ -31,6 +34,7 @@ def _show_product(request):
     get_copy = request.GET.copy()
     category=get_copy.get('categories') or None
     parameters = get_copy.pop('page', True) and get_copy.urlencode()
+    cart = Cart(request)
     products=[]
     products_list = Product.objects.filter(is_active=True) if category==None or category=='' else Product.objects.filter(is_active=True,categories=category)
     for product in products_list:
@@ -38,7 +42,9 @@ def _show_product(request):
         products.append(
             {
                 'like':like,
-                'product':product
+                'product':product,
+                'product_cart':cart.get_cant_product(product)
+                
             }
         )
     paginator = Paginator(products, 24)    # Show 24 contacts per page.

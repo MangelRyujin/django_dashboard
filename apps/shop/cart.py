@@ -3,6 +3,8 @@ from apps.products.models import Product
 from django.conf import settings 
 from django.contrib import messages
 
+from apps.sales.models import ShopOrder, ShopOrderItem
+
 class Cart:
     def __init__(self,request):
         self.request = request
@@ -121,3 +123,23 @@ class Cart:
     def get_total_items(self):
         return sum(item['cant'] for item in self.cart.values())
     
+    
+    def create_shop_order(self,post):
+        shop_order=ShopOrder.objects.create(
+            created_user= self.request.user,
+            delivery= False if post.get('deliveryCheck') else True,
+            message=post['message'] or '',
+            phone=post['phone'] or '',
+            address=post['address'] or '',
+            
+        )
+        for item in self.cart.values():
+            ShopOrderItem.objects.create(
+                order = shop_order,
+                product= Product.objects.filter(pk=item['pk']).first(),
+                cant= item['cant'],
+                price= item['price'],
+                message = item['message']
+            )
+        self.clear_items()
+        

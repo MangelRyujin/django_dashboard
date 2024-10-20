@@ -21,7 +21,7 @@ def shop_product_detail_view(request,pk):
         "social":SocialMedia.objects.first(),
         "product":product,
         "reviews":ProductReview.objects.filter(is_active=True,product=product)[:5],
-        "favorite_products":favorite_products(request.user),
+        "favorite_products":favorite_products(request,request.user),
         "form":CreateProductReviewForm()
     }
     response= render(request,'shop_templates/productDetail/product_detail.html',context)
