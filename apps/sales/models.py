@@ -228,7 +228,14 @@ class ShopOrder(models.Model):
     def total_price(self):
         return sum(item.price for item in self.shoporderitem_set.all()) or 0
     
-    # Verify existence in order items
+    @property
+    def items_available(self):
+        shop_order_items=self.shoporderitem_set.all()
+        if shop_order_items.exists():
+            for item in shop_order_items:
+                if item.available == False:
+                    return False
+        return True
     
     def items_exists(self):
         shop_order_items=self.shoporderitem_set.all()
