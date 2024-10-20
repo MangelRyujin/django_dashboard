@@ -38,7 +38,8 @@
             </div>
              <div class="col-12  mt-2 ">
               <label for="MessageShopOrderUpdate" class="form-label">Message (optional)</label>
-              <textarea type="text" class="form-control"  name="message" id="MessageShopOrderUpdate" placeholder="Message">{% if form.message.value %}{{form.message.value}}{% endif %}</textarea>
+              
+              <textarea type="text" class="form-control"  name="message" id="MessageShopOrderUpdate" placeholder="Message">{% if shop_order.message %}{{shop_order.message}}{% endif %}</textarea>
               {% if form.message.errors %}
               <div class="alert alert-danger mt-2">
                   {% for error in form.message.errors %}
