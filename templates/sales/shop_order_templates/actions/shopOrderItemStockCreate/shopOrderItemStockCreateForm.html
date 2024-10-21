@@ -1,13 +1,13 @@
 {% load static %}
 
 {% if form %}
-  <h5 class="offcanvas-title text-center">Item: {{local_order_item.pk}}</h5>
+  <h5 class="offcanvas-title text-center">Item: {{shop_order_item.product.name}}</h5>
   <form 
-          hx-post="{% url 'local_order_item_stock_create' pk=local_order_item.pk %}"
-          hx-target="#LocalOrderItemStockCreateForm"
+          hx-post="{% url 'shop_order_item_stock_create' pk=shop_order_item.pk %}"
+          hx-target="#ShopOrderItemStockCreateForm"
           hx-swap="innerHTML"
           hx-trigger="submit"
-          hx-indicator="#spinnerLocalOrderItemStockCreate">
+          hx-indicator="#spinnerShopOrderItemStockCreate">
           {% csrf_token %}
           <div class="col-12 mt-2">
             
@@ -30,10 +30,10 @@
              
           </div>
           <div class="col-12  mt-2 ">
+            
             <label for="{{ form.cant.id_for_label }}OrderItemStock" class="form-label">Cant</label>
             <div class="input-group">
-              <input type="number" min=1 class="form-control" required name="cant" id="{{ form.cant.id_for_label }}OrderItemStock" placeholder="1.00">
-            
+              <input type="number" min=1 max="{{shop_order_item.stocks_available}}"  class="form-control" required name="cant" id="{{ form.cant.id_for_label }}OrderItemStock" placeholder="1.00">
             </div>
             {% if form.cant.errors %}
             <div class="alert alert-danger mt-2">
@@ -55,11 +55,11 @@
               <span type="button" class="btn-close px-2" data-bs-dismiss="alert" aria-label="Close"></span>
             </div>
             <div 
-            hx-get="{% url 'local_order_detail' pk=local_order_item.order.pk %}"
-            hx-target="#LocalOrderCard{{local_order_item.order.pk}}"
+            hx-get="{% url 'shop_order_detail' pk=shop_order_item.order.pk %}"
+            hx-target="#ShopOrderCard{{shop_order_item.order.pk}}"
             hx-trigger="load"
             hx-swap="outerHTML"
-            hx-indicator="#LocalOrderCardSpinner{{local_order_item.order.pk}}"></div>
+            hx-indicator="#ShopOrderCardSpinner{{shop_order_item.order.pk}}"></div>
         {% endif %}
     
         
@@ -77,7 +77,7 @@
           {% endif %}
           <small class=" w-100 d-flex justify-content-end mt-3">
             <button type="submit" class="btn d-flex justify-content-center align-items-center btn-outline-primary shadow-sm border-2 border-primary px-5">
-              <span id="spinnerLocalOrderItemStockCreate" class="htmx-indicator spinner-border spinner-border-sm me-2" ></span>Create</button>
+              <span id="spinnerShopOrderItemStockCreate" class="htmx-indicator spinner-border spinner-border-sm me-2" ></span>Create</button>
         </small>
   </form>
 {% endif %}
