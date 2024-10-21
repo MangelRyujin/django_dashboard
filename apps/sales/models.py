@@ -282,6 +282,44 @@ class ShopOrderItem(models.Model):
         return True
     
     @property
+    def stocks_available(self):
+        stock_max = sum(stock.cant for stock in self.shoporderitemstock_set.all())
+        return self.cant - stock_max
+    
+    @property
     def missing(self):
         stock_max = sum(stock.cant for stock in Stock.objects.filter(is_active=True,cant__gt=0,product=self.product.pk))
         return (stock_max - self.cant)*(-1)
+    
+    @property
+    def shop_order_items_stocks_exist(self):
+        stock_max = sum(stock.cant for stock in self.shoporderitemstock_set.all())
+        if stock_max == self.cant:
+            return True
+        return False
+    
+    @property
+    def total_cost(self):
+        return sum(item.price for item in self.shoporderitemstock_set.all()) or 0
+    
+class ShopOrderItemStock(models.Model):
+    item = models.ForeignKey(ShopOrderItem,on_delete=models.CASCADE,verbose_name="shop_order_item_stock")
+    stock = models.ForeignKey(Stock,on_delete=models.CASCADE,verbose_name="shop_stock_item")
+    cant= models.PositiveIntegerField(_("Cant"))
+    
+    class Meta:
+        verbose_name = _("Shop order item stock")
+        verbose_name_plural = _("Shop orders items stocks")
+
+    def __str__(self):
+        return f'{self.pk}'
+    
+    @property
+    def price(self):
+        return self.cant * self.stock.unit_price
+    
+    @property
+    def stock_cant_exists(self):
+        if self.stock.cant >= self.cant:
+            return True
+        return False

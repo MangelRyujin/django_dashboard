@@ -24,21 +24,21 @@
               
               {% if shop_order.state == 'c' %}
           
-                <li class=" p-1"><a class="disabled dropdown-item rounded d-flex align-items-center " href="#"
-                    data-bs-toggle="modal" data-bs-target="#modalLocalOrderSold"
-                    {% comment %} hx-get="{% url 'shop_order_sold' pk=shop_order.pk  %} " {% endcomment %}
-                    hx-target="#LocalOrderSold"
-                    hx-swap="innerHTML"
-                    hx-trigger="click"
-                  >
-                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="text-primary me-2 bi-cart-check-fill" viewBox="0 0 16 16">
-                    <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0m-1.646-7.646-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L8 8.293l2.646-2.647a.5.5 0 0 1 .708.708"/>
-                  </svg>
-                  Sold</a></li>
-                
-                <li>
-                  <li class=" p-1"><a class="disabled dropdown-item rounded d-flex align-items-center " href="#"
-                    {% comment %} hx-get="{% url 'shop_order_check_revert' pk=shop_order.pk  %} " {% endcomment %}
+              <li class=" p-1"><a class="dropdown-item rounded d-flex align-items-center " href="#"
+                data-bs-toggle="modal" data-bs-target="#modalShopOrderSold"
+                hx-get="{% url 'shop_order_sold' pk=shop_order.pk  %} "
+                hx-target="#ShopOrderSold"
+                hx-swap="innerHTML"
+                hx-trigger="click"
+              >
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="text-primary me-2 bi-cart-check-fill" viewBox="0 0 16 16">
+                <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0m-1.646-7.646-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L8 8.293l2.646-2.647a.5.5 0 0 1 .708.708"/>
+              </svg>
+              Sold</a></li>
+            
+            <li>
+                  <li class=" p-1"><a class=" dropdown-item rounded d-flex align-items-center " href="#"
+                    hx-get="{% url 'shop_order_check_revert' pk=shop_order.pk  %} "
                     hx-target="#ShopOrderCard{{shop_order.pk}}"
                     hx-swap="outerHTML"
                     hx-trigger="click"
@@ -51,8 +51,8 @@
                   <li>
                 {% else %}
                 {% if shop_order.items_empty_exists %}
-                <li class=" p-1"><a class="disabled dropdown-item rounded d-flex align-items-center " href="#"
-                  {% comment %} hx-get="{% url 'shop_order_check_revert' pk=shop_order.pk  %} " {% endcomment %}
+                <li class=" p-1"><a class="dropdown-item rounded d-flex align-items-center" href="#"
+                  hx-get="{% url 'shop_order_check_revert' pk=shop_order.pk  %} "
                   hx-target="#ShopOrderCard{{shop_order.pk}}"
                   hx-swap="outerHTML"
                   hx-trigger="click"
@@ -140,6 +140,18 @@
             </div>
             {% if shop_order.state == 'p' %}
             <div class="d-flex justify-content-center gap-2 align-items-center ">
+              {% if shop_order_item.stocks_available > 0 %}
+                  <svg 
+                  data-bs-toggle="offcanvas" data-bs-target="#offcanvasRightShopOrderItemStockCreate" aria-controls="offcanvasRight"
+                  hx-get="{% url 'shop_order_item_stock_create' pk=shop_order_item.pk %}"
+                  hx-swap="innerHTML"
+                  hx-target="#ShopOrderItemStockCreateForm"
+                  hx-trigger="click"
+                  xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="cursor-pointer text-success bi-plus-circle" viewBox="0 0 16 16">
+                    <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+                  </svg>
+                  {% endif %}
               <svg
                   data-bs-toggle="offcanvas" data-bs-target="#offcanvasRightShopOrderItemUpdate" aria-controls="offcanvasRight"
                         hx-get="{% url 'shop_order_item_update' pk=shop_order_item.pk %}" 
@@ -172,39 +184,39 @@
                 </p>
               </div>
               {% endif %}
-          {% comment %} {% if shop_order_item.localorderitemstock_set %}
-          <div class="container px-0">
-            <div class="row row-cols-3 align-items-center py-1 g-1 ">
-              {% for shop_order_item_stock in shop_order_item.localorderitemstock_set.all %}
-                <div class="col ">
-                  <div class=" border {% if shop_order.state == 'p' %}list-group-item-warning border-warning{% else %}list-group-item-success border-success-subtle{% endif %} shadow-sm border-1 list-group-item-action justify-content-between p-1 d-flex align-items-center py-1 rounded-pill">
-                    <span class="small text-ellipsis">{{shop_order_item_stock.cant}}x-<span >{{shop_order_item_stock.stock.code}}</span> </span>
-                    {% if shop_order.state == 'p' %}
-                    <svg
-                    hx-post="{% url 'shop_order_item_stock_delete' pk=shop_order_item_stock.pk %}" 
-                    hx-swap="outerHTML"
-                    hx-trigger="click"
-                    hx-target="#ShopOrderCard{{shop_order.pk}}" 
-                    hx-indicator="#ShopOrderCardSpinner{{shop_order.pk}}"
-                    hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}'
-                    xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="cursor-pointer text-danger bi-x-octagon-fill" viewBox="0 0 16 16">
-                      <path d="M11.46.146A.5.5 0 0 0 11.107 0H4.893a.5.5 0 0 0-.353.146L.146 4.54A.5.5 0 0 0 0 4.893v6.214a.5.5 0 0 0 .146.353l4.394 4.394a.5.5 0 0 0 .353.146h6.214a.5.5 0 0 0 .353-.146l4.394-4.394a.5.5 0 0 0 .146-.353V4.893a.5.5 0 0 0-.146-.353zm-6.106 4.5L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708"/>
-                    </svg>
-                    {% else %}
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="text-success-emphasis bi-check" viewBox="0 0 16 16">
-                      <path d="M12.354 4.354a.5.5 0 0 0-.708-.708L5 10.293 1.854 7.146a.5.5 0 1 0-.708.708l3.5 3.5a.5.5 0 0 0 "/>
-                    </svg>
-                    {% endif %}
-                  </div>
+              {% if shop_order_item.shoporderitemstock_set %}
+              <div class="container px-0">
+                <div class="row row-cols-3 align-items-center py-1 g-1 ">
+                  {% for shop_order_item_stock in shop_order_item.shoporderitemstock_set.all %}
+                    <div class="col ">
+                      <div class=" border {% if shop_order.state == 'p' %}list-group-item-warning border-warning{% else %}list-group-item-success border-success-subtle{% endif %} shadow-sm border-1 list-group-item-action justify-content-between p-1 d-flex align-items-center py-1 rounded-pill">
+                        <span class="small text-ellipsis">{{shop_order_item_stock.cant}}x-<span >{{shop_order_item_stock.stock.code}}</span> </span>
+                        {% if shop_order.state == 'p' %}
+                        <svg
+                        hx-post="{% url 'shop_order_item_stock_delete' pk=shop_order_item_stock.pk %}" 
+                        hx-swap="outerHTML"
+                        hx-trigger="click"
+                        hx-target="#ShopOrderCard{{shop_order.pk}}" 
+                        hx-indicator="#ShopOrderCardSpinner{{shop_order.pk}}"
+                        hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}'
+                        xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="cursor-pointer text-danger bi-x-octagon-fill" viewBox="0 0 16 16">
+                          <path d="M11.46.146A.5.5 0 0 0 11.107 0H4.893a.5.5 0 0 0-.353.146L.146 4.54A.5.5 0 0 0 0 4.893v6.214a.5.5 0 0 0 .146.353l4.394 4.394a.5.5 0 0 0 .353.146h6.214a.5.5 0 0 0 .353-.146l4.394-4.394a.5.5 0 0 0 .146-.353V4.893a.5.5 0 0 0-.146-.353zm-6.106 4.5L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708"/>
+                        </svg>
+                        {% else %}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="text-success-emphasis bi-check" viewBox="0 0 16 16">
+                          <path d="M12.354 4.354a.5.5 0 0 0-.708-.708L5 10.293 1.854 7.146a.5.5 0 1 0-.708.708l3.5 3.5a.5.5 0 0 0 "/>
+                        </svg>
+                        {% endif %}
+                      </div>
+                      
+                    </div>
+                    
+                  {% endfor %}
+                  
                   
                 </div>
-                
-              {% endfor %}
-              
-              
-            </div>
-          </div>
-          {% endif %} {% endcomment %}
+              </div>
+              {% endif %} 
           
         {% endfor %}
       {% endif %}
