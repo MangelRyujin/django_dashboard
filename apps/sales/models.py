@@ -233,7 +233,7 @@ class ShopOrder(models.Model):
         shop_order_items=self.shoporderitem_set.all()
         if shop_order_items.exists():
             for item in shop_order_items:
-                if item.available == False:
+                if item.available == False or item.is_stocks_available == False:
                     return False
         return True
     
@@ -280,6 +280,14 @@ class ShopOrderItem(models.Model):
         if stock_max < self.cant:
           return False
         return True
+    
+    @property
+    def is_stocks_available(self):
+        stock_max = sum(stock.cant for stock in self.shoporderitemstock_set.all())
+        if self.cant - stock_max != 0:
+            return False
+        return True
+    
     
     @property
     def stocks_available(self):
