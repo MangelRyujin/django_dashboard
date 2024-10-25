@@ -19,7 +19,6 @@ class Cart:
     
     def disabled(self):
         if self.shop.is_active is False:
-            self.clear_items()
             return False
         return True
         

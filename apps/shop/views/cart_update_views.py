@@ -18,6 +18,8 @@ def cart_add_view(request,pk):
     response['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
     response['Pragma'] = 'no-cache'
     response['Expires'] = '0'
+    if cart.get_total_items():
+        response['HX-Trigger']='update-cart-icon'
     return response
 
 def cart_message_view(request,pk):
@@ -48,6 +50,8 @@ def cart_remove_view(request,pk):
     response['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
     response['Pragma'] = 'no-cache'
     response['Expires'] = '0'
+    if not cart.get_total_items():
+        response['HX-Trigger']='update-cart-icon'
     return response
 
 def cart_increment_view(request,pk):
@@ -77,4 +81,6 @@ def cart_decrement_view(request,pk):
     response['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
     response['Pragma'] = 'no-cache'
     response['Expires'] = '0'
+    if not cart.get_total_items():
+        response['HX-Trigger']='update-cart-icon'
     return response
