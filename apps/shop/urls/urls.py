@@ -22,6 +22,7 @@ urlpatterns = [
     path('product-shop_cart_message_product/<int:pk>/',cart_message_product,name='cart_message_product'),
     # Cart view
     path('cart_check/',cart_check_view,name='cart_check_view'),
+    path('cart_icon_detail/',cart_icon_detail,name='cart_icon_detail'),
     path('shop_cart_view/',shop_cart_view,name='shop_cart_view'),
     path('view-shop_cart_add_view/<int:pk>/',cart_add_view,name='cart_add_view'),
     path('view-shop_cart_remove_view/<int:pk>/',cart_remove_view,name='cart_remove_view'),

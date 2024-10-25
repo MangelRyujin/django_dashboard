@@ -32,7 +32,6 @@ def product_list_results(request):
 # Show Product 
 def _show_product(request):
     get_copy = request.GET.copy()
-    print(get_copy)
     category=get_copy.get('categories') or None
     parameters = get_copy.pop('page', True) and get_copy.urlencode()
     cart = Cart(request)
