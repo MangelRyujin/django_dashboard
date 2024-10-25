@@ -35,6 +35,8 @@ def cart_add_product(request,pk):
     response['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
     response['Pragma'] = 'no-cache'
     response['Expires'] = '0'
+    if cart.get_total_items():
+        response['HX-Trigger']='update-cart-icon'
     return response
 
 def cart_message_product(request,pk):
@@ -63,7 +65,6 @@ def cart_remove_product(request,pk):
     cart.remove(product)
     context = {
         'get_price_product':cart.get_price_product(product),
-        # 'get_message_product':cart.get_message_product(product),
         'get_cant_product':cart.get_cant_product(product),
         "cart":cart,
         'item_in_cart':cart.item_in_cart(product),
@@ -73,6 +74,8 @@ def cart_remove_product(request,pk):
     response['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
     response['Pragma'] = 'no-cache'
     response['Expires'] = '0'
+    if not cart.get_total_items():
+        response['HX-Trigger']='update-cart-icon'
     return response
 
 def cart_increment_product(request,pk):
@@ -91,6 +94,8 @@ def cart_increment_product(request,pk):
     response['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
     response['Pragma'] = 'no-cache'
     response['Expires'] = '0'
+    if cart.get_total_items() == 1:
+        response['HX-Trigger']='update-cart-icon'
     return response
 
 def cart_decrement_product(request,pk):
@@ -109,6 +114,8 @@ def cart_decrement_product(request,pk):
     response['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
     response['Pragma'] = 'no-cache'
     response['Expires'] = '0'
+    if not cart.get_total_items():
+        response['HX-Trigger']='update-cart-icon'
     return response
 
 @login_required(login_url='/login/')
@@ -136,9 +143,7 @@ def cart_check_view(request):
 def cart_icon_detail(request):
     cart = Cart(request)
     shop=ShopSales.objects.first()
-    context={}
-    if shop.is_active:
+    if shop.is_active is False:
         cart.clear_items()
-        context['cart']=cart
-    context['shop']=shop
+    context={'cart':cart}
     return render(request,'shop_templates/productCart/cart_icon.html',context)

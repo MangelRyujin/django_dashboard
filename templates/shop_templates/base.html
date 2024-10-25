@@ -235,9 +235,9 @@
         </a>
       </li>
       <li>
-        <div 
+        <div id="update-cart-icon"
         hx-get="{% url "cart_icon_detail" %}"
-        hx-trigger="update-cart-list from:body"
+        hx-trigger="update-cart-icon from:body"
         hx-swap="innerHTML">
         {% include "shop_templates/productCart/cart_icon.html" %}
         </div>
