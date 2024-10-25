@@ -130,3 +130,15 @@ def cart_check_view(request):
         response['Expires'] = '0'
         return response
     return redirect('/')
+
+
+@login_required(login_url='/login/')
+def cart_icon_detail(request):
+    cart = Cart(request)
+    shop=ShopSales.objects.first()
+    context={}
+    if shop.is_active:
+        cart.clear_items()
+        context['cart']=cart
+    context['shop']=shop
+    return render(request,'shop_templates/productCart/cart_icon.html',context)

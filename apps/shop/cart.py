@@ -1,4 +1,5 @@
 from decimal import Decimal
+from apps.general.models import ShopSales
 from apps.products.models import Product
 from django.conf import settings 
 from django.contrib import messages
@@ -13,7 +14,14 @@ class Cart:
         if not cart:
             cart = self.session[settings.CART_SESSION_ID]={}
         self.cart=cart
+        self.shop=ShopSales.objects.first()
         
+    
+    def disabled(self):
+        if self.shop.is_active is False:
+            self.clear_items()
+            return False
+        return True
         
     def add_cart(self,product,cant):
         product_id = str(product.id)

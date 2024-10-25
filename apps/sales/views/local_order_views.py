@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.contrib.admin.views.decorators import staff_member_required
 import logging
 from django.core.paginator import Paginator
+from apps.general.models import LocalSales
 from apps.inventory.models import Stock
 from apps.products.models import Product
 from apps.sales.forms.local_order_forms import CreateLocalOrderForm, CreateLocalOrderItemForm, CreateLocalOrderItemStockForm, UpdateLocalOrderForm
@@ -16,7 +17,8 @@ from django.utils.translation import gettext as _
 # Sales demo
 @staff_member_required(login_url='/')
 def local_order_view(request):
-    response= render(request,'sales/local_order_templates/local_order.html')
+    context = {'local':LocalSales.objects.first()}
+    response= render(request,'sales/local_order_templates/local_order.html',context)
     response['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
     response['Pragma'] = 'no-cache'
     response['Expires'] = '0'
