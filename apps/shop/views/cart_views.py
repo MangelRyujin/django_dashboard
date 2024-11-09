@@ -139,7 +139,6 @@ def cart_check_view(request):
     return redirect('/')
 
 
-@login_required(login_url='/login/')
 def cart_icon_detail(request):
     cart = Cart(request)
     shop=ShopSales.objects.first()
