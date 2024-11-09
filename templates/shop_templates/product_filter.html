@@ -106,6 +106,7 @@
             </svg>
           </a>
         </div>
+        {% if cart.disabled %}
         <a href="{% url "shop_product_detail_view" pk=product.product.pk %}" class=" px-2 py-1 btn btn-dark border-1 border shadow-sm  d-flex justify-content-center align-items-center">
           {% if product.product_cart %}
           <strong>{% if product.product_cart > 99 %}
@@ -120,7 +121,7 @@
           {% endif %}
            
         </a>
-        
+        {% endif %}
           
         </div>
   

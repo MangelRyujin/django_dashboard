@@ -22,7 +22,7 @@ def products_store_view(request):
 # Product list filter
 def product_list_results(request):
     context = {
-        
+        "cart":Cart(request),
         "products":_show_product(request)
     }
     return  render(request,'shop_templates/product_filter.html',context)

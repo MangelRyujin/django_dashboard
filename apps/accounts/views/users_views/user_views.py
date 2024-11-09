@@ -60,13 +60,10 @@ def user_password_update(request,pk):
     context={}
     if request.method == "POST":
         user = User.objects.filter(pk=pk).first()
-        print(request.POST)
-        
         pass_form = SetPasswordForm(user,request.POST)
-        print(pass_form)
         if pass_form.is_valid():
             user_form_valid = pass_form.save(commit=False)
-            user_form_valid._change_reason = f"Modifying the password for the user {user.username} "
+            # user_form_valid._change_reason = f"Modifying the password for the user {user.username} "
             user_form_valid.save()
             message="Change password successfully"
             context['message']=message
@@ -89,7 +86,7 @@ def user_delete(request,pk):
             context = _show_user(request)
             if user.is_active:
                 user.is_active=False
-                user._change_reason = f"User {user.username} has been ban"
+                # user._change_reason = f"User {user.username} has been ban"
                 user.save()
                 context['message']=f'{user_name} has been ban'
             else:
