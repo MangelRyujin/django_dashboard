@@ -68,7 +68,7 @@ def admin_main_information_update(request,pk):
         form = ChangeAdminForm(request.POST,request.FILES,instance=admin)
         if form.is_valid():
             admin_form_valid=form.save(commit=False)
-            admin_form_valid._change_reason = f'Modifying personal information for the {admin.username} administrator'
+            # admin_form_valid._change_reason = f'Modifying personal information for the {admin.username} administrator'
             admin_form_valid.save()
             form.save_m2m()
             message="Change admin successfully"
@@ -90,7 +90,7 @@ def admin_password_update(request,pk):
         pass_form = AdminPasswordChangeForm(admin,request.POST)
         if pass_form.is_valid():
             admin_form_valid = pass_form.save(commit=False)
-            admin_form_valid._change_reason = f"Modifying the password for the {admin.username} administrator"
+            # admin_form_valid._change_reason = f"Modifying the password for the {admin.username} administrator"
             admin_form_valid.save()
             message="Change password successfully"
             context['message']=message

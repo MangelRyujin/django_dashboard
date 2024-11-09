@@ -14,4 +14,4 @@ class User(AbstractUser):
     city = models.CharField(_("Country"),max_length=255, null=True,blank=True)
     address = models.CharField(_("Address"),max_length=255, null=True,blank=True)
     ci = models.CharField(_("CI"),max_length=11,validators=[MinLengthValidator(11)],unique=True, null=True,blank=True)
-    history = HistoricalRecords(history_change_reason_field=models.TextField(null=True),)
+    # history = HistoricalRecords(history_change_reason_field=models.TextField(null=True),)

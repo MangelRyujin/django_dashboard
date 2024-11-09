@@ -42,7 +42,8 @@ def product_like(request,pk):
             "product":product,
             "like": like or False,
             'product_cart':cart.get_cant_product(product)
-        }
+        },
+        "cart":cart
     }
     return render(request,'shop_templates/landingPage/productsList/productCardEdit.html',context)
 

@@ -19,11 +19,7 @@ from utils.funtions.products.product import *
 @staff_member_required(login_url='/login/')
 def dashboard_view(request):
     
-    admin_history = User.history.filter(is_staff=True)[:10]
-    user_history = User.history.filter(is_staff=False)[:10]
-    coupon_history = Coupon.history.all()[:10]
-    category_history = Category.history.all()[:10]
-    product_history = Product.history.all()[:10]
+    
     porcent_float,porcent_int = sales_goal()
     context={
         'dashboard_favorite_products':dashboard_favorite_products(),
@@ -39,11 +35,7 @@ def dashboard_view(request):
         'total_products_views':total_products_views(),
         'total_positive_reviews':total_positive_reviews(),
         'total_available_products':total_available_products(),
-        'admin_history':admin_history,
-        'category_history':category_history,
-        'product_history':product_history,
-        'user_history':user_history,
-        'coupon_history':coupon_history,
+        
     }
     response= render(request,'index.html',context)
     response['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
