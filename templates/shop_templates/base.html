@@ -162,11 +162,7 @@
                 </svg>Administración</a></li>
               <li><hr class="dropdown-divider"></li>
 
-              <li class="px-1 my-1 "><a class="dropdown-item rounded-2 align-items-center d-flex" href="{% url "change_information" %}">
-                <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor"  class="me-2 bi-key-fill" viewBox="0 0 16 16">
-                  <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
-                </svg>Perfil</a></li>
-              <li><hr class="dropdown-divider"></li>
+              
               
               <li class="px-1 my-1 "><a class="dropdown-item rounded-2 align-items-center d-flex" href="{% url "change_password_view" %}">
                 <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor" class="me-2 bi-key-fill" viewBox="0 0 16 16">
@@ -175,7 +171,11 @@
               <li><hr class="dropdown-divider"></li>
                 {% endif %}
                 
-                
+                <li class="px-1 my-1 "><a class="dropdown-item rounded-2 align-items-center d-flex" href="{% url "change_information" %}">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor"  class="me-2 bi-key-fill" viewBox="0 0 16 16">
+                    <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+                  </svg>Perfil</a></li>
+                <li><hr class="dropdown-divider"></li>
                 {% if user.is_authenticated %}
                  <li class="px-1 my-1 "><form action="{% url "logout" %}" method="post">
                       {% csrf_token %}

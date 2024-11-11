@@ -1,4 +1,5 @@
 from django.urls import path
+from apps.accounts.views.admin_views.admin_views import change_information
 from apps.shop.views.cart_update_views import *
 from apps.shop.views.cart_views import *
 from apps.shop.views.product_detail import *
@@ -29,7 +30,8 @@ urlpatterns = [
     path('view-shop_cart_increment_view/<int:pk>/',cart_increment_view,name='cart_increment_view'),
     path('view-shop_cart_decrement_view/<int:pk>/',cart_decrement_view,name='cart_decrement_view'),
     path('view-shop_cart_message_view/<int:pk>/',cart_message_view,name='cart_message_view'),
-    
+    # User
+    path('perfil/', change_information, name='change_information'),
     
     
     

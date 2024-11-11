@@ -72,7 +72,9 @@ def login_view(request):
     context = {
         "whatsapp":WhatsAppContact.objects.first(),
         "social":SocialMedia.objects.first(),
-        "next":request.GET.get('next', '')
+        "next":request.GET.get('next', ''),
+        "cart":Cart(request)
+        
     }
     return render(request, 'login.html',context)
 
@@ -82,7 +84,8 @@ def register_view(request):
     context = {
         "whatsapp":WhatsAppContact.objects.first(),
         "social":SocialMedia.objects.first(),
-        "form":RegisterForm(request.POST or None)
+        "form":RegisterForm(request.POST or None),
+        "cart":Cart(request)
     }
     return render(request, 'register.html',context)
 
@@ -97,10 +100,13 @@ def register_form_view(request):
             response["HX-Redirect"]= '/login/'
             return response
         else:
-            print(form.errors)
+            pass
     else:
         form = RegisterForm()
-    return render(request, 'shop_templates/register/register_form.html',{"form":form})
+        context={
+            "form":form
+            }
+    return render(request, 'shop_templates/register/register_form.html',context)
 
 
 # Change password view

@@ -8,6 +8,10 @@ from apps.accounts.forms.admin_forms import  SingUpForm,ChangeAdminForm,ChangeUs
 from django.contrib.auth.forms import AdminPasswordChangeForm
 from django.core.paginator import Paginator
 import logging
+
+from apps.general.forms.register_form import RegisterForm
+from apps.general.models import SocialMedia, WhatsAppContact
+from apps.shop.cart import Cart
 logger = logging.getLogger(__name__)
 from django.contrib.admin.views.decorators import staff_member_required
 
@@ -144,7 +148,6 @@ def admin_detail(request,pk):
     return  render(request,'admin_templates/actions/adminDetail/adminDetail.html',{"admin":admin})
 
 # Change Personal Information of user admins
-@staff_member_required(login_url='/')
 def change_information(request):
     user = User.objects.get(pk=request.user.pk)
 
@@ -155,8 +158,19 @@ def change_information(request):
             # if 'image' in request.FILES:
             #     form.image = request.FILES['image']
             admin_form.save()
-        context = {'form': form}
+        context = {'form': form,
+                   "whatsapp":WhatsAppContact.objects.first(),
+                    "social":SocialMedia.objects.first(),
+                    "form":RegisterForm(request.POST or None),
+                    "cart":Cart(request)
+                    }
         return render(request,'admin_templates/actions/adminInformation/adminInformationUpdateForm.html', context)
     form = ChangeUserPersonalInformation(instance=user)
-    context = {'form': form}
+    context = {
+        'form': form,
+        "whatsapp":WhatsAppContact.objects.first(),
+        "social":SocialMedia.objects.first(),
+        "form":RegisterForm(request.POST or None),
+        "cart":Cart(request)
+        }
     return render(request, 'admin_templates/actions/adminInformation/adminInformation.html', context)
