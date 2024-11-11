@@ -150,7 +150,6 @@ def admin_detail(request,pk):
 # Change Personal Information of user admins
 def change_information(request):
     user = User.objects.get(pk=request.user.pk)
-
     if request.method == 'POST':
         form = ChangeUserPersonalInformation(request.POST,request.FILES, instance=user)
         if form.is_valid():
@@ -158,19 +157,17 @@ def change_information(request):
             # if 'image' in request.FILES:
             #     form.image = request.FILES['image']
             admin_form.save()
-        context = {'form': form,
+        context = {"form": form,
                    "whatsapp":WhatsAppContact.objects.first(),
                     "social":SocialMedia.objects.first(),
-                    "form":RegisterForm(request.POST or None),
                     "cart":Cart(request)
                     }
         return render(request,'admin_templates/actions/adminInformation/adminInformationUpdateForm.html', context)
     form = ChangeUserPersonalInformation(instance=user)
     context = {
-        'form': form,
+        "form": form,
         "whatsapp":WhatsAppContact.objects.first(),
         "social":SocialMedia.objects.first(),
-        "form":RegisterForm(request.POST or None),
         "cart":Cart(request)
         }
     return render(request, 'admin_templates/actions/adminInformation/adminInformation.html', context)
