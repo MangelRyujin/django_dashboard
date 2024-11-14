@@ -45,7 +45,7 @@ class Category(models.Model):
     
 class Product(models.Model):
     code = models.CharField(_("Code"),max_length=50,unique=True)
-    name = models.CharField(_("Name"),max_length=30,unique=True)
+    name = models.CharField(_("Name"),max_length=70,unique=True)
     views = models.PositiveIntegerField(_("Views"),default=0)
     categories = models.ManyToManyField(Category,_("Categories"),verbose_name="categories_product")
     likes = models.ManyToManyField(User,verbose_name="likes_product",blank=True)
