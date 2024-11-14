@@ -90,6 +90,12 @@
                     {% endfor %}
                 </div>
          </li>
+         <li class="py-1  "><strong class=" fs-5 ">Marca:</strong> 
+          <strong class="text-muted fs-6 ">
+            {{product.brand}}
+         </strong>
+
+        </li>
           <li class="py-1   "><strong class=" fs-5">Categoría:</strong><strong class="text-muted fs-6"> 
             {% if product.categories.all %}
                       {% with categories_count=product.categories.all.count %}

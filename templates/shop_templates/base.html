@@ -61,9 +61,9 @@
 
 
     <nav class="navbar bg-body-tertiary fixed-top py-0 shadow-sm  border-bottom border-1">
-      <div class="container-fluid">
+      <div class="container-fluid px-1 px-sm-3">
         <a class="navbar-brand d-flex justify-content-center align-items-center my-0 py-0" href="{% url "shop_view" %}">
-          <img class="img-fluid" width="50" height="50" src="{% if social.image %}{{social.image.url}}{% else %}{% static "/assets/img/image_not_found.jpg" %}{% endif %}" alt="Remiux">
+          <img class="img-fluid" width="60" height="60" src="{% if social.image %}{{social.image.url}}{% else %}{% static "/assets/img/image_not_found.jpg" %}{% endif %}" alt="Remiux">
           <span class=" fw-bold ms-1 text-body-emphasis">Remiux</span>
           
         </a>
@@ -149,7 +149,7 @@
             {% if user.is_authenticated %}
             <a href="#" class="btn btn-link nav-link py-2 px-0 px-lg-2 dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown" aria-expanded="false">
               <img src="{% if user.image %}{{user.image.url}}{% else %}{% static '/assets/img/avatar.jpg' %}{% endif %} " alt="{% if user.image %}{{user.image.url}}{% else %}{% static '/assets/img/avatar.jpg' %}{% endif %}" width="30" height="30" class="rounded-circle me-2">
-              <strong class="text-ellipsis small">{{user.username}} </strong>
+              <strong class="text-ellipsis small">{{user.username}}</strong>
             </a>
             
             <ul class="dropdown-menu dropdown-menu-end shadow" >

@@ -59,6 +59,8 @@ class Product(models.Model):
     is_active = models.BooleanField(_("Active"),default=True)
     small_description = models.TextField(_("Small description"),max_length=255)
     long_description = models.TextField(_("Long description"),max_length=500)
+    weight = models.DecimalField(_("Price"), decimal_places= 2,max_digits=12,default=0, validators=[MinValueValidator(0)])
+    brand = models.CharField(_("Brand"),max_length=50,blank=True,null=True)
     history = HistoricalRecords(history_change_reason_field=models.TextField(null=True),)  
      
     

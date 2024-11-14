@@ -31,6 +31,33 @@
               </div>
             {% endif %}
           </div>
+          <div class="col-12  mt-4 ">
+            <label for="{{ form.brand.id_for_label }}" class="form-label">Brand</label>
+            <input type="text" class="form-control" required name="brand" id="{{ form.brand.id_for_label }}" placeholder="Brand">
+            {% if form.brand.errors %}
+            <div class="alert alert-danger mt-2">
+                {% for error in form.brand.errors %}
+                    {{ error }}
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+          <div class="col-12  mt-4 ">
+            <label for="{{ form.weight.id_for_label }}" class="form-label">Weight</label>
+            <div class="input-group">
+              <input type="text" class="form-control" required name="weight" id="{{ form.weight.id_for_label }}" placeholder="0">
+              <span class="input-group-text">
+                kg
+              </span>
+            </div>
+            {% if form.weight.errors %}
+            <div class="alert alert-danger mt-2">
+                {% for error in form.weight.errors %}
+                    {{ error }}
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
           <div class="col-12 mt-4">
             <div class="row">
               <div class="col-12">

@@ -50,6 +50,10 @@
           <label for="inputProductNameFilter" class="form-label">Name</label>
           <input type="text" name="name" class="form-control" id="inputProductNameFilter" placeholder="Product name">
         </div>
+        <div class="col-6  col-sm-4 col-md-4 col-lg-3">
+          <label for="inputProductBrandFilter" class="form-label">Brand</label>
+          <input type="text" name="brand" class="form-control" id="inputProductBrandFilter" placeholder="Brand">
+        </div>
         {% if categories %}
       <div class="col-6  col-sm-4 col-md-4 col-lg-2">
         <label for="inputProductCategoryFilter" class="form-label">Category</label>
@@ -66,7 +70,7 @@
         <label for="inputProductStarsFilter" class="form-label">Stars</label>
         <input type="number" min=1 max=5 name="stars" class="form-control" id="inputProductStarsFilter" placeholder="greater than the value">
       </div>
-      <div class="col-sm-4 col-md-4 col-lg-3">
+      <div class="col-6 col-sm-4 col-md-4 col-lg-3">
         <label for="inputActiveProductFilter" class="form-label">Active</label>
         <select id="inputActiveProductFilter" name="is_active" class="form-select" aria-label="Default select example">
           <option selected>Your products is active?</option>

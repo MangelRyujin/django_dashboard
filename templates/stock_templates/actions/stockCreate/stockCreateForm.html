@@ -138,6 +138,20 @@
             {% endif %}
           </div>
           <div class="col-12  mt-4 ">
+            <label for="{{ form.storage_threshold.id_for_label }}" class="form-label">Storage threshold</label>
+            <div class="input-group">
+              <input type="number" min=0 class="form-control" required placeholder='0' name="storage_threshold" id="{{ form.storage_threshold.id_for_label }}">
+            
+            </div>
+            {% if form.storage_threshold.errors %}
+            <div class="alert alert-danger mt-2">
+                {% for error in form.storage_threshold.errors %}
+                    {{ error }}
+                {% endfor %}
+              </div>
+            {% endif %}
+          </div>
+          <div class="col-12  mt-4 ">
             <label for="{{ form.expiration_date.id_for_label }}" class="form-label">Expiration date</label>
             <div class="input-group">
               <input type="date" class="form-control" required name="expiration_date" id="{{ form.expiration_date.id_for_label }}">

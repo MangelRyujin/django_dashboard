@@ -23,12 +23,13 @@ class OffertFilter(django_filters.FilterSet):
 class ProductFilter(django_filters.FilterSet):
     code=  django_filters.CharFilter(lookup_expr='icontains')
     name=  django_filters.CharFilter(lookup_expr='icontains')
+    brand=  django_filters.CharFilter(lookup_expr='icontains')
     is_active = django_filters.BooleanFilter()
     stars = django_filters.NumberFilter()
     categories = django_filters.ModelMultipleChoiceFilter(queryset=Category.objects.all())
     class Meta:
         model = Product
-        fields = ['code','name','is_active','stars','categories']
+        fields = ['code','name','is_active','stars','categories','brand']
         
         
 class CouponFilter(django_filters.FilterSet):
