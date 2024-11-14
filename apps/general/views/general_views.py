@@ -112,8 +112,13 @@ def register_form_view(request):
 # Change password view
 @login_required(login_url='/login/')
 def change_password_view(request):
-    form = PasswordChangeForm(user=request.user)
-    response= render(request, 'change_password/change_password.html',{"form":form})
+    context = {
+        "whatsapp":WhatsAppContact.objects.first(),
+        "social":SocialMedia.objects.first(),
+        "form":PasswordChangeForm(user=request.user),
+        "cart":Cart(request)
+    }
+    response= render(request, 'change_password/change_password.html',context)
     response['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
     response['Pragma'] = 'no-cache'
     response['Expires'] = '0'
