@@ -105,7 +105,7 @@ def search_all_products(request):
         request.session['keyword'] = keyword
     search_products = Product.objects.filter(
         Q(name__icontains=keyword) | Q(categories__name__icontains=keyword)
-        | Q(small_description__icontains=keyword)
+        | Q(small_description__icontains=keyword) | Q(brand__icontains=keyword)
         ).distinct().order_by('-id')[:20]
     context={
         'keyword':keyword,

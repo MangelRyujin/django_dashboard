@@ -63,6 +63,7 @@ def product_cheap_like(request,pk):
             "product":product,
             "like": like or False,
             'product_cart':cart.get_cant_product(product)
-        }
+        },
+        "cart":Cart(request)
     }
     return render(request,'shop_templates/landingPage/productsList/productCardEditCheap.html',context)

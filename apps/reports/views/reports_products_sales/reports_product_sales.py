@@ -1,7 +1,8 @@
 from django.shortcuts import render
 import logging
-from apps.reports.filters import ReportOrderItemFilter
-from apps.sales.models import  OrderItem
+from apps.inventory.models import Facture, Income, Spent
+from apps.reports.filters import ReportFactureFilter, ReportIncomeFilter, ReportOrderItemFilter,ReportOrderFilter, ReportSpentFilter
+from apps.sales.models import  Order, OrderItem
 logger = logging.getLogger(__name__)
 from django.contrib.admin.views.decorators import staff_member_required
 from django.db.models import Count, Sum
@@ -36,11 +37,30 @@ def _show_order(request):
     total_price=round(sum(item['price'] for item in items_grouped),2) 
     total_cost=round(sum(item['cost'] for item in items_grouped),2) 
     total_revenue=round(sum(item['revenue'] for item in items_grouped),2) 
+    orders = ReportOrderFilter(request.GET, queryset=Order.objects.all())
+    factures = ReportFactureFilter(request.GET, queryset=Facture.objects.all())
+    incomes = ReportIncomeFilter(request.GET, queryset=Income.objects.all())
+    spents = ReportSpentFilter(request.GET, queryset=Spent.objects.all())
+    total_transfer = orders.qs.aggregate(total_transfer = Sum("transfer"))["total_transfer"] or 0
+    total_cash = orders.qs.aggregate(total_cash=Sum("cash"))["total_cash"] or 0
+    total_factures = sum(facture.total_amount for facture in factures.qs) or 0
+    total_incomes = incomes.qs.aggregate(total=Sum("amount"))["total"] or 0
+    total_spents = spents.qs.aggregate(total = Sum("amount"))["total"] or 0
+
     context={
         'total_count':total_count,
         'total_price':total_price,
         'total_cost':total_cost,
         'total_revenue':total_revenue,
         'items':items_grouped,
+        'total_transfer':total_transfer,
+        'total_cash':total_cash,
+        'total_factures':total_factures,
+        'total_incomes':total_incomes,
+        'total_spents':total_spents,
+        'total_spents_facture':total_spents+total_factures,
+        'total_income_spents_facture':total_incomes-(total_spents+total_factures),
+        'total_revenue_income_spents_facture':(total_revenue+total_incomes)-(total_spents+total_factures),
+
     }
     return context

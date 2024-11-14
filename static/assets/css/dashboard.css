@@ -57,6 +57,11 @@
   min-width: 250px !important;
 }
 
+.table-min-reports{
+  min-width: 320px !important;
+}
+
+
 /*
  * Sidebar
  */
@@ -385,7 +390,19 @@
   transition: width 0.5s ease-in-out;
 }
 
+.text-ellipsis-username{
+  max-width: 130px; /* Ancho máximo del elemento */
+  white-space: nowrap; /* No permite saltos de línea */
+  overflow: hidden; /* Oculta el texto que excede el ancho */
+  text-overflow: ellipsis; /* Muestra puntos suspensivos */
+  line-height: 20px;
+}
 
+@media (max-width: 400px) {
+  .text-ellipsis-username{
+    max-width: 60px; /* Ancho máximo del elemento */
+  }
+}
 
 .text-ellipsis{
   max-width: 80px; /* Ancho máximo del elemento */

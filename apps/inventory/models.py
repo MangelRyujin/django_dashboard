@@ -41,7 +41,7 @@ class Stock(models.Model):
     create_date = models.DateTimeField(_("Create date"),auto_now_add=True)
     cant = models.PositiveIntegerField(_("Cant"),validators=[MinValueValidator(0)])
     unit_price = models.DecimalField(_("Inversion Cost"), max_digits=12, default=0, decimal_places=2,validators=[MinValueValidator(0.01)])
-    
+    storage_threshold = models.PositiveIntegerField(_("Storage Threshold"),validators=[MinValueValidator(0)],default=0)
     
     
     class Meta:
@@ -51,6 +51,10 @@ class Stock(models.Model):
     def __str__(self):
         return self.name
     
+    def is_danger(self):
+        if self.cant <= self.storage_threshold and self.cant > 0:
+          return True
+        return False
     
 class Supplier(models.Model):
     ci = models.CharField(_("CI"),max_length=11,validators=[MinLengthValidator(11)],unique=True)
