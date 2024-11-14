@@ -17,18 +17,18 @@
           <tr class="text-center">
               <td class="border small table-min">{{item.product_name}}</td>  
               <td class="border small ">{{item.count}}</td>  
-              <td class="border small">{{item.price}}</td>  
-              <td class="border small ">{{item.cost}}</td>  
-              <td class="border small">{{item.revenue}}</td>  
+              <td class="border small">{{item.price|floatformat:2}}</td>  
+              <td class="border small ">{{item.cost|floatformat:2}}</td>  
+              <td class="border small">{{item.revenue|floatformat:2}}</td>  
           </tr>
           
       {% endfor %}
         <tr class="text-center table-primary">
             <td class="border small table-min">Total</td>  
             <td class="border small ">{{total_count}}</td>  
-            <td class="border small">{{total_price}}</td>  
-            <td class="border small ">{{total_cost}}</td>  
-            <td class="border small">{{total_revenue}}</td>  
+            <td class="border small">{{total_price|floatformat:2}}</td>  
+            <td class="border small ">{{total_cost|floatformat:2}}</td>  
+            <td class="border small">{{total_revenue|floatformat:2}}</td>  
         </tr>
         </tbody>
       </table>
@@ -46,9 +46,9 @@
         <tbody>
      
           <tr class="text-center">
-              <td class="border small ">{{total_cash}}</td>  
-              <td class="border small ">{{total_transfer}}</td>  
-              <td class="border small ">{{total_price}}</td>  
+              <td class="border small ">{{total_cash|floatformat:2}}</td>  
+              <td class="border small ">{{total_transfer|floatformat:2}}</td>  
+              <td class="border small ">{{total_price|floatformat:2}}</td>  
           </tr>
           </tbody>
         </table>
