@@ -38,9 +38,9 @@ def coupon_create(request):
         form = CreateCouponForm(request.POST)
         if form.is_valid():
             form.save()  
-            context['message']='Created successfully'
+            context['message']='Creado correctamente'
         else:
-            context['error']='Correct the errors'
+            context['error']='Corrige los errores'
         context['form']=form
         return render(request,'coupon_templates/actions/couponCreate/couponCreateForm.html',context) 
     form = CreateCouponForm()
@@ -72,12 +72,12 @@ def coupon_form_update(request,pk):
         form = UpdateCouponForm(request.POST,request.FILES,instance=coupon)
         if form.is_valid():
             coupon_form_valid=form.save(commit=False)
-            coupon_form_valid._change_reason = f'Modifying coupon {coupon.code}'
+            coupon_form_valid._change_reason = f'Cupón {coupon.code} modificado'
             coupon_form_valid.save()
-            message="Change coupon successfully"
+            message="Editado correctamente"
             context['message']=message
         else:
-            message="Correct the errors"
+            message="Corrige los errores"
             context['error']=message
         context['coupon']=coupon
         context['form']=form
@@ -94,9 +94,9 @@ def coupon_delete(request,pk):
             coupon_code=coupon.code
             coupon.delete()
             context = _show_coupon(request)
-            context['message']=f'{coupon_code} has been delete'
+            context['message']=f'{coupon_code} ha sido eliminado'
         else:
-            context['error']=f'Sorry, coupon not found'
+            context['error']=f'Lo sentimos, el cupón no existe'
         return render(request,'coupon_templates/coupon_table_results.html',context)
     return  render(request,'coupon_templates/actions/couponDelete/couponDeleteVerify.html',{"coupon":coupon})
      

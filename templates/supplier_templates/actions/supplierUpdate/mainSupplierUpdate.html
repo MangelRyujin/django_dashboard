@@ -9,8 +9,8 @@
                     hx-indicator="#spinnerSupplierMainUpdate">
                     {% csrf_token %}
                     <div class="col-12">
-                      <label for="{{ form.first_name.id_for_label }}Update" class="form-label">First name</label>
-                      <input type="text" name="first_name" required value="{{ form.first_name.value }}" class="form-control" id="{{ form.first_name.id_for_label }}Update" placeholder="First name">
+                      <label for="{{ form.first_name.id_for_label }}Update" class="form-label">Nombres</label>
+                      <input type="text" name="first_name" required value="{{ form.first_name.value }}" class="form-control" id="{{ form.first_name.id_for_label }}Update" placeholder="Nombres">
                       {% if form.first_name.errors %}
                       <div class="alert alert-danger mt-2">
                           {% for error in form.first_name.errors %}
@@ -20,8 +20,8 @@
                       {% endif %}    
                     </div>
                     <div class="col-12">
-                      <label for="{{ form.last_name.id_for_label }}Update" class="form-label">Last name</label>
-                      <input type="text" name="last_name" required value="{{ form.last_name.value }}" class="form-control" id="{{ form.last_name.id_for_label }}Update" placeholder="Last name">
+                      <label for="{{ form.last_name.id_for_label }}Update" class="form-label">Apellidos</label>
+                      <input type="text" name="last_name" required value="{{ form.last_name.value }}" class="form-control" id="{{ form.last_name.id_for_label }}Update" placeholder="Apellidos">
                       {% if form.last_name.errors %}
                   <div class="alert alert-danger mt-2">
                       {% for error in form.last_name.errors %}
@@ -56,8 +56,8 @@
                 
                 
                 <div class="col-12">
-                  <label for="{{form.phone_number.id_for_label}}Update" class="form-label">Phone number</label>
-                  <input type="text" name="phone_number" required value="{% if form.phone_number.value  %}{{form.phone_number.value}}{% else %}{% endif %}" class="form-control" id="{{form.phone_number.id_for_label}}Update" placeholder="Phone number">
+                  <label for="{{form.phone_number.id_for_label}}Update" class="form-label">Móvil</label>
+                  <input type="text" name="phone_number" required value="{% if form.phone_number.value  %}{{form.phone_number.value}}{% else %}{% endif %}" class="form-control" id="{{form.phone_number.id_for_label}}Update" placeholder="Móvil">
                   {% if form.phone_number.errors %}
                   <div class="alert alert-danger mt-2">
                       {% for error in form.phone_number.errors %}
@@ -69,7 +69,7 @@
                 
                 
                 <div class="col-12">
-                    <label class="form-label" for="{{form.image.id_for_label}}Update">Image: <img class="rounded-circle" src=" {% if supplier.image %}{{supplier.image.url}} {% else %} {% static "/assets/img/avatar.jpg" %}{% endif %}" width="32" height="32" alt="{% if supplier.image %}{{supplier.image.url}} {% else %} {% static "/assets/img/avatar.jpg" %}{% endif %}"></label>
+                    <label class="form-label" for="{{form.image.id_for_label}}Update">Imagen: <img class="rounded-circle" src=" {% if supplier.image %}{{supplier.image.url}} {% else %} {% static "/assets/img/avatar.jpg" %}{% endif %}" width="32" height="32" alt="{% if supplier.image %}{{supplier.image.url}} {% else %} {% static "/assets/img/avatar.jpg" %}{% endif %}"></label>
                     <div class="input-group ">
                       <input type="file" name="image"  class="form-control" id="{{form.image.id_for_label}}Update">
                     <label class="input-group-text" for="{{form.image.id_for_label}}Update">
@@ -89,8 +89,8 @@
                   
                 </div>
                 <div class="col-12">
-                  <label for="{{form.address.id_for_label}}Update" class="form-label">Address</label>
-                  <input type="text" name="address" value="{% if form.address.value  %}{{form.address.value}}{% else %}{% endif %}" class="form-control" id="{{form.address.id_for_label}}Update" placeholder="Address">
+                  <label for="{{form.address.id_for_label}}Update" class="form-label">Direccíon</label>
+                  <input type="text" name="address" value="{% if form.address.value  %}{{form.address.value}}{% else %}{% endif %}" class="form-control" id="{{form.address.id_for_label}}Update" placeholder="Direccíon">
                   {% if form.address.errors %}
                   <div class="alert alert-danger mt-2">
                       {% for error in form.address.errors %}
@@ -134,7 +134,7 @@
                 </div>    
                 <span class="w-100 d-flex justify-content-end ">
                     <button type="submit" class="btn d-flex justify-content-center align-items-center btn-outline-primary shadow-sm border-2 border-primary px-5">
-                      <span id="spinnerSupplierMainUpdate" class="htmx-indicator spinner-border spinner-border-sm me-2" ></span>Save</button>
+                      <span id="spinnerSupplierMainUpdate" class="htmx-indicator spinner-border spinner-border-sm me-2" ></span>Salvar</button>
                   </span>
               </form>
               {% endif %}

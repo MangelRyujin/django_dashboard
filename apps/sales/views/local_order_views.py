@@ -41,9 +41,9 @@ def local_order_create(request):
             order = form.save(commit=False)
             order.user_create = request.user
             order.save()
-            context['message']='Created successfully'
+            context['message']='Cración correcta'
         else:
-            context['error']='Correct the errors'
+            context['error']='Corrige los errores'
         context['form']=form
         return render(request,'sales/local_order_templates/actions/localOrderCreate/localOrderCreateForm.html',context) 
     form = CreateLocalOrderForm()
@@ -66,9 +66,9 @@ def local_order_item_create(request,pk):
                 order_item.order = local_order
                 order_item.save()
                 context['products'].remove(order_item.product)
-                context['message']='Created successfully'
+                context['message']='Cración correcta'
             else:
-                context['error']='Correct the errors'
+                context['error']='Corrige los errores'
             context['form']=form
             return render(request,'sales/local_order_templates/actions/localOrderItemCreate/localOrderItemCreateForm.html',context) 
     form = CreateLocalOrderItemForm()
@@ -92,9 +92,9 @@ def local_order_item_stock_create(request,pk):
                 local_order_item_stock.item = local_order_item
                 local_order_item_stock.save()
                 context['stocks'].remove(local_order_item_stock.stock)
-                context['message']='Created successfully'
+                context['message']='Cración correcta'
             else:
-                context['error']='Correct the errors'
+                context['error']='Corrige los errores'
             
             context['form']=form
             return render(request,'sales/local_order_templates/actions/localOrderItemStockCreate/localOrderItemStockCreateForm.html',context) 
@@ -122,10 +122,10 @@ def local_order_form_update(request,pk):
         form = UpdateLocalOrderForm(request.POST,instance=local_order)
         if form.is_valid():
             form.save()
-            message="Change order successfully"
+            message="Edición correcta"
             context['message']=message
         else:
-            message="Correct the errors"
+            message="Corrige los errores"
             context['error']=message
         context['local_order']=local_order
         context['form']=form
@@ -144,9 +144,9 @@ def local_order_delete(request,pk):
             local_order_id=local_order.id
             local_order.delete()
             context = _show_local_order(request)
-            context['message']=f'Order {local_order_id} has been delete'
+            context['message']=f'Orden {local_order_id} ha sido eliminada'
         else:
-            context['error']=f'Sorry, product not found'
+            context['error']=f'Lo sentimos, la orden no existe'
         return render(request,'sales/local_order_templates/local_order_result.html',context)
     return  render(request,'sales/local_order_templates/actions/localOrderDelete/localOrderDeleteVerify.html',{"local_order":local_order})
 
@@ -212,13 +212,13 @@ def local_order_check_revert(request,pk):
                 local_order.state = "c"
                 local_order.save()  
             else:
-                context['message']=f'There is no sufficient existence'
+                context['message']=f'No contiene suficiente existencia'
         else:
             items_discount_or_revert(local_order,'revert')
             local_order.state = "p"
             local_order.save() 
     else:
-        context['error']=f'Sorry, review not found'
+        context['error']=f'Lo sentimos, la orden no existe'
     return render(request,'sales/local_order_templates/actions/localOrderCardDetail/localOrderCardDetail.html',context)
 
 # # Detail local order
@@ -240,7 +240,7 @@ def local_order_sold(request,pk):
         form = CreateOrderSoldForm(data)
         if form.is_valid():
             order_paid_method(local_order,data["payment_type"],data['cash'],data['transfer'])
-            context["message"]=_("Payment successfully")
+            context["message"]=_("Pago realizado")
         else:
             context["form"]=form
     return render(request,'sales/local_order_templates/actions/localOrderSold/localOrderSoldVerify.html',context)
@@ -255,7 +255,7 @@ def local_order_delete_sold(request,pk):
             local_order_id=local_order.id
             local_order.delete()
             context = _show_local_order(request)
-            context['message']=f'Order {local_order_id} has been paid'
+            context['message']=f'Orden {local_order_id} ha sido pagada'
         else:
-            context['error']=f'Sorry, product not found'
+            context['error']=f'Lo sentimos, la orden no existe'
         return render(request,'sales/local_order_templates/local_order_result.html',context)

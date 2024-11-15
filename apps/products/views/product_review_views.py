@@ -49,9 +49,9 @@ def product_create_reviews(request):
         form = UpdateProductReviewForm(request.POST,request.FILES)
         if form.is_valid():
             form.save()  
-            context['message']='Created successfully'
+            context['message']='Creado correctamente'
         else:
-            context['error']='Correct the errors'
+            context['error']='Corrige los errores'
         context['form']=form
         return render(request,'product_templates/actions/productCreate/productCreateReviewForm.html',context) 
     form = CreateProductReviewForm()
@@ -80,10 +80,10 @@ def product_form_update_reviews(request,pk):
             product_form_valid._change_reason = f'Modifying product {product.name}'
             product_form_valid.save()
             form.save_m2m()
-            message="Change product successfully"
+            message="Editada correctamente"
             context['message']=message
         else:
-            message="Correct the errors"
+            message="Corrige los errores"
             context['error']=message
         context['product']=product
         context['form']=form
@@ -102,9 +102,9 @@ def product_active_reviews(request,pk):
             review.save()
             review_name=review.user.username
             context = _show_product_reviews(request)
-            context['message']=f'Review of user {review_name} has been modified'
+            context['message']=f'Reseña del usuario {review_name} ha sido {"activada" if review.is_active else "desactivada"}'
     else:
-            context['error']=f'Sorry, review not found'
+            context['error']=f'Lo sentimos, la reseña no existe'
     return render(request,'review_templates/product_table_reviews_results.html',context)
     
 
@@ -121,8 +121,8 @@ def product_delete_reviews(request,pk):
             print(review_name)
             review.delete()
             context = _show_product_reviews(request)
-            context['message']=f'Review of user {review_name} has been delete'
+            context['message']=f'Reseña del usuario {review_name} ha sido eliminada'
         else:
-            context['error']=f'Sorry, review not found'
+            context['error']=f'Lo sentimos, la reseña no existe'
         return render(request,'review_templates/product_table_reviews_results.html',context)
     return  render(request,'review_templates/actions/productReviewDelete/productDeleteReviewVerify.html',{"review":review}) 

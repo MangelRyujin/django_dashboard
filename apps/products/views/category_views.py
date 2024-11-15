@@ -30,9 +30,9 @@ def category_create(request):
         form = UpdateCategoryForm(request.POST,request.FILES)
         if form.is_valid():
             form.save()  
-            context['message']='Created successfully'
+            context['message']='Creado correctamente'
         else:
-            context['error']='Correct the errors'
+            context['error']='Corrige los errores'
         context['form']=form
         return render(request,'category_templates/actions/categoryCreate/categoryCreateForm.html',context) 
     form = CreateCategoryForm()
@@ -59,12 +59,12 @@ def category_form_update(request,pk):
         form = UpdateCategoryForm(request.POST,request.FILES,instance=category)
         if form.is_valid():
             category_form_valid=form.save(commit=False)
-            category_form_valid._change_reason = f'Modifying category {category.name}'
+            category_form_valid._change_reason = f'Categoría {category.name} modificada'
             category_form_valid.save()
-            message="Change category successfully"
+            message="Editado correctamente"
             context['message']=message
         else:
-            message="Correct the errors"
+            message="Corrige los errores"
             context['error']=message
         context['category']=category
         context['form']=form
@@ -81,9 +81,9 @@ def category_delete(request,pk):
             category_name=category.name
             category.delete()
             context = _show_category(request)
-            context['message']=f'{category_name} has been delete'
+            context['message']=f'{category_name} ha sido eliminada'
         else:
-            context['error']=f'Sorry, category not found'
+            context['error']=f'Lo sentimos, la categoría no existe'
         return render(request,'category_templates/category_table_results.html',context)
     return  render(request,'category_templates/actions/categoryDelete/categoryDeleteVerify.html',{"category":category})
      

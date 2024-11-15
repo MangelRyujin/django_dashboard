@@ -30,9 +30,9 @@ def offert_create(request):
         form = UpdateOffertForm(request.POST,request.FILES)
         if form.is_valid():
             form.save()  
-            context['message']='Created successfully'
+            context['message']='Creado correctamente'
         else:
-            context['error']='Correct the errors'
+            context['error']='Corrige los errores'
         context['form']=form
         return render(request,'offert_templates/actions/offertCreate/offertCreateForm.html',context) 
     form = CreateOffertForm()
@@ -59,10 +59,10 @@ def offert_form_update(request,pk):
         form = UpdateOffertForm(request.POST,request.FILES,instance=offert)
         if form.is_valid():
             form.save()
-            message="Change offert successfully"
+            message="Editada correctamente"
             context['message']=message
         else:
-            message="Correct the errors"
+            message="Corrige los errores"
             context['error']=message
         context['offert']=offert
         context['form']=form
@@ -79,9 +79,9 @@ def offert_delete(request,pk):
             offert_name=offert.name
             offert.delete()
             context = _show_offert(request)
-            context['message']=f'{offert_name} has been delete'
+            context['message']=f'{offert_name} ha sido eliminada'
         else:
-            context['error']=f'Sorry, offert not found'
+            context['error']=f'Lo sentimos, la oferta no existe'
         return render(request,'offert_templates/offert_table_results.html',context)
     return  render(request,'offert_templates/actions/offertDelete/offertDeleteVerify.html',{"offert":offert})
      

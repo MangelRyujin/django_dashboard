@@ -30,9 +30,9 @@ def income_create(request):
             income=form.save(commit=False)
             income.created_user=request.user
             income.save()  
-            context['message']='Created successfully'
+            context['message']='Creado correctamente'
         else:
-            context['error']='Correct the errors'
+            context['error']='Corrige los errores'
         context['form']=form
         return render(request,'income_templates/actions/incomeCreate/incomeCreateForm.html',context) 
     form = CreateIncomeForm()
@@ -59,10 +59,10 @@ def income_form_update(request,pk):
         form = UpdateIncomeForm(request.POST,instance=income)
         if form.is_valid():
             form.save()
-            message="Change income successfully"
+            message="Editado correctamente"
             context['message']=message
         else:
-            message="Correct the errors"
+            message="Corrige los errores"
             context['error']=message
         context['income']=income
         context['form']=form
@@ -79,9 +79,9 @@ def income_delete(request,pk):
             income_code=income.pk
             income.delete()
             context = _show_income(request)
-            context['message']=f'Income {income_code} has been delete'
+            context['message']=f'Ingreso {income_code} ha sido eliminado'
         else:
-            context['error']=f'Sorry, income not found'
+            context['error']=f'Lo sentimos, el ingreso no existe'
         return render(request,'income_templates/income_table_results.html',context)
     return  render(request,'income_templates/actions/incomeDelete/incomeDeleteVerify.html',{"income":income})
      

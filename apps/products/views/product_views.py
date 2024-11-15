@@ -34,9 +34,9 @@ def product_create(request):
         form = CreateProductForm(request.POST,request.FILES)
         if form.is_valid():
             form.save()  
-            context['message']='Created successfully'
+            context['message']='Creado correctamente'
         else:
-            context['error']='Correct the errors'
+            context['error']='Corrige los errores'
         context['form']=form
         return render(request,'product_templates/actions/productCreate/productCreateForm.html',context) 
     form = CreateProductForm()
@@ -63,13 +63,13 @@ def product_form_update(request,pk):
         form = UpdateProductForm(request.POST,request.FILES,instance=product)
         if form.is_valid():
             product_form_valid=form.save(commit=False)
-            product_form_valid._change_reason = f'Modifying product {product.name}'
+            product_form_valid._change_reason = f'Producto {product.name} modificado'
             product_form_valid.save()
             form.save_m2m()
-            message="Change product successfully"
+            message="Editado correctamente"
             context['message']=message
         else:
-            message="Correct the errors"
+            message="Corrige los errores"
             context['error']=message
         context['product']=product
         context['form']=form
@@ -86,9 +86,9 @@ def product_delete(request,pk):
             product_name=product.name
             product.delete()
             context = _show_product(request)
-            context['message']=f'{product_name} has been delete'
+            context['message']=f'{product_name} ha sido eliminado'
         else:
-            context['error']=f'Sorry, product not found'
+            context['error']=f'Lo sentimos, el producto no existe'
         return render(request,'product_templates/product_table_results.html',context)
     return  render(request,'product_templates/actions/productDelete/productDeleteVerify.html',{"product":product})
      

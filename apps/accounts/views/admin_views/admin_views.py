@@ -45,9 +45,9 @@ def admin_create(request):
             admin_form_valid.is_staff=True
             admin_form_valid.save()  
             form.save_m2m()
-            context['message']='Created successfully'
+            context['message']='Creado correctamente'
         else:
-            context['error']='Correct the errors'
+            context['error']='Corrige los errores'
     return render(request,'admin_templates/actions/adminCreate/adminCreateForm.html',context) 
 
 
@@ -75,10 +75,10 @@ def admin_main_information_update(request,pk):
             # admin_form_valid._change_reason = f'Modifying personal information for the {admin.username} administrator'
             admin_form_valid.save()
             form.save_m2m()
-            message="Change admin successfully"
+            message="Editado correctamente"
             context['message']=message
         else:
-            message="Correct the errors"
+            message="Corrige los errores"
             context['error']=message
         context['admin']=admin
         context['form']=form
@@ -96,10 +96,10 @@ def admin_password_update(request,pk):
             admin_form_valid = pass_form.save(commit=False)
             # admin_form_valid._change_reason = f"Modifying the password for the {admin.username} administrator"
             admin_form_valid.save()
-            message="Change password successfully"
+            message="Editado correctamente"
             context['message']=message
         else:
-            message="Correct the errors"
+            message="Corrige los errores"
             context['error']=message
         context['admin']=admin
         context['pass_form']=pass_form
@@ -116,9 +116,9 @@ def admin_delete(request,pk):
             admin_name=admin.username
             admin.delete()
             context = _show_admin(request)
-            context['message']=f'{admin_name} has been delete'
+            context['message']=f'{admin_name} ha sido eliminado'
         else:
-            context['error']=f'Sorry, admin not found'
+            context['error']=f'Lo sentimos, el administrador no existe'
         return render(request,'admin_templates/admin_table_results.html',context)
     return  render(request,'admin_templates/actions/adminDelete/adminDeleteVerify.html',{"admin":admin})
      

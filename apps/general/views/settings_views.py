@@ -47,11 +47,11 @@ def save_header_settings_view(request):
         
         if header_form.is_valid():
             header_form.save()
-            context['message']='Change successfully'
+            context['message']='Editado correctamente'
             context['header_form']=header_form
             
         else:
-            context['error']='Correct the errors'
+            context['error']='Corrige los errores'
             context['header_form']=header_form
     context['header']=header
     return render(request,'settings_templates/forms/header_form.html',context) 
@@ -69,10 +69,10 @@ def save_goal_settings_view(request):
         
         if goal_form.is_valid():
             goal_form.save()
-            context['message']='Change successfully'
+            context['message']='Editado correctamente'
             context['goal_form']=goal_form
         else:
-            context['error']='Correct the errors'
+            context['error']='Corrige los errores'
             context['goal_form']=goal_form
     context['goal']=goal
     return render(request,'settings_templates/forms/goal_form.html',context) 
@@ -123,11 +123,11 @@ def save_social_settings_view(request):
             social_form=UpdateSocialMediaForm(request.POST,request.FILES)
         if social_form.is_valid():
             social_form.save()
-            context['message']='Change successfully'
+            context['message']='Editado correctamente'
             context['social_form']=social_form
        
         else:
-            context['error']='Correct the errors'
+            context['error']='Corrige los errores'
             context['social_form']=social_form
     context['social']=social
     return render(request,'settings_templates/forms/social_form.html',context) 
@@ -142,10 +142,10 @@ def save_wapp_settings_view(request):
         wapp_form= UpdateWhatsAppContactForm(request.POST)
         if wapp_form.is_valid():
             wapp_form.save()
-            context['message']='Change successfully'
+            context['message']='Editado correctamente'
             context['wapp_form']=wapp_form
         else:
-            context['error']='Correct the errors'
+            context['error']='Corrige los errores'
             context['wapp_form']=wapp_form
     context['wapp']=WhatsAppContact.objects.first()
     return render(request,'settings_templates/forms/wapp_form.html',context) 

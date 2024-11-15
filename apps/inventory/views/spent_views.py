@@ -30,9 +30,9 @@ def spent_create(request):
             spent=form.save(commit=False)
             spent.created_user=request.user
             spent.save()  
-            context['message']='Created successfully'
+            context['message']='Creado correctamente'
         else:
-            context['error']='Correct the errors'
+            context['error']='Corrige los errores'
         context['form']=form
         return render(request,'spent_templates/actions/spentCreate/spentCreateForm.html',context) 
     form = CreateSpentForm()
@@ -59,10 +59,10 @@ def spent_form_update(request,pk):
         form = UpdateSpentForm(request.POST,instance=spent)
         if form.is_valid():
             form.save()
-            message="Change spent successfully"
+            message="Editado correctamente"
             context['message']=message
         else:
-            message="Correct the errors"
+            message="Corrige los errores"
             context['error']=message
         context['spent']=spent
         context['form']=form
@@ -79,9 +79,9 @@ def spent_delete(request,pk):
             spent_code=spent.pk
             spent.delete()
             context = _show_spent(request)
-            context['message']=f'Spent {spent_code} has been delete'
+            context['message']=f'Gasto {spent_code} ha sido eliminado'
         else:
-            context['error']=f'Sorry, spent not found'
+            context['error']=f'Lo sentimos, el gasto no existe'
         return render(request,'spent_templates/spent_table_results.html',context)
     return  render(request,'spent_templates/actions/spentDelete/spentDeleteVerify.html',{"spent":spent})
      

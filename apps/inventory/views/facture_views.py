@@ -35,9 +35,9 @@ def facture_create(request):
         form = CreateFactureForm(request.POST)
         if form.is_valid():
             form.save()  
-            context['message']='Created successfully'
+            context['message']='Creada correctamente'
         else:
-            context['error']='Correct the errors'
+            context['error']='Corrige los errores'
         context['form']=form
         return render(request,'facture_templates/actions/factureCreate/factureCreateForm.html',context) 
     form = CreateFactureForm()
@@ -64,10 +64,10 @@ def facture_form_update(request,pk):
         form = UpdateFactureForm(request.POST,instance=facture)
         if form.is_valid():
             form.save()
-            message="Change facture successfully"
+            message="Editada correctamente"
             context['message']=message
         else:
-            message="Correct the errors"
+            message="Corrige los errores"
             context['error']=message
         context['facture']=facture
         context['form']=form
@@ -84,9 +84,9 @@ def facture_delete(request,pk):
             facture_code=facture.code
             facture.delete()
             context = _show_facture(request)
-            context['message']=f'Facture {facture_code} has been delete'
+            context['message']=f'Factura {facture_code} ha sido eliminada'
         else:
-            context['error']=f'Sorry, facture not found'
+            context['error']=f'Lo sentimos, la factura no existe'
         return render(request,'facture_templates/facture_table_results.html',context)
     return  render(request,'facture_templates/actions/factureDelete/factureDeleteVerify.html',{"facture":facture})
      
