@@ -22,7 +22,7 @@
     <small>Todos los productos</small>
   </div>
 </div>
-
+{% if request.user|has_group:"administrador"%}
 <div class="w-100 d-flex">
   <span class="w-100 text-end">
   <button type="button" class="btn btn-outline-success shadow-sm border-2 border-success px-4"
@@ -35,6 +35,7 @@
     </button>
 </span>
 </div>
+{% endif %}
 
 
 <form class="row g-3 py-4"
