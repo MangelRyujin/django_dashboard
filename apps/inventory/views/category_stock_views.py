@@ -31,9 +31,9 @@ def category_stock_create(request):
         form = CreateCategoryStockForm(request.POST)
         if form.is_valid():
             form.save()  
-            context['message']='Created successfully'
+            context['message']='Creada correctamente'
         else:
-            context['error']='Correct the errors'
+            context['error']='Corrige los errores'
         context['form']=form
         return render(request,'category_stock_templates/actions/categoryStockCreate/categoryStockCreateForm.html',context) 
     form = CreateCategoryStockForm()
@@ -60,12 +60,12 @@ def category_stock_form_update(request,pk):
         form = UpdateCategoryStockForm(request.POST,request.FILES,instance=category)
         if form.is_valid():
             category_form_valid=form.save(commit=False)
-            category_form_valid._change_reason = f'Modifying category stock {category.name}'
+            category_form_valid._change_reason = f'Categoría de stock {category.name} modificada'
             category_form_valid.save()
-            message="Change category stock successfully"
+            message="Editada correctamente"
             context['message']=message
         else:
-            message="Correct the errors"
+            message="Corrige los errores"
             context['error']=message
         context['category']=category
         context['form']=form
@@ -82,9 +82,9 @@ def category_stock_delete(request,pk):
             category_name=category.name
             category.delete()
             context = _show_category_stock(request)
-            context['message']=f'{category_name} has been delete'
+            context['message']=f'{category_name} ha sido eliminada'
         else:
-            context['error']=f'Sorry, category not found'
+            context['error']=f'Lo sentimos, la categoría no existe'
         return render(request,'category_stock_templates/category_stock_table_results.html',context)
     return  render(request,'category_stock_templates/actions/categoryStockDelete/categoryStockDeleteVerify.html',{"category":category})
      

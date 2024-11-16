@@ -30,9 +30,9 @@ def warehouse_create(request):
         form = CreateWarehouseForm(request.POST)
         if form.is_valid():
             form.save()  
-            context['message']='Created successfully'
+            context['message']='Creado correctamente'
         else:
-            context['error']='Correct the errors'
+            context['error']='Corrige los errores'
         context['form']=form
         return render(request,'warehouse_templates/actions/warehouseCreate/warehouseCreateForm.html',context) 
     form = CreateWarehouseForm()
@@ -59,12 +59,12 @@ def warehouse_form_update(request,pk):
         form = UpdateWarehouseForm(request.POST,request.FILES,instance=warehouse)
         if form.is_valid():
             warehouse_form_valid=form.save(commit=False)
-            warehouse_form_valid._change_reason = f'Modifying warehouse {warehouse.name}'
+            warehouse_form_valid._change_reason = f'Almacén {warehouse.name} modificado'
             warehouse_form_valid.save()
-            message="Change warehouse successfully"
+            message="Editado correctamente"
             context['message']=message
         else:
-            message="Correct the errors"
+            message="Corrige los errores"
             context['error']=message
         context['warehouse']=warehouse
         context['form']=form
@@ -81,9 +81,9 @@ def warehouse_delete(request,pk):
             warehouse_name=warehouse.name
             warehouse.delete()
             context = _show_warehouse(request)
-            context['message']=f'Warehouse {warehouse_name} has been delete'
+            context['message']=f'Almacén {warehouse_name} ha sido eliminado'
         else:
-            context['error']=f'Sorry, warehouse not found'
+            context['error']=f'Lo sentimos, el almacén no existe'
         return render(request,'warehouse_templates/warehouse_table_results.html',context)
     return  render(request,'warehouse_templates/actions/warehouseDelete/warehouseDeleteVerify.html',{"warehouse":warehouse})
      

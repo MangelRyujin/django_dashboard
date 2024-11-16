@@ -15,7 +15,7 @@
                 <label for="{{ form.stock_one.id_for_label }}" class="form-label">Stock</label>
                 <div class="input-group">
                   <select  class="form-select" required name="stock_one" id="{{ form.stock_one.id_for_label }}">
-                    <option value='' selected>Select stock</option>
+                    <option value='' selected>Selecciona stock</option>
                     {% for stock_one in stocks %}
                     <option value="{{stock_one.id}}" {% if form.stock_one.value|default:'' == stock_one.id|stringformat:'s' %}selected{% endif %}>{{stock_one.name}}</option>
                     {% endfor %}
@@ -32,11 +32,11 @@
             </div>
           </div>
           <div class="col-12  mt-4 ">
-            <label for="inputStockMovementSimpleTypeCreate" class="form-label">Type</label>
+            <label for="inputStockMovementSimpleTypeCreate" class="form-label">Tipo</label>
             <select id="inputStockMovementSimpleTypeCreate" name="type" class="form-select" aria-label="Select type">
-              <option value='' selected>Select type</option>
-              <option value="2" {% if form.type.value == "2" %}selected{% endif %}>entrance</option>
-              <option value="1" {% if form.type.value == "1" %}selected{% endif %}>exit</option>
+              <option value='' selected>Selecciona tipo</option>
+              <option value="2" {% if form.type.value == "2" %}selected{% endif %}>entrada</option>
+              <option value="1" {% if form.type.value == "1" %}selected{% endif %}>salida</option>
             </select>
             {% if form.type.errors %}
             <div class="alert alert-danger mt-2">
@@ -47,7 +47,7 @@
             {% endif %}
           </div>
           <div class="col-12  mt-4 ">
-            <label for="{{ form.cant.id_for_label }}" class="form-label">Cant</label>
+            <label for="{{ form.cant.id_for_label }}" class="form-label">Cantidad</label>
             <div class="input-group">
               <input type="number" min=1 class="form-control" value={% if form.cant.value %}{{form.cant.value}}{% else %}1{% endif %} required name="cant" id="{{ form.cant.id_for_label }}" placeholder="1">
             
@@ -61,8 +61,8 @@
             {% endif %}
           </div>
           <div class="col-12  mt-4 ">
-            <label for="{{ form.motive.id_for_label }}" class="form-label">Motive</label>
-            <input type="text" class="form-control" value="{% if form.motive.value %}{{form.motive.value}}{% endif %}" required name="motive" id="{{ form.motive.id_for_label }}" placeholder="Motive">
+            <label for="{{ form.motive.id_for_label }}" class="form-label">Motivo</label>
+            <input type="text" class="form-control" value="{% if form.motive.value %}{{form.motive.value}}{% endif %}" required name="motive" id="{{ form.motive.id_for_label }}" placeholder="Motivo">
             {% if form.motive.errors %}
             <div class="alert alert-danger mt-2">
                 {% for error in form.motive.errors %}
@@ -72,8 +72,8 @@
             {% endif %}
           </div>
           <div class="col-12  mt-4 ">
-            <label for="{{ form.description.id_for_label }}" class="form-label">Description</label>
-            <textarea type="text" class="form-control" required name="description" id="{{ form.description.id_for_label }}" placeholder="description">{% if form.description.value %}{{form.description.value}}{% endif %}</textarea>
+            <label for="{{ form.description.id_for_label }}" class="form-label">Descripción</label>
+            <textarea type="text" class="form-control" required name="description" id="{{ form.description.id_for_label }}" placeholder="Descripción">{% if form.description.value %}{{form.description.value}}{% endif %}</textarea>
           
             
               {% if form.description.errors %}
@@ -118,7 +118,7 @@
           {% endif %}
           <small class=" w-100 d-flex justify-content-end mt-3">
             <button type="submit" class="btn d-flex justify-content-center align-items-center btn-outline-primary shadow-sm border-2 border-primary px-5">
-              <span id="spinnerStockMovementSimpleCreate" class="htmx-indicator spinner-border spinner-border-sm me-2" ></span>Create</button>
+              <span id="spinnerStockMovementSimpleCreate" class="htmx-indicator spinner-border spinner-border-sm me-2" ></span>Crear</button>
         </small>
   </form> 
 {% endif %}

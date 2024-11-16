@@ -23,25 +23,7 @@ def user_view(request):
 @staff_member_required(login_url='/')
 def user_table_results(request):
     return  render(request,'user_templates/user_table_results.html',context=_show_user(request))
-       
-# admin create form
-@staff_member_required(login_url='/')
-def admin_create(request):
-    form = SingUpForm(request.POST or None)
-    groups = Group.objects.all()
-    context={
-        'form':form,
-        'groups':groups
-    }
-    if request.method == "POST":
-        if form.is_valid():
-            form.save()  
-            context['message']='Created successfully'
-        else:
-            context['error']='Correct the errors'
-    return render(request,'admin_templates/actions/adminCreate/adminCreateForm.html',context) 
-
-
+    
 # admin update forms
 @staff_member_required(login_url='/')
 def user_update(request,pk):
@@ -65,10 +47,10 @@ def user_password_update(request,pk):
             user_form_valid = pass_form.save(commit=False)
             # user_form_valid._change_reason = f"Modifying the password for the user {user.username} "
             user_form_valid.save()
-            message="Change password successfully"
+            message="Cambio de contraseña exitoso"
             context['message']=message
         else:
-            message="Correct the errors"
+            message="Corrige los errores"
             context['error']=message
         context['user']=user
         context['pass_form']=pass_form
@@ -86,18 +68,16 @@ def user_delete(request,pk):
             context = _show_user(request)
             if user.is_active:
                 user.is_active=False
-                # user._change_reason = f"User {user.username} has been ban"
                 user.save()
-                context['message']=f'{user_name} has been ban'
+                context['message']=f'{user_name} ha sido baneado'
             else:
                 user.is_active=True
-                user._change_reason = f"User {user.username} has been active"
                 user.save()
-                context['message']=f'{user_name} has been active'
+                context['message']=f'{user_name} ha sido activado'
             
             
         else:
-            context['error']=f'Sorry, user not found'
+            context['error']=f'Lo sentimos, el cliente no existe'
         return render(request,'user_templates/user_table_results.html',context)
     return  render(request,'user_templates/actions/userDelete/userDeleteVerify.html',{"user":user})
      

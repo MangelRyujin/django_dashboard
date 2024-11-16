@@ -44,9 +44,9 @@ def shop_order_item_update(request,pk):
                 shop_order_item_form.save()
                 if shop_order_item_form.stocks_available < 0:
                     shop_order_item_form.shoporderitemstock_set.all().delete()
-                context['message']='Update successfully'
+                context['message']='Edición correcta'
             else:
-                context['error']='Correct the errors'
+                context['error']='Corrige los errores'
             context['form']=form
             return render(request,'sales/shop_order_templates/actions/shopOrderItemUpdate/shopOrderItemUpdateForm.html',context) 
     form = UpdateShopOrderItemForm(instance=shop_order_item)
@@ -70,9 +70,9 @@ def shop_order_item_stock_create(request,pk):
                 shop_order_item_stock.item = shop_order_item
                 shop_order_item_stock.save()
                 context['stocks'].remove(shop_order_item_stock.stock)
-                context['message']='Created successfully'
+                context['message']='Creada correctamente'
             else:
-                context['error']='Correct the errors'
+                context['error']='Corrige los errores'
             
             context['form']=form
             return render(request,'sales/shop_order_templates/actions/shopOrderItemStockCreate/shopOrderItemStockCreateForm.html',context) 
@@ -100,10 +100,10 @@ def shop_order_form_update(request,pk):
         form = UpdateShopOrderForm(request.POST,instance=shop_order)
         if form.is_valid():
             form.save()
-            message="Change order successfully"
+            message="Edición correcta"
             context['message']=message
         else:
-            message="Correct the errors"
+            message="Corrige los errores"
             context['error']=message
         context['shop_order']=shop_order
         context['form']=form
@@ -122,9 +122,9 @@ def shop_order_delete(request,pk):
             shop_order_id=shop_order.id
             shop_order.delete()
             context = _show_shop_order(request)
-            context['message']=f'Order {shop_order_id} has been delete'
+            context['message']=f'Orden {shop_order_id} ha sido eliminada'
         else:
-            context['error']=f'Sorry, product not found'
+            context['error']=f'Lo sentimos, la orden no existe'
         return render(request,'sales/shop_order_templates/shop_order_result.html',context)
     return  render(request,'sales/shop_order_templates/actions/shopOrderDelete/shopOrderDeleteVerify.html',{"shop_order":shop_order})
 
@@ -190,13 +190,13 @@ def shop_order_check_revert(request,pk):
                 shop_order.state = "c"
                 shop_order.save()  
             else:
-                context['message']=f'There is no sufficient existence'
+                context['message']=f'No contienes la existencia suficiente'
         else:
             shop_items_discount_or_revert(shop_order,'revert')
             shop_order.state = "p"
             shop_order.save() 
     else:
-        context['error']=f'Sorry, review not found'
+        context['error']=f'Lo sentimos, la orden no existe'
     return render(request,'sales/shop_order_templates/actions/shopOrderCardDetail/shopOrderCardDetail.html',context)
 
 # # Detail shop order
@@ -218,7 +218,7 @@ def shop_order_sold(request,pk):
         form = CreateOrderSoldForm(data)
         if form.is_valid():
             shop_order_paid_method(shop_order,data["payment_type"],data['cash'],data['transfer'],request.user)
-            context["message"]=_("Payment successfully")
+            context["message"]=_("Pago realizado")
         else:
             context["form"]=form
     return render(request,'sales/shop_order_templates/actions/shopOrderSold/shopOrderSoldVerify.html',context)
@@ -233,7 +233,7 @@ def shop_order_delete_sold(request,pk):
             shop_order_id=shop_order.id
             shop_order.delete()
             context = _show_shop_order(request)
-            context['message']=f'Order {shop_order_id} has been paid'
+            context['message']=f'Orden {shop_order_id} ha sido pagada'
         else:
-            context['error']=f'Sorry, product not found'
+            context['error']=f'Lo sentimos, la orden no existe'
         return render(request,'sales/shop_order_templates/shop_order_result.html',context)

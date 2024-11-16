@@ -15,7 +15,7 @@
               <div class="d-flex gap-2 w-100 justify-content-between align-items-center">
                 <div>
                   <h6 class="mb-0">WhatsApp</h6>
-                  <p class="mb-0 opacity-75">Enable or disable whatsapp contact in the virtual store.</p>
+                  <p class="mb-0 opacity-75">Activar o desactivar el contacto de whatsapp.</p>
                 </div>
                 <input class="form-check-input me-1" type="checkbox" name="is_active" id="{{ wapp_form.is_active.id_for_label }}" {% if wapp.is_active %}checked{% endif %} >
               </div>
@@ -57,5 +57,5 @@
           {% endif %}
           <small class="d-flex justify-content-end mt-2">
             <button type="submit" class="btn  d-flex justify-content-center align-items-center btn-outline-primary shadow-sm border-2 border-primary px-5">
-              <span id="spinnerSettingsWhatsapp" class="htmx-indicator spinner-border spinner-border-sm  me-2 " ></span>Save</button>
+              <span id="spinnerSettingsWhatsapp" class="htmx-indicator spinner-border spinner-border-sm  me-2 " ></span>Salvar</button>
         </small>

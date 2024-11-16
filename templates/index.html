@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %}Dashboard{% endblock %}
+{% block title %} Administración{% endblock %}
 {% block contend %}
 
 <div class="row align-items-md-stretch mt-2">
@@ -10,7 +10,7 @@
       <div class=" position-absolute end-0 m-2 dj-animate" style="z-index: -1;">
         <div class="position-absolute w-100 h-100 d-flex justify-content-center align-items-center " >
          
-          <h2 class="fs-0 text-primary">DJ</h2>
+          <h2 class="fs-0 text-primary">RX</h2>
         </div>
         <svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" fill="currentColor" class="  text-primary bi-gear-wide" viewBox="0 0 16 16">
           <path d="M8.932.727c-.243-.97-1.62-.97-1.864 0l-.071.286a.96.96 0 0 1-1.622.434l-.205-.211c-.695-.719-1.888-.03-1.613.931l.08.284a.96.96 0 0 1-1.186 1.187l-.284-.081c-.96-.275-1.65.918-.931 1.613l.211.205a.96.96 0 0 1-.434 1.622l-.286.071c-.97.243-.97 1.62 0 1.864l.286.071a.96.96 0 0 1 .434 1.622l-.211.205c-.719.695-.03 1.888.931 1.613l.284-.08a.96.96 0 0 1 1.187 1.187l-.081.283c-.275.96.918 1.65 1.613.931l.205-.211a.96.96 0 0 1 1.622.434l.071.286c.243.97 1.62.97 1.864 0l.071-.286a.96.96 0 0 1 1.622-.434l.205.211c.695.719 1.888.03 1.613-.931l-.08-.284a.96.96 0 0 1 1.187-1.187l.283.081c.96.275 1.65-.918.931-1.613l-.211-.205a.96.96 0 0 1 .434-1.622l.286-.071c.97-.243.97-1.62 0-1.864l-.286-.071a.96.96 0 0 1-.434-1.622l.211-.205c.719-.695.03-1.888-.931-1.613l-.284.08a.96.96 0 0 1-1.187-1.186l.081-.284c.275-.96-.918-1.65-1.613-.931l-.205.211a.96.96 0 0 1-1.622-.434zM8 12.997a4.998 4.998 0 1 1 0-9.995 4.998 4.998 0 0 1 0 9.996z"/>
@@ -22,19 +22,19 @@
         
           
           <div class="d-block pb-5 z-1">
-            <h1 class="h1 ">Sales advance</h1>
+            <h1 class="h1 ">Avance de ventas</h1>
             
           </div>
         </div>
             
-            <p class="h6 mt-2 z-1">Keep it up!!! you are doing a good job</p>
+            <p class="h6 mt-2 z-1">Tú puedes!!! Estás haciendo un buen trabajo</p>
           <div class="progress mt-0 z-1" role="progressbar" aria-label="Example 20px high" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="height: 20px">
             <div class="progress-bar bg-primary " style="width: {{porcent_int}}%"></div>
           </div>
           <div class="mt-2">
             <div class="d-flex justify-content-between align-items-center z-1">
               
-              <h5 class="fs-6 fw-semibold flex-1 mb-0">Completed</h5>
+              <h5 class="fs-6 fw-semibold flex-1 mb-0">Completado</h5>
               <h6 class=" fs-6 fw-semibold mb-0">{{porcent_float}}%</h6>
             </div>
             
@@ -54,7 +54,7 @@
             </svg>
           </div>
           <span class="fw-bold mt-5 mt-sm-4 fs-5 ">{{total_products}}</span>
-          <p>Products</p>
+          <p>Productos</p>
         </div>
       </div>
       
@@ -67,7 +67,7 @@
             </svg>
           </div>
           <span class="fw-bold mt-5 mt-sm-4 fs-5">{{total_available_products}}</span>
-          <p>Available products</p>
+          <p>Disponibles</p>
         </div>
       </div>
       <div class="col-6 col-sm-4  order-3 order-sm-2 px-2 " >
@@ -78,7 +78,7 @@
             </svg>
           </div>
           <span class="fw-bold mt-5 mt-sm-4 fs-5 ">{{total_sold_out_products}}</span>
-          <p>Product sold out</p>
+          <p>Agotados</p>
         </div>
       </div>
       <div class="col-6 col-sm-4  order-2 order-sm-3 px-2 " >
@@ -90,7 +90,7 @@
             </svg>
           </div>
           <span class="fw-bold mt-5 mt-sm-4 fs-5">{{total_new_orders}}</span>
-          <p>New orders</p>
+          <p>Nuevas ordenes</p>
         </div>
       </div>
       <div class="col-6 col-sm-4  order-4 order-sm-4 px-2 " >
@@ -101,7 +101,7 @@
             </svg>
           </div>
           <span class="fw-bold mt-5 mt-sm-4 fs-5">{{total_positive_reviews}}</span>
-          <p>Positive reviews</p>
+          <p>Reseñas positivas</p>
         </div>
       </div>
       <div class="col-6 col-sm-4  order-5 order-sm-5 px-2 " >
@@ -113,7 +113,7 @@
           </div>
           <span class="fw-bold mt-5 mt-sm-4 fs-5">{{total_sales}}</span>
           <p>
-            Sales made</p>
+            Monto de ventas</p>
         </div>
       </div>
       
@@ -129,7 +129,7 @@
   <div class="col-12 col-lg-4 my-3 ">
     <div class="card h-100 shadow bg-body-tertiary ">
       <div class="card-body overflow-hidden p-2 " >
-        <h6 class="d-flex justify-content-between">Manage your data 
+        <h6 class="d-flex justify-content-between">Administra tus datos
           <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class=" bi-database-fill-gear" viewBox="0 0 16 16">
             <path d="M8 1c-1.573 0-3.022.289-4.096.777C2.875 2.245 2 2.993 2 4s.875 1.755 1.904 2.223C4.978 6.711 6.427 7 8 7s3.022-.289 4.096-.777C13.125 5.755 14 5.007 14 4s-.875-1.755-1.904-2.223C11.022 1.289 9.573 1 8 1"/>
             <path d="M2 7v-.839c.457.432 1.004.751 1.49.972C4.722 7.693 6.318 8 8 8s3.278-.307 4.51-.867c.486-.22 1.033-.54 1.49-.972V7c0 .424-.155.802-.411 1.133a4.51 4.51 0 0 0-4.815 1.843A12 12 0 0 1 8 10c-1.573 0-3.022-.289-4.096-.777C2.875 8.755 2 8.007 2 7m6.257 3.998L8 11c-1.682 0-3.278-.307-4.51-.867-.486-.22-1.033-.54-1.49-.972V10c0 1.007.875 1.755 1.904 2.223C4.978 12.711 6.427 13 8 13h.027a4.55 4.55 0 0 1 .23-2.002m-.002 3L8 14c-1.682 0-3.278-.307-4.51-.867-.486-.22-1.033-.54-1.49-.972V13c0 1.007.875 1.755 1.904 2.223C4.978 15.711 6.427 16 8 16c.536 0 1.058-.034 1.555-.097a4.5 4.5 0 0 1-1.3-1.905m3.631-4.538c.18-.613 1.048-.613 1.229 0l.043.148a.64.64 0 0 0 .921.382l.136-.074c.561-.306 1.175.308.87.869l-.075.136a.64.64 0 0 0 .382.92l.149.045c.612.18.612 1.048 0 1.229l-.15.043a.64.64 0 0 0-.38.921l.074.136c.305.561-.309 1.175-.87.87l-.136-.075a.64.64 0 0 0-.92.382l-.045.149c-.18.612-1.048.612-1.229 0l-.043-.15a.64.64 0 0 0-.921-.38l-.136.074c-.561.305-1.175-.309-.87-.87l.075-.136a.64.64 0 0 0-.382-.92l-.148-.045c-.613-.18-.613-1.048 0-1.229l.148-.043a.64.64 0 0 0 .382-.921l-.074-.136c-.306-.561.308-1.175.869-.87l.136.075a.64.64 0 0 0 .92-.382zM14 12.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0"/>
@@ -149,25 +149,25 @@
         <div class="list-group " data-aos="fade-up"
         >
           <a href="{% url "product_view" %}" class="d-flex justify-content-between align-items-between list-group-item list-group-item-action list-group-item-primary " >
-            Products
+            Productos
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class=" bi-table" viewBox="0 0 16 16">
               <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm15 2h-4v3h4zm0 4h-4v3h4zm0 4h-4v3h3a1 1 0 0 0 1-1zm-5 3v-3H6v3zm-5 0v-3H1v2a1 1 0 0 0 1 1zm-4-4h4V8H1zm0-4h4V4H1zm5-3v3h4V4zm4 4H6v3h4z"/>
             </svg>
           </a>
           <a href="{% url "category_view" %}" class="d-flex justify-content-between align-items-between list-group-item list-group-item-action list-group-item-success" >
-            Categories
+            Categorías
             <svg  xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class=" bi-bookmark-fill" viewBox="0 0 16 16">
               <path d="M2 2v13.5a.5.5 0 0 0 .74.439L8 13.069l5.26 2.87A.5.5 0 0 0 14 15.5V2a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2"/>
             </svg>
           </a>
           <a href="{% url "admin_view" %}" class="d-flex justify-content-between align-items-between list-group-item list-group-item-action list-group-item-danger" >
-            Admins
+            Administradores
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class=" bi-person-lines-fill" viewBox="0 0 16 16">
               <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5 6s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zM11 3.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5m.5 2.5a.5.5 0 0 0 0 1h4a.5.5 0 0 0 0-1zm2 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1zm0 3a.5.5 0 0 0 0 1h2a.5.5 0 0 0 0-1z"/>
             </svg>
           </a>
           <a href="{% url "product_review_view" %}" class="d-flex justify-content-between align-items-between list-group-item list-group-item-action list-group-item-warning" >
-            Reviews
+            Reseñas
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class=" bi-chat-left-dots-fill" viewBox="0 0 16 16">
               <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H4.414a1 1 0 0 0-.707.293L.854 15.146A.5.5 0 0 1 0 14.793zm5 4a1 1 0 1 0-2 0 1 1 0 0 0 2 0m4 0a1 1 0 1 0-2 0 1 1 0 0 0 2 0m3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
             </svg>
@@ -179,7 +179,7 @@
             </svg>
           </a>
           <a href="{% url "user_view" %}" class="d-flex justify-content-between align-items-between list-group-item list-group-item-action list-group-item-light" >
-            Users
+            Clientes
             <svg  xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class=" bi-person-fill" viewBox="0 0 16 16">
               <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
             </svg>
@@ -193,10 +193,10 @@
           <div class="card-body p-2">
             <div class="d-flex justify-content-between">
               <div>
-                <h6 class="mb-1">Total products
+                <h6 class="mb-1">Total de productos vendidos
                   
                 </h6>
-                <h6 class="">Last 7 days</h6>
+                <h6 class="">Últimos 7 días</h6>
               </div>
               <h5><span id="TotalOrdersCant">0</span></h5>
             
@@ -210,12 +210,12 @@
             <div class="mt-2">
               <div class="d-flex justify-content-between align-items-center mb-2 border-bottom border-1 ">
                 
-                <h6 class="text-body fw-semibold flex-1 mb-1" id="TotalOrdersStartDay">01 </h6>
-                <h6 class="text-body fw-semibold mb-1" id="TotalOrdersEndDay">07 </h6>
+                <h6 class="text-body fw-semibold flex-1 mb-1" id="TotalOrdersStartDay">0 </h6>
+                <h6 class="text-body fw-semibold mb-1" id="TotalOrdersEndDay">0 </h6>
               </div>
               <div class="d-flex justify-content-between align-items-center  ">
-                <h6 class="text-body fw-semibold flex-1 mb-1" id="TotalOrdersStartMonth">Month </h6>
-                <h6 class="text-body fw-semibold mb-1" id="TotalOrdersEndMonth">May </h6>
+                <h6 class="text-body fw-semibold flex-1 mb-1" id="TotalOrdersStartMonth">Mes </h6>
+                <h6 class="text-body fw-semibold mb-1" id="TotalOrdersEndMonth">Mes </h6>
 
               </div>
             </div>
@@ -227,10 +227,10 @@
           <div class="card-body p-2">
             <div class="d-flex justify-content-between">
               <div>
-                <h6 class="mb-1">Total price
+                <h6 class="mb-1">Precio total
                  
                 </h6>
-                <h6 class="">Last 7 days</h6>
+                <h6 class="">Últimos 7 días</h6>
               </div>
               <h5>$ <span id="TotalSalesOrdersPrice">0</span></h5>
               
@@ -243,12 +243,12 @@
             <div class="mt-2">
               <div class="d-flex justify-content-between align-items-center mb-2 border-bottom border-1 ">
                 
-                <h6 class="text-body fw-semibold flex-1 mb-1" id="TotalSalesOrdersStartDay">01 </h6>
-                <h6 class="text-body fw-semibold mb-1" id="TotalSalesOrdersEndDay">07 </h6>
+                <h6 class="text-body fw-semibold flex-1 mb-1" id="TotalSalesOrdersStartDay">0</h6>
+                <h6 class="text-body fw-semibold mb-1" id="TotalSalesOrdersEndDay">0</h6>
               </div>
               <div class="d-flex justify-content-between align-items-center  ">
-                <h6 class="text-body fw-semibold flex-1 mb-1" id="TotalSalesOrdersStartMonth">Month </h6>
-                <h6 class="text-body fw-semibold mb-1" id="TotalSalesOrdersEndMonth">May </h6>
+                <h6 class="text-body fw-semibold flex-1 mb-1" id="TotalSalesOrdersStartMonth">Mes </h6>
+                <h6 class="text-body fw-semibold mb-1" id="TotalSalesOrdersEndMonth">Mes </h6>
 
               </div>
              
@@ -256,31 +256,18 @@
           </div>
         </div>
       </div>
-      
-      
-      
-      
-      
-    
-
-    
 
   </div>
 
-  
-
- 
   
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-4 g-3 py-2 ">
     <div class=" col text-center " data-aos="fade-up">
       <div class="shadow border-primary-subtle border d-flex justify-content-center align-items-center  bg-primary-subtle  bg-opacity-25 rounded-2 p-3 position-relative">
         <div class="top-0 start-0 ps-2 position-absolute  pt-1">
-          <h5 class="text-primary text-start">Orders</h5>
+          <h5 class="text-primary text-start">Ventas</h5>
         </div>
         <div class="card-body my-2">
-          <!-- <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="text-primary bi-cart-check-fill" viewBox="0 0 16 16">
-            <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0m-1.646-7.646-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 1 1 .708-.708L8 8.293l2.646-2.647a.5.5 0 0 1 .708.708"/>
-          </svg> -->
+          
           <svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" width="150" height="150" viewBox="0 0 896 747.97143" xmlns:xlink="http://www.w3.org/1999/xlink"><title>empty_cart</title><path d="M193.634,788.75225c12.42842,23.049,38.806,32.9435,38.806,32.9435s6.22712-27.47543-6.2013-50.52448-38.806-32.9435-38.806-32.9435S181.20559,765.7032,193.634,788.75225Z" transform="translate(-152 -76.01429)" fill="#2f2e41"/><path d="M202.17653,781.16927c22.43841,13.49969,31.08016,40.3138,31.08016,40.3138s-27.73812,4.92679-50.17653-8.57291S152,772.59636,152,772.59636,179.73811,767.66958,202.17653,781.16927Z" transform="translate(-152 -76.01429)" fill="#0d6efd"/><rect x="413.2485" y="35.90779" width="140" height="2" fill="#f2f2f2"/><rect x="513.2485" y="37.40779" width="2" height="18.5" fill="#f2f2f2"/><rect x="452.2485" y="37.40779" width="2" height="18.5" fill="#f2f2f2"/><rect x="484.2485" y="131.90779" width="140" height="2" fill="#f2f2f2"/><rect x="522.2485" y="113.90779" width="2" height="18.5" fill="#f2f2f2"/><rect x="583.2485" y="113.90779" width="2" height="18.5" fill="#f2f2f2"/><rect x="670.2485" y="176.90779" width="140" height="2" fill="#f2f2f2"/><rect x="708.2485" y="158.90779" width="2" height="18.5" fill="#f2f2f2"/><rect x="769.2485" y="158.90779" width="2" height="18.5" fill="#f2f2f2"/><rect x="656.2485" y="640.90779" width="140" height="2" fill="#f2f2f2"/><rect x="694.2485" y="622.90779" width="2" height="18.5" fill="#f2f2f2"/><rect x="755.2485" y="622.90779" width="2" height="18.5" fill="#f2f2f2"/><rect x="417.2485" y="319.90779" width="140" height="2" fill="#f2f2f2"/><rect x="455.2485" y="301.90779" width="2" height="18.5" fill="#f2f2f2"/><rect x="516.2485" y="301.90779" width="2" height="18.5" fill="#f2f2f2"/><rect x="461.2485" y="560.90779" width="140" height="2" fill="#f2f2f2"/><rect x="499.2485" y="542.90779" width="2" height="18.5" fill="#f2f2f2"/><rect x="560.2485" y="542.90779" width="2" height="18.5" fill="#f2f2f2"/><rect x="685.2485" y="487.90779" width="140" height="2" fill="#f2f2f2"/><rect x="723.2485" y="469.90779" width="2" height="18.5" fill="#f2f2f2"/><rect x="784.2485" y="469.90779" width="2" height="18.5" fill="#f2f2f2"/><polygon points="362.06 702.184 125.274 702.184 125.274 700.481 360.356 700.481 360.356 617.861 145.18 617.861 134.727 596.084 136.263 595.347 146.252 616.157 362.06 616.157 362.06 702.184" fill="#2f2e41"/><circle cx="156.78851" cy="726.03301" r="17.88673" fill="#3f3d56"/><circle cx="333.10053" cy="726.03301" r="17.88673" fill="#3f3d56"/><circle cx="540.92726" cy="346.153" r="11.07274" fill="#3f3d56"/><path d="M539.38538,665.76747H273.23673L215.64844,477.531H598.69256l-.34852,1.10753Zm-264.8885-1.7035H538.136l58.23417-184.82951H217.95082Z" transform="translate(-152 -76.01429)" fill="#2f2e41"/><polygon points="366.61 579.958 132.842 579.958 82.26 413.015 418.701 413.015 418.395 413.998 366.61 579.958" fill="#f2f2f2"/><polygon points="451.465 384.7 449.818 384.263 461.059 341.894 526.448 341.894 526.448 343.598 462.37 343.598 451.465 384.7" fill="#2f2e41"/><rect x="82.2584" y="458.58385" width="345.2931" height="1.7035" fill="#2f2e41"/><rect x="101.45894" y="521.34377" width="306.31852" height="1.7035" fill="#2f2e41"/><rect x="254.31376" y="402.36843" width="1.7035" height="186.53301" fill="#2f2e41"/><rect x="385.55745" y="570.79732" width="186.92877" height="1.70379" transform="translate(-274.73922 936.23495) rotate(-86.24919)" fill="#2f2e41"/><rect x="334.45728" y="478.18483" width="1.70379" height="186.92877" transform="translate(-188.46866 -52.99638) rotate(-3.729)" fill="#2f2e41"/><rect y="745" width="896" height="2" fill="#2f2e41"/><path d="M747.41068,137.89028s14.61842,41.60627,5.62246,48.00724S783.39448,244.573,783.39448,244.573l47.22874-12.80193-25.86336-43.73993s-3.37348-43.73992-3.37348-50.14089S747.41068,137.89028,747.41068,137.89028Z" transform="translate(-152 -76.01429)" fill="#a0616a"/><path d="M747.41068,137.89028s14.61842,41.60627,5.62246,48.00724S783.39448,244.573,783.39448,244.573l47.22874-12.80193-25.86336-43.73993s-3.37348-43.73992-3.37348-50.14089S747.41068,137.89028,747.41068,137.89028Z" transform="translate(-152 -76.01429)" opacity="0.1"/><path d="M722.87364,434.46832s-4.26731,53.34138,0,81.07889,10.66828,104.5491,10.66828,104.5491,0,145.08854,23.4702,147.22219,40.53945,4.26731,42.6731-4.26731-10.66827-12.80193-4.26731-17.06924,8.53462-19.20289,0-36.27213,0-189.8953,0-189.8953l40.53945,108.81641s4.26731,89.61351,8.53462,102.41544-4.26731,36.27213,10.66827,38.40579,32.00483-10.66828,40.53945-14.93559-12.80193-4.26731-8.53462-6.401,17.06924-8.53462,12.80193-10.66828-8.53462-104.54909-8.53462-104.54909S879.69728,414.1986,864.7617,405.664s-24.537,6.16576-24.537,6.16576Z" transform="translate(-152 -76.01429)" fill="#2f2e41"/><path d="M761.27943,758.78388v17.06924s-19.20289,46.39942,0,46.39942,34.13848,4.8083,34.13848-1.59266V763.05119Z" transform="translate(-152 -76.01429)" fill="#2f2e41"/><path d="M887.16508,758.75358v17.06924s19.20289,46.39941,0,46.39941-34.13848,4.80831-34.13848-1.59266V763.02089Z" transform="translate(-152 -76.01429)" fill="#2f2e41"/><circle cx="625.28185" cy="54.4082" r="38.40579" fill="#a0616a"/><path d="M765.54674,201.89993s10.66828,32.00482,27.73752,25.60386l17.06924-6.401L840.22467,425.9337s-23.47021,34.13848-57.60869,12.80193S765.54674,201.89993,765.54674,201.89993Z" transform="translate(-152 -76.01429)" fill="#0d6efd"/><path d="M795.41791,195.499l9.60145-20.26972s56.54186,26.67069,65.07648,35.20531,8.53462,21.33655,8.53462,21.33655l-14.93559,53.34137s4.26731,117.351,4.26731,121.61834,14.93559,27.73751,4.26731,19.20289-12.80193-17.06924-21.33655-4.26731-27.73751,27.73752-27.73751,27.73752Z" transform="translate(-152 -76.01429)" fill="#3f3d56"/><path d="M870.09584,349.12212l-6.401,59.74234s-38.40579,34.13848-29.87117,36.27214,12.80193-6.401,12.80193-6.401,14.93559,14.93559,23.47021,6.401S899.967,355.52309,899.967,355.52309Z" transform="translate(-152 -76.01429)" fill="#a0616a"/><path d="M778.1,76.14416c-8.51412-.30437-17.62549-.45493-24.80406,4.13321a36.31263,36.31263,0,0,0-8.5723,8.39153c-6.99153,8.83846-13.03253,19.95926-10.43553,30.92537l3.01633-1.1764a19.75086,19.75086,0,0,1-1.90515,8.46261c.42475-1.2351,1.84722.76151,1.4664,2.01085L733.543,139.792c5.46207-2.00239,12.25661,2.05189,13.08819,7.80969.37974-12.66123,1.6932-27.17965,11.964-34.59331,5.17951-3.73868,11.73465-4.88,18.04162-5.8935,5.81832-.935,11.91781-1.82659,17.49077.08886s10.31871,7.615,9.0553,13.37093c2.56964-.88518,5.44356.90566,6.71347,3.30856s1.33662,5.2375,1.37484,7.95506c2.73911,1.93583,5.85632-1.9082,6.97263-5.07112,2.62033-7.42434,4.94941-15.32739,3.53783-23.073s-7.72325-15.14773-15.59638-15.174a5.46676,5.46676,0,0,0,1.42176-3.84874l-6.48928-.5483a7.1723,7.1723,0,0,0,4.28575-2.25954C802.7981,84.73052,782.31323,76.29477,778.1,76.14416Z" transform="translate(-152 -76.01429)" fill="#2f2e41"/><path d="M776.215,189.098s-17.36929-17.02085-23.62023-15.97822S737.80923,189.098,737.80923,189.098s-51.20772,17.06924-49.07407,34.13848S714.339,323.51826,714.339,323.51826s19.2029,100.28179,2.13366,110.95006,81.07889,38.40579,83.21254,25.60386,6.401-140.82123,0-160.02412S776.215,189.098,776.215,189.098Z" transform="translate(-152 -76.01429)" fill="#3f3d56"/><path d="M850.89294,223.23648h26.38265S895.6997,304.31537,897.83335,312.85s6.401,49.07406,4.26731,49.07406-44.80675-8.53462-44.80675-2.13365Z" transform="translate(-152 -76.01429)" fill="#3f3d56"/><path d="M850,424.01429H749c-9.85608-45.34-10.67957-89.14649,0-131H850C833.70081,334.115,832.68225,377.62137,850,424.01429Z" transform="translate(-152 -76.01429)" fill="#f2f2f2"/><path d="M707.93806,368.325,737.80923,381.127s57.60868,8.53462,57.60868-14.93559-57.60868-10.66827-57.60868-10.66827L718.60505,349.383Z" transform="translate(-152 -76.01429)" fill="#a0616a"/><path d="M714.339,210.43455l-25.60386,6.401L669.53227,329.91923s-6.401,29.87117,4.26731,32.00482S714.339,381.127,714.339,381.127s4.26731-32.00483,12.80193-32.00483L705.8044,332.05288,718.60633,257.375Z" transform="translate(-152 -76.01429)" fill="#3f3d56"/><rect x="60.2485" y="352.90779" width="140" height="2" fill="#f2f2f2"/><rect x="98.2485" y="334.90779" width="2" height="18.5" fill="#f2f2f2"/><rect x="159.2485" y="334.90779" width="2" height="18.5" fill="#f2f2f2"/><rect x="109.2485" y="56.90779" width="140" height="2" fill="#f2f2f2"/><rect x="209.2485" y="58.40779" width="2" height="18.5" fill="#f2f2f2"/><rect x="148.2485" y="58.40779" width="2" height="18.5" fill="#f2f2f2"/><rect x="250.2485" y="253.90779" width="140" height="2" fill="#f2f2f2"/><rect x="350.2485" y="255.40779" width="2" height="18.5" fill="#f2f2f2"/><rect x="289.2485" y="255.40779" width="2" height="18.5" fill="#f2f2f2"/><rect x="12.2485" y="252.90779" width="140" height="2" fill="#f2f2f2"/><rect x="112.2485" y="254.40779" width="2" height="18.5" fill="#f2f2f2"/><rect x="51.2485" y="254.40779" width="2" height="18.5" fill="#f2f2f2"/><rect x="180.2485" y="152.90779" width="140" height="2" fill="#f2f2f2"/><rect x="218.2485" y="134.90779" width="2" height="18.5" fill="#f2f2f2"/><rect x="279.2485" y="134.90779" width="2" height="18.5" fill="#f2f2f2"/></svg>
        
         </div>
@@ -293,7 +280,7 @@
     <div class=" col text-center " data-aos="fade-up">
       <div class="shadow border-danger-subtle border d-flex justify-content-center align-items-center  bg-danger-subtle  bg-opacity-25 rounded-2 p-3 position-relative">
         <div class="top-0 start-0 ps-2 position-absolute  pt-1">
-          <h5 class=" text-danger">Users</h5>
+          <h5 class=" text-danger">Clientes</h5>
         </div>
         <div class="card-body my-2">
           <!-- <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="text-danger bi-person-hearts" viewBox="0 0 16 16">
@@ -311,7 +298,7 @@
     <div class=" col text-center " data-aos="fade-up">
       <div class="shadow border-success-subtle border d-flex justify-content-center align-items-center  bg-success-subtle  bg-opacity-25 rounded-2 p-3 position-relative">
         <div class="top-0 start-0 ps-2 position-absolute   pt-1">
-          <h5 class="text-success">Products views</h5>
+          <h5 class="text-success">Productos vistos</h5>
         </div>
         <div class="card-body my-2">
           
@@ -327,7 +314,7 @@
     <div class=" col text-center " data-aos="fade-up">
       <div class="shadow border-warning-subtle border d-flex justify-content-center align-items-center  bg-warning-subtle  bg-opacity-25 rounded-2 p-3 position-relative">
         <div class=" top-0 start-0 ps-2 position-absolute  pt-1">
-          <h5 class="text-warning">Reviews</h5>
+          <h5 class="text-warning">Reseñas</h5>
         </div>
         <div class="card-body my-2">
           
@@ -365,7 +352,7 @@
         <div class="card-body p-2">
           <div class="d-flex justify-content-between">
             <div>
-              <h6 class="">Total products
+              <h6 class="">Total de productos
                 
               </h6>
              
@@ -387,7 +374,7 @@
           <div class="d-flex justify-content-between">
             
               
-                <h6 class="">Total price
+                <h6 class="">Precio total 
                   
                 </h6>
                
@@ -406,20 +393,14 @@
         </div>
       </div>
     </div>
-    <!-- <div class="col-lg-6">
-      <canvas class=" w-100" id="myChartBar" width="900" height="680" ></canvas>
-    </div> -->
-    <!-- <div class="col-lg-6 ">
-      <canvas class="w-100" id="myChartLine" width="900" height="680" ></canvas>
-    </div> -->
   </div> 
 
   <div class="d-flex align-items-center p-3 mb-3  rounded shadow-sm bg-body-tertiary">
     <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 453 605.97873" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="m287.87012,128.72873c0,1.6499-.18994,3.33984-.58984,5.03003l-16.71045,71.11011c-2.36963,10.10986-12.5,16.36987-22.6001,13.97998l-66.96973-20.78027-3.27002-1.00977c-3.81006,2.75977-9.12988,4.02979-14.68994,3.0498-9.72021-1.71997-16.4502-9.62988-15.03027-17.67993,1.42041-8.04004,10.4502-13.16992,20.17041-11.45996,5.56006.97998,10.12988,3.98999,12.77002,7.88013l.0498.00977.16992.03003,58.29004,7.21021,4.8999-59.12012c.93018-11.30005,10.37012-19.98999,21.70996-19.98999,12.30029,0,21.80029,10.05005,21.80029,21.73999Z" fill="#ed9da0" stroke-width="0"/><path d="m287.87012,128.72873c0,1.6499-.18994,3.33984-.58984,5.03003l-13.71045,74.11011c-2.36963,10.10986-12.5,16.36987-22.6001,13.97998l-66.96973-18.62012,3-29h0l51,7,6.35986-54.25c.93018-11.30005,10.37012-19.98999,21.70996-19.98999,12.30029,0,21.80029,10.05005,21.80029,21.73999Z" fill="#2f2e43" stroke-width="0"/><polyline points="0 605.22873 35.54 605.22873 67.13 605.22873 68.4 605.22873 96.21 605.22873 286.66 605.22873 331.98 605.22873 453 605.22873" fill="none" stroke="#090814" stroke-miterlimit="10" stroke-width="1.5"/><rect x="362.67334" y="523.24119" width="20.09651" height="20.09651" transform="translate(-243.73839 325.21228) rotate(-36.39853)" fill="#ed9da0" stroke-width="0"/><path d="m394.85884,552.16432l-34.38426,25.3489c-2.93886,2.1666-6.38838,3.67095-9.9757,4.3504l-8.58524,1.62612c-1.7751.33623-3.61483-.38617-4.68689-1.84035-1.25726-1.7054-1.2216-4.06039.08672-5.72694l10.40969-13.25961,13.70291-28.25277.07919.07239c1.98056,1.8105,4.98882,4.53382,5.21443,4.6672,4.23189.93688,7.48162.41048,9.65971-1.5636,3.79908-3.44329,3.03327-10.19693,3.02509-10.26478l-.00623-.05191.04504-.02661c1.03484-.60932,2.03193-.74586,2.96364-.40587,1.97786.72184,3.00999,3.31815,3.15783,3.71556,1.93088.27055,6.95282,6.02858,7.35646,6.49459,2.88935.52345,4.87857,1.60797,5.91205,3.22369.9036,1.41255,1.07877,3.21386.5209,5.35394-.67114,2.57484-2.26763,4.89732-4.49535,6.53965Z" fill="#090814" stroke-width="0"/><rect x="216.03612" y="566.43896" width="20.09651" height="20.09651" fill="#ed9da0" stroke-width="0"/><path d="m232.70252,604.81598h-42.7182c-3.65118,0-7.3204-.83607-10.61105-2.41789l-7.87527-3.78558c-1.62831-.7827-2.68046-2.45587-2.68046-4.2625,0-2.11875,1.42615-3.99314,3.46816-4.55821l16.24708-4.49569,27.79474-14.60962.02079.10526c.51982,2.63255,1.32519,6.60967,1.42763,6.85091,2.85034,3.26529,5.77844,4.76998,8.70302,4.4735,5.10116-.51716,8.49234-6.40767,8.52603-6.46714l.02579-.04548.05204.00531c1.19453.12363,2.07811.60539,2.6263,1.43193,1.16366,1.75467.45379,4.45693.33696,4.86453,1.39364,1.36355,2.01904,8.97825,2.06741,9.59286,2.01505,2.13586,2.97264,4.1892,2.84573,6.10298-.11089,1.67317-1.03878,3.227-2.75774,4.61853-2.06811,1.67426-4.7313,2.59629-7.49896,2.59629Z" fill="#090814" stroke-width="0"/><polygon points="318.13149 252.29065 221.8157 252.29065 206.46283 571.81445 240.38201 571.81445 262.29716 426.57636 350.23676 542.76684 382.34202 513.71922 318.13149 426.57636 318.13149 252.29065" fill="#090814" stroke-width="0"/><path d="m293.33543,42.30249s26.53634-.05735,16.62315-25.62664c-9.91319-25.56928-28.37213-14.12053-28.37213-14.12053,0,0-7.77798,4.10845-6.17441,13.27486" fill="#090814" stroke-width="0"/><path d="m295.99127,54.56732c0-19.60413-15.89233-35.49646-35.49634-35.49646s-35.49658,15.89233-35.49658,35.49646c0,15.89905,10.45337,29.35486,24.86157,33.8739l6.8623,45.35022,34.98218-29.15173s-7.55737-9.62573-11.61011-20.47974c9.57886-6.35693,15.89697-17.23499,15.89697-29.59265Z" fill="#ed9da0" stroke-width="0"/><path d="m277.54895,84.55319s4.71383-18.07245-2.99384-26.38229c-7.6901-8.29089-8.68348,4.6094-8.68348,4.6094l-5.54892-1.20629s.96503-12.54538-9.89155-14.7167l6.99646-14.95796s-26.78617,5.20091-27.52446,2.60658c-5.80922-20.41329,49.61016-37.85105,64.91936-6.70795,23.81085,48.43778-17.27357,56.75521-17.27357,56.75521Z" fill="#090814" stroke-width="0"/><polygon points="296.98123 208.48931 312.71164 254.84465 223.71164 253.84465 236.98123 211.48931 296.98123 208.48931" fill="#ed9da0" stroke-width="0"/><path d="m288.94418,90.83519l-39.46782,13.7208-37.3123,192.62578,76.78013,9.37422,5.59855-29.36904,5.33723,29.36904h26.5964l-28.67411-191.55204c-1.2834-8.57353-4.29718-16.79645-8.85806-24.16876h0Z" fill="#6c63ff" stroke-width="0"/><path d="m277.87849,317.16709l.68689-31.66203-18.4864-.40105-.68689,31.66203c-3.44909,3.20185-5.72592,8.1769-5.84829,13.81745-.21411,9.86949,6.2336,18.01383,14.40144,18.19103,8.16784.1772,14.96269-7.67985,15.17681-17.54935.12237-5.64055-1.93671-10.70966-5.24355-14.05808Z" fill="#ed9da0" stroke-width="0"/><polyline points="252.3569 158.6972 252.3569 312.16591 284.46217 312.16591 293.95062 159.99269" fill="#090814" stroke-width="0"/><path d="m317.00827,321.47701c-.56348,0-1.12695-.02002-1.69238-.06299-6.74609-.50684-12.55078-4.12402-17.25391-10.74951-17.69922-24.9397-53.38867-107.47241-53.38867-130.94214,0-22.42822,4.88281-73.83154,5.05176-74.60181h0l36.0459-19.95776c17.29297,4.05981,29.33008,19.896,28.62305,37.65503-1.72754,43.38965,2.7207,142.30005,31.8252,183.28906l.24023.33813-.28711.29858c-.60156.62305-14.38672,14.7334-29.16406,14.7334Z" fill="#090814" stroke-width="0"/><path d="m143.13214,265.48278c-5.32158,0-11.14268-1.30637-16.86774-2.59357-4.24574-.96058-7.99201-1.19111-11.00824-1.38323-4.55313-.28816-8.16491-.51869-10.16293-3.18913-1.97879-2.63197-1.97879-7.1083,0-15.94557,2.63197-11.73823,8.49153-30.4695,15.67664-45.8772,9.25998-19.88397,18.17412-29.02863,26.47352-27.16517,11.12351,2.49748,15.56137,21.05585,17.21354,31.91037,2.30541,15.13872,2.11328,33.1207-.49952,44.74373h0c-3.45806,15.40765-11.39244,19.48055-20.82532,19.48055h0l.00006.01923Zm2.03642-92.92629c-6.10926,0-13.60176,8.91419-21.26721,25.41691-7.06984,15.17712-12.85254,33.62022-15.42688,45.18556-1.6714,7.41563-1.84429,11.4693-.59555,13.12147,1.05661,1.40246,3.80391,1.57536,7.62699,1.80589,3.13149.19213,7.01221.44189,11.52693,1.4601,17.92436,4.01521,29.14396,5.47531,33.58182-14.2934,4.74526-21.19034,1.13347-69.1232-14.10127-72.54285-.44189-.09603-.88372-.15367-1.3256-.15367h-.01923Z" fill="#dfdfe0" stroke-width="0"/><polygon points="215.67494 407.91723 44.84582 409.03153 18.29543 396.83218 33.76071 239.08607 49.32208 239.87375 209.37355 248.01949 215.67494 407.91723" fill="#e2e3e4" stroke-width="0"/><polygon points="44.84582 409.03153 18.29543 396.83218 33.76071 239.08607 49.32208 239.87375 44.84582 409.03153" fill="#272223" isolation="isolate" opacity=".2" stroke-width="0"/><path d="m54.32848,215.70318l-.24519-.24519-.24519.24519c-11.93096-11.92115-31.26667-11.90644-43.18783.02452-11.92116,11.93587-12.16144,31.51187-.23048,43.43302h0l43.69292,43.64879,43.6635-43.70273h0c11.92115-11.93587,11.67106-31.51187-.255-43.43302-11.93096-11.92115-31.26667-11.90644-43.18783.02452h0l-.0049.00489Z" fill="#6c63ff" stroke-width="0"/></svg>
     <div class="lh-1 p-2 fs-4">
       <h1 class="h6 mb-0 lh-1">
-        Favorite products</h1>
-      <small>Most selled products</small>
+        Productos favoritos</h1>
+      <small>Productos más Vendidos</small>
     </div>
   </div>
   <!-- row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-6  g-5  pb-5 -->

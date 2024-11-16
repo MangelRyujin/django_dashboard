@@ -3,9 +3,8 @@ from django.http import JsonResponse
 from django.contrib.admin.views.decorators import staff_member_required
 from datetime import date
 from django.utils import timezone
-from apps.sales.models import LocalOrder, Order
+from apps.sales.models import Order
 from datetime import timedelta
-from django.db.models import Count
 # Create your views here.
 
 
@@ -73,7 +72,6 @@ def get_total_price_orders(request):
             current_label = label
             index=labels.index(label)
         dataset_data[index] += order.total_price
-          
     return JsonResponse({
         "total_price_orders":total_price,
         "start_month":calendar.month_name[start_date.month],

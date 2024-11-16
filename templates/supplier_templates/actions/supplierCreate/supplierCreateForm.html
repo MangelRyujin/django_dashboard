@@ -10,8 +10,8 @@
           hx-indicator="#spinnerSupplierCreate">
           {% csrf_token %}
           <div class="col-12  mt-2 ">
-            <label for="{{ form.first_name.id_for_label }}" class="form-label">First name</label>
-            <input type="text" class="form-control" required value="{% if form.first_name.value %}{{form.first_name.value}}{% endif %}" required name="first_name" id="{{ form.first_name.id_for_label }}" placeholder="First name">
+            <label for="{{ form.first_name.id_for_label }}" class="form-label">Nombre</label>
+            <input type="text" class="form-control" required value="{% if form.first_name.value %}{{form.first_name.value}}{% endif %}" required name="first_name" id="{{ form.first_name.id_for_label }}" placeholder="Nombre">
             {% if form.first_name.errors %}
             <div class="alert alert-danger mt-2">
                 {% for error in form.first_name.errors %}
@@ -21,8 +21,8 @@
             {% endif %}
           </div>
           <div class="col-12  mt-2 ">
-            <label for="{{ form.last_name.id_for_label }}" class="form-label">Last name</label>
-            <input type="text" class="form-control" required value="{% if form.last_name.value %}{{form.last_name.value}}{% endif %}"  required name="last_name" id="{{ form.last_name.id_for_label }}" placeholder="Last name">
+            <label for="{{ form.last_name.id_for_label }}" class="form-label">Apellidos</label>
+            <input type="text" class="form-control" required value="{% if form.last_name.value %}{{form.last_name.value}}{% endif %}"  required name="last_name" id="{{ form.last_name.id_for_label }}" placeholder="Apellidos">
             {% if form.last_name.errors %}
             <div class="alert alert-danger mt-2">
                 {% for error in form.last_name.errors %}
@@ -43,8 +43,8 @@
             {% endif %}
           </div>
           <div class="col-12  mt-2 ">
-            <label for="{{ form.phone_number.id_for_label }}" class="form-label">Phone number</label>
-            <input type="text" class="form-control" required value="{% if form.phone_number.value %}{{form.phone_number.value}}{% endif %}"  required name="phone_number" id="{{ form.phone_number.id_for_label }}" placeholder="Phone number">
+            <label for="{{ form.phone_number.id_for_label }}" class="form-label">Móvil</label>
+            <input type="text" class="form-control" required value="{% if form.phone_number.value %}{{form.phone_number.value}}{% endif %}"  required name="phone_number" id="{{ form.phone_number.id_for_label }}" placeholder="Móvil">
             {% if form.phone_number.errors %}
             <div class="alert alert-danger mt-2">
                 {% for error in form.phone_number.errors %}
@@ -65,7 +65,7 @@
             {% endif %}
           </div>
           <div class="col-12 mt-2">
-            <label class="form-label" for="{{form.image.id_for_label}}">Image</label>
+            <label class="form-label" for="{{form.image.id_for_label}}">Imagen</label>
             <div class="input-group mb-3">
               <input type="file" name="image"  class="form-control" id="{{form.image.id_for_label}}">
             <label class="input-group-text" for="{{form.image.id_for_label}}">
@@ -85,8 +85,8 @@
           
         </div>
           <div class="col-12  mt-2 ">
-            <label for="{{ form.address.id_for_label }}" class="form-label">Address</label>
-            <input type="text" class="form-control" required value="{% if form.address.value %}{{form.address.value}}{% endif %}"  required name="address" id="{{ form.address.id_for_label }}" placeholder="Address">
+            <label for="{{ form.address.id_for_label }}" class="form-label">Dirección</label>
+            <input type="text" class="form-control" required value="{% if form.address.value %}{{form.address.value}}{% endif %}"  required name="address" id="{{ form.address.id_for_label }}" placeholder="Dirección">
             {% if form.address.errors %}
             <div class="alert alert-danger mt-2">
                 {% for error in form.address.errors %}
@@ -130,7 +130,7 @@
           {% endif %}
           <small class=" w-100 d-flex justify-content-end mt-3">
             <button type="submit" class="btn d-flex justify-content-center align-items-center btn-outline-primary shadow-sm border-2 border-primary px-5">
-              <span id="spinnerSupplierCreate" class="htmx-indicator spinner-border spinner-border-sm me-2" ></span>Create</button>
+              <span id="spinnerSupplierCreate" class="htmx-indicator spinner-border spinner-border-sm me-2" ></span>Crear</button>
         </small>
   </form>
 {% endif %}

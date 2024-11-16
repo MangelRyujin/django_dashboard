@@ -11,8 +11,8 @@
           {% csrf_token %}
           <div class="col-12  mt-4 ">
             
-            <label for="{{ form.name.id_for_label }}" class="form-label">Name</label>
-            <input type="text" class="form-control" required name="name" id="{{ form.name.id_for_label }}" placeholder="Name">
+            <label for="{{ form.name.id_for_label }}" class="form-label">Nombre</label>
+            <input type="text" class="form-control" required name="name" id="{{ form.name.id_for_label }}" placeholder="Nombre">
             {% if form.name.errors %}
             <div class="alert alert-danger mt-2">
                 {% for error in form.name.errors %}
@@ -55,7 +55,7 @@
           {% endif %}
           <small class=" w-100 d-flex justify-content-end mt-3">
             <button type="submit" class="btn d-flex justify-content-center align-items-center btn-outline-primary shadow-sm border-2 border-primary px-5">
-              <span id="spinnerCategoryStockCreate" class="htmx-indicator spinner-border spinner-border-sm me-2" ></span>Create</button>
+              <span id="spinnerCategoryStockCreate" class="htmx-indicator spinner-border spinner-border-sm me-2" ></span>Crear</button>
         </small>
   </form>
 {% endif %}

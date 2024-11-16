@@ -9,8 +9,8 @@
           hx-indicator="#spinnerIncomeCreate">
           {% csrf_token %}
           <div class="col-12  mt-2 ">
-            <label for="{{ form.motive.id_for_label }}" class="form-label">Motive</label>
-            <input type="text" class="form-control" value="{% if form.motive.value %}{{form.motive.value}}{% endif %}" required name="motive" id="{{ form.motive.id_for_label }}" placeholder="Motive">
+            <label for="{{ form.motive.id_for_label }}" class="form-label">Motivo</label>
+            <input type="text" class="form-control" value="{% if form.motive.value %}{{form.motive.value}}{% endif %}" required name="motive" id="{{ form.motive.id_for_label }}" placeholder="Motivo">
             {% if form.motive.errors %}
             <div class="alert alert-danger mt-2">
                 {% for error in form.motive.errors %}
@@ -20,7 +20,7 @@
             {% endif %}
           </div>
           <div class="col-12  mt-2 ">
-            <label for="{{ form.amount.id_for_label }}" class="form-label">Amount</label>
+            <label for="{{ form.amount.id_for_label }}" class="form-label">Monto</label>
             <div class="input-group">
               <input type="number" min="0.01" step="0.01" class="form-control" value="{% if form.amount.value %}{{form.amount.value}}{% endif %}" required name="amount" id="{{ form.amount.id_for_label }}" placeholder="49.99">
               <span class="input-group-text">
@@ -39,8 +39,8 @@
           </div>
           
         <div class="col-12  mt-2 ">
-          <label for="{{ form.description.id_for_label }}" class="form-label">Description</label>
-          <textarea type="text" class="form-control" required name="description" id="{{ form.description.id_for_label }}" placeholder="description">{% if form.description.value %}{{ form.description.value }}{% endif %}</textarea>
+          <label for="{{ form.description.id_for_label }}" class="form-label">Descripción</label>
+          <textarea type="text" class="form-control" required name="description" id="{{ form.description.id_for_label }}" placeholder="Descripción">{% if form.description.value %}{{ form.description.value }}{% endif %}</textarea>
         
           
             {% if form.description.errors %}
@@ -88,7 +88,7 @@
           {% endif %}
           <small class=" w-100 d-flex justify-content-end mt-3">
             <button type="submit" class="btn d-flex justify-content-center align-items-center btn-outline-primary shadow-sm border-2 border-primary px-5">
-              <span id="spinnerIncomeCreate" class="htmx-indicator spinner-border spinner-border-sm me-2" ></span>Create</button>
+              <span id="spinnerIncomeCreate" class="htmx-indicator spinner-border spinner-border-sm me-2" ></span>Crear</button>
         </small>
   </form>
 {% endif %}

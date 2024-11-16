@@ -10,8 +10,8 @@
           hx-indicator="#spinnerFactureCreate">
           {% csrf_token %}
           <div class="col-12  mt-2 ">
-            <label for="{{ form.code.id_for_label }}" class="form-label">Code</label>
-            <input type="text" class="form-control" value="{% if form.code.value %}{{form.code.value}}{% endif %}" required name="code" id="{{ form.code.id_for_label }}" placeholder="Code">
+            <label for="{{ form.code.id_for_label }}" class="form-label">Código</label>
+            <input type="text" class="form-control" value="{% if form.code.value %}{{form.code.value}}{% endif %}" required name="code" id="{{ form.code.id_for_label }}" placeholder="Código">
             {% if form.code.errors %}
             <div class="alert alert-danger mt-2">
                 {% for error in form.code.errors %}
@@ -23,10 +23,10 @@
           <div class="col-12 mt-2">
             <div class="row">
               <div class="col-12">
-                <label for="{{ form.supplier.id_for_label }}" class="form-label">Supplier</label>
+                <label for="{{ form.supplier.id_for_label }}" class="form-label">Proveedor</label>
                 <div class="input-group">
                   <select class="form-select" required name="supplier" id="{{ form.supplier.id_for_label }}">
-                    <option value="" >Select supplier</option>
+                    <option value="" >Seleccionar proveedor</option>
                     {% for supplier in suppliers %}
                     <option value="{{supplier.id}}" {% if form.supplier.value|default:'' == supplier.id|stringformat:'s' %}selected{% endif %}>{{supplier.first_name}} {{supplier.last_name}}</option>
                     {% endfor %}
@@ -45,10 +45,10 @@
           <div class="col-12 mt-2">
             <div class="row">
               <div class="col-12">
-                <label for="{{ form.product.id_for_label }}" class="form-label">Product</label>
+                <label for="{{ form.product.id_for_label }}" class="form-label">Producto</label>
                 <div class="input-group">
                   <select class="form-select" required name="product" id="{{ form.product.id_for_label }}">
-                    <option value="" >Select product</option>
+                    <option value="" >Seleccionar producto</option>
                     {% for product in products %}
                     <option value="{{product.id}}" {% if form.product.value|default:'' == product.id|stringformat:'s' %}selected{% endif %}>{{product.name}}</option>
                     {% endfor %}
@@ -67,7 +67,7 @@
           
           
           <div class="col-12  mt-2 ">
-            <label for="{{ form.cant.id_for_label }}" class="form-label">Cant</label>
+            <label for="{{ form.cant.id_for_label }}" class="form-label">Cantidad</label>
             <input type="number" min=0 class="form-control" value="{% if form.cant.value %}{{form.cant.value}}{% else %}1{% endif %}" required name="cant" id="{{ form.cant.id_for_label }}" placeholder="1">
             {% if form.cant.errors %}
             <div class="alert alert-danger mt-2">
@@ -78,7 +78,7 @@
             {% endif %}
           </div>
           <div class="col-12  mt-2 ">
-            <label for="{{ form.unit_price.id_for_label }}" class="form-label">Price for unit</label>
+            <label for="{{ form.unit_price.id_for_label }}" class="form-label">Costo por unidad</label>
             <div class="input-group">
               <input type="text" class="form-control" value="{% if form.unit_price.value %}{{form.unit_price.value}}{% endif %}" required name="unit_price" id="{{ form.unit_price.id_for_label }}" placeholder="49.99">
               <span class="input-group-text">
@@ -97,8 +97,8 @@
           </div>
           
         <div class="col-12  mt-2 ">
-          <label for="{{ form.description.id_for_label }}" class="form-label">Description</label>
-          <textarea type="text" class="form-control" required name="description" id="{{ form.description.id_for_label }}" placeholder="description">{% if form.description.value %}{{ form.description.value }}{% endif %}</textarea>
+          <label for="{{ form.description.id_for_label }}" class="form-label">Descripción</label>
+          <textarea type="text" class="form-control" required name="description" id="{{ form.description.id_for_label }}" placeholder="Descripción">{% if form.description.value %}{{ form.description.value }}{% endif %}</textarea>
         
           
             {% if form.description.errors %}
@@ -146,7 +146,7 @@
           {% endif %}
           <small class=" w-100 d-flex justify-content-end mt-3">
             <button type="submit" class="btn d-flex justify-content-center align-items-center btn-outline-primary shadow-sm border-2 border-primary px-5">
-              <span id="spinnerFactureCreate" class="htmx-indicator spinner-border spinner-border-sm me-2" ></span>Create</button>
+              <span id="spinnerFactureCreate" class="htmx-indicator spinner-border spinner-border-sm me-2" ></span>Crear</button>
         </small>
   </form>
 {% endif %}

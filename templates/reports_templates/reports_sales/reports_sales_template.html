@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
-
+{% block title %} Reporte de ventas{% endblock %}
 {% block contend %}
 <form class="row g-3 pt-2 pb-4"
       method="GET"
@@ -12,17 +12,17 @@
       hx-indicator="#spinnerOrderFilter,#spinner">
         
         <div class="col-6 col-sm-4 col-md-4 col-lg-3">
-          <label for="inputOrderCreateDate1Filter" class="form-label">Start date</label>
+          <label for="inputOrderCreateDate1Filter" class="form-label">Fecha inicio</label>
           <input type="date" name="created_date_after" class="form-control" id="inputOrderCreateDate1Filter" placeholder="Create date 1">
         </div>
         <div class="col-6 col-sm-4 col-md-4 col-lg-3">
-          <label for="inputOrderCreateDate2Filter" class="form-label">End date</label>
+          <label for="inputOrderCreateDate2Filter" class="form-label">Fecha final</label>
           <input type="date" name="created_date_before" class="form-control" id="inputOrderCreateDate2Filter" placeholder="Create date 2">
         </div>
 <div class="col-12">
   <small class=" w-100 d-flex justify-content-end mt-3">
       <button type="submit" class="btn d-flex justify-content-center align-items-center btn-outline-primary shadow-sm border-2 border-primary px-5">
-        <span id="spinnerOrderFilter" class="htmx-indicator spinner-border spinner-border-sm me-2" ></span>Filter</button>
+        <span id="spinnerOrderFilter" class="htmx-indicator spinner-border spinner-border-sm me-2" ></span>Filtrar</button>
   </small>
 </div>
 </form>

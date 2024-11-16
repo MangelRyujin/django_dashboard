@@ -7,9 +7,9 @@
   <div class="row  align-items-center my-3 py-3">
     <div class="col-12 col-sm-5 col-lg-6 position-relative ">
       
-        <h3 class="fw-bold text-body-emphasis lh-1 mb-3">Goal</h3>
+        <h3 class="fw-bold text-body-emphasis lh-1 mb-3">Plan</h3>
         <p class="">
-          Configure your sales goal.
+          Configura su plan de venta.
       </div>
       <div class="col-12 col-sm-7 col-lg-6 " id="SettingsGoalForm">
         <form 
@@ -34,7 +34,7 @@
     
             <small class="d-flex justify-content-end w-100 mt-2">
               <button type="submit" class="btn d-flex justify-content-center align-items-center btn-outline-primary shadow-sm border-2 border-primary px-5">
-                <span id="spinnerSettingsGoal" class="htmx-indicator spinner-border spinner-border-sm me-2" ></span>Save</button>
+                <span id="spinnerSettingsGoal" class="htmx-indicator spinner-border spinner-border-sm me-2" ></span>Salvar</button>
           </small>
         </form>
       </div>
@@ -45,11 +45,9 @@
   <div class="row  align-items-center my-3 py-3">
     <div class="col-12 col-sm-5 col-lg-6 position-relative ">
       
-        <h3 class="fw-bold text-body-emphasis lh-1 mb-3">Virtual store info</h3>
+        <h3 class="fw-bold text-body-emphasis lh-1 mb-3">Hero de su tienda</h3>
         <p class="">
-          Configure your header and give the user a creative presentation.
-        
-        
+          Configurar su texto principal y secundario. Se recomienda usar palabras clave, que potencién su venta
       </div>
       <div class="col-12 col-sm-7 col-lg-6 " id="SettingsHeaderForm">
         <form 
@@ -76,16 +74,16 @@
           
         </div>
           <div class="mb-3">
-            <label for="{{ header_form.principal_title.id_for_label }}" class="form-label">Principal title</label>
-            <input type="text" name="principal_title" value="{% if header %}{{header.principal_title}}{% endif %}" class="form-control" id="{{ form.principal_title.id_for_label }}" placeholder="Principal title">
+            <label for="GeneralSettingsPrincipalTitle" class="form-label">Texto principal</label>
+            <input type="text" name="principal_title" value="{% if header %}{{header.principal_title}}{% endif %}" class="form-control" id="GeneralSettingsPrincipalTitle" placeholder="Texto principal">
           </div>
           <div class="mb-3">
-            <label for="GeneralSettingsSecondaryTitle" class="form-label">Secondary title</label>
+            <label for="GeneralSettingsSecondaryTitle" class="form-label">Texto secundario</label>
             <textarea class="form-control" name="secundary_title" id="GeneralSettingsSecondaryTitle" rows="3">{% if header %}{{header.secundary_title}}{% endif %}</textarea>
           </div>
             <small class="d-flex justify-content-end w-100 mt-2">
               <button type="submit" class="btn d-flex justify-content-center align-items-center btn-outline-primary shadow-sm border-2 border-primary px-5">
-                <span id="spinnerSettingsHeader" class="htmx-indicator spinner-border spinner-border-sm me-2" ></span>Save</button>
+                <span id="spinnerSettingsHeader" class="htmx-indicator spinner-border spinner-border-sm me-2" ></span>Salvar</button>
           </small>
         </form>
       </div>
@@ -96,9 +94,9 @@
   <div class="row bg-body-tertiary rounded border-1 border align-items-center my-3 py-3">
     <div class="col-12 col-sm-5 col-lg-6 position-relative ">
       
-        <h3 class="fw-bold text-body-emphasis lh-1 mb-3">Virtual store logo and links</h3>
+        <h3 class="fw-bold text-body-emphasis lh-1 mb-3">Logo y redes sociales</h3>
         <p class="">
-          Users will be able to place orders through the virtual store. With this option enabled you will be able to manage a shopping cart.</p>
+          Configurar logo de su marca y las redes sociales</p>
           
         
         
@@ -161,9 +159,9 @@
   <div class="row  align-items-center mb-3 py-3">
     <div class="col-12 col-sm-5 col-lg-6 position-relative ">
       
-      <h3 class="fw-bold text-body-emphasis lh-1 mb-3">WhatsApp contact</h3>
+      <h3 class="fw-bold text-body-emphasis lh-1 mb-3">Contacto de whatsapp</h3>
       <p class="">
-        Activate the WhatsApp contact in the virtual store. Recommended for better sales management since there is direct communication between customer and seller.</p>
+        <strong class="text-success">Activar</strong>  o <strong class="text-danger">desactivar</strong> el contacto de whatsapp así como en el caso de que no contnga su link tampoco estará disponible en la tienda para los usuarios.</p>
     </div>
     <div class="col-12 col-sm-7 col-lg-6 ">
       <div class="d-flex flex-column flex-md-row  py-2 align-items-center justify-content-center" id="SettingsWhatsappForm">
@@ -182,7 +180,7 @@
               <div class="d-flex gap-2 w-100 justify-content-between align-items-center">
                 <div>
                   <h6 class="mb-0">WhatsApp</h6>
-                  <p class="mb-0 opacity-75">Enable or disable whatsapp contact in the virtual store.</p>
+                  <p class="mb-0 opacity-75">Activar o desactivar el contacto de whatsapp.</p>
                 </div>
                 <input class="form-check-input me-1" type="checkbox" name="is_active" id="{{ wapp_form.is_active.id_for_label }}" {% if wapp.is_active %}checked{% endif %} >
               </div>
@@ -194,7 +192,7 @@
           </label>
           <small class="d-flex justify-content-end mt-2">
             <button type="submit" class="btn  d-flex justify-content-center align-items-center btn-outline-primary shadow-sm border-2 border-primary px-5">
-              <span id="spinnerSettingsWhatsapp" class="htmx-indicator spinner-border spinner-border-sm  me-2" ></span>Save</button>
+              <span id="spinnerSettingsWhatsapp" class="htmx-indicator spinner-border spinner-border-sm  me-2" ></span>Salvar</button>
         </small>
         </form>
       </div>  
@@ -206,9 +204,9 @@
       <div class="row  align-items-center mb-3 w-100">
         <div class="col-12 col-sm-5 col-lg-6 position-relative p-1">
           
-          <h3 class="fw-bold text-body-emphasis lh-1 mb-3">Virtual store sales</h3>
+          <h3 class="fw-bold text-body-emphasis lh-1 mb-3">Ventas de la tienda</h3>
           <p class="">
-            Users will be able to place orders through the virtual store. With this option enabled you will be able to manage a shopping cart.</p>
+           Configurar si desea  <strong class="text-success">activar</strong>  o <strong class="text-danger">desactivar</strong> las compras de la tienda virtual</p>
         </div>
        
         
@@ -239,9 +237,9 @@
                     
                 <div class="pointer d-flex gap-2 w-100 justify-content-between align-items-center">
                   <div>
-                    <h6 class="mb-0">Activate shopi sales</h6>
+                    <h6 class="mb-0">Activar ventas de tienda</h6>
                     <p class="mb-0 opacity-75">
-                      Enable virtual store sales for users.</p>
+                      Ventas de tienda disponibles.</p>
                   </div>
                 </div>
               </button>
@@ -259,8 +257,8 @@
                 </svg>
                 <div  class="pointer d-flex gap-2 w-100 justify-content-between align-items-center">
                   <div>
-                    <h6 class="mb-0">Deactivate shopi sales</h6>
-                    <p class="mb-0 opacity-75">Disable virtual store sales for users.</p>
+                    <h6 class="mb-0">Desactivar ventas de tienda</h6>
+                    <p class="mb-0 opacity-75">Ventas de tienda no disponibles.</p>
                   </div>
                    </div>
               </button>
@@ -274,9 +272,9 @@
       <div class="row  align-items-center mb-3 w-100">
         <div class="col-12 col-sm-5 col-lg-6 position-relative p-1">
           
-          <h3 class="fw-bold text-body-emphasis lh-1 mb-3">Local store</h3>
+          <h3 class="fw-bold text-body-emphasis lh-1 mb-3">Ventas locales</h3>
           <p class="">
-            Users with the seller role will be able to make sales locally, having greater control over the availability of available products.</p>
+            Configurar si desea  <strong class="text-success">activar</strong>  o <strong class="text-danger">desactivar</strong> la creación de ventas locales.</p>
         </div>
         <div class="col-12 col-sm-7 col-lg-6 p-0 position-relative">
           <div id="spinnerSettingsLocal" class="htmx-indicator w-100 h-100  loadding-blur position-absolute z-10 d-flex justify-content-center align-items-center" style="z-index:1000;">
@@ -299,8 +297,8 @@
                 </svg>
                 <div class="d-flex gap-2 w-100 justify-content-between align-items-center">
                   <div>
-                    <h6 class="mb-0">Activate local sales</h6>
-                    <p class="mb-0 opacity-75">Enable local store sales for admins.</p>
+                    <h6 class="mb-0">Activar ventas locales</h6>
+                    <p class="mb-0 opacity-75">Ventas locales disponibles.</p>
                   </div>
                   </div>
               </button>
@@ -317,8 +315,8 @@
                 </svg>
                 <div class="d-flex gap-2 w-100 justify-content-between align-items-center">
                   <div>
-                    <h6 class="mb-0">Deactivate local sales</h6>
-                    <p class="mb-0 opacity-75">Disable local store sales for admins.</p>
+                    <h6 class="mb-0">Desactivar ventas locales</h6>
+                    <p class="mb-0 opacity-75">Ventas locales no disponibles.</p>
                   </div>
                   </div>
               </button>

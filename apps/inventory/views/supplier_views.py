@@ -35,9 +35,9 @@ def supplier_create(request):
         form = CreateSupplierForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            context['message']='Created successfully'
+            context['message']='Creado correctamente'
         else:
-            context['error']='Correct the errors'
+            context['error']='Corrige los errores'
     context['form']=form   
     return render(request,'supplier_templates/actions/supplierCreate/supplierCreateForm.html',context) 
 
@@ -62,10 +62,10 @@ def supplier_form_update(request,pk):
         form = UpdateSupplierForm(request.POST,request.FILES,instance=supplier)
         if form.is_valid():
             form.save()
-            message="Change supplier successfully"
+            message="Editado correctamente"
             context['message']=message
         else:
-            message="Correct the errors"
+            message="Corrige los errores"
             context['error']=message
         context['supplier']=supplier
         context['form']=form
@@ -82,9 +82,9 @@ def supplier_delete(request,pk):
             supplier_name=f'{supplier.first_name} {supplier.last_name}'
             supplier.delete()
             context = _show_supplier(request)
-            context['message']=f'{supplier_name} has been delete'
+            context['message']=f'{supplier_name} ha sido elimiando'
         else:
-            context['error']=f'Sorry, supplier not found'
+            context['error']=f'Lo sentimos, el proveedor no existe'
         return render(request,'supplier_templates/supplier_table_results.html',context)
     return  render(request,'supplier_templates/actions/supplierDelete/supplierDeleteVerify.html',{"supplier":supplier})
      

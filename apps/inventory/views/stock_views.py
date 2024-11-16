@@ -39,9 +39,9 @@ def stock_create(request):
         form = CreateStockForm(request.POST,request.FILES)
         if form.is_valid():
             form.save()  
-            context['message']='Created successfully'
+            context['message']='Creado correctamente'
         else:
-            context['error']='Correct the errors'
+            context['error']='Corrige los errores'
         context['form']=form
         return render(request,'stock_templates/actions/stockCreate/stockCreateForm.html',context) 
     form = CreateStockForm()
@@ -68,13 +68,13 @@ def stock_form_update(request,pk):
         form = UpdateStockForm(request.POST,instance=stock)
         if form.is_valid():
             stock_form_valid=form.save(commit=False)
-            stock_form_valid._change_reason = f'Modifying stock {stock.name}'
+            stock_form_valid._change_reason = f'Stock {stock.name} modificado'
             stock_form_valid.save()
             form.save_m2m()
-            message="Change stock successfully"
+            message="Editado correctamente"
             context['message']=message
         else:
-            message="Correct the errors"
+            message="Corrige los errores"
             context['error']=message
         print(form)
         context['stock']=stock
@@ -92,9 +92,9 @@ def stock_delete(request,pk):
             stock_name=stock.name
             stock.delete()
             context = _show_stock(request)
-            context['message']=f'{stock_name} has been delete'
+            context['message']=f'{stock_name} ha sido eliminado'
         else:
-            context['error']=f'Sorry, stock not found'
+            context['error']=f'Lo sentimos, el stock no existe'
         return render(request,'stock_templates/stock_table_results.html',context)
     return  render(request,'stock_templates/actions/stockDelete/stockDeleteVerify.html',{"stock":stock})
      

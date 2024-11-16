@@ -44,9 +44,9 @@ def stock_movements_simple_create(request):
                 stock_movement.stock_one.cant+=stock_movement.cant
             stock_movement.stock_one.save()
             stock_movement.save()
-            context['message']='Created successfully'
+            context['message']='Creado correctamente'
         else:
-            context['error']='Correct the errors'
+            context['error']='Corrige los errores'
         context['form']=form
         return render(request,'stock_movements_templates/actions/stockCreate/stockMovementSimpleCreateForm.html',context) 
     form = CreateStockMovementSimpleForm()
@@ -72,11 +72,11 @@ def stock_movements_multiple_create(request):
             stock_movement.stock_one.save()
             stock_movement.stock_two.save()
             stock_movement.save()
-            context['message']='Created successfully'
+            context['message']='Creado correctamente'
         else:
             form_data = request.POST.copy()
             form = CreateStockMovementMultipleForm(form_data)
-            context['error']='Correct the errors'
+            context['error']='Corrige los errores'
         context['form']=form
         return render(request,'stock_movements_templates/actions/stockCreate/stockMovementMultipleCreateForm.html',context) 
     form = CreateStockMovementMultipleForm()
