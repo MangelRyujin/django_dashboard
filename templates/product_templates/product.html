@@ -1,14 +1,18 @@
 {% extends "base.html" %}
 {% load static %}
+{% load user_tags %} 
 {% block title %} Productos{% endblock %}
 {% block contend %}
 
 
-
+{% if request.user|has_group:"administrador"%}
 {% include 'product_templates/actions/productCreate/offcanvasRightProductCreate.html' %}
-{% include 'product_templates/actions/productDetail/offcanvasRightProductDetail.html' %}
 {% include 'product_templates/actions/productUpdate/offcanvasRightProductUpdate.html' %}
 {% include 'product_templates/actions/productDelete/modalProductDelete.html' %}
+{% endif %}
+
+{% include 'product_templates/actions/productDetail/offcanvasRightProductDetail.html' %}
+
 
 
 <div class="d-flex align-items-center p-3 my-3  rounded-2 shadow-sm bg-body-tertiary">
@@ -18,7 +22,7 @@
     <small>Todos los productos</small>
   </div>
 </div>
-
+{% if request.user|has_group:"administrador"%}
 <div class="w-100 d-flex">
   <span class="w-100 text-end">
   <button type="button" class="btn btn-outline-success shadow-sm border-2 border-success px-4"
@@ -31,6 +35,7 @@
     </button>
 </span>
 </div>
+{% endif %}
 
 
 <form class="row g-3 py-4"
