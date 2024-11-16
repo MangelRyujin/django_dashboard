@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required 
 from django.contrib.auth.models import Group
+from apps.accounts.decorators import group_required
 from apps.accounts.models import User
 from apps.inventory.filters import SupplierFilter
 from apps.inventory.forms.supplier_forms import CreateSupplierForm,UpdateSupplierForm
@@ -12,6 +13,7 @@ from apps.inventory.models import Supplier
 logger = logging.getLogger(__name__)
 
 # supplier view (index)
+@group_required('administrador')
 @staff_member_required(login_url='/')
 def supplier_view(request):
     response= render(request,'supplier_templates/supplier.html')

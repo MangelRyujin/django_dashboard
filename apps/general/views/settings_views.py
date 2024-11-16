@@ -1,11 +1,13 @@
 from django.shortcuts import render
 import logging
+from apps.accounts.decorators import group_required
 from apps.general.forms.general_forms import *
 from apps.general.models import *
 from django.contrib.admin.views.decorators import staff_member_required
 logger = logging.getLogger(__name__)
 
 # order view (index)
+@group_required('administrador')
 @staff_member_required(login_url='/')
 def settings_view(request):
     header=PrincipalHeader.objects.first()
@@ -34,7 +36,7 @@ def settings_view(request):
     response['Expires'] = '0'
     return response
 
-
+@group_required('administrador')
 @staff_member_required(login_url='/')
 def save_header_settings_view(request):
     context={}
@@ -56,7 +58,7 @@ def save_header_settings_view(request):
     context['header']=header
     return render(request,'settings_templates/forms/header_form.html',context) 
     
-
+@group_required('administrador')
 @staff_member_required(login_url='/')
 def save_goal_settings_view(request):
     context={}
@@ -77,7 +79,7 @@ def save_goal_settings_view(request):
     context['goal']=goal
     return render(request,'settings_templates/forms/goal_form.html',context) 
 
-
+@group_required('administrador')
 @staff_member_required(login_url='/')
 def save_local_settings_view(request):
     context={}
@@ -95,7 +97,7 @@ def save_local_settings_view(request):
     return render(request,'settings_templates/forms/local_form.html',context) 
     
     
-
+@group_required('administrador')
 @staff_member_required(login_url='/')
 def save_shop_settings_view(request):
     context={}
@@ -111,7 +113,7 @@ def save_shop_settings_view(request):
     context['shop_change']=shop
     return render(request,'settings_templates/forms/shop_form.html',context) 
     
-    
+@group_required('administrador')
 @staff_member_required(login_url='/')
 def save_social_settings_view(request):
     context={}
@@ -134,7 +136,7 @@ def save_social_settings_view(request):
    
     
     
-
+@group_required('administrador')
 @staff_member_required(login_url='/')
 def save_wapp_settings_view(request):
     context={}

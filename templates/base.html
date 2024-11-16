@@ -180,6 +180,7 @@
     <li class="list-unstyled text-body-secondary me-2 me-sm-3" >
       
       <div class="nav-item dropdown">
+        {% load user_tags %} 
         
         {% if user.is_authenticated %}
         <a href="#" class="btn btn-link nav-link py-2   dropdown-toggle d-flex align-items-center" data-bs-toggle="dropdown" aria-expanded="false">
@@ -261,6 +262,7 @@
                 Administración
               </a>
             </li>
+            {% if request.user|has_group:"administrador"%}
             <li class="mt-1">
               <span class="nav-link text-white btn btn-outline-primary d-inline-flex w-100 align-items-center text-start collapsed "
               data-bs-toggle="collapse" data-bs-target="#dashboard-collapse-inventory" aria-expanded="false">
@@ -323,6 +325,8 @@
                 </ul>
               </div>
             </li>
+            {% endif %}
+            {% if request.user|has_group:"administrador"%}
             <li class="mt-1">
               <span class="nav-link text-white btn btn-outline-primary d-inline-flex w-100 align-items-center text-start collapsed "
               data-bs-toggle="collapse" data-bs-target="#dashboard-collapse-payments" aria-expanded="false">
@@ -367,7 +371,7 @@
                 </ul>
               </div>
             </li>
-            
+            {% endif %}
             <li class="mt-1">
               <span class="nav-link text-white btn btn-outline-primary d-inline-flex w-100 align-items-center text-start collapsed "
               data-bs-toggle="collapse" data-bs-target="#dashboard-collapse-products" aria-expanded="false">
@@ -380,6 +384,7 @@
               
               <div class="collapse mt-1" id="dashboard-collapse-products" style="">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small ps-3">
+                  {% if request.user|has_group:"administrador"%}
                   <li class="mt-1">
                     <a href="{% url "offert_view" %}" class="nav-link text-white btn btn-outline-primary text-start {% if request.path == '/admin_panel/offerts/'%} active {% endif %}">
                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class=" me-2 bi-calendar-heart-fill" viewBox="0 0 16 16">
@@ -396,6 +401,7 @@
                       Categorías
                     </a>
                   </li>
+                  {% endif %}
                   <li class="mt-1">
                     <a href="{% url "product_view" %}" class="nav-link text-white btn btn-outline-primary text-start {% if request.path == '/admin_panel/products/'%} active {% endif %}">
                       <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class=" me-2 bi-table" viewBox="0 0 16 16">
@@ -468,6 +474,8 @@
                 </ul>
               </div>
             </li>
+          
+            {% if request.user|has_group:"administrador"%}
             <li class="mt-1">
               <span class="nav-link text-white btn btn-outline-primary d-inline-flex w-100 align-items-center text-start collapsed "
               data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
@@ -502,6 +510,8 @@
                 </ul>
               </div>
             </li>
+            {% endif %}
+            {% if request.user|has_group:"administrador"%}
             <li class="mt-1">
               <span class="nav-link text-white btn btn-outline-primary d-inline-flex w-100 align-items-center text-start collapsed "
               data-bs-toggle="collapse" data-bs-target="#dashboard-collapse-reports" aria-expanded="false">
@@ -529,6 +539,8 @@
                 </ul>
               </div>
             </li>
+            {% endif %}
+            {% if request.user|has_group:"administrador"%}
             <li class="mt-1">
                     <a href="{% url "settings_view" %}" class="nav-link text-white btn btn-outline-primary text-start {% if request.path == '/admin_panel/settings/'%} active {% endif %}">
                       <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="me-2 bi-gear-fill" viewBox="0 0 16 16">
@@ -537,7 +549,7 @@
                       Configuración
                     </a>
                   </li>
-      
+                  {% endif %}
           </ul>
         </div>
       </div>

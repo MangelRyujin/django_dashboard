@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from apps.accounts.decorators import group_required
 from apps.inventory.filters import FactureFilter
 from apps.inventory.forms.facture_forms import *
 from django.core.paginator import Paginator
@@ -9,6 +10,7 @@ from apps.products.models import Product
 logger = logging.getLogger(__name__)
 
 # facture view (index)
+@group_required('administrador')
 @staff_member_required(login_url='/')
 def facture_view(request):
     suppliers = Supplier.objects.all()
