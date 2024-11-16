@@ -1,5 +1,5 @@
 {% load static %} {% if form %}
-<h5 class="offcanvas-title text-center">Order: {{local_order.pk}}</h5>
+<h5 class="offcanvas-title text-center">Venta: {{local_order.pk}}</h5>
 <form
   hx-post="{% url 'local_order_item_create' pk=local_order.pk %}"
   hx-target="#LocalOrderItemCreateForm"
@@ -12,7 +12,7 @@
     <div class="row">
       <div class="col-12">
         <label for="{{ form.product.id_for_label }}" class="form-label"
-          >Product</label
+          >Producto</label
         >
         <div class="input-group">
           <select
@@ -21,10 +21,10 @@
             name="product"
             id="{{ form.product.id_for_label }}"
           >
-            <option value="">Select product</option>
+            <option value="">Seleccionar producto</option>
             {% for product in products %}
             <option value="{{product.id}}" {% if form.product.value|default:'' == product.id|stringformat:'s' %}selected{% endif %}>
-              {{product.name}} in stock {{product.total_stock}}
+              {{product.name}} en stock {{product.total_stock}}
             </option>
             {% endfor %}
           </select>
@@ -105,7 +105,7 @@
         id="spinnerLocalOrderCreate"
         class="htmx-indicator spinner-border spinner-border-sm me-2"
       ></span
-      >Create
+      >Añadir
     </button>
   </small>
 </form>

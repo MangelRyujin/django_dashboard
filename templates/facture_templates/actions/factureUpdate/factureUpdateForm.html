@@ -1,7 +1,7 @@
 {% load static %}
 
 {% if facture %}
-<h5 class="offcanvas-title text-center" id="offcanvasRightLabel">Facture: {{facture.code}}</h5>
+<h5 class="offcanvas-title text-center" id="offcanvasRightLabel">Factura: {{facture.code}}</h5>
 {{facture.categories_facture}}
         {% if form %}
        
@@ -15,8 +15,8 @@
             hx-indicator="#spinnerFactureUpdateForm">
             {% csrf_token %}
             <div class="col-12  mt-2 ">
-              <label for="{{ form.code.id_for_label }}Update" class="form-label">Code</label>
-              <input type="text" class="form-control" value="{{form.instance.code}}" required name="code" id="{{ form.code.id_for_label }}Update" placeholder="Code">
+              <label for="{{ form.code.id_for_label }}Update" class="form-label">Código</label>
+              <input type="text" class="form-control" value="{{form.instance.code}}" required name="code" id="{{ form.code.id_for_label }}Update" placeholder="Código">
               {% if form.code.errors %}
               <div class="alert alert-danger mt-2">
                   {% for error in form.code.errors %}
@@ -28,7 +28,7 @@
             <div class="col-12 mt-2">
               <div class="row">
                 <div class="col-12">
-                  <label for="{{ form.supplier.id_for_label }}Update" class="form-label">Supplier</label>
+                  <label for="{{ form.supplier.id_for_label }}Update" class="form-label">Proveedor</label>
                   <div class="input-group">
                     <select  class="form-select" required name="supplier" id="{{ form.supplier.id_for_label }}Update">
                       {% for supplier in form.supplier %}
@@ -49,7 +49,7 @@
             <div class="col-12 mt-2">
               <div class="row">
                 <div class="col-12">
-                  <label for="{{ form.product.id_for_label }}Update" class="form-label">Product</label>
+                  <label for="{{ form.product.id_for_label }}Update" class="form-label">Producto</label>
                   <div class="input-group">
                     <select  class="form-select" required name="product" id="{{ form.product.id_for_label }}Update">
                       {% for product in form.product %}
@@ -69,7 +69,7 @@
             </div>
             
             <div class="col-12  mt-2 ">
-              <label for="{{ form.cant.id_for_label }}Update" class="form-label">Cant</label>
+              <label for="{{ form.cant.id_for_label }}Update" class="form-label">Cantidad</label>
               <input type="number" min=0 class="form-control" value="{{form.instance.cant}}" required name="cant" id="{{ form.cant.id_for_label }}Update" placeholder="1">
               {% if form.cant.errors %}
               <div class="alert alert-danger mt-2">
@@ -81,7 +81,7 @@
             </div>
             
             <div class="col-12  mt-2 ">
-              <label for="{{ form.unit_price.id_for_label }}Update" class="form-label">Price for unit</label>
+              <label for="{{ form.unit_price.id_for_label }}Update" class="form-label">Costo por unidad</label>
               <div class="input-group">
                 <input type="text" class="form-control" value="{{form.instance.unit_price}}" required name="unit_price" id="{{ form.unit_price.id_for_label }}Update" placeholder="49.99">
                 <span class="input-group-text">
@@ -102,8 +102,8 @@
           
           <div class="col-12  mt-2 ">
             
-            <label for="{{ form.description.id_for_label }}Update" class="form-label">Description</label>  
-            <textarea class="form-control" rows=6 required name="description" id="{{ form.description.id_for_label }}Update" placeholder="description">{{form.instance.description}}</textarea>
+            <label for="{{ form.description.id_for_label }}Update" class="form-label">Descripción</label>  
+            <textarea class="form-control" rows=6 required name="description" id="{{ form.description.id_for_label }}Update" placeholder="Descripción">{{form.instance.description}}</textarea>
            
             
               {% if form.description.errors %}
@@ -152,7 +152,7 @@
               
               <small class=" w-100 d-flex justify-content-end mt-3">
                 <button type="submit" class="btn d-flex justify-content-center align-items-center btn-outline-primary shadow-sm border-2 border-primary px-5">
-                  <span id="spinnerFactureUpdateForm" class="htmx-indicator spinner-border spinner-border-sm me-2" ></span>Save</button>
+                  <span id="spinnerFactureUpdateForm" class="htmx-indicator spinner-border spinner-border-sm me-2" ></span>Salvar</button>
             </small>
             </form>
             

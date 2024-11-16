@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %}Shop sales{% endblock %}
+{% block title %} Ventas de la tienda{% endblock %}
 {% block contend %}
        
 {% include 'sales/shop_order_templates/actions/shopOrderItemUpdate/offcanvasRightShopOrderItemUpdate.html' %}
@@ -15,7 +15,7 @@
       
       <input type="search" 
             class="form-control"
-            name="keyword" placeholder="Search movies..." 
+            name="keyword" placeholder="Buscar..." 
             hx-post="{% url 'shop_order_results_view' %}" 
             hx-trigger="load, input changed delay:500ms, keyword" 
             hx-target="#ShopOrderResults" 

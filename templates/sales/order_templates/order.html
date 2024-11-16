@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
-{% block title %}Order{% endblock %}
+{% block title %} Ventas{% endblock %}
 {% block contend %}
 
 
@@ -28,37 +28,37 @@
       hx-indicator="#spinnerOrderFilter,#spinner">
 
       <div class="col-6 col-sm-4 col-md-4 col-lg-2">
-        <label for="inputOrderCodeFilter" class="form-label">Code</label>
-        <input type="text" name="id" class="form-control" id="inputOrderCodeFilter" placeholder="Order code">
+        <label for="inputOrderCodeFilter" class="form-label">Código</label>
+        <input type="text" name="id" class="form-control" id="inputOrderCodeFilter" placeholder="Código">
       </div>
       
       
         <div class="col-6  col-sm-4 col-md-4 col-lg-3">
-          <label for="inputOrderCIFilter" class="form-label">User CI</label>
-          <input type="text" name="user_ci" class="form-control" id="inputOrderCIFilter" placeholder="User ci">
+          <label for="inputOrderCIFilter" class="form-label">CI</label>
+          <input type="text" name="user_ci" class="form-control" id="inputOrderCIFilter" placeholder="CI">
         </div>
         <div class="col-6  col-sm-4 col-md-4 col-lg-2">
-          <label for="inputOrderPaymentTypeFilter" class="form-label">Payment</label>
+          <label for="inputOrderPaymentTypeFilter" class="form-label">Pago</label>
           <select id="inputOrderPaymentTypeFilter" name="payment_type" class="form-select" aria-label="Select type">
-            <option value='' selected>Select payment</option>
-            <option value="c">cash</option>
-            <option value="t">transfer</option>
-            <option value="b">both</option>
+            <option value='' selected>Seleccionar tipo</option>
+            <option value="c">Efectivo</option>
+            <option value="t">Transferencia</option>
+            <option value="b">Ambos</option>
           </select>
         </div>
         <div class="col-6  col-sm-4 col-md-4 col-lg-2">
-          <label for="inputOrderTypeFilter" class="form-label">Type</label>
+          <label for="inputOrderTypeFilter" class="form-label">Tipo</label>
           <select id="inputOrderTypeFilter" name="type" class="form-select" aria-label="Select type">
-            <option value='' selected>Select type</option>
-            <option value="l">local</option>
-            <option value="s">shop</option>
+            <option value='' selected>Seleccionar tipo</option>
+            <option value="l">Local</option>
+            <option value="s">Tienda</option>
           </select>
         </div>
         {% if created_users %}
       <div class="col-12  col-sm-4 col-md-4 col-lg-3">
-        <label for="inputOrderCreatedUserFilter" class="form-label">Created by user</label>
+        <label for="inputOrderCreatedUserFilter" class="form-label">Creador</label>
         <select id="inputOrderCreatedUserFilter" name="user_create" class="form-select" aria-label="Default select example">
-          <option value="" selected>Select user</option>
+          <option value="" selected>Seleccionar usuario</option>
           {% for user in created_users %}
           <option value="{{user.id}}">{{user.username}}</option>
           {% endfor %}
@@ -67,9 +67,9 @@
       {% endif %}
         {% if products %}
       <div class="col-12  col-sm-4 col-md-4 col-lg-3">
-        <label for="inputOrderProductFilter" class="form-label">Product</label>
+        <label for="inputOrderProductFilter" class="form-label">Producto</label>
         <select id="inputOrderProductFilter" name="product" class="form-select" aria-label="Default select example">
-          <option value="" selected>Select product</option>
+          <option value="" selected>Seleccionar producto</option>
           {% for product in products %}
           <option value="{{product.id}}">{{product.name}}</option>
           {% endfor %}
@@ -77,27 +77,27 @@
       </div>
       {% endif %}
         <div class="col-12  col-sm-4 col-md-4 col-lg-3">
-          <label for="inputOrderUserFullNameFilter" class="form-label">User name</label>
-          <input type="text" name="user_full_name" class="form-control" id="inputOrderUserFullNameFilter" placeholder="User name">
+          <label for="inputOrderUserFullNameFilter" class="form-label">Nombre del usuario</label>
+          <input type="text" name="user_full_name" class="form-control" id="inputOrderUserFullNameFilter" placeholder="Nombre del usuario">
         </div>
         <div class="col-12 col-sm-4 col-md-4 col-lg-3">
-          <label for="inputOrderUserPhoneNumberFilter" class="form-label">Phone number</label>
-          <input type="text" name="user_phone" class="form-control" id="inputOrderUserPhoneNumberFilter" placeholder="User name">
+          <label for="inputOrderUserPhoneNumberFilter" class="form-label">Móvil</label>
+          <input type="text" name="user_phone" class="form-control" id="inputOrderUserPhoneNumberFilter" placeholder="Móvil">
         </div>
         
         
         <div class="col-6 col-sm-4 col-md-4 col-lg-3">
-          <label for="inputOrderCreateDate1Filter" class="form-label">Create date start</label>
-          <input type="date" name="created_date_after" class="form-control" id="inputOrderCreateDate1Filter" placeholder="Create date 1">
+          <label for="inputOrderCreateDate1Filter" class="form-label">Fecha inicial</label>
+          <input type="date" name="created_date_after" class="form-control" id="inputOrderCreateDate1Filter" placeholder="Fecha inicial">
         </div>
         <div class="col-6 col-sm-4 col-md-4 col-lg-3">
-          <label for="inputOrderCreateDate2Filter" class="form-label">Create date end</label>
-          <input type="date" name="created_date_before" class="form-control" id="inputOrderCreateDate2Filter" placeholder="Create date 2">
+          <label for="inputOrderCreateDate2Filter" class="form-label">Fecha final</label>
+          <input type="date" name="created_date_before" class="form-control" id="inputOrderCreateDate2Filter" placeholder="Fecha final">
         </div>
 <div class="col-12">
   <small class=" w-100 d-flex justify-content-end mt-3">
       <button type="submit" class="btn d-flex justify-content-center align-items-center btn-outline-primary shadow-sm border-2 border-primary px-5">
-        <span id="spinnerOrderFilter" class="htmx-indicator spinner-border spinner-border-sm me-2" ></span>Filter</button>
+        <span id="spinnerOrderFilter" class="htmx-indicator spinner-border spinner-border-sm me-2" ></span>Filtrar</button>
   </small>
 </div>
 </form>

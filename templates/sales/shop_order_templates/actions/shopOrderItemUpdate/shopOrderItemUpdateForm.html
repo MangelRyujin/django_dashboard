@@ -1,6 +1,6 @@
 {% load static %} 
 {% if form %}
-<h5 class="offcanvas-title text-center">Product: {{shop_order_item.product.name}}</h5>
+<h5 class="offcanvas-title text-center">Producto: {{shop_order_item.product.name}}</h5>
 <form
   hx-post="{% url 'shop_order_item_update' pk=shop_order_item.pk %}"
   hx-target="#ShopOrderItemUpdateForm"
@@ -13,7 +13,7 @@
     <div class="row">
       <div class="col-12">
         <label for="{{ form.cant.id_for_label }}OrderItemUpdate" class="form-label"
-          >Cant</label
+          >Cantidad</label
         >
         <div class="input-group">
           <input type="number" value="{% if form.cant.value %}{{form.cant.value}}{% endif %}" min=1 class="form-control" required name="cant" id="{{ form.cant.id_for_label }}OrderItemUpdate" placeholder="1.00">
@@ -95,7 +95,7 @@
         id="spinnerShopOrderUpdate"
         class="htmx-indicator spinner-border spinner-border-sm me-2"
       ></span
-      >Save
+      >Salvar
     </button>
   </small>
 </form>
