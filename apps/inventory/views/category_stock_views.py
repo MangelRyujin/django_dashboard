@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from apps.accounts.decorators import group_required
 from apps.inventory.filters import CategoryStockFilter
 from apps.inventory.forms.category_forms import CreateCategoryStockForm, UpdateCategoryStockForm
 from apps.inventory.models import CategoryStock
@@ -10,6 +11,7 @@ logger = logging.getLogger(__name__)
 from django.contrib.admin.views.decorators import staff_member_required
 
 # category view (index)
+@group_required('administrador')
 @staff_member_required(login_url='/')
 def category_stock_view(request):
     response= render(request,'category_stock_templates/category_stock.html')

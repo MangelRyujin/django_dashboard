@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from apps.accounts.decorators import group_required
 from apps.inventory.filters import IncomeFilter
 from apps.inventory.forms.income_forms import *
 from django.core.paginator import Paginator
@@ -7,6 +8,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 logger = logging.getLogger(__name__)
 
 # income view (index)
+@group_required('administrador')
 @staff_member_required(login_url='/')
 def income_view(request):
     response= render(request,'income_templates/income.html')

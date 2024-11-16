@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from apps.accounts.decorators import group_required
 from apps.products.filters import ProductReviewFilter
 from apps.products.forms.reviews_forms import *
 from django.contrib.auth.decorators import login_required 

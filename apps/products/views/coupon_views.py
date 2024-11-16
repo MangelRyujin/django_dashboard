@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from apps.accounts.decorators import group_required
 from apps.products.filters import  CouponFilter
 from apps.products.forms.category_forms import *
 from django.contrib.auth.decorators import login_required 
@@ -11,6 +12,7 @@ from apps.products.models import Coupon, Product
 logger = logging.getLogger(__name__)
 
 # coupon view (index)
+@group_required('administrador')
 @staff_member_required(login_url='/')
 def coupon_view(request):
     context = {

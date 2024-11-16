@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login 
 from django.http import HttpResponse
 from django.contrib.auth.forms import PasswordChangeForm
+from apps.accounts.decorators import group_required
 from apps.general.models import SocialMedia, WhatsAppContact
 from apps.products.models import Category,Product,Coupon
 from utils.funtions.sales.sale import *
@@ -15,7 +16,7 @@ from utils.funtions.products.product import *
 
 
 # Dashboard view (index)
-# @login_required(login_url='/login/')
+
 @staff_member_required(login_url='/login/')
 def dashboard_view(request):
     

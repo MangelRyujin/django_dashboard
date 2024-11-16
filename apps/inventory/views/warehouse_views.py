@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from apps.accounts.decorators import group_required
 from apps.inventory.filters import WarehouseFilter
 from apps.inventory.forms.warehouse_forms import CreateWarehouseForm, UpdateWarehouseForm
 from apps.inventory.models import Warehouse
@@ -9,6 +10,7 @@ logger = logging.getLogger(__name__)
 from django.contrib.admin.views.decorators import staff_member_required
 
 # category view (index)
+@group_required('administrador')
 @staff_member_required(login_url='/')
 def warehouse_view(request):
     response= render(request,'warehouse_templates/warehouse.html')

@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required 
 from django.contrib.auth.models import Group
+from apps.accounts.decorators import group_required
 from apps.accounts.models import User
 from apps.accounts.filters import UserFilter
 from apps.accounts.forms.admin_forms import  SingUpForm,ChangeAdminForm
@@ -11,6 +12,7 @@ logger = logging.getLogger(__name__)
 from django.contrib.admin.views.decorators import staff_member_required
 
 # user view (index)
+@group_required('administrador')
 @staff_member_required(login_url='/')
 def user_view(request):
     response= render(request,'user_templates/user.html')

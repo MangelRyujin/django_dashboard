@@ -1,5 +1,6 @@
 from django.shortcuts import render
 import logging
+from apps.accounts.decorators import group_required
 from apps.inventory.models import Facture, Income, Spent
 from apps.reports.filters import ReportFactureFilter, ReportIncomeFilter, ReportOrderItemFilter,ReportOrderFilter, ReportSpentFilter
 from apps.sales.models import  Order, OrderItem
@@ -8,6 +9,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.db.models import Count, Sum
 
 # category view (index)
+@group_required('administrador')
 @staff_member_required(login_url='/')
 def reports_sales_view(request):
     response = render(request,'reports_templates/reports_sales/reports_sales_template.html')

@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from apps.accounts.decorators import group_required
 from apps.products.filters import OffertFilter
 from apps.products.forms.offert_forms import *
 from django.contrib.auth.decorators import login_required 
@@ -8,6 +9,7 @@ logger = logging.getLogger(__name__)
 from django.contrib.admin.views.decorators import staff_member_required
 
 # offert view (index)
+@group_required('administrador')
 @staff_member_required(login_url='/')
 def offert_view(request):
     response= render(request,'offert_templates/offert.html')

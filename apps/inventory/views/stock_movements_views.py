@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from apps.accounts.decorators import group_required
 from apps.inventory.filters import StockFilter, StockMovementFilter
 from apps.inventory.forms.stock_forms import *
 from django.contrib.auth.decorators import login_required 
@@ -11,6 +12,7 @@ from apps.products.models import Product
 logger = logging.getLogger(__name__)
 
 # Stock view (index)
+@group_required('administrador')
 @staff_member_required(login_url='/')
 def stock_movements_view(request):
     response= render(request,'stock_movements_templates/stock_movements.html')
