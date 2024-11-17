@@ -7,22 +7,28 @@
     {% include "shop_templates/landingPage/principalHero/hero.html" %}
   </div>
    <!-- End Hero -->
+    <!-- Offerts -->
+  {% include "shop_templates/landingPage/offerts/offert.html" %}
+  <!-- End Offerts -->
 
-   <!-- Categories -->
+   <!-- Principal Categories -->
     
-      {% include "shop_templates/landingPage/categoriesList/categoryList.html" %}
+      {% include "shop_templates/landingPage/categoriesList/principal_categoryList.html" %}
        <!-- End Categories -->
   
  <!-- Favorite products -->
-  <div class="container">
+  <div class="container mb-4">
     {% include "shop_templates/landingPage/productsList/favoriteProduct.html" %}
 
   </div>
   <!-- End Favorite products -->
 
-  <!-- Offerts -->
-  {% include "shop_templates/landingPage/offerts/offert.html" %}
- <!-- End Offerts -->
+  <!-- Sub Categories -->
+    
+  {% include "shop_templates/landingPage/categoriesList/categoryList.html" %}
+  <!-- End Categories -->
+
+  
 
 <div class="container">
   

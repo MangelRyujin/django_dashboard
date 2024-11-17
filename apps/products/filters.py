@@ -1,20 +1,30 @@
 import django_filters
-
 from apps.accounts.models import User
-from apps.products.models import Category, Offert, Product,Coupon,ProductReview
+from apps.products.models import *
 
 class CategoryFilter(django_filters.FilterSet):
     name=  django_filters.CharFilter(lookup_expr='icontains')
     is_active = django_filters.BooleanFilter()
+    
     class Meta:
         model = Category
         fields = ['name','is_active']
+        
+class PrincipalCategoryFilter(django_filters.FilterSet):
+    name=  django_filters.CharFilter(lookup_expr='icontains')
+    is_active = django_filters.BooleanFilter()
+    
+    class Meta:
+        model = PrincipalCategory
+        fields = ['name','is_active']
+        
         
 class OffertFilter(django_filters.FilterSet):
     name=  django_filters.CharFilter(lookup_expr='icontains')
     is_active = django_filters.BooleanFilter()
     init_date =django_filters.DateTimeFilter(lookup_expr='gte')
     end_date =django_filters.DateFromToRangeFilter(lookup_expr='lte')
+    
     class Meta:
         model = Offert
         fields = ['name','is_active','init_date','end_date']
@@ -27,9 +37,11 @@ class ProductFilter(django_filters.FilterSet):
     is_active = django_filters.BooleanFilter()
     stars = django_filters.NumberFilter()
     categories = django_filters.ModelMultipleChoiceFilter(queryset=Category.objects.all())
+    principal_categories = django_filters.ModelMultipleChoiceFilter(queryset=PrincipalCategory.objects.all())
+    
     class Meta:
         model = Product
-        fields = ['code','name','is_active','stars','categories','brand']
+        fields = ['code','name','is_active','stars','categories','principal_categories','brand']
         
         
 class CouponFilter(django_filters.FilterSet):
@@ -38,6 +50,7 @@ class CouponFilter(django_filters.FilterSet):
     is_exhausted = django_filters.BooleanFilter()
     user = django_filters.ModelMultipleChoiceFilter(queryset=User.objects.all())
     product = django_filters.ModelMultipleChoiceFilter(queryset=Product.objects.all())
+    
     class Meta:
         model = Coupon
         fields = ['code','is_active','is_exhausted','user','product']

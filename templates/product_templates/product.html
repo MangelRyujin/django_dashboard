@@ -59,17 +59,29 @@
           <label for="inputProductBrandFilter" class="form-label">Marca</label>
           <input type="text" name="brand" class="form-control" id="inputProductBrandFilter" placeholder="Marca">
         </div>
+        {% if principal_categories %}
+      <div class="col-6  col-sm-4 col-md-4 col-lg-2">
+        <label for="inputProductPrincipalCategoryFilter" class="form-label"> Categoría</label>
+        <select id="inputProductPrincipalCategoryFilter" name="principal_categories" class="form-select" aria-label="Default select example">
+          <option selected>Selecciona la categoría</option>
+          {% for category in principal_categories %}
+          <option value="{{category.id}}">{{category.name}}</option>
+          {% endfor %}
+        </select>
+      </div>
+      {% endif %}
         {% if categories %}
       <div class="col-6  col-sm-4 col-md-4 col-lg-2">
-        <label for="inputProductCategoryFilter" class="form-label">Categoría</label>
+        <label for="inputProductCategoryFilter" class="form-label">Sub categoría</label>
         <select id="inputProductCategoryFilter" name="categories" class="form-select" aria-label="Default select example">
-          <option selected>Selecciona la categoría</option>
+          <option selected>Selecciona la sub categoría</option>
           {% for category in categories %}
           <option value="{{category.id}}">{{category.name}}</option>
           {% endfor %}
         </select>
       </div>
       {% endif %}
+      
       
       <div class=" col-6  col-sm-4 col-md-4 col-lg-2">
         <label for="inputProductStarsFilter" class="form-label">Calificación</label>

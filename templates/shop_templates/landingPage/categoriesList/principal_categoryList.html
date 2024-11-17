@@ -1,20 +1,20 @@
 {% load static %}
-{% if categories %}
+{% if principal_categories %}
 
 <div class="py-3 text-center "  >
-    <h2>Sub categorías</h2>
-    <p class="lead">Tenemos todo lo que necesita.</p>
+    <h2>Categorías principales</h2>
+    <p class="lead">Principales categorías a vender.</p>
   </div>
-<div id="carouselExample" class="carousel slide carousel-fade mb-5" data-bs-ride="carousel" style="min-height:400px;">
+<div id="PrincipalCategoriesCarrousel" class="carousel slide carousel-fade mb-3" data-bs-ride="carousel" style="min-height:400px;">
     
     <div class="carousel-inner ">
         
     
-        {% for list in categories %}
+        {% for list in principal_categories %}
         
         <div class="carousel-item {% if not forloop.counter > 1 %}active{% endif %}">
             <div class="container">
-              <div class="row row-cols-2  g-3  row-cols-md-4 ">
+              <div class="row row-cols-2  g-3  row-cols-lg-4 ">
                 {% for category in list %}
                 
                     <div class="col pb-3 d-flex justify-content-center align-items-center  position-relative">
@@ -31,18 +31,21 @@
         {% endfor %}
         
     </div>
-    <button class="carousel-control-prev " type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+    {% if principal_categories|length > 1 %}
+    
+    <button class="carousel-control-prev " type="button" data-bs-target="#PrincipalCategoriesCarrousel" data-bs-slide="prev">
         <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" width="40" height="40" fill="currentColor" class="text-body-emphasis bi-arrow-left-circle" viewBox="0 0 16 16">
           <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"/>
         </svg>
         <span class="visually-hidden">Previous</span>
       </button>
-      <button class="carousel-control-next " type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+      <button class="carousel-control-next " type="button" data-bs-target="#PrincipalCategoriesCarrousel" data-bs-slide="next">
         <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true"  width="40" height="40" fill="currentColor" class="text-body-emphasis bi-arrow-right-circle" viewBox="0 0 16 16">
           <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z"/>
         </svg>
         <span class="visually-hidden">Next</span>
       </button>
+      {% endif %}
 </div>
 
 {% endif %}

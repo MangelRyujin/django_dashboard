@@ -96,7 +96,22 @@
          </strong>
 
         </li>
-          <li class="py-1   "><strong class=" fs-5">Categoría:</strong><strong class="text-muted fs-6"> 
+        <li class="py-1   "><strong class=" fs-5">Categoría:</strong><strong class="text-muted fs-6"> 
+          {% if product.principal_categories.all %}
+                    {% with categories_count=product.principal_categories.all.count %}
+                        {% if categories_count > 1 %}
+                        {% for category in product.principal_categories.all %}
+                        <li>{{ category.name }}</li>
+                        {% endfor %}
+                            
+                            
+                        {% else %}
+                            {{ product.principal_categories.all.0.name }}
+                        {% endif %}
+                    {% endwith %}
+                
+                {% endif %} </strong></li>
+          <li class="py-1   "><strong class=" fs-5">Sub Categoría:</strong><strong class="text-muted fs-6"> 
             {% if product.categories.all %}
                       {% with categories_count=product.categories.all.count %}
                           {% if categories_count > 1 %}

@@ -1,4 +1,4 @@
-from apps.products.models import Category, Offert, Product,ProductReview
+from apps.products.models import Category, Offert, PrincipalCategory, Product,ProductReview
 from datetime import date
 from django.db.models import Q
 
@@ -75,7 +75,7 @@ def favorite_products(request,user):
         )
     return favorite_products
 
-# Filter all categories
+# Filter all sub categories
 def categories_list_slider():
     categories = []
     category_query = Category.objects.filter(is_active=True)
@@ -93,6 +93,24 @@ def categories_list_slider():
 
     return categories
 
+# Filter all principal categories
+def principal_categories_list_slider():
+    principal_categories = []
+    category_query = PrincipalCategory.objects.filter(is_active=True)
+    total_categories = category_query.count()
+    
+    full_groups = total_categories // 4
+
+    for i in range(full_groups):
+        group = list(category_query[i*4:(i+1)*4])
+        principal_categories.append(group)
+
+    remaining = total_categories % 4
+    if remaining > 0:
+        principal_categories.append(list(category_query[full_groups*4:]))
+
+    return principal_categories
+
 # Filter offerts in date range
 def offerts_actives():
     offerts= Offert.objects.filter(is_active=True).exclude(init_date__gt=date.today()).exclude(end_date__lt=date.today())
@@ -105,7 +123,7 @@ def search_all_products(request):
         request.session['keyword'] = keyword
     search_products = Product.objects.filter(
         Q(name__icontains=keyword) | Q(categories__name__icontains=keyword)
-        | Q(small_description__icontains=keyword) | Q(brand__icontains=keyword)
+        | Q(small_description__icontains=keyword) | Q(brand__icontains=keyword) | Q(principal_categories__name__icontains=keyword)
         ).distinct().order_by('-id')[:20]
     context={
         'keyword':keyword,

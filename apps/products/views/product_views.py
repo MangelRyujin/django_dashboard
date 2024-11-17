@@ -6,14 +6,17 @@ from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 import logging
 from django.contrib.admin.views.decorators import staff_member_required
-from apps.products.models import Category
+from apps.products.models import Category, PrincipalCategory
 logger = logging.getLogger(__name__)
 
 # Product view (index)
 @staff_member_required(login_url='/')
 def product_view(request):
-    categories = Category.objects.all()
-    response= render(request,'product_templates/product.html',{'categories':categories})
+    context={
+        'categories':Category.objects.all(),
+        'principal_categories':PrincipalCategory.objects.all()
+        }
+    response= render(request,'product_templates/product.html',context)
     response['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
     response['Pragma'] = 'no-cache'
     response['Expires'] = '0'
@@ -28,7 +31,8 @@ def product_table_results(request):
 @staff_member_required(login_url='/')
 def product_create(request):
     context={
-        'categories':Category.objects.all()
+        'categories':Category.objects.all(),
+        'principal_categories':PrincipalCategory.objects.all()
     }
     
     if request.method == "POST":

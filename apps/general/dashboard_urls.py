@@ -7,6 +7,7 @@ urlpatterns = [
     path('admins/',include('apps.accounts.urls.admin_urls')),
     path('users/',include('apps.accounts.urls.user_urls')),
     path('categories/',include('apps.products.urls.category_urls')),
+    path('principal_categories/',include('apps.products.urls.principal_category_urls')),
     path('offerts/',include('apps.products.urls.offert_urls')),
     path('products/',include('apps.products.urls.product_urls')),
     path('category_stocks/',include('apps.inventory.urls.category_stock_urls')),
