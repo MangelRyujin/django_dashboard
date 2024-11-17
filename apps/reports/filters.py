@@ -47,3 +47,18 @@ class ReportSpentFilter(django_filters.FilterSet):
         model = Spent
         fields = ['created_date']
         
+class ReportUsersOrderItemFilter(django_filters.FilterSet):
+    created_date =django_filters.DateFromToRangeFilter(field_name='order__created_date')
+    user = django_filters.CharFilter(field_name='order__user_create__pk',lookup_expr='exact')
+
+    class Meta:
+        model = OrderItem
+        fields = ['created_date','user']
+
+class ReportUserOrderFilter(django_filters.FilterSet):
+    created_date =django_filters.DateFromToRangeFilter(field_name='created_date')
+    user = django_filters.CharFilter(field_name='user_create__pk',lookup_expr='exact')
+
+    class Meta:
+        model = Order
+        fields = ['created_date','user']

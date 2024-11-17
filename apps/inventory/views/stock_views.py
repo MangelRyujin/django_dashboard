@@ -107,8 +107,8 @@ def stock_delete(request,pk):
 def _show_stock(request):
     get_copy = request.GET.copy()
     parameters = get_copy.pop('page', True) and get_copy.urlencode()
-    stocks = StockFilter(request.GET, queryset=Stock.objects.all().order_by('-id'))
-    paginator = Paginator(stocks.qs, 25)    # Show 25 contacts per page.
+    stocks = StockFilter(request.GET, queryset=Stock.objects.all().order_by('cant'))
+    paginator = Paginator(stocks.qs, 50)    # Show 25 contacts per page.
     page_number = request.GET.get("page",1)
     page_obj = paginator.get_page(page_number)
     context={

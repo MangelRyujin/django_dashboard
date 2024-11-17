@@ -18,4 +18,4 @@ class CreateOrderSoldForm(forms.ModelForm):
         total_price = cleaned_data.get('total_price')
 
         if total_paid != total_price:
-            raise ValidationError(_(f"The total paid must be equal to the {total_paid}."))
+            raise ValidationError(_(f"El total a pagar tiene que ser igual a {total_paid}."))

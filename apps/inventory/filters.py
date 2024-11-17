@@ -23,7 +23,6 @@ class StockFilter(django_filters.FilterSet):
     name=  django_filters.CharFilter(lookup_expr='icontains')
     address=  django_filters.CharFilter(lookup_expr='icontains')
     code=  django_filters.CharFilter(lookup_expr='icontains')
-    address=  django_filters.CharFilter(lookup_expr='icontains')
     product=  django_filters.CharFilter(field_name='product__name',lookup_expr='icontains')
     warehouse = django_filters.ModelMultipleChoiceFilter(queryset=Warehouse.objects.all())
     categories = django_filters.ModelMultipleChoiceFilter(queryset=CategoryStock.objects.all())

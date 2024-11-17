@@ -27,7 +27,7 @@
       {% if pagination %}
     <div class="table-responsive table-bordered mt-0" >
       <caption>Stocks mostrados {{pagination.object_list|length }} de {{pagination.paginator.count }} </caption>
-      <table class="table table-striped table-hover">
+      <table class="table table-hover">
         <thead>
           <tr class="text-center">
             <th  scope="col">Código</th>
@@ -41,7 +41,7 @@
         </thead>
         <tbody>
         {% for stock in pagination %}
-            <tr class="text-center">
+            <tr class="text-center {{stock.clasification_in_danger}}">
               <td class="border small  pt-2">{{stock.code}}</td>
                 <td class="border small  table-min pt-2">{{stock.name}}</td>
                 <td class="border small  table-min pt-2">{{stock.product.name}}</td>

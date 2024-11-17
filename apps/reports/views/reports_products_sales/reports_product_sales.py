@@ -29,7 +29,7 @@ def reports_sales_view_results(request):
 def _show_order(request):
     items_qs = ReportOrderItemFilter(request.GET, queryset=OrderItem.objects.all().order_by("product_id"))
     items_grouped = items_qs.qs.values('product_id','product_name').annotate(
-        count= Count('pk'),
+        count= Sum('cant'),
         price=Sum('total_price'),
         cost=Sum('total_cost'),
         revenue=Sum('total_price')-Sum('total_cost')
