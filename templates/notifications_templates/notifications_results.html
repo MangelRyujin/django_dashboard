@@ -4,22 +4,26 @@
         {% for stock in stock_in_danger %}
             {% if stock.is_danger %}
             <div class="d-flex align-items-center p-3 my-2 list-group-item list-group-item-warning list-group-item-action  rounded shadow-sm">
-                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="me-2 bi-envelope-fill" viewBox="0 0 16 16">
-                    <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z"/>
-                </svg>
+                
                 <div class="lh-2">
-                <h1 class="h6 mb-0 fw-bold lh-1">{{stock.code}} - {{stock.name}}</h1>
+                <h1 class="h6 mb-0 fw-bold lh-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="me-2 bi-envelope-fill" viewBox="0 0 16 16">
+                        <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z"/>
+                    </svg>
+                    {{stock.code}} - {{stock.name}}</h1>
                 <small>Usado para la venta del producto <strong>{{stock.product.name}}</strong>.</small>
                 <small>{{stock.warehouse.name}} unidades restantes {{stock.cant}}.</small>
                 </div>
             </div>
             {% else %}
             <div class="d-flex align-items-center p-3 my-2 list-group-item list-group-item-danger list-group-item-action  rounded shadow-sm">
-                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="me-2 bi-envelope-fill" viewBox="0 0 16 16">
-                    <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z"/>
-                </svg>
+                
                 <div class="lh-2">
-                    <h1 class="h6 mb-0 fw-bold lh-1">{{stock.name}}</h1>
+                    <h1 class="h6 mb-0 fw-bold lh-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="me-2 bi-envelope-fill" viewBox="0 0 16 16">
+                            <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z"/>
+                        </svg>
+                        {{stock.code}} - {{stock.name}}</h1>
                 <small>Usado para la venta del producto <strong>{{stock.product.name}}</strong>.</small>
                 <small>Agotado todo el stock.</small>
                 </div>
