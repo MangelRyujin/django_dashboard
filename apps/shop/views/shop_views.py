@@ -2,7 +2,7 @@ from django.shortcuts import render
 from apps.general.models import *
 from apps.products.models import Product
 from apps.shop.cart import Cart
-from utils.funtions.products.product import search_all_products, categories_list_slider, cheap_products, favorite_products, offerts_actives
+from utils.funtions.products.product import principal_categories_list_slider, search_all_products, categories_list_slider, cheap_products, favorite_products, offerts_actives
 
 
 
@@ -13,6 +13,7 @@ def shop_view(request):
         "social":SocialMedia.objects.first(),
         "offerts":offerts_actives(),
         "hero":PrincipalHeader.objects.first(),
+        "principal_categories":principal_categories_list_slider(),
         "categories":categories_list_slider(),
         "favorite_products":favorite_products(request,request.user),
         "cheap_products":cheap_products(request,request.user),

@@ -25,7 +25,19 @@ class Offert(models.Model):
     def __str__(self):
         return self.name
     
+class PrincipalCategory(models.Model):
+    name = models.CharField(_("Name"),max_length=30,unique=True)
+    image = models.ImageField(_("Image"),upload_to="category_images")
+    is_active = models.BooleanField(_("Active"),default=True)
+    history = HistoricalRecords(history_change_reason_field=models.TextField(null=True),)
+    
 
+    class Meta:
+        verbose_name = _("Principal category")
+        verbose_name_plural = _("Principal categories")
+
+    def __str__(self):
+        return self.name
 
 class Category(models.Model):
     name = models.CharField(_("Name"),max_length=30,unique=True)
@@ -48,6 +60,7 @@ class Product(models.Model):
     name = models.CharField(_("Name"),max_length=70,unique=True)
     views = models.PositiveIntegerField(_("Views"),default=0)
     categories = models.ManyToManyField(Category,_("Categories"),verbose_name="categories_product")
+    principal_categories = models.ManyToManyField(PrincipalCategory,verbose_name="principal_category_product")
     likes = models.ManyToManyField(User,verbose_name="likes_product",blank=True)
     stars= models.PositiveIntegerField(_("Stars"),validators=[MinValueValidator(1),MaxValueValidator(5)],default=3)
     total_sales = models.PositiveIntegerField(_("Total sales"),default=0)

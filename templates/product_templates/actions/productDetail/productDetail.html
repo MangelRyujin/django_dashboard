@@ -82,9 +82,18 @@
       <tr>
         <td><span><strong>Peso :</strong> {{product.weight}} kg</span></td> 
       </tr>
-  
       <tr>
         <td><span><strong>Categoría :</strong> 
+          {% if product.principal_categories %}
+          <ul>
+            {% for category in  product.principal_categories.all %}
+              <li>{{category.name}}</li>
+            {% endfor %}
+          </ul>
+          {% endif %}</span></td> 
+      </tr>
+      <tr>
+        <td><span><strong>Sub categoría :</strong> 
           {% if product.categories %}
           <ul>
             {% for category in  product.categories.all %}

@@ -65,7 +65,28 @@
             <div class="col-12 mt-4">
               <div class="row">
                 <div class="col-12">
-                  <label for="{{ form.categories.id_for_label }}Update" class="form-label">Categorías (una o más)</label>
+                  <label for="{{ form.principal_categories.id_for_label }}Update" class="form-label">Categorías (una o más)</label>
+                  <div class="input-group">
+                    <select multiple class="form-select" required name="principal_categories" id="{{ form.principal_categories.id_for_label }}Update">
+                      {% for category in form.principal_categories %}
+                      {{category}}
+                      {% endfor %}
+                    </select>
+                  </div>
+                  {% if form.principal_categories.errors %}
+                  <div class="alert alert-danger mt-2">
+                  {% for error in form.principal_categories.errors %}
+                      {{ error }}
+                  {% endfor %}
+                </div>
+              {% endif %}
+                </div>
+              </div>
+            </div>
+            <div class="col-12 mt-4">
+              <div class="row">
+                <div class="col-12">
+                  <label for="{{ form.categories.id_for_label }}Update" class="form-label">Sub Categorías (una o más)</label>
                   <div class="input-group">
                     <select multiple class="form-select" required name="categories" id="{{ form.categories.id_for_label }}Update">
                       {% for category in form.categories %}
