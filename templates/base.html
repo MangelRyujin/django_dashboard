@@ -525,6 +525,7 @@
               
               <div class="collapse mt-1 " id="dashboard-collapse-reports" style="">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small ps-3 ">
+                  
                   <li class="mt-1">
                     <a href="{% url "reports_sales_view" %}" class="nav-link text-white btn btn-outline-primary text-start {% if request.path == '/admin_panel/reports_sales/'%} active {% endif %}">
                       
@@ -534,7 +535,15 @@
                       Reportes de venta
                     </a>
                   </li>
-                  
+                  <li class="mt-1">
+                    <a href="{% url "reports_user_sales_view" %}" class="nav-link text-white btn btn-outline-primary text-start {% if request.path == '/admin_panel/reports_user_sales/'%} active {% endif %}">
+                      
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="me-2 bi-graph-up" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M0 0h1v15h15v1H0zm14.817 3.113a.5.5 0 0 1 .07.704l-4.5 5.5a.5.5 0 0 1-.74.037L7.06 6.767l-3.656 5.027a.5.5 0 0 1-.808-.588l4-5.5a.5.5 0 0 1 .758-.06l2.609 2.61 4.15-5.073a.5.5 0 0 1 .704-.07"/>
+                      </svg>
+                      Reportes de usuarios
+                    </a>
+                  </li>
                   
                   
                 </ul>

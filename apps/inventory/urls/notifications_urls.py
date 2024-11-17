@@ -3,6 +3,8 @@ from apps.inventory.views.notifications_views import *
 
 urlpatterns = [
     path('',notification_view,name='notification_view'),
-    path('notification_empty_view',notification_empty_view,name='notification_empty_view')
+    path('notification_empty_view/',notification_empty_view,name='notification_empty_view'),
+    path('notification_results_view/',notification_results_view,name='notification_results_view'),
+    
 ]
 

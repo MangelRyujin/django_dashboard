@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} Reporte de ventas{% endblock %}
+{% block contend %}
+<form class="row g-3 pt-2 pb-4"
+      method="GET"
+      id="OrderFilters"
+      hx-get="{% url 'reports_user_sales_view_results' %}"
+      hx-target="#ReportsSalesResults"
+      hx-swap="innerHTML"
+      hx-trigger="submit"
+      hx-indicator="#spinnerOrderFilter,#spinner">
+      <div class="col-12 col-sm-4 col-md-4 col-lg-3">
+        <label for="inputFactureSupplierFilter" class="form-label">Username</label>
+        <select id="inputFactureSupplierFilter" name="user" class="form-select" aria-label="Default select example">
+          <option value="" selected>Seleccionar usuario</option>
+          {% for user in users %}
+          <option value="{{user.id}}">{{user.username}}</option>
+          {% endfor %}
+        </select>
+      </div>
+        <div class="col-6 col-sm-4 col-md-4 col-lg-3">
+          <label for="inputOrderCreateDate1Filter" class="form-label">Fecha inicio</label>
+          <input type="date" name="created_date_after" class="form-control" id="inputOrderCreateDate1Filter" placeholder="Create date 1">
+        </div>
+        <div class="col-6 col-sm-4 col-md-4 col-lg-3">
+          <label for="inputOrderCreateDate2Filter" class="form-label">Fecha final</label>
+          <input type="date" name="created_date_before" class="form-control" id="inputOrderCreateDate2Filter" placeholder="Create date 2">
+        </div>
+<div class="col-12">
+  <small class=" w-100 d-flex justify-content-end mt-3">
+      <button type="submit" class="btn d-flex justify-content-center align-items-center btn-outline-primary shadow-sm border-2 border-primary px-5">
+        <span id="spinnerOrderFilter" class="htmx-indicator spinner-border spinner-border-sm me-2" ></span>Filtrar</button>
+  </small>
+</div>
+</form>
+
+<div 
+hx-get="{% url 'reports_user_sales_view_results' %}"
+hx-target="#ReportsSalesResults"
+hx-trigger="load"
+hx-swap="innerHTML"
+hx-indicator="#spinner"></div>
+
+<div class="w-100 position-relative d-flex justify-content-center align-items-center">
+<div id="spinner" class="htmx-indicator w-100 h-100  loadding-blur position-absolute z-10 d-flex justify-content-center align-items-center">
+  <div class="spinner-border" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</div>
+<div class="w-100" id="ReportsSalesResults">
+  
+</div> 
+</div>
+
+{% endblock contend %}
+

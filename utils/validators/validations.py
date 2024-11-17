@@ -5,5 +5,5 @@ from django.utils.translation import gettext_lazy as _
 def validate_phone_number(value):
    if not re.match(r'^\+?[1-9][0-9]{7,14}$', value) or value==None or value== '':
         raise ValidationError(
-            _("Invalid phone number")
+            _("Número celular inválido")
         )
