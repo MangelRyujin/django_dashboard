@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.contrib.admin.views.decorators import staff_member_required
 import logging
 from django.core.paginator import Paginator
+from apps.accounts.decorators import group_required
 from apps.inventory.models import Stock
 from apps.sales.forms.order_forms import CreateOrderSoldForm
 from apps.sales.forms.shop_order_forms import CreateShopOrderItemStockForm, UpdateShopOrderForm, UpdateShopOrderItemForm
@@ -12,6 +13,7 @@ from django.db.models import Q
 from django.utils.translation import gettext as _
   
 # Sales demo
+@group_required('administrador','vendedor tienda')
 @staff_member_required(login_url='/')
 def shop_order_view(request):
     response= render(request,'sales/shop_order_templates/shop_order.html')

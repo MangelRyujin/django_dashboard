@@ -9,7 +9,6 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.db.models import Sum
 
 # category view (index)
-@group_required('administrador')
 @staff_member_required(login_url='/')
 def reports_user_sales_view(request):
     context={

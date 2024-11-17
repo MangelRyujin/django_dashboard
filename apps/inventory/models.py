@@ -56,6 +56,15 @@ class Stock(models.Model):
           return True
         return False
     
+    @property
+    def clasification_in_danger(self):
+        if self.cant <= self.storage_threshold:
+          if self.cant == 0:
+            return "table-danger"
+          else:
+            return "table-warning"
+        return ""
+    
 class Supplier(models.Model):
     ci = models.CharField(_("CI"),max_length=11,validators=[MinLengthValidator(11)],unique=True)
     first_name = models.CharField(_("First name"),max_length=100)

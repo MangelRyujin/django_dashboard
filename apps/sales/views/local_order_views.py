@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.contrib.admin.views.decorators import staff_member_required
 import logging
 from django.core.paginator import Paginator
+from apps.accounts.decorators import group_required
 from apps.general.models import LocalSales
 from apps.inventory.models import Stock
 from apps.products.models import Product
@@ -15,6 +16,7 @@ from django.db.models import Q
 from django.utils.translation import gettext as _
   
 # Sales demo
+@group_required('administrador','vendedor local')
 @staff_member_required(login_url='/')
 def local_order_view(request):
     context = {'local':LocalSales.objects.first()}

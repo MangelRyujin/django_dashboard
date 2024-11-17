@@ -453,6 +453,7 @@
                         Ventas
                     </a>
                   </li>
+                  {% if request.user|has_group:"vendedor local"%}
                   <li class="mt-1">
                     <a href="{% url "local_order_view" %}" class="nav-link text-white btn btn-outline-primary text-start {% if request.path == '/admin_panel/local_sales/'%} active {% endif %}">
                       <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="me-2 bi-cart-plus-fill" viewBox="0 0 16 16">
@@ -461,6 +462,8 @@
                       Ventas locales
                     </a>
                   </li>
+                  {% endif %}
+                  {% if request.user|has_group:"vendedor tienda"%}
                   <li class="mt-1">
                     <a href="{% url "shop_order_view" %}" class="nav-link text-white btn btn-outline-primary text-start {% if request.path == '/admin_panel/shop_sales/'%} active {% endif %}">
                       <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="me-2 bi-shop" viewBox="0 0 16 16">
@@ -469,7 +472,7 @@
                       Ventas de la tienda
                     </a>
                   </li>
-                  
+                  {% endif %}
                   
                   
                 </ul>
@@ -512,7 +515,7 @@
               </div>
             </li>
             {% endif %}
-            {% if request.user|has_group:"administrador"%}
+            
             <li class="mt-1">
               <span class="nav-link text-white btn btn-outline-primary d-inline-flex w-100 align-items-center text-start collapsed "
               data-bs-toggle="collapse" data-bs-target="#dashboard-collapse-reports" aria-expanded="false">
@@ -525,7 +528,7 @@
               
               <div class="collapse mt-1 " id="dashboard-collapse-reports" style="">
                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small ps-3 ">
-                  
+                  {% if request.user|has_group:"administrador"%}
                   <li class="mt-1">
                     <a href="{% url "reports_sales_view" %}" class="nav-link text-white btn btn-outline-primary text-start {% if request.path == '/admin_panel/reports_sales/'%} active {% endif %}">
                       
@@ -535,6 +538,7 @@
                       Reportes de venta
                     </a>
                   </li>
+                  {% endif %}
                   <li class="mt-1">
                     <a href="{% url "reports_user_sales_view" %}" class="nav-link text-white btn btn-outline-primary text-start {% if request.path == '/admin_panel/reports_user_sales/'%} active {% endif %}">
                       
@@ -549,7 +553,7 @@
                 </ul>
               </div>
             </li>
-            {% endif %}
+            
             {% if request.user|has_group:"administrador"%}
             <li class="mt-1">
                     <a href="{% url "settings_view" %}" class="nav-link text-white btn btn-outline-primary text-start {% if request.path == '/admin_panel/settings/'%} active {% endif %}">
