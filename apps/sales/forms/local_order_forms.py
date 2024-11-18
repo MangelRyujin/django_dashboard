@@ -16,12 +16,16 @@ class UpdateLocalOrderForm(forms.ModelForm):
         model = LocalOrder
         exclude = ['user_create','state','created_date']
         
+class UpdateLocalOrderItemDiscountForm(forms.ModelForm):
+    class Meta:
+        model = LocalOrderItem
+        exclude = ['order','product']
 
 class CreateLocalOrderItemForm(forms.ModelForm):
     
     class Meta:
         model = LocalOrderItem
-        exclude = ['order']
+        exclude = ['order','discount']
         
         
 class CreateLocalOrderItemStockForm(forms.ModelForm):

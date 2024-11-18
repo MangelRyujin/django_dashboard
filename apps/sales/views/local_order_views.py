@@ -7,7 +7,7 @@ from apps.accounts.decorators import group_required
 from apps.general.models import LocalSales
 from apps.inventory.models import Stock
 from apps.products.models import Product
-from apps.sales.forms.local_order_forms import CreateLocalOrderForm, CreateLocalOrderItemForm, CreateLocalOrderItemStockForm, UpdateLocalOrderForm
+from apps.sales.forms.local_order_forms import CreateLocalOrderForm, CreateLocalOrderItemForm, CreateLocalOrderItemStockForm, UpdateLocalOrderForm, UpdateLocalOrderItemDiscountForm
 from apps.sales.forms.order_forms import CreateOrderSoldForm
 from apps.sales.models import LocalOrder, LocalOrderItem, LocalOrderItemStock
 from apps.sales.utils.local_order import items_discount_or_revert, order_paid_method, order_paid_proccess_data
@@ -70,6 +70,7 @@ def local_order_item_create(request,pk):
                 context['products'].remove(order_item.product)
                 context['message']='Cración correcta'
             else:
+                print(form)
                 context['error']='Corrige los errores'
             context['form']=form
             return render(request,'sales/local_order_templates/actions/localOrderItemCreate/localOrderItemCreateForm.html',context) 
@@ -164,6 +165,22 @@ def local_order_item_delete(request,pk):
             local_order_item.delete()
     return render(request,'sales/local_order_templates/actions/localOrderCardDetail/localOrderCardDetail.html',context)
 
+
+# Add discount to local order item
+@staff_member_required(login_url='/')
+def local_order_item_discount(request,pk):
+    local_order_item = LocalOrderItem.objects.filter(pk=pk).first()
+    form=UpdateLocalOrderItemDiscountForm(instance=local_order_item)
+    context={}
+    if request.method == "POST":
+        form=UpdateLocalOrderItemDiscountForm(request.POST,instance=local_order_item)
+        if form.is_valid():
+            form.save()
+            context['message']="Descuento aplicado con éxito"
+            
+    context["local_order_item"]=local_order_item
+    context['form']=form
+    return render(request,'sales/local_order_templates/actions/localOrderItemDiscount/localOrderItemDiscountVerify.html',context)
 
 # Delete local order item stock
 @staff_member_required(login_url='/')
