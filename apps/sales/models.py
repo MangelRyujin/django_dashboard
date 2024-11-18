@@ -136,7 +136,8 @@ class LocalOrder(models.Model):
 class LocalOrderItem(models.Model):
     order = models.ForeignKey(LocalOrder,on_delete=models.CASCADE,verbose_name="local_order_item")
     product = models.ForeignKey(Product,on_delete=models.CASCADE,verbose_name="local_product_item")
-
+    discount = models.DecimalField(_("Discount"), decimal_places= 2,max_digits=12,default=0,validators=[MinValueValidator(0)])
+    
     class Meta:
         verbose_name = _("Local order item")
         verbose_name_plural = _("Local orders items")
@@ -150,7 +151,7 @@ class LocalOrderItem(models.Model):
     
     @property
     def total_price(self):
-        return (self.product.total_price * sum(item.cant for item in self.localorderitemstock_set.all())) or 0
+        return (self.product.total_price * sum(item.cant for item in self.localorderitemstock_set.all()) - self.discount) or 0
     
     @property
     def total_cost(self):

@@ -11,6 +11,7 @@ urlpatterns = [
     path('local_order_delete/<int:pk>/',local_order_delete,name='local_order_delete'),
     path('local_order_delete_sold/<int:pk>/',local_order_delete_sold,name='local_order_delete_sold'),
     path('local_order_item_stock_delete/<int:pk>/',local_order_item_stock_delete,name='local_order_item_stock_delete'),
+    path('local_order_item_discount/<int:pk>/',local_order_item_discount,name='local_order_item_discount'),
     path('local_order_item_delete/<int:pk>/',local_order_item_delete,name='local_order_item_delete'),
     path('local_order_check_revert/<int:pk>/',local_order_check_revert,name='local_order_check_revert'),
     path('local_order_update/<int:pk>/',local_order_update,name='local_order_update'),
