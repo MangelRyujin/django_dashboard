@@ -1,12 +1,13 @@
 from .base import *
-
+from socket import gethostbyname
+from socket import gethostname
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-# calle 37 entre 64 y 66 6405
+# ALLOWED_HOSTS='domain.com,anotherdomain.com'
 
-ALLOWED_HOSTS = ['*']
-
+LIST_ALLOWED_HOSTS = config('ALLOWED_HOSTS',default='')
+ALLOWED_HOSTS = LIST_ALLOWED_HOSTS.split(",")
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
