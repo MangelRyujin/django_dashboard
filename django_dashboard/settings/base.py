@@ -28,7 +28,6 @@ SECRET_KEY = config('SECRET_KEY',default='Your-secret-key')
 
 
 # Application definition
-
 INSTALLED_APPS = [
     # BASE_APPS
     'django.contrib.admin',
