@@ -1,3 +1,4 @@
+from decimal import Decimal
 from django.shortcuts import render
 from apps.accounts.decorators import group_required
 from apps.products.filters import ProductFilter
@@ -7,6 +8,7 @@ from django.core.paginator import Paginator
 import logging
 from django.contrib.admin.views.decorators import staff_member_required
 from apps.products.models import Category, PrincipalCategory
+from utils.funtions.parce.parce_text_to_float import replace_parce_float
 logger = logging.getLogger(__name__)
 
 # Product view (index)
@@ -59,13 +61,20 @@ def product_update(request,pk):
     context['form']=form
     return render(request,'product_templates/actions/productUpdate/productUpdateForm.html',context) 
 
+
+
+
 # Product main information update form
 @staff_member_required(login_url='/')
 def product_form_update(request,pk):
     context={}
     if request.method == "POST":
         product = Product.objects.filter(pk=pk).first()
-        form = UpdateProductForm(request.POST,request.FILES,instance=product)
+        data=request.POST.copy()
+        data['price'] = replace_parce_float(data['price'])
+        data['discount'] = replace_parce_float(data['discount'])
+        data['weight'] = replace_parce_float(data['weight'])
+        form = UpdateProductForm(data,request.FILES,instance=product)
         if form.is_valid():
             product_form_valid=form.save(commit=False)
             product_form_valid._change_reason = f'Producto {product.name} modificado'

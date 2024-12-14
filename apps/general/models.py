@@ -16,8 +16,8 @@ class Goal(SingletonModel):
         return f'{self.goal}'
 
 class PrincipalHeader(SingletonModel):
-    principal_title = models.CharField(_("Principal comment"),max_length=50,null=True,blank=True)
-    secundary_title = models.CharField(_("Secundary comment"),max_length=100,null=True,blank=True)
+    principal_title = models.CharField(_("Principal comment"),max_length=100,null=True,blank=True)
+    secundary_title = models.CharField(_("Secundary comment"),max_length=200,null=True,blank=True)
     image = models.ImageField(_("Image"),upload_to="image_presentation",null=True,blank=True)
 
     class Meta:
