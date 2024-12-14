@@ -11,6 +11,7 @@ from apps.sales.forms.local_order_forms import CreateLocalOrderForm, CreateLocal
 from apps.sales.forms.order_forms import CreateOrderSoldForm
 from apps.sales.models import LocalOrder, LocalOrderItem, LocalOrderItemStock
 from apps.sales.utils.local_order import items_discount_or_revert, order_paid_method, order_paid_proccess_data
+from utils.funtions.parce.parce_text_to_float import replace_parce_float
 logger = logging.getLogger(__name__)
 from django.db.models import Q
 from django.utils.translation import gettext as _
@@ -173,7 +174,9 @@ def local_order_item_discount(request,pk):
     form=UpdateLocalOrderItemDiscountForm(instance=local_order_item)
     context={}
     if request.method == "POST":
-        form=UpdateLocalOrderItemDiscountForm(request.POST,instance=local_order_item)
+        data=request.POST.copy()
+        data['discount'] = replace_parce_float(data['discount'])
+        form=UpdateLocalOrderItemDiscountForm(data,instance=local_order_item)
         if form.is_valid():
             form.save()
             context['message']="Descuento aplicado con éxito"

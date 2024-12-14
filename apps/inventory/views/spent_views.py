@@ -5,6 +5,8 @@ from apps.inventory.forms.spent_forms import *
 from django.core.paginator import Paginator
 import logging
 from django.contrib.admin.views.decorators import staff_member_required
+
+from utils.funtions.parce.parce_text_to_float import replace_parce_float
 logger = logging.getLogger(__name__)
 
 # spent view (index)
@@ -58,7 +60,9 @@ def spent_form_update(request,pk):
     context={}
     if request.method == "POST":
         spent = Spent.objects.filter(pk=pk).first()
-        form = UpdateSpentForm(request.POST,instance=spent)
+        data=request.POST.copy()
+        data['amount'] = replace_parce_float(data['amount'])
+        form = UpdateSpentForm(data,instance=spent)
         if form.is_valid():
             form.save()
             message="Editado correctamente"

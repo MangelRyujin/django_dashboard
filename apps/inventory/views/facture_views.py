@@ -7,6 +7,7 @@ import logging
 from django.contrib.admin.views.decorators import staff_member_required
 from apps.inventory.models import Supplier
 from apps.products.models import Product
+from utils.funtions.parce.parce_text_to_float import replace_parce_float
 logger = logging.getLogger(__name__)
 
 # facture view (index)
@@ -63,7 +64,9 @@ def facture_form_update(request,pk):
     context={}
     if request.method == "POST":
         facture = Facture.objects.filter(pk=pk).first()
-        form = UpdateFactureForm(request.POST,instance=facture)
+        data=request.POST.copy()
+        data['unit_price'] = replace_parce_float(data['unit_price'])
+        form = UpdateFactureForm(data,instance=facture)
         if form.is_valid():
             form.save()
             message="Editada correctamente"

@@ -8,6 +8,7 @@ import logging
 from django.contrib.admin.views.decorators import staff_member_required
 from apps.inventory.models import Stock,CategoryStock,Warehouse
 from apps.products.models import Product
+from utils.funtions.parce.parce_text_to_float import replace_parce_float
 logger = logging.getLogger(__name__)
 
 # Stock view (index)
@@ -67,7 +68,9 @@ def stock_form_update(request,pk):
     context={}
     if request.method == "POST":
         stock = Stock.objects.filter(pk=pk).first()
-        form = UpdateStockForm(request.POST,instance=stock)
+        data=request.POST.copy()
+        data['unit_price'] = replace_parce_float(data['unit_price'])
+        form = UpdateStockForm(data,instance=stock)
         if form.is_valid():
             stock_form_valid=form.save(commit=False)
             stock_form_valid._change_reason = f'Stock {stock.name} modificado'

@@ -93,6 +93,7 @@ def register_view(request):
 # Register in view
 @user_is_not_authenticated
 def register_form_view(request):
+    form = RegisterForm()
     if request.method == "POST":
         form = RegisterForm(request.POST)
         if form.is_valid():
@@ -100,13 +101,9 @@ def register_form_view(request):
             response = render(request, 'login.html')
             response["HX-Redirect"]= '/login/'
             return response
-        else:
-            pass
-    else:
-        form = RegisterForm()
-        context={
-            "form":form
-            }
+    context={
+        "form":form
+    }
     return render(request, 'shop_templates/register/register_form.html',context)
 
 
