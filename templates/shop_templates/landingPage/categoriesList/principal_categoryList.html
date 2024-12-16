@@ -18,7 +18,7 @@
                 {% for category in list %}
                 
                     <div class="col pb-3 d-flex justify-content-center align-items-center  position-relative">
-                        <img loading="lazy"  width="300" src="{% if category.image %}{{category.image.url}}{% else %}{% static "/assets/img/image_not_found.jpg" %}{% endif %}" class="img-fluid img-thumbnail" alt="{% if category.image %}{{category.image.url}}{% else %}{% static "/assets/img/image_not_found.jpg" %}{% endif %}">
+                        <img loading="lazy"  width="300" height="300" src="{% if category.image %}{{category.image.url}}{% else %}{% static "/assets/img/image_not_found.jpg" %}{% endif %}" class="img-fluid img-thumbnail" alt="{% if category.image %}{{category.image.url}}{% else %}{% static "/assets/img/image_not_found.jpg" %}{% endif %}">
                         <strong class="small position-absolute p-1 p-sm-2 border-2 bg-body-tertiary border rounded bottom-0 " style="font-size: 12px;">
                             {{category.name}}
                         </strong>

@@ -1,0 +1,23 @@
+/* TEAM */
+
+    <Ruscarparts>
+
+    CEO: <Miguel Angel Ferníndez Rodríguez>
+
+    CTO/Backend: <Miguel Angel Ferníndez Rodríguez>
+    Site: <https://ruscarparts.com>
+    Mastodon: @<mangelryujin>
+    X: @<mangelryujin>
+    From: <Cienfuegos>, <Cuba>
+
+    Graphic and UI/UX designer: <Miguel Angel Ferníndez Rodríguez>
+
+    Frontend Developer and Web designer: <Miguel Angel Ferníndez Rodríguez>
+
+/* SITE */
+
+    Last update: 
+    Language:  Español
+    Standards: HTML5, CSS3
+    Components: Django
+    IDE: VSCode

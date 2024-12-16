@@ -1,0 +1,10 @@
+{% load url_absolute %} 
+{% url_absolute "shop_view" %}
+{% url_absolute "products_store_view" %}
+
+{# Products #}
+{% if products %}
+  {% for url_post in products %}
+    {{domain}}{{ url_post }}
+  {% endfor %}
+{% endif %}
