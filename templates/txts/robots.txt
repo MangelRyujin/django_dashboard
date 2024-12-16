@@ -1,7 +1,5 @@
 User-agent: *
 Allow: /
-Allow: /products/
 Disallow: /admin_django/
 Disallow: /admin_panel/
-Disallow: /static/
 Sitemap: {{ domain_url }}/sitemap.txt
