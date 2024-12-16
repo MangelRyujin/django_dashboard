@@ -79,6 +79,7 @@ TEMPLATES = [
             ],
             'libraries': {
                 'user_tags': 'apps.accounts.templatetags.user_tags',
+                'url_absolute': 'apps.accounts.templatetags.custom_tags'
             },
         },
     },
@@ -157,3 +158,6 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER =  config("EMAIL_USER")
 EMAIL_HOST_PASSWORD =  config("EMAIL_PASSWORD")
+
+
+DOMAIN_URL = config("DOMAIN_URL",default="https://example.com")

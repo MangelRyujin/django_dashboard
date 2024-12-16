@@ -1,11 +1,13 @@
 from typing import Iterable
 from django.db import models
+from django.urls import reverse
 from django.utils.translation import gettext as _
 from django.core.validators import MinValueValidator,MaxValueValidator
 from simple_history.models import HistoricalRecords
 from apps.accounts.models import User
 import uuid
 import math
+from django.conf import settings
 from decimal import Decimal
 # Create your models here.
 
@@ -84,6 +86,9 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def get_absolute_url(self): # Nuevo
+        return reverse("shop_product_detail_view", kwargs={"pk": f'{self.pk}'})
     
     def rating(self):
         return [i for i in range(int(self.stars))]

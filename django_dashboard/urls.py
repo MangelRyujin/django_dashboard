@@ -21,6 +21,9 @@ from django.views.static import serve
 from apps.general.views.general_views import   login_view, change_password_view,change_password_form, register_form_view,register_view
 from django.contrib.auth.views import PasswordChangeDoneView,PasswordChangeView,LogoutView,PasswordResetView,PasswordResetDoneView,PasswordResetCompleteView,PasswordResetConfirmView
 
+from apps.general.views.seo_views import *
+from apps.general.views.site_map import sitemap
+
 urlpatterns = [
     path('admin_django/', admin.site.urls),
     re_path(r'^media/(?P<path>.*)$',serve,{'document_root':settings.MEDIA_ROOT}),
@@ -59,5 +62,8 @@ urlpatterns = [
     path('change_password_form/',change_password_form,name='change_password_form'),
     path('admin_panel/',include('apps.general.dashboard_urls')),
     re_path(r'^i18n/', include('django.conf.urls.i18n')),
-    
+    path("robots.txt", robots, name="robots"),
+    path("security.txt", security, name="security"),
+    path("humans.txt", humans, name="humans"),
+    path("sitemap.txt", sitemap, name="sitemap"),
 ]
