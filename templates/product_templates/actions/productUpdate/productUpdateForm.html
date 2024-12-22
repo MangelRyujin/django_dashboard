@@ -261,7 +261,7 @@
             </div>
             <div class="col-12  mt-4 ">
               <label for="{{ form.long_description.id_for_label }}Update" class="form-label">Descripción larga(max=500)</label>
-              <textarea  class="form-control" rows=6 required name="long_description" id="{{ form.long_description.id_for_label }}Update" placeholder="Descripción">{{form.instance.small_description}}</textarea>
+              <textarea  class="form-control" rows=6 required name="long_description" id="{{ form.long_description.id_for_label }}Update" placeholder="Descripción">{{form.instance.long_description}}</textarea>
             
               
                 {% if form.long_description.errors %}
