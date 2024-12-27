@@ -113,7 +113,7 @@ def product_delete(request,pk):
 def _show_product(request):
     get_copy = request.GET.copy()
     parameters = get_copy.pop('page', True) and get_copy.urlencode()
-    Products = ProductFilter(request.GET, queryset=Product.objects.all().order_by('-id'))
+    Products = ProductFilter(request.GET, queryset=Product.objects.all().order_by('code'))
     paginator = Paginator(Products.qs, 25)    # Show 25 contacts per page.
     page_number = request.GET.get("page",1)
     page_obj = paginator.get_page(page_number)
