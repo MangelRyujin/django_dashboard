@@ -162,9 +162,15 @@
                 <div class="d-flex align-items-center">
                   <img loading="lazy" src="{% if local_order_item.product.image_one %}{{local_order_item.product.image_one.url}}{% else %}{% static "/assets/img/icon-image-not-found-free-vector" %}{% endif %}" alt="" width="50" height="50" class="rounded-circle me-2">
                   <p class=" mb-0 small lh-sm  ">
-                    <span class="d-block mb-0 small text-ellipsis-150">{{local_order_item.product.name}}
+                    <span class="d-block mb-0 {% if not local_order_item.available and local_order_item.order.state == "p" %}text-danger{% endif %} small text-ellipsis-150">
+                      {{local_order_item.product.name}}
                       
                     </span>
+                    {% if not local_order_item.available and local_order_item.order.state == "p" %}
+                      <span class="d-block mb-0 small {% if not local_order_item.available %}text-danger{% endif %}">
+                        {{local_order_item.missing}} unidades faltantes
+                      </span>
+                    {% endif %}
                     <span class="small">{{local_order_item.cant}}x - $ {{local_order_item.total_price}}</span>
                   </p>
                 </div>

@@ -146,6 +146,23 @@ class LocalOrderItem(models.Model):
         return f'{self.pk}'
     
     @property
+    def available(self):
+        stock_max = sum(stock.cant for stock in Stock.objects.filter(is_active=True,cant__gt=0,product=self.product.pk))
+        if stock_max < self.cant:
+          return False
+        return True
+    
+    @property
+    def stocks_available(self):
+        stock_max = sum(stock.cant for stock in self.localorderitemstock_set.all())
+        return self.cant - stock_max
+    
+    @property
+    def missing(self):
+        stock_max = sum(stock.cant for stock in Stock.objects.filter(is_active=True,cant__gt=0,product=self.product.pk))
+        return (stock_max - self.cant)*(-1)
+    
+    @property
     def cant(self):
         return sum(item.cant for item in self.localorderitemstock_set.all()) or 0
     
