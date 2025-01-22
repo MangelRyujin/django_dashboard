@@ -3,7 +3,7 @@ from apps.general.models import *
 from apps.shop.cart import Cart
 from apps.shop.forms.reviews_forms import CreateProductReviewForm
 from apps.products.models import Product, ProductReview
-from utils.funtions.products.product import favorite_products
+from utils.funtions.products.product import favorite_products,sub_category_products
 
 def shop_product_detail_view(request,pk):
     product = Product.objects.filter(pk=pk).first()
@@ -21,7 +21,7 @@ def shop_product_detail_view(request,pk):
         "social":SocialMedia.objects.first(),
         "product":product,
         "reviews":ProductReview.objects.filter(is_active=True,product=product)[:5],
-        "favorite_products":favorite_products(request,request.user),
+        "favorite_products":sub_category_products(request,request.user,product),
         "form":CreateProductReviewForm()
     }
     response= render(request,'shop_templates/productDetail/product_detail.html',context)

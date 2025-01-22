@@ -12,7 +12,7 @@
           {% csrf_token %}
           <div class="col-12  mt-4 ">
             <label for="{{ form.user_ci.id_for_label }}" class="form-label">CI</label>
-            <input type="text" class="form-control" required name="user_ci" id="{{ form.user_ci.id_for_label }}" placeholder="ci">
+            <input type="text" class="form-control" name="user_ci" id="{{ form.user_ci.id_for_label }}" placeholder="ci">
             {% if form.user_ci.errors %}
             <div class="alert alert-danger mt-2">
                 {% for error in form.user_ci.errors %}
@@ -23,7 +23,7 @@
           </div>
           <div class="col-12  mt-4 ">
             <label for="{{ form.user_first_name.id_for_label }}" class="form-label">Nombre</label>
-            <input type="text" class="form-control" required name="user_first_name" id="{{ form.user_first_name.id_for_label }}" placeholder="Nombre">
+            <input type="text" class="form-control" name="user_first_name" id="{{ form.user_first_name.id_for_label }}" placeholder="Nombre">
             {% if form.user_first_name.errors %}
             <div class="alert alert-danger mt-2">
                 {% for error in form.user_first_name.errors %}
@@ -34,7 +34,7 @@
           </div>
           <div class="col-12  mt-4 ">
             <label for="{{ form.user_last_name.id_for_label }}" class="form-label">Apellidos</label>
-            <input type="text" class="form-control" required name="user_last_name" id="{{ form.user_last_name.id_for_label }}" placeholder="Apellidos">
+            <input type="text" class="form-control" name="user_last_name" id="{{ form.user_last_name.id_for_label }}" placeholder="Apellidos">
             {% if form.user_last_name.errors %}
             <div class="alert alert-danger mt-2">
                 {% for error in form.user_last_name.errors %}
@@ -45,7 +45,7 @@
           </div>
           <div class="col-12  mt-4 ">
             <label for="{{ form.user_phone.id_for_label }}" class="form-label">Móvil</label>
-            <input type="text" class="form-control" required name="user_phone" id="{{ form.user_phone.id_for_label }}" placeholder="Móvil">
+            <input type="text" class="form-control" name="user_phone" id="{{ form.user_phone.id_for_label }}" placeholder="Móvil">
             {% if form.user_phone.errors %}
             <div class="alert alert-danger mt-2">
                 {% for error in form.user_phone.errors %}
@@ -56,7 +56,7 @@
           </div>
           <div class="col-12  mt-4 ">
             <label for="{{ form.address.id_for_label }}" class="form-label">Dirección</label>
-            <input type="text" class="form-control" required name="address" id="{{ form.address.id_for_label }}" placeholder="Dirección">
+            <input type="text" class="form-control" name="address" id="{{ form.address.id_for_label }}" placeholder="Dirección">
             {% if form.address.errors %}
             <div class="alert alert-danger mt-2">
                 {% for error in form.address.errors %}

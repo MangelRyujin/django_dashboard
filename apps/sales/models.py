@@ -88,11 +88,11 @@ class LocalOrder(models.Model):
     user_create=models.ForeignKey(User,on_delete=models.CASCADE,verbose_name="user_created_order")
     state = models.CharField(_("State"),max_length=1, choices=STATE_CHOICES, default='p') 
     created_date = models.DateTimeField(_("Created date"),auto_now_add=True,auto_now=False)
-    user_ci=models.CharField(_("User ci"),max_length=255,null=True,blank=True)
-    user_first_name=models.CharField(_("User first name"),max_length=255,null=True,blank=True)
-    user_last_name=models.CharField(_("User last name"),max_length=255,null=True,blank=True)
-    user_phone=models.CharField(_("User phone"),max_length=255,null=True,blank=True)
-    address=models.CharField(_("Address"),max_length=255,null=True,blank=True)
+    user_ci=models.CharField(_("User ci"),default='no definido',max_length=30,null=True,blank=True)
+    user_first_name=models.CharField(_("User first name"),default='no definido',max_length=70,null=True,blank=True)
+    user_last_name=models.CharField(_("User last name"),default='no definido',max_length=70,null=True,blank=True)
+    user_phone=models.CharField(_("User phone"),default='no definido',max_length=30,null=True,blank=True)
+    address=models.CharField(_("Address"),default='no definido',max_length=150,null=True,blank=True)
     
     
     class Meta:

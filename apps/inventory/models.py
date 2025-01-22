@@ -37,7 +37,6 @@ class Stock(models.Model):
     product = models.ForeignKey(Product,on_delete=models.CASCADE,related_name="product_stock")
     is_active = models.BooleanField(_("Active"),default=False)
     warehouse = models.ForeignKey(Warehouse,on_delete=models.CASCADE,related_name="warehouse_stock",null=True,blank=True)
-    expiration_date = models.DateField(_("Expire date"))
     create_date = models.DateTimeField(_("Create date"),auto_now_add=True)
     cant = models.PositiveIntegerField(_("Cant"),validators=[MinValueValidator(0)])
     unit_price = models.DecimalField(_("Inversion Cost"), max_digits=12, default=0, decimal_places=2,validators=[MinValueValidator(0.01)])
