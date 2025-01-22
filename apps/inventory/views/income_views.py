@@ -35,9 +35,10 @@ def income_create(request):
             income.created_user=request.user
             income.save()  
             context['message']='Creado correctamente'
+            context['form']=CreateIncomeForm()
         else:
             context['error']='Corrige los errores'
-        context['form']=form
+            context['form']=form
         return render(request,'income_templates/actions/incomeCreate/incomeCreateForm.html',context) 
     form = CreateIncomeForm()
     context['form']=form

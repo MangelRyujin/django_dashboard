@@ -34,10 +34,11 @@ def spent_create(request):
             spent=form.save(commit=False)
             spent.created_user=request.user
             spent.save()  
+            context['form']=CreateSpentForm()
             context['message']='Creado correctamente'
         else:
             context['error']='Corrige los errores'
-        context['form']=form
+            context['form']=form
         return render(request,'spent_templates/actions/spentCreate/spentCreateForm.html',context) 
     form = CreateSpentForm()
     context['form']=form

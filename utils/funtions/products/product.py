@@ -75,6 +75,24 @@ def favorite_products(request,user):
         )
     return favorite_products
 
+
+# Filter 6 favorite products
+def sub_category_products(request,user,product):
+    favorite_products=[]
+    cart=Cart(request)
+    print(product.categories.all())
+    products = Product.objects.filter(is_active=True,categories__in=product.categories.all()).distinct().exclude(pk=product.pk)
+    for product in products:
+        like=product.user_has_like(user.id)
+        favorite_products.append(
+            {
+                'like':like,
+                'product':product,
+                'product_cart':cart.get_cant_product(product)
+            }
+        )
+    return favorite_products
+
 # Filter all sub categories
 def categories_list_slider():
     categories = []

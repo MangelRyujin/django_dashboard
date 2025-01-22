@@ -151,20 +151,6 @@
               </div>
             {% endif %}
           </div>
-          <div class="col-12  mt-4 ">
-            <label for="{{ form.expiration_date.id_for_label }}" class="form-label">Fecha de expiración</label>
-            <div class="input-group">
-              <input type="date" class="form-control" required name="expiration_date" id="{{ form.expiration_date.id_for_label }}">
-              
-            </div>
-            {% if form.expiration_date.errors %}
-            <div class="alert alert-danger mt-2">
-                {% for error in form.expiration_date.errors %}
-                    {{ error }}
-                {% endfor %}
-              </div>
-            {% endif %}
-          </div>
           
           <div class="col-12  mt-4">
             <label class="form-check-label" for="{{ form.is_active.id_for_label }}">
