@@ -44,7 +44,7 @@
                 </div>
                 <div class="col-12">
                   <label for="{{ form.ci.id_for_label }}Update" class="form-label">CI</label>
-                  <input type="text" name="ci" required value="{{ form.ci.value }}" class="form-control" id="{{ form.ci.id_for_label }}Update" placeholder="CI">
+                  <input type="text" name="ci"  value="{{ form.ci.value }}" class="form-control" id="{{ form.ci.id_for_label }}Update" placeholder="CI">
                   {% if form.ci.errors %}
                   <div class="alert alert-danger mt-2">
                       {% for error in form.ci.errors %}
