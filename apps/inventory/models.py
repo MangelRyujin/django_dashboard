@@ -65,7 +65,7 @@ class Stock(models.Model):
         return ""
     
 class Supplier(models.Model):
-    ci = models.CharField(_("CI"),max_length=11,validators=[MinLengthValidator(11)],unique=True)
+    ci = models.CharField(_("CI"),null=True,blank=True)
     first_name = models.CharField(_("First name"),max_length=100)
     last_name = models.CharField(_("Last name"),max_length=100)
     address = models.CharField(_("Address"),max_length=255)
