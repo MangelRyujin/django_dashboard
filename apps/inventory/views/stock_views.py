@@ -17,7 +17,7 @@ logger = logging.getLogger(__name__)
 def stock_view(request):
     categories = CategoryStock.objects.all()
     warehouses = Warehouse.objects.all()
-    products = Product.objects.all()
+    products = Product.objects.all().order_by('name')
     response= render(request,'stock_templates/stock.html',{'categories':categories,'warehouses':warehouses,'products': products})
     response['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
     response['Pragma'] = 'no-cache'
@@ -35,7 +35,7 @@ def stock_create(request):
     context={
         'categories':CategoryStock.objects.all(),
         'warehouses': Warehouse.objects.all(),
-        'products': Product.objects.all()
+        'products': Product.objects.all().order_by('name')
     }
     
     if request.method == "POST":
@@ -81,7 +81,7 @@ def stock_form_update(request,pk):
         else:
             message="Corrige los errores"
             context['error']=message
-        print(form)
+        
         context['stock']=stock
         context['form']=form
         return render(request,'stock_templates/actions/stockUpdate/stockUpdateCheckForm.html',context) 
