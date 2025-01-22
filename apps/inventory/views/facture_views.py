@@ -31,7 +31,7 @@ def facture_table_results(request):
 def facture_create(request):
     context={
         'suppliers':Supplier.objects.all(),
-        'products':Product.objects.all()
+        'products':Product.objects.all().order_by('name')
     }
     
     if request.method == "POST":

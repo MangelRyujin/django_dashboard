@@ -80,7 +80,6 @@ def favorite_products(request,user):
 def sub_category_products(request,user,product):
     favorite_products=[]
     cart=Cart(request)
-    print(product.categories.all())
     products = Product.objects.filter(is_active=True,categories__in=product.categories.all()).distinct().exclude(pk=product.pk)
     for product in products:
         like=product.user_has_like(user.id)
