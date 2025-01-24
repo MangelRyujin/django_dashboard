@@ -58,6 +58,7 @@ def stock_update(request,pk):
     stock = Stock.objects.filter(pk=pk).first()
     form = UpdateStockForm(instance=stock)
     context={}
+    context['products']=Product.objects.all().order_by('name')
     context['stock']=stock
     context['form']=form
     return render(request,'stock_templates/actions/stockUpdate/stockUpdateForm.html',context) 
@@ -81,7 +82,7 @@ def stock_form_update(request,pk):
         else:
             message="Corrige los errores"
             context['error']=message
-        
+        context['products']=Product.objects.all().order_by('name')
         context['stock']=stock
         context['form']=form
         return render(request,'stock_templates/actions/stockUpdate/stockUpdateCheckForm.html',context) 

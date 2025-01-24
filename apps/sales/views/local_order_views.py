@@ -44,7 +44,7 @@ def local_order_create(request):
             order = form.save(commit=False)
             order.user_create = request.user
             order.save()
-            context['message']='Cración correcta'
+            context['message']='Creación correcta'
         else:
             context['error']='Corrige los errores'
         context['form']=form
@@ -60,7 +60,10 @@ def local_order_item_create(request,pk):
     context={
        'local_order':local_order,
     }
-    context['products'] = [product for product in Product.objects.filter(is_active=True) if product.total_stock > 0 and not local_order.localorderitem_set.filter(product=product) ] 
+    if request.user.warehouse_code:
+        context['products'] = [product for product in Product.objects.filter(is_active=True) if product.product_in_user_warehouse(request.user) > 0 and not local_order.localorderitem_set.filter(product=product) ] 
+    else:
+        context['products'] = [product for product in Product.objects.filter(is_active=True) if product.total_stock > 0 and not local_order.localorderitem_set.filter(product=product) ] 
     if local_order:
         if request.method == "POST":
             form = CreateLocalOrderItemForm(request.POST)
@@ -69,7 +72,7 @@ def local_order_item_create(request,pk):
                 order_item.order = local_order
                 order_item.save()
                 context['products'].remove(order_item.product)
-                context['message']='Cración correcta'
+                context['message']='Creación correcta'
             else:
                 print(form)
                 context['error']='Corrige los errores'
@@ -86,7 +89,10 @@ def local_order_item_stock_create(request,pk):
     context={
        'local_order_item':local_order_item,
     }
-    context['stocks'] = [stock for stock in Stock.objects.filter(is_active=True,cant__gt=0,product=local_order_item.product) if not local_order_item.localorderitemstock_set.filter(stock=stock) ] 
+    if request.user.warehouse_code:
+        context['stocks'] = [stock for stock in Stock.objects.filter(is_active=True,cant__gt=0,product=local_order_item.product,warehouse__pk=request.user.warehouse_code) if not local_order_item.localorderitemstock_set.filter(stock=stock) ] 
+    else:
+        context['stocks'] = [stock for stock in Stock.objects.filter(is_active=True,cant__gt=0,product=local_order_item.product) if not local_order_item.localorderitemstock_set.filter(stock=stock) ] 
    
     if local_order_item:
         if request.method == "POST":
@@ -96,7 +102,7 @@ def local_order_item_stock_create(request,pk):
                 local_order_item_stock.item = local_order_item
                 local_order_item_stock.save()
                 context['stocks'].remove(local_order_item_stock.stock)
-                context['message']='Cración correcta'
+                context['message']='Creación correcta'
             else:
                 context['error']='Corrige los errores'
             
@@ -211,6 +217,7 @@ def _show_local_order(request):
         | Q(user_last_name__icontains=keyword)| Q(user_phone__icontains=keyword)
         | Q(address__icontains=keyword)| Q(user_first_name__icontains=keyword)
         | Q(localorderitem__product__name__icontains=keyword) | Q(localorderitem__product__code__icontains=keyword)
+        and Q(user_create=request.user)
         ).distinct().order_by('-id')
     paginator = Paginator(local_orders, 25)    # Show 25 contacts per page.
     page_number = request.GET.get("page",1)

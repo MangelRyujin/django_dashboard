@@ -12,4 +12,4 @@ class UpdateStockForm(forms.ModelForm):
     
     class Meta:
         model = Stock
-        exclude=['cant']
+        fields = "__all__"

@@ -110,8 +110,8 @@ class Facture(models.Model):
 
 class StockMovements(models.Model):
     TYPE_CHOICES  = (
-        ('1', 'exit'),
-        ('2', 'entrance'),   
+        ('1', 'salida'),
+        ('2', 'entrada'),   
     )
     MOVEMENT_TYPE_CHOICES  = (
         ('1', 'simple'),

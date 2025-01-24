@@ -8,14 +8,14 @@ from apps.products.models import Product
 # Create your models here.
 class Order(models.Model):
     TYPE_CHOICES = (
-        ('s', _("shop")),
+        ('s', _("tienda")),
         ('l', _("local")),
         
     )
     PAYMENT_TYPE_CHOICES = (
-        ('c', _("cash")),
-        ('t', _("transfer")),
-        ('b', _("both")),
+        ('c', _("efectivo")),
+        ('t', _("transferencia")),
+        ('b', _("ambos")),
     )
     user_create=models.ForeignKey(User,on_delete=models.CASCADE,verbose_name="user_created_order",null=True,blank=True)
     user_id=models.CharField(_("User id"),max_length=255, null=True,blank=True)

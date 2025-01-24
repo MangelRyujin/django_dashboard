@@ -34,6 +34,7 @@
               <th  scope="col">Nombre de usuario</th>
               <th scope="col">Email</th>
               <th scope="col">CI</th>
+              <th scope="col">Almacen</th>
               <th scope="col">Móvil</th>
               <th scope="col">Roles</th>
               <th scope="col">Activo</th>
@@ -46,6 +47,7 @@
                   <td class="border small table-min">{{admin.username}}</td>
                   <td class="border small table-min">{{admin.email}}</td>
                   <td class="border small table-min">{% if admin.ci %}{{admin.ci}}{% else %}-{% endif %}</td>
+                  <td class="border small ">{% if admin.warehouse_code %}{{admin.warehouse_code}}{% else %}-{% endif %}</td>
                   <td class="border small table-min">{% if admin.phone_number %}{{admin.phone_number}}{% else %}-{% endif %}</td>
                   <td class="border small table-min">
                     {% if admin.groups.all %}
