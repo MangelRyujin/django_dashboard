@@ -51,11 +51,23 @@
                 <div class="col-12">
                   <label for="{{ form.product.id_for_label }}Update" class="form-label">Producto</label>
                   <div class="input-group">
-                    <select  class="form-select" required name="product" id="{{ form.product.id_for_label }}Update">
-                      {% for product in form.product %}
-                      {{product}}
-                      {% endfor %}
-                    </select>
+                    <select class="form-control selectpicker w-100"  
+                        data-show-subtext="true" 
+                        data-live-search="true"
+                        required
+                        name="product"
+                        id="{{ form.product.id_for_label }}Update">
+                        {% for product in products %}
+                          <option value="{{product.id}}" {% if form.product.value|default:'' == product.id|stringformat:'s' %}selected{% endif %}>
+                            {{product.code}}-{{product.name}}
+                          </option>
+                        {% endfor %}
+                      </select>
+                      <script>
+                        $(document).ready(function() {
+                            $('.selectpicker').selectpicker();
+                          });
+                      </script>
                   </div>
                   {% if form.product.errors %}
                   <div class="alert alert-danger mt-2">

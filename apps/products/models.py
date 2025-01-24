@@ -98,6 +98,12 @@ class Product(models.Model):
             return True
         return False
     
+    def product_in_user_warehouse(self,user):
+        if self.product_stock.filter(warehouse__pk=user.warehouse_code):
+            return True 
+        else:
+            return False
+    
     @property
     def format_views(self):
         if self.views >= 1000000 :

@@ -11,14 +11,23 @@
           {% csrf_token %}
           <div class="col-12 mt-2">
             
+            
                 <label for="{{ form.stock.id_for_label }}OrderItemStock" class="form-label">Stock</label>
                 <div class="input-group">
-                  <select class="form-select" required name="stock" id="{{ form.stock.id_for_label }}OrderItemStock">
+                  <select class="form-control selectpicker w-100" 
+                  data-show-subtext="true" 
+                  data-live-search="true"
+                  required name="stock" id="{{ form.stock.id_for_label }}OrderItemStock">
                     <option value="" >Seleccionar stock</option>
                     {% for stock in stocks %}
                     <option value="{{stock.id}}" {% if form.stock.value|default:'' == stock.id|stringformat:'s' %}selected{% endif %}>{{stock.code}}-{{stock.name}} in stock {{stock.cant}}</option>
                     {% endfor %}
                   </select>
+                  <script>
+                    $(document).ready(function() {
+                        $('.selectpicker').selectpicker();
+                      });
+                  </script>
                 </div>
                 {% if form.stock.errors %}
                 <div class="alert alert-danger mt-2">

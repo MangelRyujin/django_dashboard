@@ -29,11 +29,28 @@
                   <div class="col-12">
                     <label for="{{ form.product.id_for_label }}Update" class="form-label">Producto</label>
                     <div class="input-group">
-                      <select  class="form-select"  required name="product" id="{{ form.product.id_for_label }}Update">
-                        {% for product in form.product %}
-                        {{product}}
+                      <select class="form-control selectpicker w-100"  
+                        data-show-subtext="true" 
+                        data-live-search="true"
+                        required
+                        name="product"
+                        id="{{ form.product.id_for_label }}Update">
+                        {% for product in products %}
+                          <option value="{{product.id}}" {% if form.product.value == product.pk %}selected{% endif %}>
+                            {{product.code}}-{{product.name}}
+                          </option>
                         {% endfor %}
                       </select>
+                      <script>
+                        $(document).ready(function() {
+                            $('.selectpicker').selectpicker();
+                          });
+                      </script>
+                      {% comment %} <select  class="form-select"  required name="product" id="{{ form.product.id_for_label }}Update">
+                        {% for product in form.product %}
+                          {{product}}
+                        {% endfor %}
+                      </select> {% endcomment %}
                     </div>
                     
                 
@@ -75,7 +92,14 @@
                 <input type="text" class="form-control" value="{% if form.address.value %}{{ form.address.value }}{% endif %}" name="address" id="{{ form.address.id_for_label }}Update" placeholder="Dirección">
                 
               </div>
-
+              <div class="col-12  mt-4 ">
+                <label for="{{ form.cant.id_for_label }}Update" class="form-label">Cantidad</label>
+                <div class="input-group">
+                  <input type="number" min=0 class="form-control"  value="{{ form.cant.value }}" required name="cant" id="{{ form.cant.id_for_label }}Update" placeholder="1">
+                
+                </div>
+                
+              </div>
               
               <div class="col-12  mt-4 ">
                 <label for="{{ form.unit_price.id_for_label }}Update" class="form-label">Costo por unidad</label>

@@ -55,6 +55,7 @@ def facture_update(request,pk):
     form = UpdateFactureForm(instance=facture)
     context={}
     context['facture']=facture
+    context['products']=Product.objects.all().order_by('name')
     context['form']=form
     return render(request,'facture_templates/actions/factureUpdate/factureUpdateForm.html',context) 
 
@@ -74,6 +75,7 @@ def facture_form_update(request,pk):
         else:
             message="Corrige los errores"
             context['error']=message
+        context['products']=Product.objects.all().order_by('name')
         context['facture']=facture
         context['form']=form
         return render(request,'facture_templates/actions/factureUpdate/factureUpdateCheckForm.html',context) 

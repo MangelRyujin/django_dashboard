@@ -1,4 +1,10 @@
 {% load static %} {% if form %}
+
+<script>
+  $(document).ready(function() {
+      $('.selectpicker').selectpicker();
+    });
+</script>
 <h5 class="offcanvas-title text-center">Venta: {{local_order.pk}}</h5>
 <form
   hx-post="{% url 'local_order_item_create' pk=local_order.pk %}"
@@ -15,7 +21,19 @@
           >Producto</label
         >
         <div class="input-group">
-          <select
+          <select class="form-control selectpicker w-100"  
+            data-show-subtext="true" 
+            data-live-search="true"
+            required
+            name="product"
+            id="{{ form.product.id_for_label }}">
+            {% for product in products %}
+                      <option value="{{product.id}}" {% if form.product.value|default:'' == product.id|stringformat:'s' %}selected{% endif %}>
+                        {{product.name}} en stock {{product.total_stock}}
+                      </option>
+            {% endfor %}
+          </select>
+          {% comment %} <select
             class="form-select"
             required
             name="product"
@@ -27,7 +45,7 @@
               {{product.name}} en stock {{product.total_stock}}
             </option>
             {% endfor %}
-          </select>
+          </select> {% endcomment %}
         </div>
         {% if form.product.errors %}
         <div class="alert alert-danger mt-2">
