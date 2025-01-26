@@ -57,7 +57,7 @@ class Stock(models.Model):
     
     @property
     def clasification_in_danger(self):
-        if self.cant <= self.storage_threshold:
+        if self.cant < self.storage_threshold:
           if self.cant == 0:
             return "table-danger"
           else:
