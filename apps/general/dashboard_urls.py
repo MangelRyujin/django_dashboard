@@ -28,6 +28,7 @@ urlpatterns = [
     path('chart_dashboard/',include('apps.general.urls.charts.dashboard.chart_urls')),
     path('reports_sales/',include('apps.reports.urls.reports_sales.reports_sales_urls')),
     path('reports_user_sales/',include('apps.reports.urls.reports_user_sales.reports_user_sales_urls')),
+    path('shifts/',include('apps.sales.urls.shift_urls')),
     
 ]
 
