@@ -1,7 +1,8 @@
 import django_filters
 from apps.accounts.models import User
+from apps.inventory.models import Warehouse
 from apps.products.models import Product
-from apps.sales.models import LocalOrder, Order
+from apps.sales.models import LocalOrder, Order, Shift
 
 
 class OrderFilter(django_filters.FilterSet):
@@ -39,3 +40,15 @@ class LocalOrderFilter(django_filters.FilterSet):
     class Meta:
         model = LocalOrder
         fields = ['id','user_create','user_first_name','user_last_name','user_phone','user_ci','created_date']
+        
+class ShiftFilter(django_filters.FilterSet):
+    warehouse=django_filters.ModelMultipleChoiceFilter(queryset=Warehouse.objects.all())
+    create_user_username = django_filters.CharFilter(lookup_expr='icontains')
+   
+    create_date_at =django_filters.DateFromToRangeFilter()
+    pk = django_filters.CharFilter(lookup_expr='icontains')
+
+
+    class Meta:
+        model = Shift
+        fields = ['pk','create_user_username','warehouse','create_date_at']

@@ -2,8 +2,100 @@ from django.db import models
 from django.utils.translation import gettext as _
 from django.core.validators import MinValueValidator
 from apps.accounts.models import User
-from apps.inventory.models import Stock
+from apps.inventory.models import Stock, Warehouse
 from apps.products.models import Product
+from datetime import date
+
+
+class Shift(models.Model):
+    create_date_at = models.DateField(_("Created date"),auto_now_add=True)
+    create_time_at = models.TimeField(_("Created time"),auto_now_add=True)
+    warehouse = models.ManyToManyField(Warehouse,related_name="warehouse_shift")
+    finish_date_at =  models.DateField(_("Finish date"),auto_now_add=False,null=True,blank=True)
+    finish_time_at = models.TimeField(_("Finish time"),auto_now_add=False,null=True,blank=True)
+    create_user_pk = models.CharField(max_length=200,default='Indefinido')
+    create_user_username = models.CharField(max_length=200,default='Indefinido')
+
+    class Meta:
+        verbose_name = _("Shift")
+        verbose_name_plural = _("Shifts")
+
+    def __str__(self):
+        return f"{self.pk}"
+    
+    @property
+    def user_pk(self):
+        return int(self.create_user_pk)
+    
+    @property
+    def total_initial_cant(self):
+        return sum(product.initial_cant for product in self.product_shift_report.all()) or 0
+    
+    @property
+    def estimate_total_import(self):
+        return sum(product.estimate_shift_product_import for product in self.product_shift_report.all()) or 0
+    
+    @property
+    def total_import(self):
+        return sum(product.total_price for product in self.product_shift_report.all()) or 0
+    
+    @property
+    def estimate_total_sold_cant(self):
+        return sum(product.estimate_products_sold for product in self.product_shift_report.all()) or 0
+    
+    @property
+    def total_sold_cant(self):
+        return sum(product.sold_cant for product in self.product_shift_report.all()) or 0
+    
+    @property
+    def estimate_finish_cant(self):
+        return sum(product.estimate_warehouse_product_stock for product in self.product_shift_report.all()) or 0
+    
+    @property
+    def total_finish_cant(self):
+        return sum(product.finish_cant for product in self.product_shift_report.all()) or 0
+    
+class ProductShiftReport(models.Model):
+    shift = models.ForeignKey(Shift,on_delete=models.CASCADE,related_name="product_shift_report")
+    product = models.ForeignKey(Product,on_delete=models.CASCADE,verbose_name="item_product_shift_report")
+    initial_cant = models.PositiveIntegerField()
+    sold_cant = models.PositiveIntegerField(null=True,blank=True)
+    finish_cant = models.PositiveIntegerField(null=True,blank=True)
+    total_price = models.DecimalField(_("Price"), decimal_places= 2,max_digits=12,validators=[MinValueValidator(0)])
+    
+    class Meta:
+        verbose_name = _("Product shift report")
+        verbose_name_plural = _("Product shift reports")
+
+    def __str__(self):
+        return self.product.name
+
+    @property
+    def estimate_products_sold(self):
+        warehouse=[str(warehouse.pk) for warehouse in self.shift.warehouse.all()]
+        items = OrderItemStock.objects.filter(
+            item__order__created_date__gte=self.shift.create_date_at,
+            stock_wharehouse_id__in=warehouse,
+            item__product_id=str(self.product.pk)
+            )
+        return sum(item.cant for item in items) or 0
+        
+    
+    @property
+    def estimate_warehouse_product_stock(self):
+        stocks = self.product.product_stock.filter(cant__gt=0,is_active=True,warehouse__in=self.shift.warehouse.all())
+        return sum(stock.cant for stock in stocks)
+    
+    @property
+    def estimate_shift_product_import(self):
+        warehouse=[str(warehouse.pk) for warehouse in self.shift.warehouse.all()]
+        items_stock = OrderItemStock.objects.filter(
+            item__order__created_date__gte=self.shift.create_date_at,
+            stock_wharehouse_id__in=warehouse,
+            item__product_id=str(self.product.pk)
+            )
+        return sum(item_stock.product_import for item_stock in items_stock) or 0
+        
 
 # Create your models here.
 class Order(models.Model):
@@ -78,6 +170,30 @@ class OrderItem(models.Model):
     def revenue(self):
         return self.total_price - self.total_cost
         
+   
+class OrderItemStock(models.Model):
+    item = models.ForeignKey(OrderItem,on_delete=models.CASCADE,verbose_name="order_item_stock")
+    stock_code = models.CharField(_("Stock id"),max_length=30)
+    stock_name = models.CharField(_("Stock id"),max_length=120)
+    stock_unit_price = models.DecimalField(_("Stock inversion cost"), max_digits=12, default=0, decimal_places=2)
+    stock_cant_affter = models.PositiveIntegerField(_("Stock cant affter"))
+    stock_cant_before = models.PositiveIntegerField(_("Stock cant before"))
+    stock_wharehouse_id = models.CharField(_("Stock wharehouse id"),max_length=30)
+    stock_wharehouse_name = models.CharField(_("Stock wharehouse name"),max_length=120)
+    cant= models.PositiveIntegerField(_("Cant"))
+    product_import = models.DecimalField(_("Product import"), max_digits=12, default=0, decimal_places=2)
+    
+    
+    class Meta:
+        verbose_name = _("Order item stock")
+        verbose_name_plural = _("Orders items stocks")
+
+    def __str__(self):
+        return f'{self.pk}'
+    
+   
+   
+   
         
 class LocalOrder(models.Model):
     STATE_CHOICES = (

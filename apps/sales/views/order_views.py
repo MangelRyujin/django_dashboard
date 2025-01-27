@@ -47,6 +47,5 @@ def _show_order(request):
 def order_detail(request,pk):
     order = Order.objects.filter(pk=pk).first()
     items = order.orderitem_set.all()
-    print(items)
     return  render(request,'sales/order_templates/actions/orderDetail/orderDetail.html',{"order":order,"items":items})
      

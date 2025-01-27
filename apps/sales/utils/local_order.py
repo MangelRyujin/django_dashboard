@@ -1,5 +1,5 @@
 from decimal import Decimal
-from apps.sales.models import Order, OrderItem
+from apps.sales.models import Order, OrderItem, OrderItemStock
 
 # Discount all tiems stock for local order
 def items_discount_or_revert(order,action):
@@ -49,6 +49,7 @@ def order_paid_transfer(order_unpaid):
           payment_type= 't',
           cash = 0,
           transfer= order_unpaid.total_price,
+          
         )
     order.save()
     order_paid_created_items(order,order_unpaid)
@@ -92,8 +93,24 @@ def order_paid_created_items(order,order_unpaid):
         item.product.total_sales+=item.cant
         item.product.save()
         order_item.save()
-     
+        local_order_paid_created_item_stocks(item,order_item)
+        
 
+def local_order_paid_created_item_stocks(item,order_item):
+    for stock in item.localorderitemstock_set.all():
+        order_item_stock = OrderItemStock.objects.create(
+            item=order_item,
+            stock_code = stock.stock.code,
+            stock_name = stock.stock.name,
+            stock_unit_price = stock.stock.unit_price,
+            cant = stock.cant,
+            stock_cant_affter = stock.stock.cant,
+            stock_cant_before = stock.stock.cant + stock.cant,
+            stock_wharehouse_id = stock.stock.warehouse.pk,
+            stock_wharehouse_name = stock.stock.warehouse.name,
+            product_import = stock.cant * (order_item.total_price/order_item.cant)
+        )
+        order_item_stock.save()
 
 # Payment methods proccess data
 def order_paid_proccess_data(data,total_price):
