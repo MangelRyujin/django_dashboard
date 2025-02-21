@@ -173,12 +173,12 @@ class OrderItem(models.Model):
    
 class OrderItemStock(models.Model):
     item = models.ForeignKey(OrderItem,on_delete=models.CASCADE,verbose_name="order_item_stock")
-    stock_code = models.CharField(_("Stock id"),max_length=30)
+    stock_code = models.CharField(_("Stock id"),max_length=70)
     stock_name = models.CharField(_("Stock id"),max_length=120)
     stock_unit_price = models.DecimalField(_("Stock inversion cost"), max_digits=12, default=0, decimal_places=2)
     stock_cant_affter = models.PositiveIntegerField(_("Stock cant affter"))
     stock_cant_before = models.PositiveIntegerField(_("Stock cant before"))
-    stock_wharehouse_id = models.CharField(_("Stock wharehouse id"),max_length=30)
+    stock_wharehouse_id = models.CharField(_("Stock wharehouse id"),max_length=70)
     stock_wharehouse_name = models.CharField(_("Stock wharehouse name"),max_length=120)
     cant= models.PositiveIntegerField(_("Cant"))
     product_import = models.DecimalField(_("Product import"), max_digits=12, default=0, decimal_places=2)
