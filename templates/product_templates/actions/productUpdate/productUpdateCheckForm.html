@@ -179,7 +179,7 @@
             </div>
             <div class="col-12  mt-4">
               <label class="form-label"  for="{{form.image_one.id_for_label}}Update">Imagen 1
-                <img class="rounded-circle" src=" {% if product.image_one %}{{product.image_one.url}} {% else %} {% static "/assets/img/image_not_found" %}{% endif %}" width="32" height="32" alt="{% if product.image_one %}{{product.image_one.url}} {% else %} {% static "/assets/img/image_not_found" %}{% endif %}">
+                <img class="rounded-circle" src=" {% if product.image_one %}{{product.image_one.url}} {% else %} {% static "/assets/img/image_not_found.jpg" %}{% endif %}" width="32" height="32" alt="{% if product.image_one %}{{product.image_one.url}} {% else %} {% static "/assets/img/image_not_found" %}{% endif %}">
               </label>
               <div class="input-group mb-3">
                 <input type="file"  name="image_one" class="form-control" id="{{form.image_one.id_for_label}}Update">
