@@ -8,7 +8,7 @@ def create_product_shfit(shift):
     warehouses = shift.warehouse.all()
     
     for warehouse in warehouses:
-        products=warehouse.warehouse_stock.values('product__pk','product__code','product__name').annotate(
+        products=warehouse.warehouse_stock.values('product__pk','product__code','product__name').filter(is_active=True).annotate(
             count= Sum('cant'),
         ).order_by('product__code')
         for product in products:
@@ -17,7 +17,7 @@ def create_product_shfit(shift):
                 product__pk=product['product__pk']
             ).first()
             if product_shift:
-                product_shift.initial_cant+=product['count']
+                product_shift.initial_cant+= product['count']
                 product_shift.save()
             else:
                 ProductShiftReport.objects.create(
