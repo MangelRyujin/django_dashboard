@@ -123,7 +123,7 @@ class Product(models.Model):
     @property
     def total_price(self):
         if self.discount > 0:
-            return round(self.price - (round((self.price * self.discount),2) / 100),2)
+            return int((self.price - (round((self.price * self.discount),2) / 100)))
         else:
             return self.price
         
