@@ -28,8 +28,8 @@ class AdminShift(admin.ModelAdmin):
 @admin.register(ProductShiftReport)
 class AdminProductShiftReport(admin.ModelAdmin):
     list_display = ['pk', 'shift','product','initial_cant', 'sold_cant','finish_cant','total_price']
-    list_filter = ('shift','product')
-
+    list_filter = ('shift','product',)
+    search_fields = ['shift__pk','product__name']
     list_per_page = 100
     
     
