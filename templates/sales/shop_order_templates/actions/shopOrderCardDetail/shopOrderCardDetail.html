@@ -127,13 +127,15 @@
             <div class="d-flex align-items-center">
               <img loading="lazy" src="{% if shop_order_item.product.image_one %}{{shop_order_item.product.image_one.url}}{% else %}{% static "/assets/img/icon-image-not-found-free-vector" %}{% endif %}" alt="" width="50" height="50" class="rounded-circle me-2">
               <p class=" mb-0 small lh-sm  ">
-                <span class="d-block mb-0 small {% if not shop_order_item.available %}text-danger{% endif %} text-ellipsis-150">
+                <span class="d-block mb-0 small {% if shop_order_item.state == 'c' %}{% if not shop_order_item.available %}text-danger{% endif %}{% endif %} text-ellipsis-150">
                   {{shop_order_item.product.name}}
                 </span>
-                {% if not shop_order_item.available %}
-                      <span class="d-block mb-0 small {% if not shop_order_item.available %}text-danger{% endif %}">
-                        {{shop_order_item.missing}} unidades faltantes
-                      </span>
+                {% if shop_order_item.state == 'c' %}
+                  {% if not shop_order_item.available %}
+                        <span class="d-block mb-0 small {% if not shop_order_item.available %}text-danger{% endif %}">
+                          {{shop_order_item.missing}} unidades faltantes
+                        </span>
+                  {% endif %}
                 {% endif %}
                 <span class="small">{{shop_order_item.cant}}x - $ {{shop_order_item.price}}</span>
               </p>
