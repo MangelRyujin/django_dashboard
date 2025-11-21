@@ -150,7 +150,7 @@ def admin_detail(request,pk):
     return  render(request,'admin_templates/actions/adminDetail/adminDetail.html',{"admin":admin})
 
 # Change Personal Information of user admins
-def change_information(request):
+def update_profile(request):
     user = User.objects.get(pk=request.user.pk)
     if request.method == 'POST':
         form = ChangeUserPersonalInformation(request.POST,request.FILES, instance=user)
