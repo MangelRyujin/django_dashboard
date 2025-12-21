@@ -6,9 +6,10 @@
 
 {% include 'sales/order_templates/actions/orderDetail/offcanvasRightOrderDetail.html' %}
 <script>
-  $(document).ready(function() {
-      $('.selectpicker').selectpicker();
-    });
+  $(document).ready(function () {
+  $('.selectpicker').selectpicker('render');
+  $('.selectpicker').selectpicker('refresh');
+});
 </script>
 
 

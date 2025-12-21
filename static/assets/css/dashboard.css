@@ -435,3 +435,8 @@
 .show-on-scroll {
   display: block !important;
 }
+
+
+.bootstrap-select .dropdown-menu {
+  z-index: 2000 !important;
+}
