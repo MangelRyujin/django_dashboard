@@ -68,12 +68,23 @@
         {% if products %}
       <div class="col-12  col-sm-4 col-md-4 col-lg-3">
         <label for="inputOrderProductFilter" class="form-label">Producto</label>
-        <select id="inputOrderProductFilter" name="product" class="form-select" aria-label="Default select example">
-          <option value="" selected>Seleccionar producto</option>
-          {% for product in products %}
-          <option value="{{product.id}}">{{product.name}}</option>
-          {% endfor %}
-        </select>
+         <select class="form-control selectpicker w-100"  
+                        data-show-subtext="true" 
+                        data-live-search="true"
+                        name="product"
+                        id="{{ product.id }}">
+                        <option value="" selected>Seleccionar producto</option>
+                        {% for product in products %}
+                          <option value="{{product.id}}" {% if form.product.value|default:'' == product.id|stringformat:'s' %}selected{% endif %}>
+                           {{product.name}}
+                          </option>
+                        {% endfor %}
+                      </select>
+                      <script>
+                        $(document).ready(function() {
+                            $('.selectpicker').selectpicker();
+                          });
+                      </script>
       </div>
       {% endif %}
         <div class="col-12  col-sm-4 col-md-4 col-lg-3">

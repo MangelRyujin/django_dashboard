@@ -29,7 +29,9 @@ class Shift(models.Model):
     
     @property
     def total_initial_cant(self):
-        return sum(product.initial_cant for product in self.product_shift_report.all()) or 0
+        return self.product_shift_report.aggregate(
+            total=models.Sum('initial_cant')
+        )['total'] or 0
     
     @property
     def estimate_total_import(self):

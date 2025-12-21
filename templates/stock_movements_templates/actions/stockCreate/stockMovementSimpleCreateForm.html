@@ -31,12 +31,6 @@
                             $('.selectpicker').selectpicker();
                           });
                       </script>
-                  {% comment %} <select  class="form-select" required name="stock_one" id="{{ form.stock_one.id_for_label }}">
-                    <option value='' selected>Selecciona stock</option>
-                    {% for stock_one in stocks %}
-                    <option value="{{stock_one.id}}" {% if form.stock_one.value|default:'' == stock_one.id|stringformat:'s' %}selected{% endif %}>{{stock_one.name}}</option>
-                    {% endfor %}
-                  </select> {% endcomment %}
                 </div>
                 {% if form.stock_one.errors %}
                 <div class="alert alert-danger mt-2">

@@ -30,7 +30,7 @@ def stock_movements_table_results(request):
 @staff_member_required(login_url='/')
 def stock_movements_simple_create(request):
     context={
-         'stocks':Stock.objects.all(),
+         'stocks':Stock.objects.all().order_by('name'),
     }
     
     if request.method == "POST":
@@ -59,7 +59,7 @@ def stock_movements_simple_create(request):
 @staff_member_required(login_url='/')
 def stock_movements_multiple_create(request):
     context={
-        'stocks':Stock.objects.all(),
+        'stocks':Stock.objects.all().order_by('name'),
         
     }
     
