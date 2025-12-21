@@ -5,12 +5,7 @@
 
 
 {% include 'sales/order_templates/actions/orderDetail/offcanvasRightOrderDetail.html' %}
-<script>
-  $(document).ready(function () {
-  $('.selectpicker').selectpicker('render');
-  $('.selectpicker').selectpicker('refresh');
-});
-</script>
+
 
 
 <div class="d-flex align-items-center p-3 my-3  rounded-2 shadow-sm bg-body-tertiary">
@@ -73,12 +68,12 @@
         {% if products %}
       <div class="col-12  col-sm-4 col-md-4 col-lg-3">
         <label for="inputOrderProductFilter" class="form-label">Producto</label>
-        <div class="input-group  position-relative">
-         <select class="form-control "  
+        <div class="input-group ">
+         <select class="form-control selectpicker max-w-320"  
                         data-show-subtext="true" 
                         data-live-search="true"
                         name="product"
-                        id="{{ product.id }}">
+                        id="{{ product }}">
                         <option value="" selected>Seleccionar producto</option>
                         {% for product in products %}
                           <option value="{{product.id}}" {% if form.product.value|default:'' == product.id|stringformat:'s' %}selected{% endif %}>
