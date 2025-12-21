@@ -17,7 +17,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 def shift_view(request):
     context={
         "form" : CreateShiftForm(),
-        "warehouses":Warehouse.objects.all()
+        "warehouses":Warehouse.objects.all().order_by('name')
     }
     response= render(request,'shift_templates/shift.html',context)
     response['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
@@ -33,7 +33,7 @@ def shift_table_results(request):
 # shift create form
 @staff_member_required(login_url='/')
 def shift_create(request):
-    context={"warehouses":Warehouse.objects.all()}
+    context={"warehouses":Warehouse.objects.all().order_by('name')}
     if request.method == "POST":
         form = CreateShiftForm(request.POST)
         if form.is_valid():
@@ -127,19 +127,65 @@ def shift_detail(request,pk):
     return  render(request,'shift_templates/actions/shiftDetail/shiftDetail.html',{"shift":shift})
     
 # Detail shift table
+# @staff_member_required(login_url='/')
+# def shift_report_detail(request,pk):
+#     shift = get_object_or_404(Shift,pk=pk)
+#     context={
+#         "shift":shift,
+#         "products":shift.product_shift_report.all().order_by('product__name'),
+#         "total_initial_cant":shift.total_initial_cant ,
+#         "total_products_sold":shift.total_sold_cant if shift.finish_date_at else shift.estimate_total_sold_cant,
+#         "total_warehouse_product_stock":shift.total_finish_cant if shift.finish_date_at else shift.estimate_finish_cant,
+#         "total_shift_product_import":shift.total_import if shift.finish_date_at else shift.estimate_total_import
+#     }
+#     return  render(request,'shift_templates/actions/shiftDetail/shiftReportDetail.html',context)
+
 @staff_member_required(login_url='/')
-def shift_report_detail(request,pk):
-    shift = get_object_or_404(Shift,pk=pk)
-    context={
-        "shift":shift,
-        "products":shift.product_shift_report.all().order_by('product__code'),
-        "total_initial_cant":shift.total_initial_cant ,
-        "total_products_sold":shift.total_sold_cant if shift.finish_date_at else shift.estimate_total_sold_cant,
-        "total_warehouse_product_stock":shift.total_finish_cant if shift.finish_date_at else shift.estimate_finish_cant,
-        "total_shift_product_import":shift.total_import if shift.finish_date_at else shift.estimate_total_import
+def shift_report_detail(request, pk):
+    from django.db.models import Sum
+    from django.shortcuts import render
+    shift = (
+        Shift.objects
+        .prefetch_related(
+            'warehouse',
+            'product_shift_report__product'
+        )
+        .get(pk=pk)
+    )
+
+    products_qs = shift.product_shift_report.all().order_by('product__name')
+
+    aggregates = products_qs.aggregate(
+        total_initial=Sum('initial_cant'),
+        total_sold=Sum('sold_cant'),
+        total_finish=Sum('finish_cant'),
+        total_import=Sum('total_price'),
+    )
+
+    context = {
+        "shift": shift,
+        "products": products_qs,
+        "total_initial_cant": aggregates['total_initial'] or 0,
+        "total_products_sold": (
+            aggregates['total_sold'] if shift.finish_date_at
+            else shift.estimate_total_sold_cant
+        ),
+        "total_warehouse_product_stock": (
+            aggregates['total_finish'] if shift.finish_date_at
+            else shift.estimate_finish_cant
+        ),
+        "total_shift_product_import": (
+            aggregates['total_import'] if shift.finish_date_at
+            else shift.estimate_total_import
+        ),
     }
-    return  render(request,'shift_templates/actions/shiftDetail/shiftReportDetail.html',context)
-    
+
+    return render(
+        request,
+        'shift_templates/actions/shiftDetail/shiftReportDetail.html',
+        context
+    )
+      
 @group_required('administrador')
 @staff_member_required(login_url='/')
 def shift_close_report(request,pk):

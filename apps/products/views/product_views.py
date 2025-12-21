@@ -15,8 +15,8 @@ logger = logging.getLogger(__name__)
 @staff_member_required(login_url='/')
 def product_view(request):
     context={
-        'categories':Category.objects.all(),
-        'principal_categories':PrincipalCategory.objects.all()
+        'categories':Category.objects.all().order_by('name'),
+        'principal_categories':PrincipalCategory.objects.all().order_by('name')
         }
     response= render(request,'product_templates/product.html',context)
     response['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
@@ -33,8 +33,8 @@ def product_table_results(request):
 @staff_member_required(login_url='/')
 def product_create(request):
     context={
-        'categories':Category.objects.all(),
-        'principal_categories':PrincipalCategory.objects.all()
+        'categories':Category.objects.all().order_by('name'),
+        'principal_categories':PrincipalCategory.objects.all().order_by('name')
     }
     
     if request.method == "POST":
@@ -113,7 +113,7 @@ def product_delete(request,pk):
 def _show_product(request):
     get_copy = request.GET.copy()
     parameters = get_copy.pop('page', True) and get_copy.urlencode()
-    Products = ProductFilter(request.GET, queryset=Product.objects.all().order_by('code'))
+    Products = ProductFilter(request.GET, queryset=Product.objects.all().order_by('name'))
     paginator = Paginator(Products.qs, 25)    # Show 25 contacts per page.
     page_number = request.GET.get("page",1)
     page_obj = paginator.get_page(page_number)

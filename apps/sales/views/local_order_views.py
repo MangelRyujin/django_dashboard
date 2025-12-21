@@ -61,9 +61,9 @@ def local_order_item_create(request,pk):
        'local_order':local_order,
     }
     if request.user.warehouse_code:
-        context['products'] = [product for product in Product.objects.filter(is_active=True) if product.product_in_user_warehouse(request.user) > 0 and not local_order.localorderitem_set.filter(product=product) ] 
+        context['products'] = [product for product in Product.objects.filter(is_active=True).order_by('name') if product.product_in_user_warehouse(request.user) > 0 and not local_order.localorderitem_set.filter(product=product) ] 
     else:
-        context['products'] = [product for product in Product.objects.filter(is_active=True) if product.total_stock > 0 and not local_order.localorderitem_set.filter(product=product) ] 
+        context['products'] = [product for product in Product.objects.filter(is_active=True).order_by('name') if product.total_stock > 0 and not local_order.localorderitem_set.filter(product=product) ] 
     if local_order:
         if request.method == "POST":
             form = CreateLocalOrderItemForm(request.POST)
@@ -90,9 +90,9 @@ def local_order_item_stock_create(request,pk):
        'local_order_item':local_order_item,
     }
     if request.user.warehouse_code:
-        context['stocks'] = [stock for stock in Stock.objects.filter(is_active=True,cant__gt=0,product=local_order_item.product,warehouse__pk=request.user.warehouse_code) if not local_order_item.localorderitemstock_set.filter(stock=stock) ] 
+        context['stocks'] = [stock for stock in Stock.objects.filter(is_active=True,cant__gt=0,product=local_order_item.product,warehouse__pk=request.user.warehouse_code).order_by('name') if not local_order_item.localorderitemstock_set.filter(stock=stock) ] 
     else:
-        context['stocks'] = [stock for stock in Stock.objects.filter(is_active=True,cant__gt=0,product=local_order_item.product) if not local_order_item.localorderitemstock_set.filter(stock=stock) ] 
+        context['stocks'] = [stock for stock in Stock.objects.filter(is_active=True,cant__gt=0,product=local_order_item.product).order_by('name') if not local_order_item.localorderitemstock_set.filter(stock=stock) ] 
    
     if local_order_item:
         if request.method == "POST":

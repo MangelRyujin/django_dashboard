@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 @group_required('administrador')
 @staff_member_required(login_url='/')
 def stock_view(request):
-    categories = CategoryStock.objects.all()
+    categories = CategoryStock.objects.all().order_by('name')
     warehouses = Warehouse.objects.all()
     products = Product.objects.all().order_by('name')
     response= render(request,'stock_templates/stock.html',{'categories':categories,'warehouses':warehouses,'products': products})
@@ -33,7 +33,7 @@ def stock_table_results(request):
 @staff_member_required(login_url='/')
 def stock_create(request):
     context={
-        'categories':CategoryStock.objects.all(),
+        'categories':CategoryStock.objects.all().order_by('name'),
         'warehouses': Warehouse.objects.all(),
         'products': Product.objects.all().order_by('name')
     }
@@ -111,7 +111,7 @@ def stock_delete(request,pk):
 def _show_stock(request):
     get_copy = request.GET.copy()
     parameters = get_copy.pop('page', True) and get_copy.urlencode()
-    stocks = StockFilter(request.GET, queryset=Stock.objects.all().order_by('code'))
+    stocks = StockFilter(request.GET, queryset=Stock.objects.all().order_by('name'))
     paginator = Paginator(stocks.qs, 50)    # Show 25 contacts per page.
     page_number = request.GET.get("page",1)
     page_obj = paginator.get_page(page_number)

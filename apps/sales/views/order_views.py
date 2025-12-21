@@ -11,7 +11,7 @@ logger = logging.getLogger(__name__)
 # order view (index)
 @staff_member_required(login_url='/')
 def order_view(request):
-    products=Product.objects.all()
+    products=Product.objects.all().order_by('name')
     created_users = User.objects.filter(is_staff=True)
     response= render(request,'sales/order_templates/order.html',{"products":products,"created_users":created_users})
     response['Cache-Control'] = 'no-store, no-cache, must-revalidate, max-age=0'
