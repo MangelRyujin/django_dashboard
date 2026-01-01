@@ -435,3 +435,12 @@
 .show-on-scroll {
   display: block !important;
 }
+
+
+.bootstrap-select .dropdown-menu {
+  z-index: 2000 !important;
+}
+
+.max-w-320{
+  max-width: 320px !important;
+}
