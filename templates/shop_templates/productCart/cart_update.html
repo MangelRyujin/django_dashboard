@@ -14,7 +14,7 @@
                 {% static "/assets/img/image_not_found.jpg" %} {% endif %}">
                 <div>
                   <h6 class="my-0">{{item.product_name}}</h6>
-                <small class="text-body-secondary">unidades {{item.cant}} - $ {{item.price}}</small>
+                <small class="text-body-secondary">unidades {{item.cant}} - {{item.price}} CUP</small>
                 </div>
                 
               </div>
@@ -96,7 +96,7 @@
           {% endfor %}
           <li class="list-group-item list-group-item-dark text-body-emphasis d-flex justify-content-between px-2">
             <span>Unidades: {{cart.get_total_items}}</span>
-            <strong>$ {{cart.get_total_price}}</strong>
+            <strong>{{cart.get_total_price}} CUP</strong>
           </li>
         </ul>
         
